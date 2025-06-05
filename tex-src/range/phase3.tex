@@ -1,0 +1,55 @@
+%-------------------------------------------------------------------------------
+% range/phase3.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.2 : 「変数のポイント」節を復元（出来高補正の趣旨を明示）
+% - 2025-05-31  v1.1 : β_vol,t^{(3)} 表記統一
+% - 2025-05-31  v1.0 : Phase-3 出来高補正 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase-3 : 出来高補正 β_vol,t^{(3)} ========================================
+\section*{range / Phase 3}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{出来高比率を計算}\;
+        \( r_v = \dfrac{\text{Vol}_{t-1}}{\text{AvgVol}_{25}} \)
+  \item \textbf{指数補正}\;
+        \( \beta_{\text{vol},t}^{(3)}
+           =\beta_{\text{vol},t}^{(2)}\;r_v^{\eta_v},
+           \quad \eta_v = 0.4 \)
+        （\(0.2 \le \beta_{\text{vol},t}^{(3)} \le 5.0\) でクリップ）
+  \item \textbf{半レンジを更新}\;
+        \( m_t=\sigma_t^{\text{shift}}\;\beta_{\text{vol},t}^{(3)} \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item 出来高急増時はレンジを拡大、低迷時は縮小。  
+  \item \(\eta_v=0\) とすれば出来高補正を無効化し  
+        Phase 2 の幅倍率をそのまま使用。
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\(\text{Vol}_{t-1}\) & 前日出来高 \\
+\(\text{AvgVol}_{25}\) & 25 日平均出来高 \\
+\(r_v\) & 出来高比率 \\
+\(\eta_v\) & 出来高補正指数（既定 0.4） \\
+\(\beta_{\text{vol},t}^{(2)}\) & Phase 2 幅倍率 \\
+\(\beta_{\text{vol},t}^{(3)}\) & Phase 3 幅倍率（出来高反映） \\
+\(m_t\) & 半レンジ \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+%===============================================================================

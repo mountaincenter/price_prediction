@@ -1,0 +1,64 @@
+%-------------------------------------------------------------------------------
+% center_shift/phase0.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-02  v1.2 : add section/subsection, Variables & Hints, ASCII-only
+% - 2025-05-31  v1.1 : λ → λ_shift / ASCII 化
+% - 2025-05-29  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== center_shift =============================================================
+\section*{center\_shift}\nopagebreak[4]
+
+%=== Phase 0 : 中心シフト量 α_t 前提条件 =======================================
+\subsection*{Phase 0：中心シフト量 $\alpha_t$ 前提条件}\nopagebreak[4]
+%────────────────────────────────────
+\paragraph{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{当日共通ボラ}\;
+        \(
+          \sigma_t^{\text{shift}}
+          =\sqrt{\pi/2}\,|\Delta Cl_t|
+        \)
+  \item \textbf{方向スコア}\;
+        \( S_t=\operatorname{sign}(\Delta Cl_{t-1})\;\;(\!-1,0,+1) \)
+  \item \textbf{スケール関数（定数）}\;
+        \(\kappa(\sigma_t^{\text{shift}})=\kappa_0\)
+  \item \textbf{中心シフト量}\;
+        \(\alpha_t=\kappa_0\,S_t,\quad 0\le|S_t|\le1\)
+\end{enumerate}
+\end{flushleft}
+
+\subsubsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(\kappa_0=0.20\)：シンプルな基準値。Phase 1 以降で動的化
+  \item \(\sigma_t^{\text{shift}}\)：どのモジュールでも共通に使用
+\end{itemize}
+\end{flushleft}
+
+\subsubsection*{実装ヒント}
+\begin{flushleft}
+履歴が不足する初期 5 日間は  
+\(S_t=0\)・\(\alpha_t=0\) として無効化すると安定します。
+\end{flushleft}
+
+\subsubsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\kappa_0 & 固定スケール係数 (0.20) \\
+\sigma_t^{\text{shift}} & EWMA14 ボラ (sigma/phase1.tex) \\
+S_t & \(\operatorname{sign}(\Delta Cl_{t-1})\) \\
+\Delta Cl_t & \(\ln(Cl_t/Cl_{t-1})\) \\
+\alpha_t & 中心シフト量 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

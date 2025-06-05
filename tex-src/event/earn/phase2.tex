@@ -1,0 +1,81 @@
+%-------------------------------------------------------------------------------
+% event/earn/phase2.tex   v1.4  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.4 : 説明列の % → \% をエスケープ（Missing $ 解消）
+% - 2025-06-02  v1.3 : tabularx 行末 \\ 追加
+% - 2025-06-02  v1.2 : ASCII 統一, beta^{(2)} 表記
+% - 2025-05-31  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase 2 : Surprise + Guidance 係数 =========================================
+\section*{event / earn / Phase 2}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{Profit／Sales サプライズ率}\;
+        \[
+          \Delta_{\text{profit}}
+            =\frac{\text{Profit}_t-\text{Profit}_{t-4Q}}
+                   {|\text{Profit}_{t-4Q}|},\quad
+          \Delta_{\text{sales}}
+            =\frac{\text{NetSales}_t-\text{NetSales}_{t-4Q}}
+                   {|\text{NetSales}_{t-4Q}|}
+        \]
+        \[
+          \Delta = 0.7\,\Delta_{\text{profit}} + 0.3\,\Delta_{\text{sales}}
+        \]
+
+  \item \textbf{サプライズ係数}\;
+        \[
+          f_{\text{surp}}
+            = 1 + 0.25\,\operatorname{sign}(\Delta)\,
+              \sqrt{\min\!\bigl(|\Delta|,0.36\bigr)}
+        \]
+
+  \item \textbf{ガイダンス修正率と係数}\;
+        最新 \texttt{EarnForecastRevision} から
+        \[
+          R=\frac{\text{NewForecast}-\text{OldForecast}}
+                 {|\text{OldForecast}|},\quad
+          f_{\text{guid}}
+            = 1 + 0.40\,\operatorname{clip}(R,-0.25,0.25)
+        \]
+
+  \item \textbf{Phase 2 決算係数}\;
+        \[
+          \beta_{\text{earn},i,t}^{(2)}
+            =\operatorname{clip}\bigl(
+               f_{\text{surp}}\,f_{\text{guid}},\,0.80,\,1.50\bigr)
+        \]
+
+  \item \textbf{イベント係数更新}\;
+        \[
+          \beta_{\text{event},i,t}^{(2)}
+            =\beta_{\text{event},i,t}^{(1)}\,
+             \beta_{\text{earn},i,t}^{(2)}
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.92\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\Delta_{\text{profit}},\,\Delta_{\text{sales}} & 前年同期比 Profit／Sales 変化率 \\ 
+\Delta & 合成サプライズ率 (Profit 70\%：Sales 30\%) \\ 
+f_{\text{surp}} & サプライズ係数 (0.85--1.15) \\ 
+R,\;f_{\text{guid}} & ガイダンス修正率／係数 (0.80--1.20) \\ 
+\beta_{\text{earn},i,t}^{(2)} & earn Phase 2 係数 (0.80--1.50) \\ 
+\beta_{\text{event},i,t}^{(1)} & 前フェーズ出力 (Phase 1) \\ 
+\beta_{\text{event},i,t}^{(2)} & 本フェーズ出力 (Surprise\,+\,Guidance 反映) \\ 
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

@@ -1,0 +1,63 @@
+%-------------------------------------------------------------------------------
+% momentum/phase4.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top
+% - 2025-06-02  v1.1 : 「変数のポイント」節を追加
+% - 2025-05-31  v1.0 : λ_gamma 自己適応 (η=0.01)
+%-------------------------------------------------------------------------------
+
+%=== Phase-4 : λ_gamma 自己適応 ===============================================
+\section*{Phase 4：$\lambda_{\gamma}$ 自己適応}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{予測誤差系列}\;
+        \(e_{t-k}=Cl_{t-k}^{\text{real}}-Cl_{t-k}^{\text{pred}}\)
+  \item \textbf{勾配近似}\;
+        \(g_t\approx-\dfrac{2}{30}\sum_{k=1}^{30}
+          e_{t-k}\,(\gamma_{t-k}^{(3)}-\gamma_{t-k}^{(1)})\)
+  \item \textbf{λ 更新}\;
+        \(
+          \lambda_{\gamma,t}
+            =\operatorname{clip}(
+              \lambda_{\gamma,t-1}-0.01\,g_t,\,0.80,\,0.98)
+        \)
+  \item \textbf{EWMA 平滑}\;
+        \(\tilde\gamma_t=
+          \lambda_{\gamma,t}\tilde\gamma_{t-1}
+          +(1-\lambda_{\gamma,t})\gamma_t^{(3)}\)
+  \item \textbf{モメンタム係数を更新}\;
+        \(
+          \gamma_t^{(4)}=\operatorname{clip}(\tilde\gamma_t,\,-0.12,\,0.12)
+        \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item **初期 \(\lambda_{\gamma}=0.90\)**、更新範囲 0.80–0.98。  
+  \item \(\tilde\gamma_t\) が **Phase 4 最終推定値**。
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.90\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\lambda_{\gamma,t} & EWMA 平滑定数 (更新後) \\
+g_t & 勾配近似 \\
+e_{t-k} & 終値予測誤差 \\
+\tilde\gamma_t & 平滑後係数 \\
+\gamma_t^{(3)} & Phase 3 入力 \\
+\gamma_t^{(4)} & Phase 4 出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

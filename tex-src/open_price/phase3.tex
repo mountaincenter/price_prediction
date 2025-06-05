@@ -1,0 +1,69 @@
+%-------------------------------------------------------------------------------
+% open_price/phase3.tex   v1.7  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-02  v1.7 : replace Unicode ≤ with \le; ASCII-only
+% - 2025-06-02  v1.6 : ensure ASCII, add 変数のポイント / 実装ヒント
+%-------------------------------------------------------------------------------
+
+%=== open_price ===============================================================
+\section*{open\_price}\nopagebreak[4]
+
+%=== Phase 3 : Proxy Board Gap 補正 ============================================
+\subsection*{Phase 3：Proxy Board Gap 補正}\nopagebreak[4]
+%────────────────────────────────────
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{Proxy Gap}\;
+        \( G_{\text{proxy}}
+           = \dfrac{Cl_{t-1}-\text{5DMA}_{t-1}}{\sigma_{63d}^{\text{open}}} \)
+
+  \item \textbf{出来高重み}\;
+        \( r_v = \text{Vol}_{t-1} / \text{AvgVol}_{25},\quad
+           w_v = \min(1.5,\,r_v) \)
+
+  \item \textbf{最終ギャップ}\;
+        \( G_t^{\text{final}} = G_t^{(2)} + w_v\,G_{\text{proxy}} \)
+
+  \item \textbf{始値を決定}\;
+        \( O_t = B_{t-1} + G_t^{\text{final}} \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(w_v\) は \(w_v \le 1.5\) でクリップし過剰反応を防止  
+  \item 5DMA や 25DVMA が欠損する日は \(w_v = 0\)
+\end{itemize}
+\end{flushleft}
+
+\subsection*{実装ヒント}
+\begin{flushleft}
+Phase 2 → 3 で Hit-Rate が **+1~to~3\%** 向上するケースが多い  
+(終値 vs 当日 VWAP に置き換えるとさらに滑らか)。
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+Cl_{t-1} & 前日終値 \\
+\text{5DMA}_{t-1} & 5~d 移動平均終値 \\
+\sigma_{63d}^{\text{open}} & 63~d リターン標準偏差 \\
+G_{\text{proxy}} & 終値 vs 5DMA の Z-score \\
+\text{Vol}_{t-1} & 前日出来高 \\
+\text{AvgVol}_{25} & 25~d 出来高平均 \\
+w_v & 出来高重み (\(w_v \le 1.5\)) \\
+G_t^{(2)} & Phase 2 ギャップ \\
+G_t^{\text{final}} & Phase 3 最終ギャップ \\
+O_t & Phase 3 始値予測 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

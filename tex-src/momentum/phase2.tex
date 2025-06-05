@@ -1,0 +1,49 @@
+%-------------------------------------------------------------------------------
+% momentum/phase2.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top
+% - 2025-06-02  v1.1 : 「変数のポイント」節を追加
+% - 2025-05-31  v1.0 : RSI14 で gamma_t 強弱 (±0.10)
+%-------------------------------------------------------------------------------
+
+%=== Phase-2 : RSI 強弱 ========================================================
+\section*{Phase 2：RSI 強弱}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{RSI14 を計算}\;
+        \( \text{RSI}_t=\text{RSI}_{14}(Cl) \)
+  \item \textbf{強弱スケール}\;
+        \( \Delta_{\text{RSI}}=0.05\,\tanh\!\bigl((\text{RSI}_t-50)/20\bigr) \)
+  \item \textbf{モメンタム係数を更新}\;
+        \( \gamma_t^{(2)}=\operatorname{clip}\!\bigl(
+           \gamma_t^{(1)}+\Delta_{\text{RSI}},\,-0.10,\,0.10\bigr) \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item RSI>70 → 買われ過ぎ：上寄り幅を縮小。RSI<30 → 売られ過ぎ：下寄り幅を縮小。  
+  \item \(|\Delta_{\text{RSI}}|\le0.05\) に制限し外挿を抑止。
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\text{RSI}_t & 14 d RSI (0–100) \\
+\Delta_{\text{RSI}} & 強弱変位 (±0.05) \\
+\gamma_t^{(1)} & Phase 1 入力 \\
+\gamma_t^{(2)} & Phase 2 出力 (±0.10) \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

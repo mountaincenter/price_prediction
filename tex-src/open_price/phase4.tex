@@ -1,0 +1,75 @@
+%-------------------------------------------------------------------------------
+% open_price/phase4.tex   v1.7  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-02  v1.7 : replace Unicode ≈ with \approx, full ASCII check
+% - 2025-06-02  v1.6 : add 実装ヒント section, ASCII only
+%-------------------------------------------------------------------------------
+
+%=== open_price ===============================================================
+\section*{open\_price}\nopagebreak[4]
+
+%=== Phase 4 : 自己適応 λ_open 更新 ============================================
+\subsection*{Phase 4：自己適応 $\lambda_{\text{open}}$ 更新}\nopagebreak[4]
+%────────────────────────────────────
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{誤差系列}\;
+        \( e_{t-k}=G_{t-k}-\bar G_{t-k}^{(\lambda_{\text{open},\,t-1})} \)
+
+  \item \textbf{局所 MSE}\;
+        \( \mathrm{MSE}_t = \dfrac{1}{30}\sum_{k=1}^{30} e_{t-k}^2 \)
+
+  \item \textbf{勾配近似}\;
+        \( g_t \approx -\dfrac{2}{30}\sum_{k=1}^{30}
+           e_{t-k}\,\bar G_{t-k}^{(\lambda_{\text{open},\,t-1})} \)
+
+  \item \textbf{$\lambda_{\text{open}}$ 更新}\;
+        \( \lambda_{\text{open},\,t}
+           = \operatorname{clip}\bigl(
+             \lambda_{\text{open},\,t-1}-\eta\,g_t,\,
+             0.05,\,0.50 \bigr) \)
+
+  \item \textbf{翌日へ反映}\;
+        新しい \(\lambda_{\text{open},\,t}\) で
+        \(\bar G_{t+1}^{(\lambda_{\text{open},\,t})}\) を計算
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(\lambda_{\text{open}}\)：0.05 で半減期 \(\approx 13\,\text{d}\)，  
+        0.50 でほぼ当日値
+  \item \(|g_t|\) は 10 でクリップして数値安定化
+\end{itemize}
+\end{flushleft}
+
+\subsection*{実装ヒント}
+\begin{flushleft}
+\begin{itemize}
+  \item **ウォームアップ**：履歴 30~d 未満は \(\lambda_{\text{open}}=0.20\) 固定  
+  \item バックテストで Phase 3 と比較し MAE・ドローダウンが改善することを確認
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\lambda_{\text{open},\,t-1} & 前日 EWMA 定数 \\
+\lambda_{\text{open},\,t}   & 更新後 EWMA 定数 \\
+g_t & 勾配近似 \\
+\eta & 学習率 (0.01) \\
+e_{t-k} & ギャップ誤差 \\
+\mathrm{MSE}_t & 30~d MSE \\
+\bar G_{t}^{(\lambda)} & EWMA 平滑ギャップ \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

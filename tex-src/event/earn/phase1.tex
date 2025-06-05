@@ -1,0 +1,53 @@
+%-------------------------------------------------------------------------------
+% event/earn/phase1.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.1 : U+2212→ASCII "-", beta^{(1)} 表記, header tidy
+% - 2025-05-31  v1.0 : 初版（決算 day±1 固定係数）
+%-------------------------------------------------------------------------------
+
+%=== Phase 1 : 決算係数（day±1） ==============================================
+\section*{event / earn / Phase 1}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{決算カレンダーでラグ判定}\;
+        day -1（前日）／day 0（当日）／day +1（翌営業日）を抽出。
+  \item \textbf{係数決定}\;
+        \[
+          \beta_{\text{earn},i,t}^{(1)}=
+          \begin{cases}
+            1.15 & (\text{day\,-1})\\
+            1.20 & (\text{day\,0})\\
+            1.10 & (\text{day\,+1})\\
+            1.00 & (\text{otherwise})
+          \end{cases}
+        \]
+  \item \textbf{イベント係数更新}\;
+        \[
+          \beta_{\text{event},i,t}^{(1)}
+            =\beta_{\text{event},i,t}^{\text{prev}}
+             \,\beta_{\text{earn},i,t}^{(1)},
+          \quad 0.80 \le \beta_{\text{event},i,t}^{(1)} \le 1.50
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.90\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+i & 銘柄コード \\
+\beta_{\text{earn},i,t}^{(1)} & day±1 固定決算係数 \\
+\beta_{\text{event},i,t}^{\text{prev}} & 直前フェーズ（weekday 等）出力 \\
+\beta_{\text{event},i,t}^{(1)} & earn 系フェーズ 1 出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

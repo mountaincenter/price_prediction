@@ -1,0 +1,46 @@
+%-------------------------------------------------------------------------------
+% open_price/phase0.tex   v1.6  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-02  v1.6 : section 見出しを "open_price" に変更
+% - 2025-06-02  v1.5 : add section header (Open-Price Module)
+% - 2025-05-31  v1.4 : Header date sync only
+%-------------------------------------------------------------------------------
+
+%=== open_price ===============================================================
+\section*{open\_price}\nopagebreak[4]
+
+%=== Phase 0 : 発射台・EWMA ギャップ補正 =======================================
+\subsection*{Phase 0：EWMA ギャップ補正}\nopagebreak[4]
+%────────────────────────────────────
+\begin{flushleft}
+\begin{flalign*}
+& B_{t-1}=Cl_{t-1}\;\text{or}\;\tfrac{H_{t-1}+L_{t-1}}{2} &&\\[4pt]
+& \bar G_t^{(\lambda_{\text{open}})}
+   =\lambda_{\text{open}}\,G_t
+   +(1-\lambda_{\text{open}})\,\bar G_{t-1}^{(\lambda_{\text{open}})} &&\\[4pt]
+& G_t=O_t-Cl_{t-1},\qquad
+  O_t=B_{t-1}+\bar G_t^{(\lambda_{\text{open}})} &&
+\end{flalign*}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+Cl_{t-1} & 前日終値 \\
+H_{t-1},L_{t-1} & 前日高値・安値 \\
+B_{t-1} & 前日リファレンス値 \\
+G_t & 当日ギャップ \((O_t-Cl_{t-1})\) \\
+\lambda_{\text{open}} & EWMA 平滑定数 (0.05–0.50 推奨) \\
+\bar G_t^{(\lambda_{\text{open}})} & EWMA 平滑ギャップ \\
+O_t & Phase 0 始値予測 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

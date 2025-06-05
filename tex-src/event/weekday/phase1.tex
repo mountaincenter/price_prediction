@@ -1,0 +1,48 @@
+%-------------------------------------------------------------------------------
+% event/weekday/phase1.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.2 : beta^{(1)} 表記・section 階層化・ASCII 統一
+% - 2025-05-31  v1.0 : 初版（固定曜日係数）
+%-------------------------------------------------------------------------------
+
+%=== Phase 1 : 固定曜日係数 =====================================================
+\section*{event / weekday / Phase 1}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{曜日判定と係数取得}
+        \[
+          \beta_{\text{weekday},t}^{(1)}=
+          \begin{cases}
+            1.10 & (\text{Mon})\\
+            1.05 & (\text{Tue})\\
+            1.00 & (\text{Wed})\\
+            0.98 & (\text{Thu})\\
+            0.95 & (\text{Fri})
+          \end{cases}
+        \]
+  \item \textbf{イベント係数に出力}\;
+        \(
+          \beta_{\text{event},t}^{(1)}
+          =\beta_{\text{weekday},t}^{(1)}
+        \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\beta_{\text{weekday},t}^{(1)} & 曜日固定係数（上表） \\
+\beta_{\text{event},t}^{(1)}   & weekday 系フェーズ 1 出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

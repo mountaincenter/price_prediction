@@ -1,0 +1,55 @@
+%-------------------------------------------------------------------------------
+% momentum/phase5.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top
+% - 2025-06-02  v1.1 : 「変数のポイント」節を追加
+% - 2025-05-31  v1.0 : ベイズ縮小でセクター平均へ収束
+%-------------------------------------------------------------------------------
+
+%=== Phase-5 : ベイズ縮小 ======================================================
+\section*{Phase 5：ベイズ縮小}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{サンプル数を取得}\;
+        \(n_i=\text{count}(\gamma_{i,\ast})\)
+  \item \textbf{セクター平均}\;
+        \(\bar\gamma_s = \text{mean}(\gamma_{j,t}^{(4)}\mid j\in s)\)
+  \item \textbf{縮小係数}\;
+        \(\tau=15\)
+  \item \textbf{ベイズ縮小}\;
+        \[
+          \gamma_{i,t}^{\text{final}}
+            =\frac{n_i}{n_i+\tau}\,\gamma_{i,t}^{(4)}
+            +\frac{\tau}{n_i+\tau}\,\bar\gamma_s
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item サンプル不足銘柄 (\(n_i\) 小) は **セクター平均** に引き寄せ過学習を回避。  
+  \item \(\tau\) を大きくすると縮小強度↑、小さいと個別値を優先。
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.90\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+n_i & 銘柄 i のサンプル数 \\
+\tau & 縮小強度 (15) \\
+\bar\gamma_s & セクター平均 γ \\
+\gamma_{i,t}^{(4)} & Phase 4 入力 \\
+\gamma_{i,t}^{\text{final}} & 最終モメンタム係数 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

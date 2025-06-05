@@ -1,0 +1,62 @@
+%-------------------------------------------------------------------------------
+% event/earn/phase4.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.1 : ASCII 統一, clip 表記修正, beta^{(4)} 表記
+% - 2025-05-31  v1.0 : 初版（勾配自己適応）
+%-------------------------------------------------------------------------------
+
+%=== Phase 4 : w_profit 勾配自己適応 ===========================================
+\section*{event / earn / Phase 4}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{誤差系列}\;
+        \( e_{t-k}=m_{t-k}^{\text{real}}-m_{t-k}^{\text{pred}},\ k=1,\dots,30 \)
+
+  \item \textbf{勾配近似}\;
+        \[
+          g_t \approx -\frac{2}{30}
+            \sum_{k=1}^{30}
+            e_{t-k}\,\bigl(\Delta_{\text{profit},t-k}-\Delta_{\text{sales},t-k}\bigr)
+        \]
+
+  \item \textbf{利益重み更新}\;
+        \[
+          w_{\text{profit},i}
+            =\operatorname{clip}\bigl(w_{\text{profit},i}-\eta\,g_t,\;0.50,0.90\bigr),
+          \quad
+          w_{\text{sales},i}=1-w_{\text{profit},i}
+        \]
+
+  \item \textbf{サプライズ率再計算}\;
+        前フェーズと同式で $\Delta$ を更新し $\beta_{\text{earn},i,t}^{(4)}$ を取得。
+
+  \item \textbf{イベント係数更新}\;
+        \[
+          \beta_{\text{event},i,t}^{(4)}
+            =\beta_{\text{event},i,t}^{(3)}\,
+             \beta_{\text{earn},i,t}^{(4)}
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.92\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+w_{\text{profit},i} & 自己適応学習後の利益重み \\
+\eta & 学習率 (0.01) \\
+g_t & 勾配近似値 \\
+\beta_{\text{event},i,t}^{(3)} & 前フェーズ出力 \\
+\beta_{\text{event},i,t}^{(4)} & 本フェーズ出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

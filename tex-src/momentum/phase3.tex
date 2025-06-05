@@ -1,0 +1,57 @@
+%-------------------------------------------------------------------------------
+% momentum/phase3.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top
+% - 2025-06-02  v1.1 : 「変数のポイント」節を追加
+% - 2025-05-31  v1.0 : ボラレジームで倍率 1.1 / 0.9
+%-------------------------------------------------------------------------------
+
+%=== Phase-3 : ボラレジーム補正 ===============================================
+\section*{Phase 3：ボラレジーム補正}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{VI Z-score}\;
+        \(z_{\text{VI}}=(\text{VI}_t-\mu_{63})/\sigma_{63}\)
+  \item \textbf{倍率を決定}\;
+        \(
+          c_t=
+          \begin{cases}
+            1.10 & z_{\text{VI}}>+1\\
+            0.90 & z_{\text{VI}}<-1\\
+            1.00 & \text{otherwise}
+          \end{cases}
+        \)
+  \item \textbf{モメンタム係数を更新}\;
+        \( \gamma_t^{(3)}=\operatorname{clip}(
+           \gamma_t^{(2)}\,c_t,\,-0.12,\,0.12) \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item 高ボラ (+1σ) で 10 % 拡大、低ボラ (−1σ) で 10 % 縮小。  
+  \item \(\gamma_t^{(2)}\) を単純倍率補正するのみで符号は保持。
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\text{VI}_t & ボラ指数 (NKVI or VIX) \\
+\mu_{63},\sigma_{63} & 63 d 平均・標準偏差 \\
+c_t & レジーム倍率 (0.9 / 1.1) \\
+\gamma_t^{(2)} & Phase 2 入力 \\
+\gamma_t^{(3)} & Phase 3 出力 (±0.12) \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

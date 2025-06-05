@@ -1,0 +1,43 @@
+%-------------------------------------------------------------------------------
+% event/weekday/phase3.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.1 : beta^{(3)} 表記・集約ロジック明確化
+% - 2025-05-31  v1.0 : weekday 系サブフェーズ集約
+%-------------------------------------------------------------------------------
+
+%=== Phase 3 : weekday 系集約 ===================================================
+\section*{event / weekday / Phase 3}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{holiday 側最終係数を取り込み}\;
+        \verb|\input{event/weekday/holiday/phase3}| で  
+        \(\tilde\beta_{\text{weekday},i,t}\) を取得。
+  \item \textbf{最終 weekday 係数を宣言}\;
+        \[
+          \boxed{\beta_{\text{weekday},i,t}^{(3)}
+          =\tilde\beta_{\text{weekday},i,t}}
+        \]
+  \item \textbf{イベント係数パイプラインへ出力}\;
+        event/phase0.tex が  
+        \(\beta_{\text{weekday},i,t}^{(3)}\) を利用。
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\tilde\beta_{\text{weekday},i,t} & holiday/phase3 出力係数 \\
+\beta_{\text{weekday},i,t}^{(3)} & weekday 系最終係数 (本フェーズ) \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

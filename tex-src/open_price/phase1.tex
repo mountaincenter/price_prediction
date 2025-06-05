@@ -1,0 +1,75 @@
+%-------------------------------------------------------------------------------
+% open_price/phase1.tex   v1.8  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-02  v1.8 : reinstate “変数のポイント” & “実装ヒント” sections,
+%                      keep s_gap naming, eliminate U+2009 → "~"
+% - 2025-06-02  v1.7 : remove thin-spaces (U+2009) / ASCII-only
+% - 2025-06-02  v1.6 : add \section*{open_price} header
+% - 2025-05-31  v1.4 : G_t^{(1)} 表記／minipage 幅統一
+% - 2025-05-31  v1.3 : スケーラ名 s_g → s_gap
+% - 2025-05-31  v1.2 : λ → λ_open 統一・体裁修正
+%-------------------------------------------------------------------------------
+
+%=== open_price ===============================================================
+\section*{open\_price}\nopagebreak[4]
+
+%=== Phase 1 : ギャップ分布スケーリング ========================================
+\subsection*{Phase 1：ギャップ分布スケーリング}\nopagebreak[4]
+%────────────────────────────────────
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{直近 63~営業日の IQR を測定}  
+        \( \mathrm{IQR}_G
+          = Q_{75}\!\bigl(G_{t-63\ldots t-1}\bigr)
+          - Q_{25}\!\bigl(G_{t-63\ldots t-1}\bigr) \)
+
+  \item \textbf{スケーラ \(s_{\text{gap}}\) を算出}\;
+        \( s_{\text{gap}} = 1 / \mathrm{IQR}_G \)
+
+  \item \textbf{EWMA ギャップをスケール}\;
+        \( G_t^{(1)} = \bar G_t^{(\lambda_{\text{open}})}\,
+                       s_{\text{gap}},
+                       \quad |G_t^{(1)}|\le5\sigma \)
+
+  \item \textbf{始値を再計算}\;
+        \( O_t = B_{t-1} + G_t^{(1)} \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(\mathrm{IQR}_G\)：外れ値に強い中央 50~\% 幅  
+  \item \(s_{\text{gap}}\)：銘柄間“体格差”を吸収する分位点スケーラ
+\end{itemize}
+\end{flushleft}
+
+\subsection*{実装ヒント}
+\begin{flushleft}
+\begin{itemize}
+  \item データ履歴が 63~d 未満の場合は Phase 0 にフォールバック  
+  \item \(\mathrm{IQR}_G < 10^{-4}\) 時は下限を固定しゼロ割り防止
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+Q_{75},\,Q_{25} & 75/25 パーセンタイル (63~d) \\
+\mathrm{IQR}_G  & \(Q_{75}-Q_{25}\) \\
+s_{\text{gap}}  & \(1/\mathrm{IQR}_G\) \\
+G_t^{(1)}       & Phase 1 スケール後ギャップ \\
+O_t             & Phase 1 始値予測 \\
+\bar G_t^{(\lambda_{\text{open}})} & EWMA 平滑ギャップ \\
+\lambda_{\text{open}} & EWMA 平滑定数 (0.05–0.50) \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

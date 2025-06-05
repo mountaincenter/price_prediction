@@ -1,0 +1,50 @@
+%-------------------------------------------------------------------------------
+% event/phase0.tex   v1.4  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.4 : section 階層見直し・ASCII 化・beta^{(3)} 表記へ統一
+% - 2025-06-02  v1.3 : CHANGELOG 復元・整形を明記（rules.md 準拠）
+% - 2025-05-31  v1.2 : fixed tabularx preamble to 3 columns (l X l)
+% - 2025-05-31  v1.1 : \beta_event,i,t = \beta_weekday \times \beta_earn \times \beta_market
+% - 2025-05-31  v1.0 : \beta_event,t = 1.0 fallback
+%-------------------------------------------------------------------------------
+
+%=== Phase 0 : イベント係数 基本定義 ============================================
+\section*{event / Phase 0 : 基本定義}\nopagebreak[4]
+%────────────────────────────────────
+\begin{flushleft}
+\begin{flalign*}
+&\text{イベント係数（銘柄 }i\text{）}\quad
+  \boxed{%
+    \beta_{\text{event},i,t}
+      =\beta_{\text{weekday},i,t}^{(3)}\,
+       \beta_{\text{earn},i,t}\,
+       \beta_{\text{market},i,t}
+  } &&\\[6pt]
+\end{flalign*}
+\end{flushleft}
+
+\subsection*{因子の役割}
+\begin{flushleft}
+\begin{minipage}{0.92\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{\quad}l@{}}
+\toprule
+因子 & 定義・データソース & 既定レンジ \\
+\midrule
+\beta_{\text{weekday},i,t}^{(3)} & 曜日＋祝日＋平滑済み最終係数 & 0.8--1.2 \\
+\beta_{\text{earn},i,t}          & 決算ラグ・内容反映係数        & 0.8--1.5 \\
+\beta_{\text{market},i,t}        & 指標相関係数                 & 0.8--1.2 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+
+\subsection*{備考}
+\begin{flushleft}
+\begin{itemize}
+  \item 欠損時は 1.0 にフォールバック。  
+  \item 係数更新は weekday / earn / market サブディレクトリで実施。  
+\end{itemize}
+\end{flushleft}
+\bigskip
+%===============================================================================

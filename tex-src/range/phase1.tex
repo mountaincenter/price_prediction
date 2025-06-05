@@ -1,0 +1,54 @@
+%-------------------------------------------------------------------------------
+% range/phase1.tex   v1.3  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.3 : β_vol,t^{(1)} 表記統一・変数ポイント復活
+% - 2025-05-31  v1.1 : β_vol,t' 表記
+% - 2025-05-31  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase 1 : レンジ分布スケーリング ==========================================
+\section*{range / Phase 1}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item 直近 63 営業日の半レンジ  
+        \(R_{t-k}=(H_{t-k}-L_{t-k})/2\)
+  \item IQR 計算  
+        \(\mathrm{IQR}_R=Q_{75}(R)-Q_{25}(R)\)
+  \item スケーラ  
+        \(s_{\text{range}}=1/\mathrm{IQR}_R\)
+  \item 幅倍率更新  
+        \(\beta_{\text{vol},t}^{(1)}=\operatorname{clip}(s_{\text{range}},0.20,5.00)\)
+  \item 半レンジ再計算  
+        \(m_t=\sigma_t^{\text{shift}}\;\beta_{\text{vol},t}^{(1)}\)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(\mathrm{IQR}_R\)\;外れ値に強い 50 % 幅  
+  \item 63 d 未満は Phase 0 値（1.0）を使用  
+  \item \(\mathrm{IQR}_R<1.0\times10^{-4}\) なら固定下限で割り算防止
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\(Q_{75},Q_{25}\) & 四分位点（63 d）\\
+\(\beta_{\text{vol},t}^{(0)}\) & 前フェーズ幅倍率\\
+\(\beta_{\text{vol},t}^{(1)}\) & 本フェーズ幅倍率\\
+\(m_t\) & 半レンジ\\
+\(\sigma_t^{\text{shift}}\) & 共通ボラ\\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+%===============================================================================

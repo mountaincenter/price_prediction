@@ -1,0 +1,43 @@
+%-------------------------------------------------------------------------------
+% range/phase2.tex   v1.3  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.3 : β_vol,t^{(2)} 表記統一
+% - 2025-05-31  v1.1 : β_vol,t'' 表記
+% - 2025-05-31  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase 2 : ボラティリティ依存補正 ==========================================
+\section*{range / Phase 2}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item 平均ボラ  
+        \(\overline{\sigma}_{63d}=63^{-1}\sum_{k=1}^{63}\sigma_{t-k}^{\text{shift}}\)
+  \item 当日ボラ比  
+        \(r_\sigma=\sigma_{t}^{\text{shift}}/\overline{\sigma}_{63d}\;(0.3\le r_\sigma\le3.0)\)
+  \item 幅倍率指数補正  
+        \(\beta_{\text{vol},t}^{(2)}=\beta_{\text{vol},t}^{(1)}\,r_\sigma^{\eta},\;\eta=0.5\)
+  \item 半レンジ再計算  
+        \(m_t=\sigma_t^{\text{shift}}\;\beta_{\text{vol},t}^{(2)}\)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\(r_\sigma\) & 当日ボラ比\\
+\(\eta\) & ボラ感度 (0.5)\\
+\(\beta_{\text{vol},t}^{(1)}\) & 前フェーズ幅倍率\\
+\(\beta_{\text{vol},t}^{(2)}\) & 本フェーズ幅倍率\\
+\(m_t\) & 半レンジ\\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+%===============================================================================

@@ -1,0 +1,60 @@
+%-------------------------------------------------------------------------------
+% event/market/phase2.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG: newest -> oldest
+% - 2025-06-02  v1.2 : lambda_mkt 記号統一・全体 ASCII 化
+% - 2025-05-31  v1.1 : EWMA lambda_mkt=0.90 実装
+% - 2025-05-31  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase 2 : EWMA 平滑 =======================================================
+\section*{event / market / Phase 2}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{平滑定数}
+        \(
+          \lambda_{\text{mkt}} = 0.90
+        \)
+  \item \textbf{EWMA 更新}
+        \[
+          \hat\beta_{i,t}
+            =\lambda_{\text{mkt}}\hat\beta_{i,t-1}
+             +(1-\lambda_{\text{mkt}})\beta_{i,t}^{(m1)}
+        \]
+        初期値 \(\hat\beta_{i,0}=1.0\)
+  \item \textbf{クリップ}
+        \(
+          \hat\beta_{i,t} \leftarrow
+          \operatorname{clip}(\hat\beta_{i,t},0.8,1.2)
+        \)
+  \item \textbf{イベント係数を更新}
+        \[
+          \beta_{\text{event},i,t}^{(m2)}
+            =\beta_{\text{event},i,t}^{(m1)}
+             \prod_{i \in S}
+             \frac{\hat\beta_{i,t}}{\beta_{i,t}^{(m1)}},
+          \quad S=\{\text{TOPIX},\text{SPX},\text{USDJPY}\}
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\lambda_{\text{mkt}} & EWMA 平滑定数 (0.90) \\
+\beta_{i,t}^{(m1)} & Phase 1 指標係数 \\
+\hat\beta_{i,t} & EWMA 平滑係数 \\
+\beta_{\text{event},i,t}^{(m1)} & Phase 1 出力 \\
+\beta_{\text{event},i,t}^{(m2)} & Phase 2 出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

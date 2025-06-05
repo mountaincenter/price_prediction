@@ -1,0 +1,42 @@
+%-------------------------------------------------------------------------------
+% range/phase0.tex   v1.4  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.4 : 変数のポイント節を復元（幅倍率 1.0 固定の明示）
+% - 2025-06-02  v1.3 : β_vol,t^{(0)} 表記統一
+% - 2025-05-31  v1.2 : β_0 -> β_vol へ名称統一
+%-------------------------------------------------------------------------------
+
+%=== Phase 0 : 半レンジ m_t 前提条件 ============================================
+\section*{range / Phase 0}\nopagebreak[4]
+%────────────────────────────────────
+\begin{flushleft}
+\begin{flalign*}
+& m_t \;=\; \sigma_t^{\text{shift}}\;\beta_{\text{vol},t}^{(0)},
+  \quad \beta_{\text{vol},t}^{(0)} \;=\; 1.0 &&\\
+\end{flalign*}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item 初期フェーズでは **幅倍率を 1.0 に固定**し、  
+        共通ボラ \(\sigma_t^{\text{shift}}\) だけで半レンジを決定。
+\end{itemize}
+\end{flushleft}
+
+\subsection*{主要変数・パラメータ}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+記号 & 定義・初期仕様 \\
+\midrule
+\(\sigma_t^{\text{shift}}\) & 共通ボラティリティ（center\_shift/sigma/phase1.tex）\\
+\(\beta_{\text{vol},t}^{(0)}\) & 幅倍率（定数 1.0）\\
+\(m_t\) & 半レンジ（上下幅の 1/2）\\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+%===============================================================================

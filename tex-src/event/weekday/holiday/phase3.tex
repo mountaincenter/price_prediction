@@ -1,0 +1,65 @@
+%-------------------------------------------------------------------------------
+% event/weekday/holiday/phase3.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.2 : Missing $ around \lambda を修正・ASCII 統一
+% - 2025-05-31  v1.1 : 書式統一、lambda_wd 自己適応 (eta=0.01, clip 0.80-0.99)
+% - 2025-05-31  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase 3 : λ_wd 自己適応更新 ===============================================
+\section*{event / weekday / holiday / Phase 3}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{誤差系列}\;
+        \( e_{t-k}=m_{t-k}^{\text{real}}-m_{t-k}^{\text{pred}},\quad k=1,\dots,30 \)
+
+  \item \textbf{局所 MSE}\;
+        \( \mathrm{MSE}_t=\dfrac{1}{30}\sum_{k=1}^{30}e_{t-k}^{2} \)
+
+  \item \textbf{勾配近似}\;
+        \[
+          g_t \approx -\frac{2}{30}\,
+            \bigl(\beta_{\text{weekday},i,t}^{\ast}
+                  -\hat\beta_{\text{weekday},i,t-1}\bigr)
+            e_{t-1}
+        \]
+
+  \item \textbf{$\lambda$ 更新}\;
+        \[
+          \lambda_{\text{wd}}
+            =\operatorname{clip}\bigl(\lambda_{\text{wd}}-\eta\,g_t,\;0.80,\;0.99\bigr)
+        \]
+
+  \item \textbf{最終 EWMA}\;
+        \[
+          \tilde\beta_{\text{weekday},i,t}
+            =\lambda_{\text{wd}}\,
+             \tilde\beta_{\text{weekday},i,t-1}
+            +(1-\lambda_{\text{wd}})\,
+             \beta_{\text{weekday},i,t}^{\ast}
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.90\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\lambda_{\text{wd}} & EWMA 平滑定数（動的更新値；0.80--0.99） \\
+\eta & 学習率 (0.01) \\
+e_{t-k} & 半レンジ予測誤差 \\
+\beta_{\text{weekday},i,t}^{\ast} & 祝日係数を掛け合わせた入力値 (Phase 2) \\
+\hat\beta_{\text{weekday},i,t} & Phase 2 平滑出力 \\
+\tilde\beta_{\text{weekday},i,t} & 本フェーズ最終係数（weekday 系の最終値） \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

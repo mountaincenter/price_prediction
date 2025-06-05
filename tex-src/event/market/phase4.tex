@@ -1,0 +1,57 @@
+%-------------------------------------------------------------------------------
+% event/market/phase4.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG: newest -> oldest
+% - 2025-06-02  v1.2 : VI Z-score 記号統一と ASCII 化
+% - 2025-05-31  v1.1 : ボラティリティレジーム切替追加
+% - 2025-05-31  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase 4 : ボラティリティレジーム切替 ======================================
+\section*{event / market / Phase 4}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{VI Z-score}
+        \(
+          z_{\text{VI}}
+            =\dfrac{\text{VI}_t - \mu_{63}(\text{VI})}
+                    {\sigma_{63}(\text{VI})}
+        \)
+  \item \textbf{レジーム係数}
+        \[
+          c_t=
+          \begin{cases}
+            1.10 & z_{\text{VI}}>+1\\
+            0.90 & z_{\text{VI}}<-1\\
+            1.00 & \text{otherwise}
+          \end{cases}
+        \]
+  \item \textbf{イベント係数を更新}
+        \(
+          \beta_{\text{event},i,t}^{(m4)}
+            =\beta_{\text{event},i,t}^{(m3)}\,c_t
+        \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\text{VI}_t & ボラ指数 (NKVI または VIX) \\
+\mu_{63},\sigma_{63} & 63 日平均 / 標準偏差 \\
+z_{\text{VI}} & VI Z-score \\
+c_t & レジーム係数 \\
+\beta_{\text{event},i,t}^{(m3)} & Phase 3 出力 \\
+\beta_{\text{event},i,t}^{(m4)} & Phase 4 出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

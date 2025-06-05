@@ -1,0 +1,48 @@
+%-------------------------------------------------------------------------------
+% momentum/phase1.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top
+% - 2025-06-02  v1.1 : 「変数のポイント」節を追加
+% - 2025-05-31  v1.0 : EMA5 符号で gamma_t±0.05 を決定
+%-------------------------------------------------------------------------------
+
+%=== Phase-1 : EMA5 符号 =======================================================
+\section*{Phase 1：EMA5 符号}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{EMA5 リターンを計算}\;
+        \(r_{5,t}=\mathrm{EMA}_5(\Delta Cl_t)\)
+  \item \textbf{符号を取得}\;
+        \(\operatorname{sgn}_t=\operatorname{sign}(r_{5,t})\)
+  \item \textbf{モメンタム係数を決定}\;
+        \(\gamma_t^{(1)}=0.05\,\operatorname{sgn}_t\)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item EMA5 は短期トレンドの最小検出器。  
+  \item **正符号**なら始値を +0.05σ 上へ、**負符号**なら -0.05σ 下へシフト。
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\Delta Cl_t & \(\ln(Cl_t/Cl_{t-1})\) \\
+r_{5,t} & 5 d EMA リターン \\
+\operatorname{sgn}_t & 符号 (‐1,0,+1) \\
+\gamma_t^{(1)} & Phase 1 出力 (±0.05) \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

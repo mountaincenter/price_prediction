@@ -1,0 +1,62 @@
+%-------------------------------------------------------------------------------
+% center_shift/sigma/phase1.tex   v1.14  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top
+% - 2025-06-02  v1.14 : add section/subsection, hints, ASCII-only
+%-------------------------------------------------------------------------------
+
+%=== center_shift =============================================================
+\section*{center\_shift}\nopagebreak[4]
+
+%--- sigma ---------------------------------------------------------------------
+\subsection*{sigma}\nopagebreak[4]
+
+%--- Phase 1 : EWMA-14 Volatility ---------------------------------------------
+\subsubsection*{Phase 1：EWMA-14 Volatility $\sigma_t^{\text{shift}}$}\nopagebreak[4]
+%────────────────────────────────────
+\paragraph{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{初期化}\;
+        \(\sigma_{0}=\sqrt{\pi/2}\,|\Delta Cl_{0}|\)
+  \item \textbf{分散の指数更新}\;
+        \(\sigma_t^{2}
+          =\lambda_{\text{shift}}\sigma_{t-1}^{2}
+          +(1-\lambda_{\text{shift}})\Delta Cl_t^{2}\)
+  \item \textbf{ボラ取得}\;
+        \(\boxed{\sigma_t^{\text{shift}}=\sqrt{\sigma_t^{2}}}\)
+  \item \textbf{出力}\;
+        他モジュールへ供給
+\end{enumerate}
+\end{flushleft}
+
+\subsubsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(\lambda_{\text{shift}}=0.94\)：半減期 \(\approx14\,\text{d}\)
+  \item ログリターン \(\Delta Cl_t\) を使用し外れ値耐性を確保
+\end{itemize}
+\end{flushleft}
+
+\subsubsection*{実装ヒント}
+\begin{flushleft}
+ボラのゼロ割りを避けるため  
+\(\sigma_t^{2}<10^{-8}\) の場合は下限 \(10^{-8}\) で固定します。
+\end{flushleft}
+
+\subsubsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.86\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+Symbol & Definition / Role \\
+\midrule
+\lambda_{\text{shift}} & EWMA 定数 (0.90--0.98) \\
+\sigma_t^{2} & EWMA 分散推定値 \\
+\Delta Cl_t & 日次ログリターン \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

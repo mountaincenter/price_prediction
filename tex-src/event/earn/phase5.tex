@@ -1,0 +1,57 @@
+%-------------------------------------------------------------------------------
+% event/earn/phase5.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.1 : ASCII 統一, beta^{final} 表記, clip 修正
+% - 2025-05-31  v1.0 : 初版（Bayes 縮小）
+%-------------------------------------------------------------------------------
+
+%=== Phase 5 : w_profit ベイズ縮小 =============================================
+\section*{event / earn / Phase 5}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{サンプル数取得}\;
+        \( n_i=\text{count\_earnings}(i,\text{last 3Y}) \)
+
+  \item \textbf{セクター平均重み}\;
+        \( \bar w_{\text{profit},s}=\operatorname{mean}(w_{\text{profit},j}) \)
+
+  \item \textbf{Bayes 縮小}\;
+        \[
+          \tilde w_{\text{profit},i}
+            =\frac{n_i}{n_i+\tau}\,w_{\text{profit},i}
+             +\frac{\tau}{n_i+\tau}\,\bar w_{\text{profit},s},
+          \quad \tau = 10
+        \]
+        \( \tilde w_{\text{profit},i}=\operatorname{clip}(\tilde w_{\text{profit},i},0.50,0.90) \)
+
+  \item \textbf{サプライズ率再計算} → $\beta_{\text{earn},i,t}^{(5)}$ を取得。
+
+  \item \textbf{イベント係数最終更新}\;
+        \[
+          \beta_{\text{event},i,t}^{\text{final}}
+            =\beta_{\text{event},i,t}^{(4)}\,
+             \beta_{\text{earn},i,t}^{(5)}
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.92\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+n_i & 過去 3 年の決算サンプル数 \\
+\tau & 縮小ハイパーパラメータ (10) \\
+\bar w_{\text{profit},s} & セクター平均利益重み \\
+\beta_{\text{event},i,t}^{\text{final}} & earn 系最終係数 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

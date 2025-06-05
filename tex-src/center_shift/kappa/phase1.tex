@@ -1,0 +1,59 @@
+%-------------------------------------------------------------------------------
+% center_shift/kappa/phase1.tex   v1.3  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top
+% - 2025-06-02  v1.3 : add section/subsection hierarchy, hints, ASCII-only
+%-------------------------------------------------------------------------------
+
+%=== center_shift =============================================================
+\section*{center\_shift}\nopagebreak[4]
+
+%--- kappa ---------------------------------------------------------------------
+\subsection*{kappa}\nopagebreak[4]
+
+%--- Phase 1 : 段階定数モデル ---------------------------------------------------
+\subsubsection*{Phase 1：段階定数モデル}\nopagebreak[4]
+%────────────────────────────────────
+\paragraph{スケール関数}
+\begin{flushleft}
+\begin{equation*}
+\kappa(\sigma_t^{\text{shift}})=
+  \begin{cases}
+    0.05 & 0 \le \sigma_t^{\text{shift}} < 0.01\\[4pt]
+    0.10 & 0.01 \le \sigma_t^{\text{shift}} < 0.02\\[4pt]
+    0.15 & 0.02 \le \sigma_t^{\text{shift}} < 0.04\\[4pt]
+    0.20 & \sigma_t^{\text{shift}} \ge 0.04
+  \end{cases}
+\end{equation*}
+\end{flushleft}
+
+\subsubsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item 4 バケットで十分な滑らかさと解釈性を両立
+  \item 高ボラ域では \(\kappa\) を抑え過剰シフトを防止
+\end{itemize}
+\end{flushleft}
+
+\subsubsection*{実装ヒント}
+\begin{flushleft}
+週次で分布を点検し、しきい値 \(0.01,0.02,0.04\) をチューニングすると  
+Hit-Rate が 0.5–1.0 pt 改善するケースがあります。
+\end{flushleft}
+
+\subsubsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.86\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・備考 \\
+\midrule
+\sigma_t^{\text{shift}} & 共通ボラ (sigma/phase1.tex) \\
+\kappa(\sigma_t^{\text{shift}}) & スケール係数 (本表) \\
+\alpha_t & 中心シフト量 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

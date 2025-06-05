@@ -1,0 +1,65 @@
+%-------------------------------------------------------------------------------
+% event/market/phase1.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG: newest -> oldest
+% - 2025-06-02  v1.2 : beta_{i,t}^{(m1)} 表記・section 階層化
+% - 2025-05-31  v1.1 : 指標セットを {TOPIX,SPX,USDJPY} に縮小
+% - 2025-05-31  v1.0 : 初版（旧 225 系 + DJI）
+%-------------------------------------------------------------------------------
+
+%=== Phase 1 : マーケット指標係数 ==============================================
+\section*{event / market / Phase 1}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{63 d 相関係数}
+        \[
+          \rho_t^{(i)}
+            =\operatorname{corr}\!\bigl(
+              \Delta Cl_{t-62 \ldots t},
+              \Delta M_{t-62 \ldots t}^{(i)}
+            \bigr)
+        \]
+  \item \textbf{当日 Z-score}
+        \(
+          z_t^{(i)}
+            =\dfrac{\Delta M_t^{(i)}}{\sigma_{63}^{(i)}}
+        \)
+  \item \textbf{指標係数（クリップ 0.8--1.2）}
+        \[
+          \beta_{i,t}^{(m1)}
+            =\operatorname{clip}\!\bigl(
+               1+\rho_t^{(i)}z_t^{(i)},\,0.8,\,1.2
+             \bigr)
+        \]
+  \item \textbf{イベント係数を更新}
+        \[
+          \beta_{\text{event},i,t}^{(m1)}
+            =\beta_{\text{event},i,t}^{\text{prev}}
+             \prod_{i \in S} \beta_{i,t}^{(m1)},
+          \quad
+          S=\{\text{TOPIX},\text{SPX},\text{USDJPY}\}
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\Delta M_t^{(i)} & 指標 \(i\) の当日リターン \\
+\sigma_{63}^{(i)} & 指標 \(i\) の 63 日標準偏差 \\
+\rho_t^{(i)} & 63 日相関係数 \\
+\beta_{i,t}^{(m1)} & Phase 1 指標係数 (0.8--1.2) \\
+\beta_{\text{event},i,t}^{\text{prev}} & 直前フェーズ出力 \\
+\beta_{\text{event},i,t}^{(m1)} & Phase 1 出力 (市場要因反映) \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

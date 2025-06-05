@@ -1,0 +1,152 @@
+% parent.tex   v1.0  (2025-05-29)
+% ───────────────────────────────────────────
+% CHANGELOG:
+% - 2025-05-29  open_price ディレクトリ分割に合わせて新規作成
+%
+% Header-rules:
+% • 未来日・過去日を入れない（Created は初回作成日だけ）
+% • 修正があれば最上段に “- YYYY-MM-DD  概要” を追記
+% • LaTeX では行頭 % を docstring の代替に使う
+% • 内容を本文中や他コメントへ重複させない
+% ───────────────────────────────────────────
+
+\documentclass[dvipdfmx,openany,oneside]{jsbook}
+\usepackage{amsmath,amssymb,tabularx,booktabs,graphicx}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{document}
+
+\include{basic_form}   % 1 章：基本形
+\clearpage
+
+\include{open_price/phase0}       % Phase-0：EWMA ギャップ
+\clearpage
+
+\include{open_price/phase1}       % Phase-1：IQR スケーリング
+\clearpage
+
+\include{open_price/phase2}       % Phase-2：σ 比補正
+\clearpage
+
+\include{open_price/phase3}       % Phase-3：Proxy Board Gap
+\clearpage
+
+\include{open_price/phase4} 
+\clearpage
+
+\include{center_shift/phase0}
+\clearpage
+
+\include{center_shift/kappa/phase1} % κ(σ) Phase 1：段階定数モデル
+\clearpage
+
+\include{center_shift/sigma/phase1} % σ_t Phase 1：EWMA14 推定
+\clearpage
+
+\include{center_shift/sigma/phase2} % σ_t Phase 2：IQR スケーリング
+\clearpage
+
+\include{range/phase0}             % Phase-0：半レンジ m_t
+\clearpage
+
+\include{range/phase1}             % Phase-1：σ 比補正
+\clearpage
+
+\include{range/phase2}             % Phase-2：ボラ依存補正
+\clearpage
+
+\include{range/phase3}             % Phase-3：イベント／曜日バイアス
+\clearpage
+
+\include{range/phase4}             % Phase-4：自己適応 λ_vol 更新
+\clearpage
+
+\include{event/phase0}
+\clearpage
+
+\include{event/weekday/phase1}       % Phase-1：イベント係数テーブル
+\clearpage
+
+\include{event/weekday/phase2}       % Phase-2：イベント係数テーブル
+\clearpage
+
+\include{event/weekday/holiday/phase1} % Phase-1：祝日係数テーブル
+\clearpage
+
+\include{event/weekday/holiday/phase2} % Phase-2：祝日係数テーブル
+\clearpage
+
+\include{event/weekday/holiday/phase3} % Phase-3：祝日係数テーブル
+\clearpage
+
+\include{event/weekday/phase3}       % Phase-3：イベント係数テーブル
+\clearpage
+
+\include{event/earn/phase1}       % Phase-1：イベント係数テーブル
+\clearpage
+
+\include{event/earn/phase2}       % Phase-2：イベント係数テーブル
+\clearpage
+
+\include{event/earn/phase3}       % Phase-3：イベント係数テーブル
+\clearpage
+
+\include{event/earn/phase4}       % Phase-4：イベント係数テーブル
+\clearpage
+
+\include{event/earn/phase5}       % Phase-：イベント係数テーブル
+\clearpage
+
+\include{event/market/phase1}       % Phase-1：イベント係数テーブル
+\clearpage
+
+\include{event/market/phase2}       % Phase-2：イベント係数テーブル
+\clearpage
+
+\include{event/market/phase3}       % Phase-3：イベント係数テーブル
+\clearpage
+
+\include{event/market/phase4}       % Phase-4：イベント係数テーブル
+\clearpage
+
+\include{event/market/phase5}       % Phase-5：イベント係数テーブル
+\clearpage
+
+\include{momentum/phase0}
+\clearpage
+
+\include{momentum/phase1}       % Phase-1：EMA5 符号
+\clearpage
+
+\include{momentum/phase2}       % Phase-2：σ 比補正
+\clearpage
+
+\include{momentum/phase3}       % Phase-3：ボラレジーム補正
+\clearpage
+
+\include{momentum/phase4}       % Phase-4：λ_gamma 自己適応
+\clearpage
+
+\include{momentum/phase5}       % Phase-5：モメンタム係数テーブル
+\clearpage
+
+\include{table} 
+\clearpage
+
+\include{data/prices/8801} % 8801.T 日次価格データ
+
+\clearpage
+
+\include{data/analysis/basic_form/8801}
+\clearpage
+
+\include{data/analysis/center_shift/8801}
+\clearpage
+
+\include{data/analysis/center_shift/8801_diff}
+\clearpage
+
+\include{data/analysis/center_shift/summary}
+\clearpage
+
+\end{document}

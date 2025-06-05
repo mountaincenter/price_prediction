@@ -1,0 +1,65 @@
+%-------------------------------------------------------------------------------
+% open_price/phase2.tex   v1.6  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-02  v1.6 : add “変数のポイント” & “実装ヒント”, ASCII only, 0.88w
+% - 2025-06-02  v1.5 : add section header
+% - 2025-05-31  v1.3 : G_t^{(2)} 表記
+%-------------------------------------------------------------------------------
+
+%=== open_price ===============================================================
+\section*{open\_price}\nopagebreak[4]
+
+%=== Phase 2 : ボラティリティ連動補正 ==========================================
+\subsection*{Phase 2：ボラティリティ連動補正}\nopagebreak[4]
+%────────────────────────────────────
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{ボラ比を計算}\;
+        \( r_\sigma = \sigma_t^{\text{open}} \big/ \sigma_{63d}^{\text{open}} \)
+
+  \item \textbf{補正ギャップ}\;
+        \( G_t^{(2)} = \dfrac{G_t^{(1)}}{r_\sigma^{\,\eta}},
+           \qquad \eta = 0.5 \)
+
+  \item \textbf{始値を更新}\;
+        \( O_t = B_{t-1} + G_t^{(2)} \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(r_\sigma\)：当日ボラと平常ボラの比率 (0.3–3.0 でクリップ)  
+  \item \(\eta\)：補正式の指数。0 で無補正、1 で線形反比例
+\end{itemize}
+\end{flushleft}
+
+\subsection*{実装ヒント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(\sigma_t^{\text{open}}\) は center\_shift と同じ EWMA14 値を共有  
+  \item Phase 1 → 2 で MAE が 2~to~5\% 改善するのが典型
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\sigma_t^{\text{open}} & 当日ボラ (center\_shift と共有) \\
+\sigma_{63d}^{\text{open}} & 63~d ボラ平均 \\
+r_\sigma & ボラ比 \\
+\eta & 補正指数 (0.5) \\
+G_t^{(1)} & Phase 1 ギャップ \\
+G_t^{(2)} & Phase 2 ギャップ \\
+O_t & Phase 2 始値予測 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

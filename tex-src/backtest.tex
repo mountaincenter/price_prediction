@@ -1,0 +1,26 @@
+%-------------------------------------------------------------------------------
+% backtest.tex   v1.1  (2025-06-05)
+%───────────────────────────────────────────────────────────────────────────────
+% CHANGELOG
+% - 2025-06-05  v1.1 : \usepackage{graphicx} 追加（\resizebox 用）
+%-------------------------------------------------------------------------------
+
+\documentclass[dvipdfmx,oneside]{article}
+
+\usepackage{amsmath,amssymb,tabularx,booktabs,threeparttable}
+\usepackage{graphicx}              % ← 追加：\resizebox 定義
+\usepackage{geometry}
+\geometry{margin=15mm}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{document}
+
+%=== center_shift : summary (all codes) ========================================
+\input{data/analysis/center_shift/summary}
+\clearpage
+\input{data/analysis/center_shift/1321_diff.tex}
+\clearpage
+\input{data/analysis/center_shift/8801_diff.tex}
+\clearpage
+
+\end{document}

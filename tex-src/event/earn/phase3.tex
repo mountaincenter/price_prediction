@@ -1,0 +1,68 @@
+%-------------------------------------------------------------------------------
+% event/earn/phase3.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.2 : ASCII "-" 統一, ProfitMargin 判定式修正
+% - 2025-05-31  v1.1 : ファイル名 \texttt{} 化, underscore エスケープ
+% - 2025-05-31  v1.0 : 初版（Industry 固定重み）
+%-------------------------------------------------------------------------------
+
+%=== Phase 3 : Industry 固定重み ===============================================
+\section*{event / earn / Phase 3}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{業種コード取得}\;
+        \( s=\text{lookup}(i)\in\{01,\dots,33\} \)  
+        （\texttt{symbol2industry.csv}）
+  \item \textbf{利益率取得}\;
+        \( pm_s=\text{ProfitMargin}_s \)  
+        （\texttt{sector\_metrics\_latest.csv}）
+  \item \textbf{利益重み決定}\;
+        \[
+          w_{\text{profit},s}=
+          \begin{cases}
+            0.9 & pm_s \ge 0.10\\
+            0.8 & 0.05 \le pm_s < 0.10\\
+            0.6 & pm_s < 0.05
+          \end{cases},
+          \quad
+          w_{\text{sales},s}=1-w_{\text{profit},s}
+        \]
+  \item \textbf{サプライズ率再計算}\;
+        \( \Delta = w_{\text{profit},s}\,\Delta_{\text{profit}}
+                 + w_{\text{sales},s}\,\Delta_{\text{sales}} \)
+  \item \textbf{Phase 3 係数}\;
+        \[
+          \beta_{\text{earn},i,t}^{(3)}
+            =\operatorname{clip}\!\bigl(
+               1+0.25\,\operatorname{sign}(\Delta)
+               \sqrt{\min(|\Delta|,0.36)},\,0.80,1.50\bigr)
+        \]
+  \item \textbf{イベント係数更新}\;
+        \[
+          \beta_{\text{event},i,t}^{(3)}
+            =\beta_{\text{event},i,t}^{(2)}\,
+             \beta_{\text{earn},i,t}^{(3)}
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.92\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+pm_s & 業種 $s$ の利益率 \\
+w_{\text{profit},s} & 利益重み (0.6/0.8/0.9) \\
+\beta_{\text{event},i,t}^{(2)} & 前フェーズ出力 \\
+\beta_{\text{event},i,t}^{(3)} & 本フェーズ出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

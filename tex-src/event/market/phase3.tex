@@ -1,0 +1,55 @@
+%-------------------------------------------------------------------------------
+% event/market/phase3.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG: newest -> oldest
+% - 2025-06-02  v1.2 : beta_{63,i} 算出式を明示し ASCII 化
+% - 2025-05-31  v1.1 : 書式統一
+% - 2025-05-31  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase 3 : 銘柄 beta 補正 ==================================================
+\section*{event / market / Phase 3}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{63 d beta を計算}
+        \[
+          \beta_{63,i}=
+          \frac{\operatorname{Cov}\!\bigl(r_i,r_{\text{TOPIX}}\bigr)}
+               {\operatorname{Var}\!\bigl(r_{\text{TOPIX}}\bigr)}
+        \]
+  \item \textbf{補正係数}
+        \[
+          c_i=
+          \begin{cases}
+            1.05 & \beta_{63,i}>1.0\\
+            0.95 & \beta_{63,i}<0.5\\
+            1.00 & \text{otherwise}
+          \end{cases}
+        \]
+  \item \textbf{イベント係数を更新}
+        \(
+          \beta_{\text{event},i,t}^{(m3)}
+            =\beta_{\text{event},i,t}^{(m2)}\,c_i
+        \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\beta_{63,i} & 63 日 TOPIX beta \\
+c_i & 補正係数 (0.95 / 1.05) \\
+\beta_{\text{event},i,t}^{(m2)} & Phase 2 出力 \\
+\beta_{\text{event},i,t}^{(m3)} & Phase 3 出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

@@ -1,0 +1,46 @@
+%-------------------------------------------------------------------------------
+% event/weekday/holiday/phase1.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.2 : beta_holiday,t 表記確認・ASCII 統一
+% - 2025-05-31  v1.1 : 書式を weekday/phase2.tex と統一
+% - 2025-05-31  v1.0 : 初版（固定祝日係数）
+%-------------------------------------------------------------------------------
+
+%=== Phase 1 : 祝日前後固定係数 ===============================================
+\section*{event / weekday / holiday / Phase 1}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{休場日判定}\;
+        JPX カレンダー JSON で \texttt{HolidayDivision}\(\neq1\) を休場日とする。
+  \item \textbf{前後日フラグ抽出}\;
+        休場直前営業日フラグ \(h_{t,-1}\)，休場明け初日フラグ \(h_{t,+1}\)。
+  \item \textbf{祝日係数決定}\;
+        \[
+          \beta_{\text{holiday},t}=
+          \begin{cases}
+            0.90 & (h_{t,-1}=1)\\
+            0.95 & (h_{t,+1}=1)\\
+            1.00 & \text{otherwise}
+          \end{cases}
+        \]
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+h_{t,-1},h_{t,+1} & 休日前営業日／休み明け初日フラグ \\
+\beta_{\text{holiday},t} & 祝日固定係数 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

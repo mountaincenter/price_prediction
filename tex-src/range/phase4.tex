@@ -1,0 +1,56 @@
+%-------------------------------------------------------------------------------
+% range/phase4.tex   v1.1  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.1 : 「変数のポイント」節を復元（λ_vol と最終幅倍率の説明）
+% - 2025-05-31  v1.0 : 自己適応 λ_vol 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase-4 : 自己適応 λ_vol 更新 =============================================
+\section*{range / Phase 4}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{誤差系列} \(e_{t-k}=m_{t-k}^{\text{real}}-m_{t-k}^{\text{pred}}\), \(k=1\ldots30\)
+  \item \textbf{勾配近似} \(g_t\approx-\frac{2}{30}(\beta_{\text{vol},t}^{(3)}
+        -\bar\beta_{\text{vol},t-1})\,e_{t-1}\)
+  \item \textbf{λ 更新} \(
+        \lambda_{\text{vol}}\leftarrow\text{clip}(
+        \lambda_{\text{vol}}-0.01\,g_t,\,0.80,0.99)
+        \)
+  \item \textbf{EWMA 平滑} \(
+        \bar\beta_{\text{vol},t}
+        =\lambda_{\text{vol}}\bar\beta_{\text{vol},t-1}
+        +(1-\lambda_{\text{vol}})\beta_{\text{vol},t}^{(3)}
+        \)
+  \item \textbf{半レンジ出力} \(m_t=\sigma_t^{\text{shift}}\;\bar\beta_{\text{vol},t}\)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item 初期 \(\lambda_{\text{vol}}=0.90\)、更新範囲 0.80–0.99。  
+  \item \(\bar\beta_{\text{vol},t}\) が **range 系の最終幅倍率**。
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\(\lambda_{\text{vol}}\) & EWMA 平滑定数（動的更新） \\
+\(g_t\) & 勾配近似値 \\
+\(\beta_{\text{vol},t}^{(3)}\) & Phase 3 幅倍率 \\
+\(\bar\beta_{\text{vol},t}\) & 平滑後幅倍率（最終値） \\
+\(m_t\) & 半レンジ（最終） \\
+\(\sigma_t^{\text{shift}}\) & 共通ボラティリティ \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+%===============================================================================

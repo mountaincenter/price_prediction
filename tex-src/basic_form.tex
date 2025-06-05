@@ -1,0 +1,62 @@
+%-------------------------------------------------------------------------------
+% basic_form.tex   v1.1  (2025-05-28)
+%───────────────────────────────────────────────────────────────────────────────
+% CHANGELOG:  最新→過去（降順）で追加してください
+% - 2025-05-29  数式・表すべてを flushleft／flalign* ベースに統一
+%-------------------------------------------------------------------------------
+
+%=== 基本形：日中レンジを伴うモデル ==========================================
+\section*{1. 基本形：日中レンジを伴うモデル}\nopagebreak[4]
+%────────────────────────────────────
+\begin{flushleft}
+\begin{flalign*}
+&\text{ベース値}\quad
+  B_{t-1}=
+    \begin{cases}
+      Cl_{t-1} & (\text{デイトレ中心})\\[4pt]
+      \dfrac{H_{t-1}+L_{t-1}}{2} & (\text{振れの大きい銘柄})
+    \end{cases} &&\\[10pt]
+%
+&\text{中心シフト量}\quad
+  \alpha_t=\kappa(\sigma_t)\,S_t,\qquad 0\le|S_t|\le1 &&\\[6pt]
+%
+&\text{日中中心値}\quad
+  C_t=B_{t-1}(1+\alpha_t)\,\beta_{\text{event},t} &&\\[10pt]
+%
+&\text{半レンジ}\quad
+  m_t=\sigma_t\,\beta_{\text{vol},t} &&\\[6pt]
+%
+&\text{高値}\quad
+  H_t=C_t+m_t &&\\[4pt]
+&\text{安値}\quad
+  L_t=C_t-m_t &&\\[10pt]
+%
+&\text{始値}\quad
+  O_t=C_t+\gamma_t\sigma_t &&\\[4pt]
+&\text{終値}\quad
+  Cl_t=C_t-\gamma_t\sigma_t &&
+\end{flalign*}
+\end{flushleft}
+
+\subsection*{主要変数・係数（基本形）}
+\begin{flushleft}
+\begin{minipage}{0.85\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+Cl_{t-1} & 前日終値 \\
+H_{t-1},L_{t-1} & 前日高値・安値 \\
+B_{t-1} & 前日リファレンス値 \\
+\sigma_{t} & 当日ボラティリティ推定 \\
+\kappa(\sigma) & ボラ依存シフトスケール \\
+S_{t} & direction\_score \\
+\beta_{\text{event},t} & 曜日・決算などバイアス係数 \\
+\beta_{\text{vol},t} & 幅倍率（\(\sigma\) 拡大率） \\
+\gamma_{t} & モメンタム偏位係数 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

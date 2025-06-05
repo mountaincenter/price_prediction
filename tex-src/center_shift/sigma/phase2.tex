@@ -1,0 +1,70 @@
+%-------------------------------------------------------------------------------
+% center_shift/sigma/phase2.tex   v1.3  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top
+% - 2025-06-02  v1.3 : add section/subsection, hints, ASCII-only
+%-------------------------------------------------------------------------------
+
+%=== center_shift =============================================================
+\section*{center\_shift}\nopagebreak[4]
+
+%--- sigma ---------------------------------------------------------------------
+\subsection*{sigma}\nopagebreak[4]
+
+%--- Phase 2 : 自己適応 λ_shift 更新 -------------------------------------------
+\subsubsection*{Phase 2：自己適応 $\lambda_{\text{shift}}$ 更新}\nopagebreak[4]
+%────────────────────────────────────
+\paragraph{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{誤差系列}\;
+        \(e_{t-k}=\Delta Cl_{t-k}^{2}-\sigma_{t-k}^{2}\)
+  \item \textbf{局所 MSE}\;
+        \(\mathrm{MSE}_t=\dfrac{1}{30}\sum_{k=1}^{30}e_{t-k}^{2}\)
+  \item \textbf{勾配近似}\;
+        \(g_t\approx-\dfrac{2}{30}\sum_{k=1}^{30}
+          e_{t-k}\,\sigma_{t-k}^{2}\)
+  \item \textbf{$\lambda_{\text{shift}}$ 更新}\;
+        \(\lambda_{\text{shift},t}
+          =\operatorname{clip}\bigl(
+            \lambda_{\text{shift},t-1}-\eta g_t,\,
+            0.90,\,0.98\bigr)\)
+  \item \textbf{翌日へ反映}\;
+        上式の \(\lambda_{\text{shift},t}\) で  
+        \(\sigma_{t+1}^{2}\) を再計算
+\end{enumerate}
+\end{flushleft}
+
+\subsubsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(\lambda_{\text{shift}}\) は [0.90, 0.98] に制限
+  \item \(|g_t|\le10\) でクリップし暴走を防止
+\end{itemize}
+\end{flushleft}
+
+\subsubsection*{実装ヒント}
+\begin{flushleft}
+学習率 \(\eta=0.01\) が無難。  
+ウォームアップ期間 (30~d) は固定 \(\lambda_{\text{shift}}=0.94\)。
+\end{flushleft}
+
+\subsubsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.90\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\lambda_{\text{shift},t-1} & 前日 EWMA 定数 \\
+\lambda_{\text{shift},t}   & 更新後 EWMA 定数 \\
+g_t & 勾配近似 \\
+\eta & 学習率 (0.01) \\
+e_{t-k} & 誤差 \\
+\mathrm{MSE}_t & 30~d MSE \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

@@ -1,0 +1,48 @@
+%-------------------------------------------------------------------------------
+% event/weekday/phase2.tex   v1.2  (2025-06-02)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-02  v1.2 : beta^{(2)} 表記・説明統一
+% - 2025-05-31  v1.0 : 銘柄別・動的曜日係数
+%-------------------------------------------------------------------------------
+
+%=== Phase 2 : 銘柄別・動的曜日係数 ============================================
+\section*{event / weekday / Phase 2}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{曜日判定}\;
+        \(\text{wd}_t\in\{\text{Mon},\text{Tue},\text{Wed},\text{Thu},\text{Fri}\}\)
+  \item \textbf{CSV から係数取得}\;
+        \[
+          \beta_{\text{weekday},i,t}^{(2)}
+            =\text{lookup}(i,\text{wd}_t),
+            \quad 0.8\le\beta_{\text{weekday},i,t}^{(2)}\le1.2
+        \]
+        欠損時は 1.0。
+  \item \textbf{イベント係数更新}\;
+        \(
+          \beta_{\text{event},i,t}^{(2)}
+          =\beta_{\text{weekday},i,t}^{(2)}
+        \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.90\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+i & 銘柄コード \\
+\text{wd}_t & 曜日インデックス \\
+\beta_{\text{weekday},i,t}^{(2)} & 銘柄別動的曜日係数 \\
+\beta_{\text{event},i,t}^{(2)} & weekday 系フェーズ 2 出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

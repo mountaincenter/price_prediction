@@ -1,0 +1,306 @@
+\documentclass[dvipdfmx, openany]{jsbook}
+\usepackage{amsmath, amssymb, tabularx, booktabs}
+\renewcommand{\arraystretch}{1.2}   % 表の行間
+
+\begin{document}
+
+%────────────────────────────────────
+\section*{1. 基本形：日中レンジを伴うモデル}\nopagebreak[4]
+%────────────────────────────────────
+\begin{align}
+\text{ベース値}\quad
+  B_{t-1} &=
+    \begin{cases}
+      Cl_{t-1} & (\text{デイトレ中心})\\[4pt]
+      \displaystyle\frac{H_{t-1}+L_{t-1}}{2} & (\text{振れの大きい銘柄})
+    \end{cases} \\[10pt]
+%
+\text{中心シフト量}\quad
+  \alpha_t &= \kappa(\sigma_t)\,S_t,\qquad 0\le|S_t|\le1 \\[6pt]
+%
+\text{日中中心値}\quad
+  C_t &= B_{t-1}(1+\alpha_t)\,\beta_{\text{event},t} \\[10pt]
+%
+\text{半レンジ}\quad
+  m_t &= \sigma_t\,\beta_{\text{vol},t} \\[6pt]
+%
+\text{高値}\quad
+  H_t &= C_t + m_t \\[4pt]
+\text{安値}\quad
+  L_t &= C_t - m_t \\[10pt]
+%
+\text{始値}\quad
+  O_t &= C_t + \gamma_t\sigma_t \\[4pt]
+\text{終値}\quad
+  Cl_t &= C_t - \gamma_t\sigma_t
+\end{align}
+
+\subsection*{主要変数・係数（基本形）}
+\noindent\hfill
+\begin{minipage}{0.85\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+Cl_{t-1} & 前日終値 \\
+H_{t-1},L_{t-1} & 前日高値・安値 \\
+B_{t-1} & 前日リファレンス値 \\
+\sigma_{t} & 当日ボラティリティ推定 \\
+\kappa(\sigma) & ボラ依存シフトスケール \\
+S_{t} & direction\_score \\
+\beta_{\text{event},t} & 曜日・決算などバイアス係数 \\
+\beta_{\text{vol},t} & 幅倍率（\(\sigma\) 拡大率） \\
+\gamma_{t} & モメンタム偏位係数 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\par\bigskip
+
+%────────────────────────────────────
+\section*{2. 発射台：EWMA ギャップ補正（Phase 0）}\nopagebreak[4]
+%────────────────────────────────────
+\begin{equation}
+\begin{aligned}
+B_{t-1}&=Cl_{t-1}\;\text{or}\;\tfrac{H_{t-1}+L_{t-1}}{2} \\[4pt]
+\bar G_t^{(\lambda)}&=\lambda G_t+(1-\lambda)\bar G_{t-1}^{(\lambda)} \\[4pt]
+G_t&=O_t-Cl_{t-1},\qquad
+O_t=B_{t-1}+\bar G_t^{(\lambda)}
+\end{aligned}
+\end{equation}
+
+\subsection*{追加変数・係数（発射台）}
+\noindent\hfill
+\begin{minipage}{0.85\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+Cl_{t-1} & 前日終値（基準値の第一候補） \\
+H_{t-1},L_{t-1} & 前日高値・安値（中央値で基準値に代用） \\
+B_{t-1} & 前日リファレンス値（Cl\(_{t-1}\) または \(\tfrac{H_{t-1}+L_{t-1}}{2}\)） \\
+G_t & 当日ギャップ \((O_t-Cl_{t-1})\) \\
+\lambda & EWMA 平滑定数（0.1–0.3 が目安） \\
+\bar G_t^{(\lambda)} & EWMA 平滑ギャップ \\
+O_t & 発射台始値予測（フェーズ0 時点） \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\par\bigskip
+
+%======================================================================
+%                           Phase 1
+%======================================================================
+\section*{3. Phase 1：ギャップ分布スケーリング}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ / 目的 / 詳細}
+\begin{enumerate}
+  \item \textbf{直近 63 営業日の IQR を測定}  
+        \[
+          \mathrm{IQR}_G
+            = Q_{75}\!\bigl(G_{t-63\ldots t-1}\bigr)
+            - Q_{25}\!\bigl(G_{t-63\ldots t-1}\bigr)
+        \]
+  \item \textbf{スケーラ \(s_g\) を算出}  
+        \[
+          s_g=\frac{1}{\mathrm{IQR}_G}
+        \]
+  \item \textbf{EWMA ギャップをスケール}  
+        \[
+          \bar G_t'=\bar G_t^{(\lambda)}\,s_g
+          \qquad(|\bar G_t'|\le5\sigma\ \text{でクリップ可})
+        \]
+  \item \textbf{始値を再計算}  
+        \(O_t=B_{t-1}+\bar G_t'\)
+\end{enumerate}
+
+\subsection*{変数のポイント}
+\begin{itemize}
+  \item \(\mathrm{IQR}_G\)：外れ値に頑健な 50 % 幅。
+  \item \(s_g\)：銘柄間の“体格差”を均す係数。
+\end{itemize}
+
+\subsection*{実装ヒント}
+63 d 未満は Phase 0 を使用。  
+\(\mathrm{IQR}_G<10^{-4}\) の場合は下限固定でゼロ割り防止。
+
+\subsection*{追加変数・係数（フェーズ1）}
+\noindent\hfill
+\begin{minipage}{0.85\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+Q_{75},Q_{25} & ギャップ四分位点（直近 63 日） \\
+\mathrm{IQR}_G & IQR＝\(Q_{75}-Q_{25}\) \\
+s_g & 分位点スケーラ \(1/\mathrm{IQR}_G\) \\
+\bar G_t' & スケール後 EWMA ギャップ \\
+O_t & フェーズ1 始値予測 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\par\bigskip
+
+%======================================================================
+%                           Phase 2
+%======================================================================
+\section*{4. Phase 2：ボラティリティ連動補正}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ / 目的 / 詳細}
+\begin{enumerate}
+  \item \textbf{σ 比 \(r_\sigma\) を計算}  
+        \[
+          r_\sigma=\frac{\sigma_t}{\sigma_{63d}}
+        \]
+  \item \textbf{ギャップを減衰／増幅}  
+        \[
+          \bar G_t''=\frac{\bar G_t'}{r_\sigma^{\,\eta}},
+          \qquad \eta\approx0.5
+        \]
+  \item \textbf{始値を更新}  
+        \(O_t=B_{t-1}+\bar G_t''\)
+\end{enumerate}
+
+\subsection*{変数のポイント}
+\begin{itemize}
+  \item \(r_\sigma\)：当日ボラ / 平常ボラ。0.3–3.0 でクリップ。
+  \item \(\eta\)：補正感度。0→無補正、1→線形反比例。
+\end{itemize}
+
+\subsection*{実装ヒント}
+\(\sigma_t\) は前日実現ボラや EWMA(14) で代用可。  
+Phase 1→2 追加で MAE が 2–5 % 改善するのが目安。
+
+\subsection*{追加変数・係数（フェーズ2）}
+\noindent\hfill
+\begin{minipage}{0.85\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\sigma_{63d} & 直近 63 日平均ボラティリティ \\
+r_\sigma & σ 比 \(\sigma_t / \sigma_{63d}\) \\
+\eta & ボラ補正指数（既定 0.5） \\
+\bar G_t'' & ボラ補正後ギャップ \\
+O_t & フェーズ2 始値予測 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\par\bigskip
+
+%======================================================================
+%                           Phase 3
+%======================================================================
+\section*{5. Phase 3：Proxy Board Gap 補正}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ / 目的 / 詳細}
+\begin{enumerate}
+  \item \textbf{Proxy Gap を計算}  
+        \[
+          G_{\text{proxy}}=
+          \frac{Cl_{t-1}-\text{5DMA}_{t-1}}{\sigma_{63d}}
+        \]
+  \item \textbf{出来高比率と重み}  
+        \[
+          r_v=\frac{\text{Vol}_{t-1}}{\text{AvgVol}_{25}},
+          \qquad w_v=\min\!\bigl(1.5,\,r_v\bigr)
+        \]
+  \item \textbf{最終ギャップを合成}  
+        \[
+          \bar G_t'''=\bar G_t''+w_v\,G_{\text{proxy}}
+        \]
+  \item \textbf{始値を決定}  
+        \(O_t=B_{t-1}+\bar G_t'''\)
+\end{enumerate}
+
+\subsection*{変数のポイント}
+\begin{itemize}
+  \item 5DMA／25DVMA が無い日は \(w_v=0\)（Proxy 無効化）。
+  \item \(w_v\) は 1.5 で飽和し過剰反応を防止。
+\end{itemize}
+
+\subsection*{実装ヒント}
+終値 vs 当日 VWAP に置換すると滑らかさ向上。  
+Phase 2→3 追加で Hit-Rate +1–3 % の改善が典型。
+
+\subsection*{追加変数・係数（フェーズ3）}
+\noindent\hfill
+\begin{minipage}{0.85\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+Cl_{t-1} & 前日終値 \\
+\text{5DMA}_{t-1} & 5 日移動平均終値 \\
+\sigma_{63d} & 63 日リターン標準偏差 \\
+G_{\text{proxy}} & 終値 vs 5DMA の Z-score \\
+\text{Vol}_{t-1} & 前日出来高 \\
+\text{AvgVol}_{25} & 25 日出来高平均（25DVMA） \\
+r_v & 出来高比率 \\
+w_v & 出来高重み（上限 1.5） \\
+\bar G_t''' & Phase 3 最終ギャップ \\
+O_t & Phase 3 始値予測 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\par\bigskip
+
+%======================================================================
+%                           Phase 4
+%======================================================================
+\section*{6. Phase 4：自己適応 $\lambda$ 更新}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ / 目的 / 詳細}
+\begin{enumerate}
+  \item \textbf{直近 30 営業日の誤差を計算}  
+        \[
+          e_{t-k}=G_{t-k}-\bar G_{t-k}^{(\lambda_{t-1})}
+        \]
+  \item \textbf{局所 MSE を取る}  
+        \[
+          \mathrm{MSE}_{t}=\frac1{30}\sum_{k=1}^{30}e_{t-k}^{2}
+        \]
+  \item \textbf{簡易勾配 \(g_t\) を近似}  
+        \[
+          g_t\approx-\frac{2}{30}\sum_{k=1}^{30}
+          e_{t-k}\,\bar G_{t-k}^{(\lambda_{t-1})}
+        \]
+  \item \textbf{\(\lambda\) を更新}  
+        \[
+          \lambda_t=
+          \mathrm{clip}\!\bigl(\lambda_{t-1}-\eta\,g_t,\,0.05,\,0.50\bigr)
+        \]
+  \item \textbf{翌日の EWMA に反映}  
+        新しい \(\lambda_t\) で \(\bar G_{t+1}^{(\lambda_t)}\) を算出。
+\end{enumerate}
+
+\subsection*{変数のポイント}
+\begin{itemize}
+  \item \(\lambda\)：0.05 → 半減期$\approx$13 d、0.50 → ほぼ当日値。
+  \item \(g_t\)：\(\lambda\) 増減方向のヒント（標準化・クリップ推奨）。
+\end{itemize}
+
+\subsection*{実装ヒント}
+\begin{itemize}
+  \item \textbf{ウォーミングアップ}：30 d 溜まるまでは \(\lambda=0.20\) 固定。
+  \item \textbf{数値安定化}：\(|g_t|\le10\) でサチらせ暴走防止。
+  \item \textbf{バックテスト}：Phase 3 vs Phase 4 で MAE と DD を比較。
+\end{itemize}
+
+\subsection*{追加変数・係数（フェーズ4）}
+\noindent\hfill
+\begin{minipage}{0.85\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\lambda_{t-1} & 前日の EWMA 平滑定数 \\
+\lambda_{t} & 更新後 EWMA 平滑定数（0.05–0.50） \\
+e_{t-k} & 誤差 \(G_{t-k}-\bar G_{t-k}^{(\lambda_{t-1})}\) \\
+\mathrm{MSE}_{t} & 過去 30 d 平均二乗誤差 \\
+g_t & MSE 勾配近似 \\
+\eta & 学習率（0.005–0.02 推奨） \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+
+\end{document}
