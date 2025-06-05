@@ -38,7 +38,7 @@ NUM_ROWS = 63  # ← ここだけで期間を調整できます
 def resolve_csv(raw: Path) -> Path:
     if raw.exists():
         return raw.resolve()
-    alt = Path(__file__).resolve().parent.parent / "data" / "prices" / raw.name
+    alt = Path(__file__).resolve().parent.parent.parent / "data" / "prices" / raw.name
     if alt.exists():
         return alt.resolve()
     raise FileNotFoundError(raw)
@@ -160,7 +160,7 @@ def main() -> None:
         args.out.resolve()
         if args.out
         else (
-            Path(__file__).resolve().parent.parent
+            Path(__file__).resolve().parent.parent.parent
             / "data" / "analysis" / "center_shift" / f"{code}.tex"
         )
     )

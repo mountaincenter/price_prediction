@@ -26,8 +26,8 @@ from csv_to_center_shift_diff import (
 )
 
 # --------------------------------------------------------------------------
-PRICES_DIR = Path(__file__).resolve().parent.parent / "data/prices"
-OUT_DIR    = Path(__file__).resolve().parent.parent / "data/analysis/center_shift"
+PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "data/prices"
+OUT_DIR    = Path(__file__).resolve().parent.parent.parent / "data/analysis/center_shift"
 SUMMARY_TEX = OUT_DIR / "summary.tex"
 
 # ── モデル定数（batch 側でメトリクス計算に必要） ──────────────────────────

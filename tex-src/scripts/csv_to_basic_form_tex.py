@@ -25,7 +25,7 @@ import pandas as pd
 def _resolve_csv_path(raw: Path) -> Path:
     if raw.exists():
         return raw.resolve()
-    alt = Path(__file__).resolve().parent.parent / "data" / "prices" / raw.name
+    alt = Path(__file__).resolve().parent.parent.parent / "data" / "prices" / raw.name
     if alt.exists():
         return alt.resolve()
     raise FileNotFoundError(f"CSV が見つかりません: {raw} または {alt}")
@@ -131,7 +131,7 @@ def main() -> None:
         args.out.resolve()
         if args.out
         else (
-            Path(__file__).resolve().parent.parent
+            Path(__file__).resolve().parent.parent.parent
             / "data" / "analysis" / "basic_form" / f"{code}.tex"
         )
     )
