@@ -27,7 +27,6 @@ from csv_to_center_shift_diff import (
 )
 
 # --------------------------------------------------------------------------
-
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
 OUT_DIR    = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/center_shift"
 
