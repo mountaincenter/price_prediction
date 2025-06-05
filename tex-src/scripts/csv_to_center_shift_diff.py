@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.6  (2025-06-05)
+scripts/csv_to_center_shift_diff.py   v2.10  (2025-06-05)
 ────────────────────────────────────────────────────────
-CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-05  v2.10: HitRate 改善アルゴリズム導入
+- 2025-06-05  v2.9 : Phase 2 専用スクリプトである旨を明記
+- 2025-06-05  v2.8 : process_one が Path を返すよう変更
+- 2025-06-05  v2.7 : 初期5日間の $S_t$ 無効化
 - 2025-06-05  v2.6 : FutureWarning 非表示
 - 2025-06-05  v2.5 : ルート基準でパスを解決
 - 2025-06-05  v2.4 : LaTeX 文字列中の生 '\\n' を排除／HitRate[%] を 0.60→60.00 表示
@@ -18,6 +22,9 @@ CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
 - 2025-06-04  v1.1 : 列簡略化
 - 2025-06-04  v1.0 : 初版
 """
+
+# Phase 2 の中心シフト計算を行い、diff テーブルを生成する。
+# 詳細な数式は tex-src/center_shift/phase2.tex を参照。
 
 from __future__ import annotations
 
@@ -77,23 +84,34 @@ def kappa_sigma(s: float) -> float:
             return v
     return 0.20
 
-def calc_center_shift(df: pd.DataFrame) -> pd.DataFrame:
+def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
     n = len(df)
     cl = df["Close"].values
     dcl = np.zeros(n); dcl[1:] = np.log(cl[1:] / cl[:-1])
 
     sig = np.zeros(n); lam = np.full(n, L_INIT)
     kap = np.zeros(n); alp = np.zeros(n)
+    S = np.zeros(n); ma3 = np.zeros(n)
     var = max(VAR_EPS, (np.pi / 2) * abs(dcl[0])) ** 2
 
     for t in range(n):
         if t:
             var = max(lam[t-1]*var + (1-lam[t-1])*dcl[t]**2, VAR_EPS)
         sig[t] = sqrt(var)
-        kap[t] = kappa_sigma(sig[t])
-        alp[t] = kap[t] * (np.sign(dcl[t-1]) if t else 0)
+        kap[t] = 0.20 if phase == 0 else kappa_sigma(sig[t])
+        if t:
+            ma3[t] = dcl[max(0, t-3):t].mean()
+        if phase == 2:
+            S[t] = np.sign(ma3[t])
+            if abs(ma3[t]) < 0.5 * sig[t]:
+                S[t] = 0
+        else:
+            S[t] = np.sign(dcl[t-1]) if t else 0
+        if t < 5:
+            S[t] = 0
+        alp[t] = kap[t] * S[t]
 
-        if t >= 31:
+        if phase == 2 and t >= 31:
             e = dcl[t-30:t]**2 - sig[t-30:t]**2
             g = -(2/30) * np.sum(e * sig[t-30:t]**2)
             lam[t] = np.clip(lam[t-1] - ETA*np.clip(g, -10, 10), L_MIN, L_MAX)
@@ -200,13 +218,14 @@ def make_table(df: pd.DataFrame) -> str:
     return "\n".join(parts)
 
 # ──────────────────────────────────────────────────────────────
-def process_one(csv: Path, out_dir: Path = OUT_DIR) -> None:
+def process_one(csv: Path, out_dir: Path = OUT_DIR) -> Path:
+    """csv を処理して diff.tex を生成し、そのパスを返す"""
     code = csv.stem
-    tex  = make_table(calc_center_shift(read_prices(csv)))
-    out  = out_dir / f"{code}_diff.tex"
+    tex = make_table(calc_center_shift(read_prices(csv)))
+    out = out_dir / f"{code}_diff.tex"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(tex, encoding="utf-8")
-    print(f"✅ {code} → {out.relative_to(out_dir.parent.parent)}")
+    return out
 
 # ──────────────────────────────────────────────────────────────
 def main() -> None:
@@ -221,9 +240,11 @@ def main() -> None:
 
     if args.csv is None:
         for p in sorted(PRICES_DIR.glob("*.csv")):
-            process_one(p)
+            out = process_one(p)
+            print(f"✅ {p.stem} → {out.relative_to(OUT_DIR.parent.parent)}")
     else:
-        process_one(resolve_csv(args.csv))
+        out = process_one(resolve_csv(args.csv))
+        print(f"✅ {args.csv.stem} → {out.relative_to(OUT_DIR.parent.parent)}")
 
 if __name__ == "__main__":
     main()
