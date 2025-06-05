@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.9  (2025-06-05)
+scripts/csv_to_center_shift_diff.py   v2.10  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-05  v2.10: HitRate 改善アルゴリズム導入
 - 2025-06-05  v2.9 : Phase 2 専用スクリプトである旨を明記
 - 2025-06-05  v2.8 : process_one が Path を返すよう変更
 - 2025-06-05  v2.7 : 初期5日間の $S_t$ 無効化
@@ -90,7 +91,7 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
 
     sig = np.zeros(n); lam = np.full(n, L_INIT)
     kap = np.zeros(n); alp = np.zeros(n)
-    S = np.zeros(n)
+    S = np.zeros(n); ma3 = np.zeros(n)
     var = max(VAR_EPS, (np.pi / 2) * abs(dcl[0])) ** 2
 
     for t in range(n):
@@ -98,7 +99,14 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
             var = max(lam[t-1]*var + (1-lam[t-1])*dcl[t]**2, VAR_EPS)
         sig[t] = sqrt(var)
         kap[t] = 0.20 if phase == 0 else kappa_sigma(sig[t])
-        S[t] = np.sign(dcl[t-1]) if t else 0
+        if t:
+            ma3[t] = dcl[max(0, t-3):t].mean()
+        if phase == 2:
+            S[t] = np.sign(ma3[t])
+            if abs(ma3[t]) < 0.5 * sig[t]:
+                S[t] = 0
+        else:
+            S[t] = np.sign(dcl[t-1]) if t else 0
         if t < 5:
             S[t] = 0
         alp[t] = kap[t] * S[t]

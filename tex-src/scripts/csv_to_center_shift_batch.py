@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.6  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.7  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-05  v6.7 : HitRate 改善アルゴリズムに対応
 - 2025-06-05  v6.6 : LaTeX ヘッダの上付記号を数式モードへ
 - 2025-06-05  v6.5 : RelMAE/HitRate 各 Phase 列を追加
 - 2025-06-05  v6.4 : diff 生成メッセージを main で出力
