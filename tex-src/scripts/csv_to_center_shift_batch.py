@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.1  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.2  (2025-06-05)
 ────────────────────────────────────────────────────────
 CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-05  v6.2 : ルート基準でパスを解決
 - 2025-06-05  v6.1 : 引数を廃止し自動バッチ化
     • data/prices/*.csv を総当たり
     • 各銘柄の diff.tex 生成は csv_to_center_shift_diff.process_one を呼び出し
@@ -26,8 +27,8 @@ from csv_to_center_shift_diff import (
 )
 
 # --------------------------------------------------------------------------
-PRICES_DIR = Path(__file__).resolve().parent.parent / "data/prices"
-OUT_DIR    = Path(__file__).resolve().parent.parent / "data/analysis/center_shift"
+PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
+OUT_DIR    = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/center_shift"
 SUMMARY_TEX = OUT_DIR / "summary.tex"
 
 # ── モデル定数（batch 側でメトリクス計算に必要） ──────────────────────────

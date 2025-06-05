@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_basic_form_tex.py   v1.7  (2025-06-03)
+scripts/csv_to_basic_form_tex.py   v1.8  (2025-06-03)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-05  v1.8 : ルート基準でパスを解決
 - 2025-06-03  v1.7 : 予測列の shift(-1) を撤回し当日行に対応付け
 - 2025-06-03  v1.6 : 最新日から 14 行抽出し降順表示
 - 2025-06-03  v1.5 : Date を YYYY-MM-DD / float_format %.1f
@@ -25,7 +26,7 @@ import pandas as pd
 def _resolve_csv_path(raw: Path) -> Path:
     if raw.exists():
         return raw.resolve()
-    alt = Path(__file__).resolve().parent.parent / "data" / "prices" / raw.name
+    alt = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data" / "prices" / raw.name
     if alt.exists():
         return alt.resolve()
     raise FileNotFoundError(f"CSV が見つかりません: {raw} または {alt}")
@@ -131,8 +132,8 @@ def main() -> None:
         args.out.resolve()
         if args.out
         else (
-            Path(__file__).resolve().parent.parent
-            / "data" / "analysis" / "basic_form" / f"{code}.tex"
+            Path(__file__).resolve().parent.parent.parent
+            / "tex-src" / "data" / "analysis" / "basic_form" / f"{code}.tex"
         )
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)

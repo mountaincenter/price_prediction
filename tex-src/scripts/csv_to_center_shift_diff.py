@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.4  (2025-06-05)
+scripts/csv_to_center_shift_diff.py   v2.5  (2025-06-05)
 ────────────────────────────────────────────────────────
 CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-05  v2.5 : ルート基準でパスを解決
 - 2025-06-05  v2.4 : LaTeX 文字列中の生 '\\n' を排除／HitRate[%] を 0.60→60.00 表示
 - 2025-06-05  v2.3 : MM-DD 表示 + threeparttable 脚注を同枠内に配置
 - 2025-06-05  v2.2 : f-string 内 '}' → '}}' ダブルエスケープ
@@ -36,8 +37,8 @@ ETA = 0.01
 VAR_EPS = 1e-8
 
 NUM_ROWS = 30                      # 最新 30 行 + Average
-OUT_DIR = Path(__file__).resolve().parent.parent / "data/analysis/center_shift"
-PRICES_DIR = Path(__file__).resolve().parent.parent / "data/prices"
+OUT_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/center_shift"
+PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
 
 # ──────────────────────────────────────────────────────────────
 def resolve_csv(raw: Path) -> Path:
