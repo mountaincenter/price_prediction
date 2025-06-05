@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift.py   v1.6  (2025-06-04)
+scripts/csv_to_center_shift.py   v1.7  (2025-06-04)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-05  v1.7 : ルート基準でパスを解決
 - 2025-06-04  v1.6 : 抽出期間を 14 → **63 営業日**（約 3 ヶ月）へ拡張
                     • 表示桁数 (%.5f) は維持
 - 2025-06-04  v1.5 : 4 分割 → 1 表統合、\scriptsize + \resizebox
@@ -38,7 +39,7 @@ NUM_ROWS = 63  # ← ここだけで期間を調整できます
 def resolve_csv(raw: Path) -> Path:
     if raw.exists():
         return raw.resolve()
-    alt = Path(__file__).resolve().parent.parent / "data" / "prices" / raw.name
+    alt = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data" / "prices" / raw.name
     if alt.exists():
         return alt.resolve()
     raise FileNotFoundError(raw)
@@ -160,8 +161,8 @@ def main() -> None:
         args.out.resolve()
         if args.out
         else (
-            Path(__file__).resolve().parent.parent
-            / "data" / "analysis" / "center_shift" / f"{code}.tex"
+            Path(__file__).resolve().parent.parent.parent
+            / "tex-src" / "data" / "analysis" / "center_shift" / f"{code}.tex"
         )
     )
     out.parent.mkdir(parents=True, exist_ok=True)

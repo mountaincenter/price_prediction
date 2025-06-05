@@ -15,6 +15,7 @@
 5. ログは `app.logger` を使用（print 禁止）。
 6. CSV の各列は `ColumnMap` でバリデーションしてから DB に入れる。
 7. 単体テストの実行は `pytest --sqlite-memory` を推奨。実行できない場合は最小限のユニットテストを用意し、実行方法をドキュメント化する。
+8. コード変更時は docstring の `CHANGELOG` を当日付で更新してからコミットする。
 
 ### 2.1 Function Contracts
 | Function | Responsibility | Returns |
@@ -77,6 +78,7 @@ CHANGELOG:
 5. 出力形式が全文か差分かを確認
 6. Yes/No 回答が厳密か
 7. 日本語で回答しているか
+8. 各変更に対応する CHANGELOG の追記を確認
 
 ## 6. 運用フロー
 1. ルール準拠を確認する
