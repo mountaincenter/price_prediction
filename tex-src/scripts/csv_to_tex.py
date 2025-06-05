@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_tex.py   v6.0  (2025-06-03)
+scripts/csv_to_tex.py   v6.1  (2025-06-03)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-05  v6.1 : ルート基準でパスを解決
 - 2025-06-03  日付列を先頭に保持（Date → 最初の列に追加）                ← v6.0
 - 2025-06-03  列ヘッダを数式モード下付き表記 ($O_{t}$ 等) に変更            ← v5.0
 - 2025-06-03  O_t/H_t/L_t/Cl_t/Cl_{t-1} 5 列だけ出力 & カラム名変換対応     ← v4.0
@@ -30,7 +31,9 @@ def resolve_csv_path(raw_path: Path) -> Path:
         return raw_path.resolve()
 
     project_root = Path(__file__).resolve().parent.parent.parent
-    alt_path = project_root / "data" / "prices" / raw_path.name
+
+    alt_path = project_root / "tex-src" / "data" / "prices" / raw_path.name
+
     if alt_path.exists():
         return alt_path.resolve()
 
