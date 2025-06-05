@@ -36,8 +36,8 @@ ETA = 0.01
 VAR_EPS = 1e-8
 
 NUM_ROWS = 30                      # 最新 30 行 + Average
-OUT_DIR = Path(__file__).resolve().parent.parent / "data/analysis/center_shift"
-PRICES_DIR = Path(__file__).resolve().parent.parent / "data/prices"
+OUT_DIR = Path(__file__).resolve().parent.parent.parent / "data/analysis/center_shift"
+PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "data/prices"
 
 # ──────────────────────────────────────────────────────────────
 def resolve_csv(raw: Path) -> Path:

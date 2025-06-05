@@ -29,7 +29,7 @@ def resolve_csv_path(raw_path: Path) -> Path:
     if raw_path.exists():
         return raw_path.resolve()
 
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = Path(__file__).resolve().parent.parent.parent
     alt_path = project_root / "data" / "prices" / raw_path.name
     if alt_path.exists():
         return alt_path.resolve()
