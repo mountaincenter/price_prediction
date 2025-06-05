@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+
 scripts/csv_to_center_shift_diff.py   v2.6  (2025-06-05)
 ────────────────────────────────────────────────────────
 CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）

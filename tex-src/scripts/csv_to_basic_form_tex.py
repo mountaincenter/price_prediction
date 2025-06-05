@@ -27,6 +27,7 @@ def _resolve_csv_path(raw: Path) -> Path:
     if raw.exists():
         return raw.resolve()
     alt = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data" / "prices" / raw.name
+
     if alt.exists():
         return alt.resolve()
     raise FileNotFoundError(f"CSV が見つかりません: {raw} または {alt}")
