@@ -1,0 +1,21 @@
+name: Build LaTeX
+on:
+  push:
+    paths:
+      - "tex-src/**.tex"
+      - ".latexmkrc"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-lang-japanese latexmk
+
+      - name: Compile
+        run: |
+          latexmk -pdf -r .latexmkrc tex-src/center_shift/phase1.tex

@@ -55,9 +55,6 @@ INPUT /usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-dvipdfmx.def
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-dvipdfmx.def
-INPUT out/backtest.aux
-INPUT out/backtest.aux
-INPUT out/backtest.aux
 OUTPUT out/backtest.aux
 INPUT ./data/analysis/center_shift/summary.tex
 INPUT ./data/analysis/center_shift/summary.tex
