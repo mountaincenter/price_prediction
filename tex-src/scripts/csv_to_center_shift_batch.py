@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.2  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.3  (2025-06-05)
 ────────────────────────────────────────────────────────
-CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-05  v6.3 : 初期5日間 $S_t$ 無効化に対応
 - 2025-06-05  v6.2 : ルート基準でパスを解決
 - 2025-06-05  v6.1 : 引数を廃止し自動バッチ化
     • data/prices/*.csv を総当たり

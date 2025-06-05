@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.6  (2025-06-05)
+scripts/csv_to_center_shift_diff.py   v2.7  (2025-06-05)
 ────────────────────────────────────────────────────────
-CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-05  v2.7 : 初期5日間の $S_t$ 無効化
 - 2025-06-05  v2.6 : FutureWarning 非表示
 - 2025-06-05  v2.5 : ルート基準でパスを解決
 - 2025-06-05  v2.4 : LaTeX 文字列中の生 '\\n' を排除／HitRate[%] を 0.60→60.00 表示
@@ -84,6 +85,7 @@ def calc_center_shift(df: pd.DataFrame) -> pd.DataFrame:
 
     sig = np.zeros(n); lam = np.full(n, L_INIT)
     kap = np.zeros(n); alp = np.zeros(n)
+    S = np.zeros(n)
     var = max(VAR_EPS, (np.pi / 2) * abs(dcl[0])) ** 2
 
     for t in range(n):
@@ -91,7 +93,10 @@ def calc_center_shift(df: pd.DataFrame) -> pd.DataFrame:
             var = max(lam[t-1]*var + (1-lam[t-1])*dcl[t]**2, VAR_EPS)
         sig[t] = sqrt(var)
         kap[t] = kappa_sigma(sig[t])
-        alp[t] = kap[t] * (np.sign(dcl[t-1]) if t else 0)
+        S[t] = np.sign(dcl[t-1]) if t else 0
+        if t < 5:
+            S[t] = 0
+        alp[t] = kap[t] * S[t]
 
         if t >= 31:
             e = dcl[t-30:t]**2 - sig[t-30:t]**2
