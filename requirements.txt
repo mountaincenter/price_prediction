@@ -1,0 +1,45 @@
+# build prerequisites for pmdarima (Python 3.12)
+numpy>=1.26,<2
+cython>=0.29
+
+# 基本パッケージ
+pandas>=1.5,<2
+fastapi
+uvicorn[standard]
+
+# データ解析・統計分析
+scipy
+statsmodels
+
+# 機械学習・予測モデル
+scikit-learn
+xgboost
+
+# テクニカル分析
+ta
+
+# 時系列予測（オプション）
+pmdarima
+prophet
+
+# 可視化（オプション）
+matplotlib
+seaborn
+plotly
+
+# API & 外部サービス
+requests
+openai
+slack_sdk
+
+# データベース (PostgreSQL)
+psycopg2-binary
+SQLAlchemy
+alembic
+asyncpg==0.29.0
+
+# 開発補助・ユーティリティ
+watchdog
+poetry
+pytest
+pytest-cov
