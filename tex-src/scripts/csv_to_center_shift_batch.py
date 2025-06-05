@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.5  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.6  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-05  v6.6 : LaTeX ヘッダの上付記号を数式モードへ
 - 2025-06-05  v6.5 : RelMAE/HitRate 各 Phase 列を追加
 - 2025-06-05  v6.4 : diff 生成メッセージを main で出力
 - 2025-06-05  v6.3 : 初期5日間 $S_t$ 無効化に対応
@@ -55,7 +56,7 @@ def make_summary(rows: list[tuple[str, float, float, float, float, float, float,
         r"\footnotesize",
         r"\begin{tabular}{lrrrrrrrrr}",
         r"\hline",
-        r"Code & Close & MAE\_5d & RelMAE^{ph0}[\%] & RelMAE^{ph1}[\%] & RelMAE^{ph2}[\%] & HitRate^{ph0}[\%] & HitRate^{ph1}[\%] & HitRate^{ph2}[\%] \\",
+        r"Code & Close & MAE\_5d & RelMAE$^{ph0}$[\%] & RelMAE$^{ph1}$[\%] & RelMAE$^{ph2}$[\%] & HitRate$^{ph0}$[\%] & HitRate$^{ph1}$[\%] & HitRate$^{ph2}$[\%] \\",
         r"\hline",
     ]
     for code, close, mae, r0, r1, r2, h0, h1, h2 in rows:
