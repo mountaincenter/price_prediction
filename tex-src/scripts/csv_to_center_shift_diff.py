@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.7  (2025-06-05)
+scripts/csv_to_center_shift_diff.py   v2.8  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-05  v2.8 : process_one が Path を返すよう変更
 - 2025-06-05  v2.7 : 初期5日間の $S_t$ 無効化
 - 2025-06-05  v2.6 : FutureWarning 非表示
 - 2025-06-05  v2.5 : ルート基準でパスを解決
@@ -205,13 +206,14 @@ def make_table(df: pd.DataFrame) -> str:
     return "\n".join(parts)
 
 # ──────────────────────────────────────────────────────────────
-def process_one(csv: Path, out_dir: Path = OUT_DIR) -> None:
+def process_one(csv: Path, out_dir: Path = OUT_DIR) -> Path:
+    """csv を処理して diff.tex を生成し、そのパスを返す"""
     code = csv.stem
-    tex  = make_table(calc_center_shift(read_prices(csv)))
-    out  = out_dir / f"{code}_diff.tex"
+    tex = make_table(calc_center_shift(read_prices(csv)))
+    out = out_dir / f"{code}_diff.tex"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(tex, encoding="utf-8")
-    print(f"✅ {code} → {out.relative_to(out_dir.parent.parent)}")
+    return out
 
 # ──────────────────────────────────────────────────────────────
 def main() -> None:
@@ -226,9 +228,11 @@ def main() -> None:
 
     if args.csv is None:
         for p in sorted(PRICES_DIR.glob("*.csv")):
-            process_one(p)
+            out = process_one(p)
+            print(f"✅ {p.stem} → {out.relative_to(OUT_DIR.parent.parent)}")
     else:
-        process_one(resolve_csv(args.csv))
+        out = process_one(resolve_csv(args.csv))
+        print(f"✅ {args.csv.stem} → {out.relative_to(OUT_DIR.parent.parent)}")
 
 if __name__ == "__main__":
     main()

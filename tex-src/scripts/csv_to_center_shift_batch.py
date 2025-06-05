@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.3  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.4  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-05  v6.4 : diff 生成メッセージを main で出力
 - 2025-06-05  v6.3 : 初期5日間 $S_t$ 無効化に対応
 - 2025-06-05  v6.2 : ルート基準でパスを解決
 - 2025-06-05  v6.1 : 引数を廃止し自動バッチ化
@@ -67,7 +68,8 @@ def main() -> None:
     rows: list[tuple[str, float, float, float, float]] = []
     for csv_path in sorted(PRICES_DIR.glob("*.csv")):
         # 1. diff.tex 生成
-        process_one(csv_path, out_dir=OUT_DIR)
+        out = process_one(csv_path, out_dir=OUT_DIR)
+        print(f"✅ {csv_path.stem} → {out.relative_to(OUT_DIR.parent.parent)}")
 
         # 2. 指標計算
         df = calc_center_shift(read_prices(csv_path))

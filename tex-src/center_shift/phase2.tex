@@ -1,0 +1,58 @@
+%-------------------------------------------------------------------------------
+% center_shift/phase2.tex   v1.0  (2025-06-05)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-05  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== center_shift =============================================================
+\section*{center\_shift}\nopagebreak[4]
+
+%=== Phase 2 : 高精度 \alpha_t with \lambda 更新 ============================
+\subsection*{Phase 2：高精度 $\alpha_t$ 算出}\nopagebreak[4]
+%────────────────────────────────────
+\paragraph{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{共通ボラ計算}\;\(\sigma_t^{\text{shift}}\) を
+        {\scriptsize\verb|sigma/phase2.tex|} の自己適応
+        $\lambda_{\text{shift}}$ で更新
+  \item \textbf{スケール係数}\;\(\kappa_t=\kappa(\sigma_t^{\text{shift}})\) を
+        {\scriptsize\verb|kappa/phase1.tex|} の段階定数モデルで取得
+  \item \textbf{方向スコア}\;\(S_t=\operatorname{sign}(\Delta Cl_{t-1})\)
+  \item \textbf{中心シフト量}\;\(\alpha_t=\kappa_t S_t\)
+\end{enumerate}
+\end{flushleft}
+
+\subsubsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item $\lambda_{\text{shift}}$ は MSE 勾配で適応更新
+  \item \(\kappa_t\) しきい値は週次で点検し調整可能
+\end{itemize}
+\end{flushleft}
+
+\subsubsection*{実装ヒント}
+\begin{flushleft}
+初期 5 日間は $S_t=0$・$\alpha_t=0$ とする。30~d のウォームアップ後に
+$\lambda_{\text{shift}}$ の更新を開始する。
+\end{flushleft}
+
+\subsubsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\sigma_t^{\text{shift}} & 自己適応ボラ (sigma/phase2.tex) \\
+\lambda_{\text{shift}} & EWMA 更新係数 \\
+\kappa_t & スケール係数 (kappa/phase1.tex) \\
+S_t & 前日符号 (\!-1,0,+1) \\
+\alpha_t & 中心シフト量 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================
