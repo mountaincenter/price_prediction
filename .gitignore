@@ -47,3 +47,5 @@ yarn-error.log*
 
 # python backend local env
 /python/.env
+
+.venv
