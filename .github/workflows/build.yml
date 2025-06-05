@@ -1,21 +1,41 @@
 name: Build LaTeX
+
 on:
   push:
     paths:
-      - "tex-src/**.tex"
-      - ".latexmkrc"
+      - 'tex-src/**'
+      - '.latexmkrc'
+  pull_request:
+    paths:
+      - 'tex-src/**'
+      - '.latexmkrc'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
+      - name: Restore TeX Live cache
+        id: tl-cache
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/texlive
+          key: texlive-${{ runner.os }}-${{ hashFiles('.github/workflows/build.yml') }}
+
       - name: Install TeX Live
+        if: steps.tl-cache.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-lang-japanese latexmk
+          sudo apt-get install -y texlive-lang-japanese texlive-latex-recommended latexmk
 
       - name: Compile
         run: |
           latexmk -pdf -r .latexmkrc tex-src/center_shift/phase1.tex
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: center_shift_phase1
+          path: tex-src/center_shift/phase1.pdf
