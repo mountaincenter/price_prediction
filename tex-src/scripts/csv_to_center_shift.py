@@ -163,6 +163,7 @@ def main() -> None:
         else (
             Path(__file__).resolve().parent.parent.parent
             / "tex-src" / "data" / "analysis" / "center_shift" / f"{code}.tex"
+
         )
     )
     out.parent.mkdir(parents=True, exist_ok=True)

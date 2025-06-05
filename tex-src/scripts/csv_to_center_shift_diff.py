@@ -40,6 +40,7 @@ NUM_ROWS = 30                      # 最新 30 行 + Average
 OUT_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/center_shift"
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
 
+
 # ──────────────────────────────────────────────────────────────
 def resolve_csv(raw: Path) -> Path:
     if raw.exists():
