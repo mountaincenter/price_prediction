@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.8  (2025-06-05)
+scripts/csv_to_center_shift_diff.py   v2.9  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-05  v2.9 : Phase 2 専用スクリプトである旨を明記
 - 2025-06-05  v2.8 : process_one が Path を返すよう変更
 - 2025-06-05  v2.7 : 初期5日間の $S_t$ 無効化
 - 2025-06-05  v2.6 : FutureWarning 非表示
@@ -20,6 +21,9 @@ scripts/csv_to_center_shift_diff.py   v2.8  (2025-06-05)
 - 2025-06-04  v1.1 : 列簡略化
 - 2025-06-04  v1.0 : 初版
 """
+
+# Phase 2 の中心シフト計算を行い、diff テーブルを生成する。
+# 詳細な数式は tex-src/center_shift/phase2.tex を参照。
 
 from __future__ import annotations
 
@@ -79,7 +83,7 @@ def kappa_sigma(s: float) -> float:
             return v
     return 0.20
 
-def calc_center_shift(df: pd.DataFrame) -> pd.DataFrame:
+def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
     n = len(df)
     cl = df["Close"].values
     dcl = np.zeros(n); dcl[1:] = np.log(cl[1:] / cl[:-1])
@@ -93,13 +97,13 @@ def calc_center_shift(df: pd.DataFrame) -> pd.DataFrame:
         if t:
             var = max(lam[t-1]*var + (1-lam[t-1])*dcl[t]**2, VAR_EPS)
         sig[t] = sqrt(var)
-        kap[t] = kappa_sigma(sig[t])
+        kap[t] = 0.20 if phase == 0 else kappa_sigma(sig[t])
         S[t] = np.sign(dcl[t-1]) if t else 0
         if t < 5:
             S[t] = 0
         alp[t] = kap[t] * S[t]
 
-        if t >= 31:
+        if phase == 2 and t >= 31:
             e = dcl[t-30:t]**2 - sig[t-30:t]**2
             g = -(2/30) * np.sum(e * sig[t-30:t]**2)
             lam[t] = np.clip(lam[t-1] - ETA*np.clip(g, -10, 10), L_MIN, L_MAX)
