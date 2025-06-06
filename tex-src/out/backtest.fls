@@ -92,9 +92,7 @@ OUTPUT out/backtest.dvi
 INPUT ./data/analysis/center_shift/1321_diff.tex
 INPUT ./data/analysis/center_shift/1321_diff.tex
 INPUT data/analysis/center_shift/1321_diff.tex
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin6.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/ptex-fonts/standard/min6.tfm
-INPUT ./data/analysis/center_shift/8801_diff.tex
-INPUT ./data/analysis/center_shift/8801_diff.tex
-INPUT data/analysis/center_shift/8801_diff.tex
-INPUT out/backtest.aux
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth8.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/ptex-fonts/standard/goth8.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm

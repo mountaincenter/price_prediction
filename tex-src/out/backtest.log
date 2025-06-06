@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.1.2-u2.00-250202-2.6 (utf8.euc) (TeX Live 2025) (preloaded format=platex 2025.5.28)  6 JUN 2025 03:20
+This is e-upTeX, Version 3.141592653-p4.1.2-u2.00-250202-2.6 (utf8.euc) (TeX Live 2025) (preloaded format=platex 2025.5.28)  6 JUN 2025 14:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -182,24 +182,24 @@ File: l3backend-dvipdfmx.def 2025-04-14 L3 backend support: dvipdfmx
 ) (out/backtest.aux)
 \openout1 = `backtest.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 *geometry* detected driver: dvipdfm
 *geometry* verbose mode - [ preamble ] result:
 * driver: dvipdfm
@@ -242,12 +242,12 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ))
-Overfull \hbox (21.40019pt too wide) in paragraph at lines 3--20
+Overfull \hbox (21.40019pt too wide) in paragraph at lines 3--21
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--20
+Underfull \hbox (badness 10000) in paragraph at lines 3--21
 
  []
 
@@ -255,38 +255,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--20
 
 [1
 
-] (./data/analysis/center_shift/1321_diff.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 5--22
+] (./data/analysis/center_shift/1321_diff.tex
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <8> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 6.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <8> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 6.
+./data/analysis/center_shift/1321_diff.tex:46: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.46 }
+      %
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
- []
-
-
-
-[2
-
-] (./data/analysis/center_shift/8801_diff.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 5--24
-
- []
-
-
-
-[3
-
-] (out/backtest.aux)
- ***********
-pLaTeX2e <2023-02-14>+1, based on
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-04-29>
- ***********
- ) 
+ 
 Here is how much of TeX's memory you used:
- 2969 strings out of 470235
- 44051 string characters out of 5485709
- 460355 words of memory out of 5000000
- 29803 multiletter control sequences out of 15000+600000
- 635367 words of font info for 76 fonts, out of 8000000 for 9000
+ 2963 strings out of 470235
+ 43683 string characters out of 5485709
+ 452465 words of memory out of 5000000
+ 29800 multiletter control sequences out of 15000+600000
+ 635984 words of font info for 78 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 57i,12n,65p,534b,372s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-Output written on out/backtest.dvi (3 pages, 12184 bytes).
+ 57i,12n,65p,328b,311s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on out/backtest.dvi (1 page, 2020 bytes).
