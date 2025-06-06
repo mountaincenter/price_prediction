@@ -50,3 +50,13 @@ yarn-error.log*
 
 .venv
 __pycache__/
+
+# LaTeX build artifacts
+tex-src/out/
+*.aux
+*.log
+*.pdf
+*.dvi
+*.synctex.gz
+*.fdb_latexmk
+*.fls
