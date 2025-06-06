@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.18  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.20  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-06  v2.20: code 行キャプションを出力しない
+- 2025-06-06  v2.19: \resizebox 終端のコメントを除去
 - 2025-06-06  v2.18: code 行末の二重バックスラッシュ漏れを修正
 - 2025-06-06  v2.17: code 行の改行処理を明確化
 - 2025-06-06  v2.16: code 表記後の改行が 1 つのみになる不具合を修正
@@ -247,12 +249,10 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
         r"\setlength{\tabcolsep}{3.5pt}%",
         r"\begin{threeparttable}",
     ]
-    if code:
-        parts.append(rf"\caption*{{\textbf{{code:{code}}}}}")
     parts += [
         r"\resizebox{\textwidth}{!}{%",
         latex_body.rstrip(),
-        r"}%",
+        r"}",
         footnote,
         r"\end{threeparttable}",
         r"\endgroup"
