@@ -4,6 +4,7 @@ cython>=0.29
 
 # 基本パッケージ
 pandas>=1.5,<2
+jinja2
 fastapi
 uvicorn[standard]
 
