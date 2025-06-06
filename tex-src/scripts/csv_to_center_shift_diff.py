@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.14  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.15  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-06  v2.15: コード表記直後の改行処理を明確化
 - 2025-06-06  v2.14: diff テーブル末尾に改行を付与
 - 2025-06-06  v2.13: "code:" 表示を表上部のキャプションへ移動
 - 2025-06-06  v2.12: α_t/λ_shift/Δα_t 列を追加し code 表示を挿入
@@ -234,8 +235,10 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
     ]
     footnote = "\n".join(footnote_lines)
 
-    parts = [
-        (f"\\noindent\\textbf{{code:{code}}}\\" if code else ""),
+    parts = []
+    if code:
+        parts.append(f"\\noindent\\textbf{{code:{code}}}\\")
+    parts += [
         r"\begingroup",
         r"\footnotesize",
         r"\setlength{\tabcolsep}{3.5pt}%",

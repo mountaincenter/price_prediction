@@ -27,3 +27,14 @@ def test_process_one(tmp_path):
     assert text.strip() != ''
     assert 'Median' in text
     assert 'code:' in text
+
+
+def test_make_table_newline():
+    csv = Path('tex-src/data/prices/1321.csv')
+    df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
+    tex = diff.make_table(df, code='1321')
+    lines = tex.splitlines()
+    assert lines[0].startswith('\\noindent')
+    assert lines[0].endswith('\\')
+    assert lines[1] == '\\begingroup'
+    assert tex.endswith('\\endgroup\n')
