@@ -12,7 +12,10 @@ spec.loader.exec_module(diff)
 def test_calc_center_shift_phase2():
     csv = Path('tex-src/data/prices/1321.csv')
     df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
-    assert {'MAE_5d', 'HitRate_20d', 'RelMAE'}.issubset(df.columns)
+    assert {
+        'MAE_5d', 'HitRate_20d', 'RelMAE',
+        r'$\\lambda_{\\text{shift}}$', r'$\\Delta\\alpha_t$'
+    }.issubset(df.columns)
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
 
 
@@ -23,4 +26,5 @@ def test_process_one(tmp_path):
     text = out.read_text()
     assert text.strip() != ''
     assert 'Median' in text
+    assert 'code:' in text
 

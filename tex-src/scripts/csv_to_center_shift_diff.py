@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.11  (2025-06-05)
+scripts/csv_to_center_shift_diff.py   v2.12  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+ - 2025-06-06  v2.12: α_t/λ_shift/Δα_t 列を追加し code 表示を挿入
 - 2025-06-06  v2.11: Average 行の下に Median 行を追加
 - 2025-06-05  v2.10: HitRate 改善アルゴリズム導入
 - 2025-06-05  v2.9 : Phase 2 専用スクリプトである旨を明記
@@ -92,6 +93,7 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
 
     sig = np.zeros(n); lam = np.full(n, L_INIT)
     kap = np.zeros(n); alp = np.zeros(n)
+    dalp = np.zeros(n)
     S = np.zeros(n); ma3 = np.zeros(n)
     var = max(VAR_EPS, (np.pi / 2) * abs(dcl[0])) ** 2
 
@@ -111,6 +113,8 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
         if t < 5:
             S[t] = 0
         alp[t] = kap[t] * S[t]
+        if t:
+            dalp[t] = alp[t] - alp[t-1]
 
         if phase == 2 and t >= 31:
             e = dcl[t-30:t]**2 - sig[t-30:t]**2
@@ -125,6 +129,8 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
         "High": df["High"],
         "Low":  df["Low"],
         r"$\alpha_t$": alp,
+        r"$\lambda_{\text{shift}}$": lam,
+        r"$\Delta\alpha_t$": dalp,
         r"$\sigma_t^{\mathrm{shift}}$": sig,
         "Close": df["Close"]
     })
@@ -143,7 +149,7 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
     return out
 
 # ──────────────────────────────────────────────────────────────
-def make_table(df: pd.DataFrame) -> str:
+def make_table(df: pd.DataFrame, code: str = "") -> str:
     dfn = df.tail(NUM_ROWS).iloc[::-1].reset_index(drop=True)
 
     avg = {"Date": "Average"}
@@ -155,8 +161,22 @@ def make_table(df: pd.DataFrame) -> str:
         med[c] = np.median(vals)
     dfn = pd.concat([dfn, pd.DataFrame([avg, med])], ignore_index=True)
 
-    cols_src = ["Date",r"$\kappa(\sigma)$","B_{t-1}","C_pred","C_real","C_diff",
-                "C_diff_sign","Norm_err","MAE_5d","RelMAE","HitRate_20d"]
+    cols_src = [
+        "Date",
+        r"$\kappa(\sigma)$",
+        "B_{t-1}",
+        "C_pred",
+        "C_real",
+        "C_diff",
+        "C_diff_sign",
+        "Norm_err",
+        r"$\alpha_t$",
+        r"$\lambda_{\text{shift}}$",
+        r"$\Delta\alpha_t$",
+        "MAE_5d",
+        "RelMAE",
+        "HitRate_20d",
+    ]
     header = {
         r"$\kappa(\sigma)$": r"$\kappa$",
         "B_{t-1}":            r"$B$",
@@ -165,6 +185,9 @@ def make_table(df: pd.DataFrame) -> str:
         "C_diff":             r"$C_\Delta$",
         "C_diff_sign":        r"$\mathrm{sgn}\,C_\Delta$",
         "Norm_err":           r"$|C_\Delta|/\sigma$",
+        r"$\alpha_t$":        r"$\alpha_t$",
+        r"$\lambda_{\text{shift}}$": r"$\lambda$",
+        r"$\Delta\alpha_t$": r"$\Delta\alpha$",
         "MAE_5d":             r"$\mathrm{MAE}_5$",
         "RelMAE":             r"$\mathrm{RMAE}$",
         "HitRate_20d":        r"$\mathrm{HR}_{20}[\%]$",
@@ -176,7 +199,7 @@ def make_table(df: pd.DataFrame) -> str:
             return v
         if pd.isna(v):
             return "--"
-        if col == r"$\kappa$":
+        if col in {r"$\kappa$", r"$\alpha_t$", r"$\lambda$", r"$\Delta\alpha$"}:
             return f"{v:.2f}"
         if col in {r"$\mathrm{RMAE}$", r"$\mathrm{HR}_{20}[\%]$"}:
             return f"{v:.2f}"
@@ -189,8 +212,9 @@ def make_table(df: pd.DataFrame) -> str:
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", FutureWarning)
+        fmt_str = "l" + "r" * (len(cols) - 1)
         latex_body = disp.to_latex(
-            index=False, escape=False, column_format="lrrrrrrrrrr"
+            index=False, escape=False, column_format=fmt_str
         )
 
     footnote_lines = [
@@ -202,12 +226,15 @@ def make_table(df: pd.DataFrame) -> str:
         r"$|C_\Delta|/\sigma=\dfrac{|C_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "
         r"$\mathrm{RMAE}= \mathrm{MAE}_5 / \text{Close}$, "
-        r"$\mathrm{HR}_{20}=\mathrm{HitRate}_{20\text{d}}$.",
+        r"$\mathrm{HR}_{20}=\mathrm{HitRate}_{20\text{d}}$, ",
+        r"$\lambda_{\text{shift}}=\lambda_t$, ",
+        r"$\Delta\alpha_t=\alpha_t-\alpha_{t-1}$.",
         r"\end{tablenotes}"
     ]
     footnote = "\n".join(footnote_lines)
 
     parts = [
+        (f"\\noindent\\textbf{{code:{code}}}\\" if code else ""),
         r"\begingroup",
         r"\footnotesize",
         r"\setlength{\tabcolsep}{3.5pt}%",
@@ -225,7 +252,7 @@ def make_table(df: pd.DataFrame) -> str:
 def process_one(csv: Path, out_dir: Path = OUT_DIR) -> Path:
     """csv を処理して diff.tex を生成し、そのパスを返す"""
     code = csv.stem
-    tex = make_table(calc_center_shift(read_prices(csv)))
+    tex = make_table(calc_center_shift(read_prices(csv)), code)
     out = out_dir / f"{code}_diff.tex"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(tex, encoding="utf-8")
