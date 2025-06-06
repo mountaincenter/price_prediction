@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.12  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.13  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+ - 2025-06-06  v2.13: "code:" 表示を表上部のキャプションへ移動
  - 2025-06-06  v2.12: α_t/λ_shift/Δα_t 列を追加し code 表示を挿入
 - 2025-06-06  v2.11: Average 行の下に Median 行を追加
 - 2025-06-05  v2.10: HitRate 改善アルゴリズム導入
@@ -234,11 +235,14 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
     footnote = "\n".join(footnote_lines)
 
     parts = [
-        (f"\\noindent\\textbf{{code:{code}}}\\" if code else ""),
         r"\begingroup",
         r"\footnotesize",
         r"\setlength{\tabcolsep}{3.5pt}%",
         r"\begin{threeparttable}",
+    ]
+    if code:
+        parts.append(rf"\caption*{{\textbf{{code:{code}}}}}")
+    parts += [
         r"\resizebox{\textwidth}{!}{%",
         latex_body.rstrip(),
         r"}%",

@@ -14,7 +14,7 @@ def test_calc_center_shift_phase2():
     df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
     assert {
         'MAE_5d', 'HitRate_20d', 'RelMAE',
-        r'$\\lambda_{\\text{shift}}$', r'$\\Delta\\alpha_t$'
+        r'$\lambda_{\text{shift}}$', r'$\Delta\alpha_t$'
     }.issubset(df.columns)
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
 
