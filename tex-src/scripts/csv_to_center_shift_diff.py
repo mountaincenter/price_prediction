@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.16  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.17  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-06  v2.17: code 行の改行処理を明確化
 - 2025-06-06  v2.16: code 表記後の改行が 1 つのみになる不具合を修正
 - 2025-06-06  v2.15: コード表記直後の改行処理を明確化
 - 2025-06-06  v2.14: diff テーブル末尾に改行を付与
@@ -238,7 +239,7 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
 
     parts = []
     if code:
-        parts.append(f"\\noindent\\textbf{{code:{code}}}\\\\")
+        parts.append(r"\noindent\textbf{code:%s}\\" % code)
     parts += [
         r"\begingroup",
         r"\footnotesize",
