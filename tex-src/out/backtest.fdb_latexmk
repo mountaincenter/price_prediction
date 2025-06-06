@@ -1,10 +1,10 @@
 # Fdb version 4
-["dvipdf"] 1749141047.6084 "out/backtest.dvi" "out/backtest.pdf" "out/backtest" 1749141047.83625 0
-  "out/backtest.dvi" 1749141047.59405 12436 07517afd5bcd2aba25b42a4fbd4aff45 "latex"
+["dvipdf"] 1749147650.21348 "out/backtest.dvi" "out/backtest.pdf" "out/backtest" 1749147650.44461 0
+  "out/backtest.dvi" 1749147650.20018 12184 d71c9418f1a468bf3351dd4c345d4be3 "latex"
   (generated)
   "out/backtest.pdf"
   (rewritten before read)
-["latex"] 1749141047.36557 "/Users/hiroyukiyamanaka/Desktop/prices_prediction/tex-src/backtest.tex" "out/backtest.dvi" "backtest" 1749141047.83574 0
+["latex"] 1749147649.98824 "/Users/hiroyukiyamanaka/Desktop/prices_prediction/tex-src/backtest.tex" "out/backtest.dvi" "backtest" 1749147650.44417 0
   "/Users/hiroyukiyamanaka/Desktop/prices_prediction/tex-src/backtest.tex" 1749113811.52166 1064 0f82fd2ef4ad6da6787a7a2fb983c75e ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/ptex-fonts/standard/min6.tfm" 1463434352 1196 ede67ffb8cb4a6a8b9436c82b428664c ""
@@ -53,15 +53,13 @@
   "/usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf" 1739380943 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "/usr/local/texlive/2025/texmf-var/web2c/euptex/platex.fmt" 1748436290 3567269 d333163ccb1fbbd0f9be26e2967c5e91 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "backtest.aux" 0 -1 0 ""
   "backtest.tex" 1749113811.52166 1064 0f82fd2ef4ad6da6787a7a2fb983c75e ""
-  "data/analysis/center_shift/1321_diff.tex" 1749141047.12043 3846 77ad917209584670db9711c50a1aaaf3 ""
-  "data/analysis/center_shift/8801_diff.tex" 1749141047.25655 3643 82be9793c6c876841225049674447dd1 ""
-  "data/analysis/center_shift/summary.tex" 1749141047.30499 1089 40756281e51a230fc7c150370aec586e ""
-  "out/backtest.aux" 1749141047.59375 32 ab05033ccbb38b00a31b200ccedf8001 "latex"
+  "data/analysis/center_shift/1321_diff.tex" 1749147622.98847 3740 fd43ad1f24a86de32ae97e4ebe5958d8 ""
+  "data/analysis/center_shift/8801_diff.tex" 1749147623.13503 3518 0fa4081fa57711c825362d77e1f5627d ""
+  "data/analysis/center_shift/summary.tex" 1749147649.75508 1065 0770501a14c00e6fca514a97758a38f4 ""
+  "out/backtest.aux" 1749147650.19989 32 ab05033ccbb38b00a31b200ccedf8001 "latex"
   (generated)
   "out/backtest.aux"
   "out/backtest.dvi"
   "out/backtest.log"
   (rewritten before read)
-  "out/backtest.aux"
