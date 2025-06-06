@@ -39,6 +39,15 @@ def test_custom_params():
     assert df[r'$\lambda_{\text{shift}}$'].iloc[0] == 0.95
 
 
+def test_custom_params():
+    csv = Path('tex-src/data/prices/1321.csv')
+    df = diff.calc_center_shift(
+        diff.read_prices(csv), phase=2,
+        eta=0.02, l_init=0.95, l_min=0.91, l_max=0.99
+    )
+    assert df[r'$\lambda_{\text{shift}}$'].iloc[0] == 0.95
+
+
 def test_make_table_newline():
     csv = Path('tex-src/data/prices/1321.csv')
     df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
