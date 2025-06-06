@@ -1,10 +1,10 @@
-This is e-upTeX, Version 3.141592653-p4.1.2-u2.00-250202-2.6 (utf8.euc) (TeX Live 2025) (preloaded format=platex 2025.5.28)  5 JUN 2025 02:04
+This is e-upTeX, Version 3.141592653-p4.1.2-u2.00-250202-2.6 (utf8.euc) (TeX Live 2025) (preloaded format=platex 2025.5.28)  6 JUN 2025 01:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/hiroyukiyamanaka/Desktop/t3Stock_stash/tex-src/parent.tex
-(/Users/hiroyukiyamanaka/Desktop/t3Stock_stash/tex-src/parent.tex
+**/Users/hiroyukiyamanaka/Desktop/prices_prediction/tex-src/parent.tex
+(/Users/hiroyukiyamanaka/Desktop/prices_prediction/tex-src/parent.tex
 pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
@@ -182,7 +182,7 @@ File: l3backend-dvipdfmx.def 2025-04-14 L3 backend support: dvipdfmx
 \g__graphics_track_int=\count298
 \g__pdfannot_backend_int=\count299
 \g__pdfannot_backend_link_int=\count300
-) (out/parent.aux (out/basic_form.aux) (out/open_price/phase0.aux) (out/open_price/phase1.aux) (out/open_price/phase2.aux) (out/open_price/phase3.aux) (out/open_price/phase4.aux) (out/center_shift/phase0.aux) (out/center_shift/kappa/phase1.aux) (out/center_shift/sigma/phase1.aux) (out/center_shift/sigma/phase2.aux) (out/range/phase0.aux) (out/range/phase1.aux) (out/range/phase2.aux) (out/range/phase3.aux) (out/range/phase4.aux) (out/event/phase0.aux) (out/event/weekday/phase1.aux) (out/event/weekday/phase2.aux) (out/event/weekday/holiday/phase1.aux) (out/event/weekday/holiday/phase2.aux) (out/event/weekday/holiday/phase3.aux) (out/event/weekday/phase3.aux) (out/event/earn/phase1.aux) (out/event/earn/phase2.aux) (out/event/earn/phase3.aux) (out/event/earn/phase4.aux) (out/event/earn/phase5.aux) (out/event/market/phase1.aux) (out/event/market/phase2.aux) (out/event/market/phase3.aux) (out/event/market/phase4.aux) (out/event/market/phase5.aux) (out/momentum/phase0.aux) (out/momentum/phase1.aux) (out/momentum/phase2.aux) (out/momentum/phase3.aux) (out/momentum/phase4.aux) (out/momentum/phase5.aux) (out/table.aux) (out/data/prices/8801.aux) (out/data/analysis/basic_form/8801.aux) (out/data/analysis/center_shift/8801.aux) (out/data/analysis/center_shift/8801_diff.aux) (out/data/analysis/center_shift/summary.aux))
+) (out/parent.aux (out/basic_form.aux) (out/open_price/phase0.aux) (out/open_price/phase1.aux) (out/open_price/phase2.aux) (out/open_price/phase3.aux) (out/open_price/phase4.aux) (out/center_shift/phase0.aux) (out/center_shift/kappa/phase1.aux) (out/center_shift/sigma/phase1.aux) (out/center_shift/sigma/phase2.aux) (out/center_shift/phase1.aux) (out/center_shift/phase2.aux) (out/range/phase0.aux) (out/range/phase1.aux) (out/range/phase2.aux) (out/range/phase3.aux) (out/range/phase4.aux) (out/event/phase0.aux) (out/event/weekday/phase1.aux) (out/event/weekday/phase2.aux) (out/event/weekday/holiday/phase1.aux) (out/event/weekday/holiday/phase2.aux) (out/event/weekday/holiday/phase3.aux) (out/event/weekday/phase3.aux) (out/event/earn/phase1.aux) (out/event/earn/phase2.aux) (out/event/earn/phase3.aux) (out/event/earn/phase4.aux) (out/event/earn/phase5.aux) (out/event/market/phase1.aux) (out/event/market/phase2.aux) (out/event/market/phase3.aux) (out/event/market/phase4.aux) (out/event/market/phase5.aux) (out/momentum/phase0.aux) (out/momentum/phase1.aux) (out/momentum/phase2.aux) (out/momentum/phase3.aux) (out/momentum/phase4.aux) (out/momentum/phase5.aux))
 \openout1 = `parent.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
@@ -370,11 +370,31 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 
 ]
+\openout2 = `center_shift/phase1.aux'.
+
+(./center_shift/phase1.tex)
+
+[11
+
+
+
+
+]
+\openout2 = `center_shift/phase2.aux'.
+
+(./center_shift/phase2.tex)
+
+[12
+
+
+
+
+]
 \openout2 = `range/phase0.aux'.
 
 (./range/phase0.tex)
 
-[11
+[13
 
 
 
@@ -384,7 +404,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./range/phase1.tex)
 
-[12
+[14
 
 
 
@@ -394,7 +414,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./range/phase2.tex)
 
-[13
+[15
 
 
 
@@ -404,7 +424,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./range/phase3.tex)
 
-[14
+[16
 
 
 
@@ -414,7 +434,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./range/phase4.tex)
 
-[15
+[17
 
 
 
@@ -424,7 +444,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/phase0.tex)
 
-[16
+[18
 
 
 
@@ -434,7 +454,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/weekday/phase1.tex)
 
-[17
+[19
 
 
 
@@ -444,7 +464,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/weekday/phase2.tex)
 
-[18
+[20
 
 
 
@@ -454,7 +474,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/weekday/holiday/phase1.tex)
 
-[19
+[21
 
 
 
@@ -464,7 +484,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/weekday/holiday/phase2.tex)
 
-[20
+[22
 
 
 
@@ -474,7 +494,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/weekday/holiday/phase3.tex)
 
-[21
+[23
 
 
 
@@ -484,7 +504,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/weekday/phase3.tex)
 
-[22
+[24
 
 
 
@@ -494,7 +514,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/earn/phase1.tex)
 
-[23
+[25
 
 
 
@@ -504,7 +524,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/earn/phase2.tex)
 
-[24
+[26
 
 
 
@@ -514,7 +534,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/earn/phase3.tex)
 
-[25
+[27
 
 
 
@@ -524,7 +544,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/earn/phase4.tex)
 
-[26
+[28
 
 
 
@@ -534,7 +554,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/earn/phase5.tex)
 
-[27
+[29
 
 
 
@@ -544,7 +564,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/market/phase1.tex)
 
-[28
+[30
 
 
 
@@ -554,7 +574,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/market/phase2.tex)
 
-[29
+[31
 
 
 
@@ -564,7 +584,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/market/phase3.tex)
 
-[30
+[32
 
 
 
@@ -574,7 +594,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/market/phase4.tex)
 
-[31
+[33
 
 
 
@@ -584,7 +604,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./event/market/phase5.tex)
 
-[32
+[34
 
 
 
@@ -594,7 +614,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./momentum/phase0.tex)
 
-[33
+[35
 
 
 
@@ -604,7 +624,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./momentum/phase1.tex)
 
-[34
+[36
 
 
 
@@ -614,7 +634,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./momentum/phase2.tex)
 
-[35
+[37
 
 
 
@@ -624,7 +644,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./momentum/phase3.tex)
 
-[36
+[38
 
 
 
@@ -634,7 +654,7 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./momentum/phase4.tex)
 
-[37
+[39
 
 
 
@@ -644,138 +664,12 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 
 (./momentum/phase5.tex)
 
-[38
+[40
 
 
 
 
-]
-\openout2 = `table.aux'.
-
-(./table.tex
-Underfull \hbox (badness 10000) in alignment at lines 44--44
-[][][][][][] 
- []
-
-
-Overfull \hbox (9.24687pt too wide) in paragraph at lines 44--45
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in alignment at lines 80--80
-[][][][][][][][][]
- []
-
-
-Overfull \hbox (9.24687pt too wide) in paragraph at lines 80--81
-[][] 
- []
-
-
-
-[39
-
-
-
-
-]
-Underfull \hbox (badness 10000) in alignment at lines 114--114
-[][][][][][][][] 
- []
-
-
-Overfull \hbox (9.24687pt too wide) in paragraph at lines 114--115
-[][] 
- []
-
-
-
-[40]
-Overfull \hbox (112.41124pt too wide) in alignment at lines 152--152
-[][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (9.24687pt too wide) in paragraph at lines 152--153
-[][] 
- []
-
-)
-
-[41]
-
-[42]
-\openout2 = `data/prices/8801.aux'.
-
-No file data/prices/8801.tex.
-\openout2 = `data/analysis/basic_form/8801.aux'.
-
-(./data/analysis/basic_form/8801.tex)
-Overfull \hbox (6.48956pt too wide) in paragraph at lines 3--140
-[][] 
- []
-
-
-
-[43
-
-
-
-
-
-
-
-
-]
-\openout2 = `data/analysis/center_shift/8801.aux'.
-
-(./data/analysis/center_shift/8801.tex)
-Overfull \hbox (6.48383pt too wide) in paragraph at lines 3--143
-[][] 
- []
-
-
-
-[44
-
-
-
-
-]
-\openout2 = `data/analysis/center_shift/8801_diff.aux'.
-
-(./data/analysis/center_shift/8801_diff.tex
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 5.76599pt on input line 74.
-)
-Overfull \hbox (7.41095pt too wide) in paragraph at lines 3--146
-[][] 
- []
-
-
-
-[45
-
-
-
-
-]
-Overfull \vbox (114.50711pt too high) has occurred while \output is active []
-
-
-
-[46]
-\openout2 = `data/analysis/center_shift/summary.aux'.
-
-(./data/analysis/center_shift/summary.tex)
-
-[47
-
-
-
-
-] (out/parent.aux (out/basic_form.aux) (out/open_price/phase0.aux) (out/open_price/phase1.aux) (out/open_price/phase2.aux) (out/open_price/phase3.aux) (out/open_price/phase4.aux) (out/center_shift/phase0.aux) (out/center_shift/kappa/phase1.aux) (out/center_shift/sigma/phase1.aux) (out/center_shift/sigma/phase2.aux) (out/range/phase0.aux) (out/range/phase1.aux) (out/range/phase2.aux) (out/range/phase3.aux) (out/range/phase4.aux) (out/event/phase0.aux) (out/event/weekday/phase1.aux) (out/event/weekday/phase2.aux) (out/event/weekday/holiday/phase1.aux) (out/event/weekday/holiday/phase2.aux) (out/event/weekday/holiday/phase3.aux) (out/event/weekday/phase3.aux) (out/event/earn/phase1.aux) (out/event/earn/phase2.aux) (out/event/earn/phase3.aux) (out/event/earn/phase4.aux) (out/event/earn/phase5.aux) (out/event/market/phase1.aux) (out/event/market/phase2.aux) (out/event/market/phase3.aux) (out/event/market/phase4.aux) (out/event/market/phase5.aux) (out/momentum/phase0.aux) (out/momentum/phase1.aux) (out/momentum/phase2.aux) (out/momentum/phase3.aux) (out/momentum/phase4.aux) (out/momentum/phase5.aux) (out/table.aux) (out/data/prices/8801.aux) (out/data/analysis/basic_form/8801.aux) (out/data/analysis/center_shift/8801.aux) (out/data/analysis/center_shift/8801_diff.aux) (out/data/analysis/center_shift/summary.aux))
+] (out/parent.aux (out/basic_form.aux) (out/open_price/phase0.aux) (out/open_price/phase1.aux) (out/open_price/phase2.aux) (out/open_price/phase3.aux) (out/open_price/phase4.aux) (out/center_shift/phase0.aux) (out/center_shift/kappa/phase1.aux) (out/center_shift/sigma/phase1.aux) (out/center_shift/sigma/phase2.aux) (out/center_shift/phase1.aux) (out/center_shift/phase2.aux) (out/range/phase0.aux) (out/range/phase1.aux) (out/range/phase2.aux) (out/range/phase3.aux) (out/range/phase4.aux) (out/event/phase0.aux) (out/event/weekday/phase1.aux) (out/event/weekday/phase2.aux) (out/event/weekday/holiday/phase1.aux) (out/event/weekday/holiday/phase2.aux) (out/event/weekday/holiday/phase3.aux) (out/event/weekday/phase3.aux) (out/event/earn/phase1.aux) (out/event/earn/phase2.aux) (out/event/earn/phase3.aux) (out/event/earn/phase4.aux) (out/event/earn/phase5.aux) (out/event/market/phase1.aux) (out/event/market/phase2.aux) (out/event/market/phase3.aux) (out/event/market/phase4.aux) (out/event/market/phase5.aux) (out/momentum/phase0.aux) (out/momentum/phase1.aux) (out/momentum/phase2.aux) (out/momentum/phase3.aux) (out/momentum/phase4.aux) (out/momentum/phase5.aux))
  ***********
 pLaTeX2e <2023-02-14>+1, based on
 LaTeX2e <2024-11-01> patch level 2
@@ -783,12 +677,12 @@ L3 programming layer <2025-04-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3726 strings out of 470235
- 74450 string characters out of 5485709
- 495314 words of memory out of 5000000
- 30272 multiletter control sequences out of 15000+600000
- 646068 words of font info for 129 fonts, out of 8000000 for 9000
+ 3623 strings out of 470235
+ 70091 string characters out of 5485709
+ 441089 words of memory out of 5000000
+ 30199 multiletter control sequences out of 15000+600000
+ 646047 words of font info for 129 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 57i,16n,65p,370b,354s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,16n,65p,293b,354s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on out/parent.dvi (47 pages, 95632 bytes).
+Output written on out/parent.dvi (40 pages, 65344 bytes).
