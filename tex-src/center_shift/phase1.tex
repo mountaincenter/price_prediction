@@ -1,0 +1,57 @@
+%-------------------------------------------------------------------------------
+% center_shift/phase1.tex   v1.1  (2025-06-05)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-05  v1.1 : math delimiter fix
+% - 2025-06-05  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== center_shift =============================================================
+\section*{center\_shift}\nopagebreak[4]
+
+%=== Phase 1 : 動的 \alpha_t 算出 =============================================
+\subsection*{Phase 1：動的 $\alpha_t$ 算出}\nopagebreak[4]
+%────────────────────────────────────
+\paragraph{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{共通ボラ計算}\;\(\sigma_t^{\text{shift}}\) を
+        {\scriptsize\verb|sigma/phase1.tex|} の EWMA14 で求める
+  \item \textbf{スケール係数}\;\(\kappa_t=\kappa(\sigma_t^{\text{shift}})\) を
+        {\scriptsize\verb|kappa/phase1.tex|} の段階定数モデルで取得
+  \item \textbf{方向スコア}\;\(S_t=\operatorname{sign}(\Delta Cl_{t-1})\)
+  \item \textbf{中心シフト量}\;\(\alpha_t=\kappa_t S_t\)
+\end{enumerate}
+\end{flushleft}
+
+\subsubsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item ボラ低位では \(\kappa_t\) を小さく抑え過剰シフトを防止
+  \item 高ボラ域では段階的に \(\kappa_t\) を増加させ方向性を強調
+\end{itemize}
+\end{flushleft}
+
+\subsubsection*{実装ヒント}
+\begin{flushleft}
+初期 5 日間は \(S_t=0\)・\(\alpha_t=0\) として無効化し、
+週次で \(\kappa\) しきい値を点検すると安定します。
+\end{flushleft}
+
+\subsubsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\sigma_t^{\text{shift}} & EWMA14 ボラ (sigma/phase1.tex) \\
+\kappa_t & スケール係数 (kappa/phase1.tex) \\
+S_t & 前日符号 (‐1,0,+1) \\
+\alpha_t & 中心シフト量 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================
