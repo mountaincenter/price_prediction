@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.13  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.14  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-06  v2.14: diff テーブル末尾に改行を付与
 - 2025-06-06  v2.13: "code:" 表示を表上部のキャプションへ移動
 - 2025-06-06  v2.12: α_t/λ_shift/Δα_t 列を追加し code 表示を挿入
 - 2025-06-06  v2.11: Average 行の下に Median 行を追加
@@ -250,7 +251,7 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
         r"\end{threeparttable}",
         r"\endgroup"
     ]
-    return "\n".join(parts)
+    return "\n".join(parts) + "\n"
 
 # ──────────────────────────────────────────────────────────────
 def process_one(csv: Path, out_dir: Path = OUT_DIR) -> Path:
