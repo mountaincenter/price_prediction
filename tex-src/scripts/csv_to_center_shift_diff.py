@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.20  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.21  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-06  v2.21: C_pred/Norm_err の σ スケーリング修正
 - 2025-06-06  v2.20: code 行キャプションを出力しない
 - 2025-06-06  v2.19: \resizebox 終端のコメントを除去
 - 2025-06-06  v2.18: code 行末の二重バックスラッシュ漏れを修正
@@ -142,12 +143,12 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
         "Close": df["Close"]
     })
     out["B_{t-1}"] = (out["High"].shift(1) + out["Low"].shift(1)) / 2
-    out["C_pred"]  = out["B_{t-1}"] * (1 + out[r"$\alpha_t$"])
+    out["C_pred"]  = out["B_{t-1}"] * (1 + out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     out["C_real"]  = (out["High"] + out["Low"]) / 2
     out["C_diff"]  = out["C_pred"] - out["C_real"]
 
     out["C_diff_sign"] = np.sign(out["C_diff"])
-    out["Norm_err"]    = np.abs(out["C_diff"]) / out[r"$\sigma_t^{\mathrm{shift}}$"]
+    out["Norm_err"]    = np.abs(out["C_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %
     hit = (np.sign(out[r"$\alpha_t$"]) ==
