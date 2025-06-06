@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.8  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.9  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-06  v6.9 : 新スケーリング式に対応
 - 2025-06-06  v6.8 : summary.tex に Median 行を追加
 - 2025-06-05  v6.7 : HitRate 改善アルゴリズムに対応
 - 2025-06-05  v6.6 : LaTeX ヘッダの上付記号を数式モードへ

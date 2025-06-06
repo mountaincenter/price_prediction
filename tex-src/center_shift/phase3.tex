@@ -1,0 +1,57 @@
+%-------------------------------------------------------------------------------
+% center_shift/phase3.tex   v1.0  (2025-06-06)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-06  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== center_shift =============================================================
+\section*{center\_shift}\nopagebreak[4]
+
+%=== Phase 3 : \alpha_t の深掘り ==============================================
+\subsection*{Phase 3：\alpha_t の深掘り}\nopagebreak[4]
+%────────────────────────────────────
+\paragraph{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{基準値}\;前日中値
+        \(B_{t-1}=\tfrac{High_{t-1}+Low_{t-1}}{2}\)
+  \item \textbf{予想中央値}\;
+        \(C_{p,t}=B_{t-1}\bigl(1+\alpha_t\sigma_t^{\mathrm{shift}}\bigr)\)
+  \item \textbf{誤差正規化}\;
+        \(\mathrm{Norm\_err}_t
+          =|C_{p,t}-C_{r,t}|\big/\bigl(B_{t-1}\sigma_t^{\mathrm{shift}}\bigr)\)
+  \item \textbf{シフト解釈}\;\(\alpha_t\) はボラ単位での中心シフト量を示す
+\end{enumerate}
+\end{flushleft}
+
+\subsubsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \(\sigma_t^{\mathrm{shift}}\) は Phase 2 までと同じ EWMA14 系列
+  \item \(\alpha_t\sigma_t^{\mathrm{shift}}\) により、銘柄価格スケールへ依存しない
+  \item 小幅な値では \(C_{p,t}\approx B_{t-1}\) となり保守的な予測に
+\end{itemize}
+\end{flushleft}
+
+\subsubsection*{実装ヒント}
+\begin{flushleft}
+初期 5 日間は \(\alpha_t=0\) としてシフトを無効化し、\par
+30~d のウォームアップ後に各係数の更新を開始すると安定します。
+\end{flushleft}
+
+\subsubsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}\toprule
+記号 & 定義・役割 \\\midrule
+B_{t-1} & 前日中値 (High+Low)/2 \\
+C_{p,t} & 予想中央値 \\
+C_{r,t} & 実際中央値 \\
+\mathrm{Norm\_err}_t & 正規化誤差 \\
+\alpha_t & 中心シフト量 (ボラ単位) \\\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================
