@@ -25,8 +25,18 @@ def test_process_one(tmp_path):
     assert out.exists()
     text = out.read_text()
     assert text.strip() != ''
-    assert 'Median' in text
-    assert 'code:' in text
+    assert text.count('\\begin{threeparttable}') == 3
+    assert text.count('\\clearpage') == 2
+    assert 'λ = 0.90' in text and 'λ = 0.94' in text and 'λ = 0.98' in text
+
+
+def test_custom_params():
+    csv = Path('tex-src/data/prices/1321.csv')
+    df = diff.calc_center_shift(
+        diff.read_prices(csv), phase=2,
+        eta=0.02, l_init=0.95, l_min=0.91, l_max=0.99
+    )
+    assert df[r'$\lambda_{\text{shift}}$'].iloc[0] == 0.95
 
 
 def test_custom_params():
@@ -41,7 +51,7 @@ def test_custom_params():
 def test_make_table_newline():
     csv = Path('tex-src/data/prices/1321.csv')
     df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
-    tex = diff.make_table(df, code='1321')
+    tex = diff.make_table(df, title='code:1321')
     lines = tex.splitlines()
     assert lines[0].startswith('\\noindent')
     assert lines[0].endswith('\\')

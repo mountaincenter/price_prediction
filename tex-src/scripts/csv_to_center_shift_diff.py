@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.22  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.23  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-06  v2.23: λ=0.90/0.94/0.98 各固定テーブルを出力
 - 2025-06-06  v2.22: η / λ 各種パラメータを CLI で指定可能に
 - 2025-06-06  v2.21: C_pred/Norm_err の σ スケーリング修正
-- 2025-06-06  v2.20: code 行キャプションを出力しない
 - 2025-06-06  v2.19: \resizebox 終端のコメントを除去
 - 2025-06-06  v2.18: code 行末の二重バックスラッシュ漏れを修正
 - 2025-06-06  v2.17: code 行の改行処理を明確化
@@ -58,6 +58,7 @@ ETA = 0.01
 VAR_EPS = 1e-8
 
 NUM_ROWS = 30                      # 最新 30 行 + Average
+VARIANT_LAMBDAS = [(0.90, "minimum"), (0.94, "default"), (0.98, "maximum")]
 OUT_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/center_shift"
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
 
@@ -166,7 +167,7 @@ def calc_center_shift(
     return out
 
 # ──────────────────────────────────────────────────────────────
-def make_table(df: pd.DataFrame, code: str = "") -> str:
+def make_table(df: pd.DataFrame, title: str = "") -> str:
     dfn = df.tail(NUM_ROWS).iloc[::-1].reset_index(drop=True)
 
     avg = {"Date": "Average"}
@@ -251,8 +252,8 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
     footnote = "\n".join(footnote_lines)
 
     parts = []
-    if code:
-        parts.append(rf"\noindent\textbf{{code:{code}}}\\")
+    if title:
+        parts.append(rf"\noindent\textbf{{{title}}}\\")
     parts += [
         r"\begingroup",
         r"\footnotesize",
@@ -281,12 +282,19 @@ def process_one(
 ) -> Path:
     """csv を処理して diff.tex を生成し、そのパスを返す"""
     code = csv.stem
-    tex = make_table(
-        calc_center_shift(
-            read_prices(csv), phase=2, eta=eta, l_init=l_init, l_min=l_min, l_max=l_max
-        ),
-        code,
-    )
+    tables: list[str] = []
+    for lam, label in VARIANT_LAMBDAS:
+        df = calc_center_shift(
+            read_prices(csv),
+            phase=2,
+            eta=eta,
+            l_init=lam,
+            l_min=lam,
+            l_max=lam,
+        )
+        title = f"code:{code} λ = {lam:.2f} ({label})"
+        tables.append(make_table(df, title))
+    tex = "\n\\clearpage\n".join(tables) + "\n"
     out = out_dir / f"{code}_diff.tex"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(tex, encoding="utf-8")
