@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.7  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.8  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-06  v6.8 : summary.tex に Median 行を追加
 - 2025-06-05  v6.7 : HitRate 改善アルゴリズムに対応
 - 2025-06-05  v6.6 : LaTeX ヘッダの上付記号を数式モードへ
 - 2025-06-05  v6.5 : RelMAE/HitRate 各 Phase 列を追加
@@ -48,8 +49,9 @@ def compute_metrics(df: pd.DataFrame) -> tuple[float, float, float]:
 # ── LaTeX summary 生成 ──────────────────────────────────────────────────
 def make_summary(rows: list[tuple[str, float, float, float, float, float, float, float, float]]) -> str:
     avg = lambda i: sum(r[i] for r in rows) / len(rows)
+    med = lambda i: float(np.median([r[i] for r in rows]))
     rows.append(("Average", avg(1), avg(2), avg(3), avg(4), avg(5), avg(6), avg(7), avg(8)))
-
+    rows.append(("Median", med(1), med(2), med(3), med(4), med(5), med(6), med(7), med(8)))
     def f(x: float) -> str: return f"{x:,.2f}"
 
     lines = [

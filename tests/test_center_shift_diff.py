@@ -20,4 +20,7 @@ def test_process_one(tmp_path):
     csv = Path('tex-src/data/prices/1321.csv')
     out = diff.process_one(csv, out_dir=tmp_path)
     assert out.exists()
-    assert out.read_text().strip() != ''
+    text = out.read_text()
+    assert text.strip() != ''
+    assert 'Median' in text
+

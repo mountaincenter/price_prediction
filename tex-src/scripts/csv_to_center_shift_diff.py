@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.10  (2025-06-05)
+scripts/csv_to_center_shift_diff.py   v2.11  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-06  v2.11: Average 行の下に Median 行を追加
 - 2025-06-05  v2.10: HitRate 改善アルゴリズム導入
 - 2025-06-05  v2.9 : Phase 2 専用スクリプトである旨を明記
 - 2025-06-05  v2.8 : process_one が Path を返すよう変更
@@ -146,10 +147,13 @@ def make_table(df: pd.DataFrame) -> str:
     dfn = df.tail(NUM_ROWS).iloc[::-1].reset_index(drop=True)
 
     avg = {"Date": "Average"}
+    med = {"Date": "Median"}
     for c in [r"$\kappa(\sigma)$","B_{t-1}","C_pred","C_real","C_diff",
               "C_diff_sign","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
-        avg[c] = dfn[c].astype(float).mean()
-    dfn = pd.concat([dfn, pd.DataFrame([avg])], ignore_index=True)
+        vals = dfn[c].astype(float)
+        avg[c] = vals.mean()
+        med[c] = np.median(vals)
+    dfn = pd.concat([dfn, pd.DataFrame([avg, med])], ignore_index=True)
 
     cols_src = ["Date",r"$\kappa(\sigma)$","B_{t-1}","C_pred","C_real","C_diff",
                 "C_diff_sign","Norm_err","MAE_5d","RelMAE","HitRate_20d"]
