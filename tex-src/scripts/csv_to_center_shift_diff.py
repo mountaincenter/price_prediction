@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.21  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.23  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-06  v2.23: λ=0.90/0.94/0.98 各固定テーブルを出力
+- 2025-06-06  v2.22: η / λ 各種パラメータを CLI で指定可能に
 - 2025-06-06  v2.21: C_pred/Norm_err の σ スケーリング修正
-- 2025-06-06  v2.20: code 行キャプションを出力しない
 - 2025-06-06  v2.19: \resizebox 終端のコメントを除去
 - 2025-06-06  v2.18: code 行末の二重バックスラッシュ漏れを修正
 - 2025-06-06  v2.17: code 行の改行処理を明確化
@@ -57,6 +58,7 @@ ETA = 0.01
 VAR_EPS = 1e-8
 
 NUM_ROWS = 30                      # 最新 30 行 + Average
+VARIANT_LAMBDAS = [(0.90, "minimum"), (0.94, "default"), (0.98, "maximum")]
 OUT_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/center_shift"
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
 
@@ -94,12 +96,20 @@ def kappa_sigma(s: float) -> float:
             return v
     return 0.20
 
-def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
+def calc_center_shift(
+    df: pd.DataFrame,
+    phase: int = 2,
+    *,
+    eta: float = ETA,
+    l_init: float = L_INIT,
+    l_min: float = L_MIN,
+    l_max: float = L_MAX,
+) -> pd.DataFrame:
     n = len(df)
     cl = df["Close"].values
     dcl = np.zeros(n); dcl[1:] = np.log(cl[1:] / cl[:-1])
 
-    sig = np.zeros(n); lam = np.full(n, L_INIT)
+    sig = np.zeros(n); lam = np.full(n, l_init)
     kap = np.zeros(n); alp = np.zeros(n)
     dalp = np.zeros(n)
     S = np.zeros(n); ma3 = np.zeros(n)
@@ -127,9 +137,9 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
         if phase == 2 and t >= 31:
             e = dcl[t-30:t]**2 - sig[t-30:t]**2
             g = -(2/30) * np.sum(e * sig[t-30:t]**2)
-            lam[t] = np.clip(lam[t-1] - ETA*np.clip(g, -10, 10), L_MIN, L_MAX)
+            lam[t] = np.clip(lam[t-1] - eta*np.clip(g, -10, 10), l_min, l_max)
         else:
-            lam[t] = lam[t-1] if t else L_INIT
+            lam[t] = lam[t-1] if t else l_init
 
     out = pd.DataFrame({
         "Date": df["DispDate"],
@@ -157,7 +167,7 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
     return out
 
 # ──────────────────────────────────────────────────────────────
-def make_table(df: pd.DataFrame, code: str = "") -> str:
+def make_table(df: pd.DataFrame, title: str = "") -> str:
     dfn = df.tail(NUM_ROWS).iloc[::-1].reset_index(drop=True)
 
     avg = {"Date": "Average"}
@@ -242,8 +252,8 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
     footnote = "\n".join(footnote_lines)
 
     parts = []
-    if code:
-        parts.append(rf"\noindent\textbf{{code:{code}}}\\")
+    if title:
+        parts.append(rf"\noindent\textbf{{{title}}}\\")
     parts += [
         r"\begingroup",
         r"\footnotesize",
@@ -261,10 +271,30 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
     return "\n".join(parts) + "\n"
 
 # ──────────────────────────────────────────────────────────────
-def process_one(csv: Path, out_dir: Path = OUT_DIR) -> Path:
+def process_one(
+    csv: Path,
+    out_dir: Path = OUT_DIR,
+    *,
+    eta: float = ETA,
+    l_init: float = L_INIT,
+    l_min: float = L_MIN,
+    l_max: float = L_MAX,
+) -> Path:
     """csv を処理して diff.tex を生成し、そのパスを返す"""
     code = csv.stem
-    tex = make_table(calc_center_shift(read_prices(csv)), code)
+    tables: list[str] = []
+    for lam, label in VARIANT_LAMBDAS:
+        df = calc_center_shift(
+            read_prices(csv),
+            phase=2,
+            eta=eta,
+            l_init=lam,
+            l_min=lam,
+            l_max=lam,
+        )
+        title = f"code:{code} λ = {lam:.2f} ({label})"
+        tables.append(make_table(df, title))
+    tex = "\n\\clearpage\n".join(tables) + "\n"
     out = out_dir / f"{code}_diff.tex"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(tex, encoding="utf-8")
@@ -277,16 +307,27 @@ def main() -> None:
     )
     parser.add_argument(
         "csv", nargs="?", type=Path,
-        help="個別 CSV（省略時は data/prices/*.csv 一括処理）"
+        help="個別 CSV（省略時は data/prices/*.csv 一括処理）",
     )
+    parser.add_argument("--eta", type=float, default=ETA, help="学習率 η")
+    parser.add_argument("--init-lambda", type=float, default=L_INIT, help="初期 λ_shift")
+    parser.add_argument("--min-lambda", type=float, default=L_MIN, help="最小 λ_shift")
+    parser.add_argument("--max-lambda", type=float, default=L_MAX, help="最大 λ_shift")
     args = parser.parse_args()
+
+    kwargs = dict(
+        eta=args.eta,
+        l_init=args.init_lambda,
+        l_min=args.min_lambda,
+        l_max=args.max_lambda,
+    )
 
     if args.csv is None:
         for p in sorted(PRICES_DIR.glob("*.csv")):
-            out = process_one(p)
+            out = process_one(p, **kwargs)
             print(f"✅ {p.stem} → {out.relative_to(OUT_DIR.parent.parent)}")
     else:
-        out = process_one(resolve_csv(args.csv))
+        out = process_one(resolve_csv(args.csv), **kwargs)
         print(f"✅ {args.csv.stem} → {out.relative_to(OUT_DIR.parent.parent)}")
 
 if __name__ == "__main__":
