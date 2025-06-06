@@ -52,7 +52,6 @@ def make_summary(rows: list[tuple[str, float, float, float, float, float, float,
     med = lambda i: float(np.median([r[i] for r in rows]))
     rows.append(("Average", avg(1), avg(2), avg(3), avg(4), avg(5), avg(6), avg(7), avg(8)))
     rows.append(("Median", med(1), med(2), med(3), med(4), med(5), med(6), med(7), med(8)))
-
     def f(x: float) -> str: return f"{x:,.2f}"
 
     lines = [

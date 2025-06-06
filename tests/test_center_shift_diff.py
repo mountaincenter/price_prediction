@@ -23,3 +23,4 @@ def test_process_one(tmp_path):
     text = out.read_text()
     assert text.strip() != ''
     assert 'Median' in text
+
