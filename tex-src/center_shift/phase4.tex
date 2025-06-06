@@ -1,0 +1,65 @@
+%-------------------------------------------------------------------------------
+% center_shift/phase4.tex   v1.0  (2025-06-06)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-06  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== center_shift =============================================================
+\section*{center\_shift}\nopagebreak[4]
+
+%=== Phase 4 : \eta / \lambda の深掘り ======================================
+\subsection*{Phase 4：$\eta$ と $\lambda$ の深掘り}\nopagebreak[4]
+%────────────────────────────────────
+\paragraph{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{学習率}
+        \(\eta\) は $\lambda_{\text{shift}}$ 更新の歩幅を制御
+  \item \textbf{勾配近似}
+        \(g_t\approx-\dfrac{2}{30}\sum_{k=1}^{30}e_{t-k}\,\sigma_{t-k}^2\)
+  \item \textbf{$\lambda_{\text{shift}}$ 更新}
+        \(\lambda_{\text{shift},t}
+          =\operatorname{clip}\bigl(\lambda_{\text{shift},t-1}
+          -\eta\,g_t,\,0.90,\,0.98\bigr)\)
+  \item \textbf{ウォームアップ}
+        初期 30~d は固定 $\lambda_{\text{shift}}=0.94$ で安定化
+\end{enumerate}
+\end{flushleft}
+
+\subsubsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item 大きすぎる $\eta$ は \(\lambda_{\text{shift}}\) を振動させる
+  \item 小さすぎる $\eta$ では収束が遅延
+  \item 更新範囲 [0.90, 0.98] を超えないよう \(\operatorname{clip}\)
+  \item $|g_t|>10$ なら勾配をクリップし安定化
+\end{itemize}
+\end{flushleft}
+
+\subsubsection*{実装ヒント}
+\begin{flushleft}
+\begin{itemize}
+  \item 経験的に $\eta=0.01$ が妥当な上限値
+  \item 週次で $\eta$ の微調整を試し、予測 MAE を観察
+  \item 勾配計算には 30~d の誤差系列を用意
+\end{itemize}
+\end{flushleft}
+
+\subsubsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.90\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\eta & 学習率 \\
+\lambda_{\text{shift},t} & 更新後 EWMA 定数 \\
+\lambda_{\text{shift},t-1} & 前日 EWMA 定数 \\
+\sigma_t^2 & 分散推定値 \\
+\operatorname{clip} & 範囲制限関数 \\
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%==============================================================================

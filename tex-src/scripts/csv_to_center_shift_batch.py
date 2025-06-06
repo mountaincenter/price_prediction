@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.9  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.10  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-06  v6.10: η / λ を diff.py と同様に指定可能に
 - 2025-06-06  v6.9 : 新スケーリング式に対応
 - 2025-06-06  v6.8 : summary.tex に Median 行を追加
 - 2025-06-05  v6.7 : HitRate 改善アルゴリズムに対応
@@ -22,6 +23,7 @@ from __future__ import annotations
 
 from math import sqrt
 from pathlib import Path
+import argparse
 
 import numpy as np
 import pandas as pd
@@ -31,6 +33,10 @@ from csv_to_center_shift_diff import (
     process_one,        # diff.tex を 1 ファイル生成
     read_prices,
     calc_center_shift,
+    ETA,
+    L_INIT,
+    L_MIN,
+    L_MAX,
 )
 
 # --------------------------------------------------------------------------
@@ -71,19 +77,33 @@ def make_summary(rows: list[tuple[str, float, float, float, float, float, float,
 
 # ── main ───────────────────────────────────────────────────────────────
 def main() -> None:
+    p = argparse.ArgumentParser(description="center_shift batch processor")
+    p.add_argument("--eta", type=float, default=ETA, help="学習率 η")
+    p.add_argument("--init-lambda", type=float, default=L_INIT, help="初期 λ_shift")
+    p.add_argument("--min-lambda", type=float, default=L_MIN, help="最小 λ_shift")
+    p.add_argument("--max-lambda", type=float, default=L_MAX, help="最大 λ_shift")
+    args = p.parse_args()
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     rows: list[tuple[str, float, float, float, float, float, float, float, float]] = []
     for csv_path in sorted(PRICES_DIR.glob("*.csv")):
         # 1. diff.tex 生成
-        out = process_one(csv_path, out_dir=OUT_DIR)
+        out = process_one(
+            csv_path,
+            out_dir=OUT_DIR,
+            eta=args.eta,
+            l_init=args.init_lambda,
+            l_min=args.min_lambda,
+            l_max=args.max_lambda,
+        )
         print(f"✅ {csv_path.stem} → {out.relative_to(OUT_DIR.parent.parent)}")
 
         # 2. 指標計算
         raw = read_prices(csv_path)
-        df0 = calc_center_shift(raw, phase=0)
-        df1 = calc_center_shift(raw, phase=1)
-        df2 = calc_center_shift(raw, phase=2)
+        df0 = calc_center_shift(raw, phase=0, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
+        df1 = calc_center_shift(raw, phase=1, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
+        df2 = calc_center_shift(raw, phase=2, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
 
         mae2, r2, h2 = compute_metrics(df2)
         _, r0, h0 = compute_metrics(df0)
