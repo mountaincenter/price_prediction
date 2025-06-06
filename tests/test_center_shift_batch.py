@@ -18,6 +18,8 @@ def test_compute_metrics():
     assert rmae == df['RelMAE'].iloc[-1]
     assert 0 <= hit <= 100
 
+
+
 def test_make_summary_contains_median():
     rows = [('1321', 100.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0)]
     tex = batch.make_summary(rows.copy())

@@ -1,7 +1,9 @@
 %-------------------------------------------------------------------------------
-% center_shift/phase1.tex   v1.1  (2025-06-05)
+% center_shift/phase1.tex   v1.3  (2025-06-06)
 %-------------------------------------------------------------------------------
 % CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-06  v1.3 : math delimiter fix for \alpha_t heading
+% - 2025-06-06  v1.2 : kappa/sigma の位置付けを明記し改善手順を追記
 % - 2025-06-05  v1.1 : math delimiter fix
 % - 2025-06-05  v1.0 : 初版
 %-------------------------------------------------------------------------------
@@ -15,10 +17,10 @@
 \paragraph{ステップ／目的}
 \begin{flushleft}
 \begin{enumerate}
-  \item \textbf{共通ボラ計算}\;\(\sigma_t^{\text{shift}}\) を
-        {\scriptsize\verb|sigma/phase1.tex|} の EWMA14 で求める
-  \item \textbf{スケール係数}\;\(\kappa_t=\kappa(\sigma_t^{\text{shift}})\) を
-        {\scriptsize\verb|kappa/phase1.tex|} の段階定数モデルで取得
+  \item \textbf{共通ボラ計算}\;{\scriptsize\verb|sigma/phase1.tex|} を参照し、
+        EWMA14 で \(\sigma_t^{\text{shift}}\) を求める
+  \item \textbf{スケール係数}\;{\scriptsize\verb|kappa/phase1.tex|} の段階定数
+        モデルから \(\kappa_t=\kappa(\sigma_t^{\text{shift}})\) を取得
   \item \textbf{方向スコア}\;\(S_t=\operatorname{sign}(\Delta Cl_{t-1})\)
   \item \textbf{中心シフト量}\;\(\alpha_t=\kappa_t S_t\)
 \end{enumerate}
@@ -34,8 +36,10 @@
 
 \subsubsection*{実装ヒント}
 \begin{flushleft}
-初期 5 日間は \(S_t=0\)・\(\alpha_t=0\) として無効化し、
-週次で \(\kappa\) しきい値を点検すると安定します。
+初期 5 日間は \(S_t=0\)・\(\alpha_t=0\) として無効化します。\par
+ボラ推定は {\scriptsize\verb|sigma/phase1.tex|} の勾配チェック、
+\(\kappa_t\) は {\scriptsize\verb|kappa/phase1.tex|} の閾値調整を参照し、
+週次でバケット境界を点検すると精度向上が見込めます。
 \end{flushleft}
 
 \subsubsection*{追加変数・係数}
