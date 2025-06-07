@@ -1,0 +1,44 @@
+%-------------------------------------------------------------------------------
+% range/phase5.tex   v1.0  (2025-06-07)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-07  v1.0 : 初版
+%-------------------------------------------------------------------------------
+
+%=== Phase-5 : 残差補正 ===============================================
+\section*{range / Phase 5}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item 前日までの残差平均\;\( \bar e_{t-1} = \lambda_{\mathrm{vol}}\,\bar e_{t-2}
+        +(1-\lambda_{\mathrm{vol}})(m_{t-1}^{\text{real}}-m_{t-1}^{\text{pred}}) \)
+  \item 残差をオフセット\;\( c_t = \bar e_{t-1} \)
+  \item 最終半レンジ\;\( m_t^{\text{pred}} = m_t^{\text{base}} + c_t \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item \( m_t^{\text{base}}=\sigma_t^{\text{shift}}\,\bar\beta_{\text{vol},t}\,\text{Close}_t \)
+  \item 過去 30 日の誤差系列から動的に更新される \( \lambda_{\mathrm{vol}} \) を流用。
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\( \bar e_{t} \) & 残差の EWMA \\
+\( c_t \) & 残差オフセット \\
+\( m_t^{\text{base}} \) & Phase 4 までの予測値 \\
+\( m_t^{\text{pred}} \) & 最終半レンジ予測 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+%===============================================================================
