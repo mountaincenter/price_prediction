@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_diff.py   v1.1  (2025-06-11)
+scripts/csv_to_range_diff.py   v1.2  (2025-06-11)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-07  v1.2 : Phase 5 残差補正を追加
 - 2025-06-07  v1.1 : m_pred 計算を価格換算に修正
 - 2025-06-11  v1.0 : 初版
 """
@@ -116,6 +117,7 @@ def calc_range(
 
     lam_vol = np.full(n, l_init)
     bar_beta = np.zeros(n)
+    bias = np.zeros(n)
     m_pred = np.zeros(n)
     for t in range(n):
         if t:
@@ -126,9 +128,12 @@ def calc_range(
             else:
                 lam_vol[t] = lam_vol[t-1]
             bar_beta[t] = lam_vol[t]*bar_beta[t-1] + (1-lam_vol[t])*beta3[t]
+            bias[t] = lam_vol[t]*bias[t-1] + (1-lam_vol[t])*(m_real[t-1] - m_pred[t-1])
         else:
             bar_beta[t] = beta3[t]
-        m_pred[t] = sig[t] * bar_beta[t] * close[t]
+            bias[t] = 0.0
+        base_pred = sig[t] * bar_beta[t] * close[t]
+        m_pred[t] = base_pred + bias[t]
 
     diff = m_pred - m_real
 
