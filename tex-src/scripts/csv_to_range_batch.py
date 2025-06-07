@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_batch.py   v1.0  (2025-06-11)
+scripts/csv_to_range_batch.py   v1.1  (2025-06-11)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-07  v1.1 : サマリー表の列数と改行を修正
 - 2025-06-11  v1.0 : 初版
 """
 
@@ -45,7 +46,7 @@ def make_summary(rows: list[tuple[str, float, float, float]]) -> str:
     lines = [
         r"\begingroup",
         r"\footnotesize",
-        r"\begin{tabular}{lrrrr}",
+        r"\begin{tabular}{lrrr}",
         r"\hline",
         r"Code & MAE\_5d & RelMAE[\%] & HitRate[\%] \\",
         r"\hline",
@@ -53,7 +54,7 @@ def make_summary(rows: list[tuple[str, float, float, float]]) -> str:
     for code, mae, rmae, hit in rows:
         lines.append(f"{code} & {f(mae)} & {f(rmae)} & {f(hit)} \\")
     lines += [r"\hline", r"\end{tabular}", r"\endgroup"]
-    return "\n".join(lines)
+    return "\n".join(lines) + "\n"
 
 
 def main() -> None:
