@@ -5,10 +5,10 @@ scripts/csv_to_open_price_batch.py   v1.1  (2025-06-07)
 - CHANGELOG — scripts/csv_to_open_price_batch.py  （newest → oldest）
 - 2025-06-07  v1.1 : Open 用サマリー表に対応
 - 2025-06-07  v1.0 : 初版（center_shift_batch.py から派生）
-"""
 
 import argparse
 from pathlib import Path
+
 
 import numpy as np
 import pandas as pd
