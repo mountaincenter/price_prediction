@@ -1,0 +1,44 @@
+%-------------------------------------------------------------------------------
+% open_price/phase5.tex   v1.0  (2025-06-10)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-10  v1.0 : 初版 (G_final クリップ)
+%-------------------------------------------------------------------------------
+
+%=== open_price ===============================================================
+\section*{open\_price}\nopagebreak[4]
+
+%=== Phase 5 : $G_{\text{fin}}$ クリップ ======================================
+\subsection*{Phase 5：$G_{\text{fin}}$ クリップ}\nopagebreak[4]
+%────────────────────────────────────
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{クリップ範囲決定}\;
+        \( r_\sigma = 5\,\sigma_t^{\text{shift}} \)
+  \item \textbf{最終ギャップ}\;
+        \( G_t^{\text{fin}}
+           = \operatorname{clip}\bigl(
+             G_t^{\text{final}},\,-r_\sigma,\, r_\sigma \bigr) \)
+  \item \textbf{始値確定}\;
+        \( O_t = B_{t-1} + G_t^{\text{fin}} \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\sigma_t^{\text{shift}} & 共通ボラ \\
+ r_\sigma & クリップ上限 \\
+ G_t^{\text{final}} & Phase 3 出力 \\
+ G_t^{\text{fin}} & Phase 5 最終ギャップ \\
+ O_t & Phase 5 始値予測 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================

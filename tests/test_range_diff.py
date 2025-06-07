@@ -1,21 +1,19 @@
-import importlib.util
 from pathlib import Path
+import importlib.util
 import sys
 
 sys.path.insert(0, 'tex-src/scripts')
 
-spec = importlib.util.spec_from_file_location('diff', 'tex-src/scripts/csv_to_center_shift_diff.py')
+spec = importlib.util.spec_from_file_location('diff', 'tex-src/scripts/csv_to_range_diff.py')
 diff = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(diff)
 
 
-def test_calc_center_shift_phase2():
+def test_calc_range():
     csv = Path('tex-src/data/prices/1321.csv')
-    df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
-    assert {
-        'MAE_5d', 'HitRate_20d', 'RelMAE',
-        r'$\lambda_{\text{shift}}$', r'$\Delta\alpha_t$'
-    }.issubset(df.columns)
+    df = diff.calc_range(diff.read_prices(csv))
+    required = {'MAE_5d', 'HitRate_20d', 'RelMAE', 'B_final'}
+    assert required.issubset(df.columns)
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
 
 
@@ -27,23 +25,20 @@ def test_process_one(tmp_path):
     assert text.strip() != ''
     assert text.count('\\begin{threeparttable}') == 3
     assert text.count('\\clearpage') == 2
-    assert 'λ = 0.90' in text and 'λ = 0.94' in text and 'λ = 0.98' in text
 
 
 def test_custom_params():
     csv = Path('tex-src/data/prices/1321.csv')
-    df = diff.calc_center_shift(
-        diff.read_prices(csv), phase=2,
-        eta=0.02, l_init=0.95, l_min=0.91, l_max=0.99
+    df = diff.calc_range(
+        diff.read_prices(csv),
+        eta=0.02, l_init=0.85, l_min=0.80, l_max=0.99
     )
-    assert df[r'$\lambda_{\text{shift}}$'].iloc[0] == 0.95
-
-
+    assert df['B_final'].iloc[0] >= 0
 
 
 def test_make_table_newline():
     csv = Path('tex-src/data/prices/1321.csv')
-    df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
+    df = diff.calc_range(diff.read_prices(csv))
     tex = diff.make_table(df, title='code:1321')
     lines = tex.splitlines()
     assert lines[0].startswith('\\noindent')
