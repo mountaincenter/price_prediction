@@ -12,7 +12,7 @@ spec.loader.exec_module(batch)
 def test_compute_metrics():
     csv = Path('tex-src/data/prices/1321.csv')
     raw = batch.read_prices(csv)
-    df = batch.calc_open_price(raw, phase=2)
+    df = batch.calc_open_price(raw, phase=5)
     mae, rmae, hit = batch.compute_metrics(df)
     assert mae == df['MAE_5d'].iloc[-1]
     assert rmae == df['RelMAE'].iloc[-1]
@@ -29,7 +29,7 @@ def test_compute_metrics_custom():
     csv = Path('tex-src/data/prices/1321.csv')
     raw = batch.read_prices(csv)
     df = batch.calc_open_price(
-        raw, phase=2,
+        raw, phase=5,
         eta=0.02, l_init=0.95, l_min=0.91, l_max=0.99
     )
     mae, rmae, hit = batch.compute_metrics(df)

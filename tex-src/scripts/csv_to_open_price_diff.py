@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_diff.py   v1.3  (2025-06-07)
+scripts/csv_to_open_price_diff.py   v1.4  (2025-06-10)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_diff.py  （newest → oldest）
+- 2025-06-10  v1.4 : Phase 5 クリップ (G_fin) 実装
 - 2025-06-07  v1.3 : tex-src/open_price の数式を反映し各 Phase を実装
 - 2025-06-07  v1.2 : 加法モデルに修正し各 Phase の G 列を追加
 - 2025-06-07  v1.1 : Open 用にカラム・計算を修正
@@ -170,12 +171,15 @@ def calc_open_price(
         wv = wv.fillna(0.0)
         g_final = g_phase2 + wv.values * g_proxy.fillna(0.0).values
 
+    g_fin = np.clip(g_final, -5 * sig, 5 * sig)
+
     out["G_phase0"] = g_phase0
     out["G_phase1"] = g_phase1
     out["G_phase2"] = g_phase2
-    out["G_final"] = g_final
+    out["G_final"] = g_fin
 
-    out["O_pred"]  = out["B_{t-1}"] + g_final
+    o_gap = g_fin if phase >= 5 else g_final
+    out["O_pred"]  = out["B_{t-1}"] + o_gap
     out["O_real"]  = df["Open"]
     out["O_diff"]  = out["O_pred"] - out["O_real"]
 
@@ -183,7 +187,7 @@ def calc_open_price(
     out["Norm_err"]    = np.abs(out["O_diff"]) / out[r"$\sigma_t^{\mathrm{shift}}$"]
     out["MAE_5d"]      = out["O_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Open"] * 100       # %
-    hit = (np.sign(out["G_final"]) ==
+    hit = (np.sign(o_gap) ==
            np.sign(out["O_real"] - out["B_{t-1}"])).astype(int)
     out["HitRate_20d"] = hit.rolling(20, min_periods=1).mean() * 100  # %
     return out
@@ -317,7 +321,7 @@ def process_one(
     for lam, label in VARIANT_LAMBDAS:
         df = calc_open_price(
             read_prices(csv),
-            phase=2,
+            phase=5,
             eta=eta,
             l_init=lam,
             l_min=lam,

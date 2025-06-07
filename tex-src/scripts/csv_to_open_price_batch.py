@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_batch.py   v1.2  (2025-06-10)
+scripts/csv_to_open_price_batch.py   v1.3  (2025-06-10)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_batch.py  （newest → oldest）
+- 2025-06-10  v1.3 : Phase 5 対応 (G_fin クリップ)
 - 2025-06-10  v1.2 : 加法モデルの変更に追随
 - 2025-06-07  v1.1 : Open 用サマリー表に対応
 - 2025-06-07  v1.0 : 初版（center_shift_batch.py から派生）
@@ -89,7 +90,7 @@ def main() -> None:
         raw = read_prices(csv_path)
         df0 = calc_open_price(raw, phase=0, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
         df1 = calc_open_price(raw, phase=1, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
-        df2 = calc_open_price(raw, phase=2, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
+        df2 = calc_open_price(raw, phase=5, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
 
         mae2, r2, h2 = compute_metrics(df2)
         _, r0, h0 = compute_metrics(df0)
