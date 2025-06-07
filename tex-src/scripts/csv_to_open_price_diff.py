@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_diff.py   v1.2  (2025-06-10)
+scripts/csv_to_open_price_diff.py   v1.3  (2025-06-11)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_diff.py  （newest → oldest）
+- 2025-06-11  v1.3 : tex-src/open_price の数式を反映し各 Phase を実装
 - 2025-06-10  v1.2 : 加法モデルに修正し各 Phase の G 列を追加
 - 2025-06-07  v1.1 : Open 用にカラム・計算を修正
 - 2025-06-07  v1.0 : 初版（center_shift_diff.py から派生）
@@ -47,6 +48,9 @@ def read_prices(csv: Path) -> pd.DataFrame:
         "Low":  "Low",  "安値": "Low",
         "Open": "Open", "始値": "Open",
         "Close":"Close","終値": "Close",
+        "5DMA": "5DMA", "５ＤＭＡ": "5DMA",
+        "25DVMA": "25DVMA", "２５ＤＶＭＡ": "25DVMA",
+        "出来高": "Volume", "Volume": "Volume",
     }
     df = df.rename(columns=rename, errors="ignore")
     if {"Date", "High", "Low", "Open"} - set(df.columns):
@@ -54,8 +58,9 @@ def read_prices(csv: Path) -> pd.DataFrame:
     df["Date"] = pd.to_datetime(df["Date"])
     df = df.sort_values("Date").reset_index(drop=True)
     df["DispDate"] = df["Date"].dt.strftime("%m-%d")
-    for c in ["High", "Low", "Open"]:
-        df[c] = df[c].replace({",": ""}, regex=True).astype(float)
+    for c in ["High", "Low", "Open", "Close", "Volume", "5DMA", "25DVMA"]:
+        if c in df.columns:
+            df[c] = df[c].replace({",": ""}, regex=True).astype(float)
     return df
 
 # ──────────────────────────────────────────────────────────────
@@ -123,10 +128,47 @@ def calc_open_price(
     })
     out["B_{t-1}"] = (out["High"].shift(1) + out["Low"].shift(1)) / 2
 
-    g_phase0 = out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"]
-    g_phase1 = g_phase0
-    g_phase2 = g_phase1
-    g_final = g_phase2
+    gap_raw = out["Open"] - out["B_{t-1}"]
+    gap_raw.iloc[0] = 0.0
+
+    g_phase0 = np.zeros(n)
+    lam_open = np.full(n, l_init)
+    for t in range(n):
+        if t:
+            g_phase0[t] = lam_open[t-1]*gap_raw.iloc[t] + (1-lam_open[t-1])*g_phase0[t-1]
+        else:
+            g_phase0[t] = gap_raw.iloc[t]
+        if phase >= 4 and t >= 31:
+            e = gap_raw.iloc[t-30:t] - g_phase0[t-30:t]
+            g = -(2/30) * np.sum(e * g_phase0[t-30:t])
+            lam_open[t] = np.clip(lam_open[t-1] - eta*np.clip(g, -10, 10), l_min, l_max)
+        else:
+            lam_open[t] = lam_open[t-1] if t else l_init
+
+    g_phase1 = g_phase0.copy()
+    for t in range(n):
+        if t:
+            hist = gap_raw.iloc[max(0, t-63):t]
+            iqr = np.percentile(hist, 75) - np.percentile(hist, 25)
+            if iqr < 1e-4:
+                iqr = 1e-4
+            s_gap = 1 / iqr
+            g_phase1[t] = np.clip(g_phase0[t] * s_gap, -5*sig[t], 5*sig[t])
+
+    g_phase2 = g_phase1.copy()
+    sig63 = pd.Series(dcl).rolling(63, min_periods=1).std().values
+    for t in range(n):
+        r_sig = sig[t] / sig63[t] if sig63[t] > 0 else 1.0
+        r_sig = np.clip(r_sig, 0.3, 3.0)
+        g_phase2[t] = g_phase1[t] / (r_sig ** 0.5)
+
+    g_final = g_phase2.copy()
+    if {"Close", "5DMA", "Volume", "25DVMA"} <= set(df.columns):
+        g_proxy = (df["Close"].shift(1) - df["5DMA"].shift(1)) / sig63
+        rv = df["Volume"].shift(1) / df["25DVMA"].shift(1)
+        wv = np.minimum(1.5, rv.fillna(0.0))
+        wv = wv.fillna(0.0)
+        g_final = g_phase2 + wv.values * g_proxy.fillna(0.0).values
 
     out["G_phase0"] = g_phase0
     out["G_phase1"] = g_phase1
@@ -141,7 +183,7 @@ def calc_open_price(
     out["Norm_err"]    = np.abs(out["O_diff"]) / out[r"$\sigma_t^{\mathrm{shift}}$"]
     out["MAE_5d"]      = out["O_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Open"] * 100       # %
-    hit = (np.sign(out[r"$\alpha_t$"]) ==
+    hit = (np.sign(out["G_final"]) ==
            np.sign(out["O_real"] - out["B_{t-1}"])).astype(int)
     out["HitRate_20d"] = hit.rolling(20, min_periods=1).mean() * 100  # %
     return out
