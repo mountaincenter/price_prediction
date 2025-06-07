@@ -38,7 +38,7 @@ def make_summary(rows: list[tuple[str, float, float, float]]) -> str:
     avg = lambda i: sum(r[i] for r in rows) / len(rows)
     med = lambda i: float(np.median([r[i] for r in rows]))
     rows.append(("Average", avg(1), avg(2), avg(3)))
-    rows.append(("Median", med(1), med(2), med(3)))
+    rows.append(("Median",  med(1), med(2), med(3)))
 
     def f(x: float) -> str:
         return f"{x:,.2f}"
@@ -48,11 +48,11 @@ def make_summary(rows: list[tuple[str, float, float, float]]) -> str:
         r"\footnotesize",
         r"\begin{tabular}{lrrr}",
         r"\hline",
-        r"Code & MAE\_5d & RelMAE[\%] & HitRate[\%] \\",
+        r"Code & MAE\_5d & RelMAE[\%] & HitRate[\%] \\\\",
         r"\hline",
     ]
     for code, mae, rmae, hit in rows:
-        lines.append(f"{code} & {f(mae)} & {f(rmae)} & {f(hit)} \\")
+        lines.append(f"{code} & {f(mae)} & {f(rmae)} & {f(hit)} \\\\")
     lines += [r"\hline", r"\end{tabular}", r"\endgroup"]
     return "\n".join(lines) + "\n"
 
