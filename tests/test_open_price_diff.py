@@ -11,7 +11,7 @@ spec.loader.exec_module(diff)
 
 def test_calc_open_price_phase2():
     csv = Path('tex-src/data/prices/1321.csv')
-    df = diff.calc_open_price(diff.read_prices(csv), phase=2)
+    df = diff.calc_open_price(diff.read_prices(csv), phase=5)
     required = {
         'MAE_5d', 'HitRate_20d', 'RelMAE',
         'G_phase0', 'G_phase1', 'G_phase2', 'G_final'
@@ -33,7 +33,7 @@ def test_process_one(tmp_path):
 def test_custom_params():
     csv = Path('tex-src/data/prices/1321.csv')
     df = diff.calc_open_price(
-        diff.read_prices(csv), phase=2,
+        diff.read_prices(csv), phase=5,
         eta=0.02, l_init=0.95, l_min=0.91, l_max=0.99
     )
     assert df[r'$\lambda_{\text{shift}}$'].iloc[0] == 0.95
@@ -41,7 +41,7 @@ def test_custom_params():
 
 def test_make_table_newline():
     csv = Path('tex-src/data/prices/1321.csv')
-    df = diff.calc_open_price(diff.read_prices(csv), phase=2)
+    df = diff.calc_open_price(diff.read_prices(csv), phase=5)
     tex = diff.make_table(df, title='code:1321')
     lines = tex.splitlines()
     assert lines[0].startswith('\\noindent')
