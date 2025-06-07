@@ -71,3 +71,39 @@ python tex-src/scripts/csv_to_center_shift_diff.py 8801.csv
 python tex-src/scripts/csv_to_center_shift_batch.py
 ```
 
+
+### `csv_to_open_price_diff.py`
+
+始値ギャップを用いた差分テーブルを生成します。出力先は
+`tex-src/data/analysis/open_price/` です。
+
+```bash
+python tex-src/scripts/csv_to_open_price_diff.py 8801.csv
+```
+
+### `csv_to_open_price_batch.py`
+
+`data/prices` 内の全 CSV について始値版 diff テーブルを作成し、
+`summary.tex` を同ディレクトリに保存します。
+
+```bash
+python tex-src/scripts/csv_to_open_price_batch.py
+```
+
+### `backtest_open_price.tex`
+
+生成した diff テーブルをまとめたバックテスト用 LaTeX です。
+
+```bash
+pdflatex tex-src/backtest_open_price.tex
+```
+
+## Testing
+
+依存パッケージをインストールした上で `pytest` を実行します。
+
+```bash
+pip install -r requirements.txt
+pytest -q
+```
+

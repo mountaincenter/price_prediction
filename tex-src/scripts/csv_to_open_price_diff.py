@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_diff.py   v1.1  (2025-06-07)
+scripts/csv_to_open_price_diff.py   v1.2  (2025-06-10)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_diff.py  （newest → oldest）
+- 2025-06-10  v1.2 : 加法モデルに修正し各 Phase の G 列を追加
 - 2025-06-07  v1.1 : Open 用にカラム・計算を修正
 - 2025-06-07  v1.0 : 初版（center_shift_diff.py から派生）
 """
@@ -121,12 +122,23 @@ def calc_open_price(
         "Open": df["Open"]
     })
     out["B_{t-1}"] = (out["High"].shift(1) + out["Low"].shift(1)) / 2
-    out["O_pred"]  = out["B_{t-1}"] * (1 + out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
+
+    g_phase0 = out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"]
+    g_phase1 = g_phase0
+    g_phase2 = g_phase1
+    g_final = g_phase2
+
+    out["G_phase0"] = g_phase0
+    out["G_phase1"] = g_phase1
+    out["G_phase2"] = g_phase2
+    out["G_final"] = g_final
+
+    out["O_pred"]  = out["B_{t-1}"] + g_final
     out["O_real"]  = df["Open"]
     out["O_diff"]  = out["O_pred"] - out["O_real"]
 
     out["O_diff_sign"] = np.sign(out["O_diff"])
-    out["Norm_err"]    = np.abs(out["O_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
+    out["Norm_err"]    = np.abs(out["O_diff"]) / out[r"$\sigma_t^{\mathrm{shift}}$"]
     out["MAE_5d"]      = out["O_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Open"] * 100       # %
     hit = (np.sign(out[r"$\alpha_t$"]) ==
@@ -140,7 +152,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
-    for c in [r"$\kappa(\sigma)$","B_{t-1}","O_pred","O_real","O_diff",
+    for c in [r"$\kappa(\sigma)$","B_{t-1}","G_phase0","G_phase1","G_phase2",
+              "G_final","O_pred","O_real","O_diff",
               "O_diff_sign","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
@@ -151,6 +164,10 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "Date",
         r"$\kappa(\sigma)$",
         "B_{t-1}",
+        "G_phase0",
+        "G_phase1",
+        "G_phase2",
+        "G_final",
         "O_pred",
         "O_real",
         "O_diff",
@@ -166,6 +183,10 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     header = {
         r"$\kappa(\sigma)$": r"$\kappa$",
         "B_{t-1}":            r"$B$",
+        "G_phase0":           r"$G_{\mathrm{ew}}$",
+        "G_phase1":           r"$G_{\mathrm{sc}}$",
+        "G_phase2":           r"$G_{\mathrm{vol}}$",
+        "G_final":            r"$G_{\mathrm{fin}}$",
         "O_pred":             r"$O_p$",
         "O_real":             r"$O_r$",
         "O_diff":             r"$O_\Delta$",
