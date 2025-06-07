@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_diff.py   v1.3  (2025-06-11)
+scripts/csv_to_open_price_diff.py   v1.3  (2025-06-07)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_diff.py  （newest → oldest）
-- 2025-06-11  v1.3 : tex-src/open_price の数式を反映し各 Phase を実装
-- 2025-06-10  v1.2 : 加法モデルに修正し各 Phase の G 列を追加
+- 2025-06-07  v1.3 : tex-src/open_price の数式を反映し各 Phase を実装
+- 2025-06-07  v1.2 : 加法モデルに修正し各 Phase の G 列を追加
 - 2025-06-07  v1.1 : Open 用にカラム・計算を修正
 - 2025-06-07  v1.0 : 初版（center_shift_diff.py から派生）
 """
