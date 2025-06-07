@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_diff.py   v1.0  (2025-06-11)
+scripts/csv_to_range_diff.py   v1.1  (2025-06-11)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-07  v1.1 : m_pred 計算を価格換算に修正
 - 2025-06-11  v1.0 : 初版
 """
 
@@ -127,7 +128,7 @@ def calc_range(
             bar_beta[t] = lam_vol[t]*bar_beta[t-1] + (1-lam_vol[t])*beta3[t]
         else:
             bar_beta[t] = beta3[t]
-        m_pred[t] = sig[t] * bar_beta[t]
+        m_pred[t] = sig[t] * bar_beta[t] * close[t]
 
     diff = m_pred - m_real
 
@@ -140,7 +141,7 @@ def calc_range(
         "M_pred": m_pred,
         "M_real": m_real,
         "M_diff": diff,
-        "Norm_err": np.abs(diff) / sig,
+        "Norm_err": np.abs(diff) / (sig * close),
         "MAE_5d": pd.Series(diff).abs().rolling(5, min_periods=1).mean(),
         "RelMAE": pd.Series(diff).abs().rolling(5, min_periods=1).mean() / close * 100,
         "HitRate_20d": pd.Series((m_pred >= m_real).astype(int)).rolling(20, min_periods=1).mean() * 100,
