@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""scripts/csv_to_event_batch.py   v1.0  (2025-06-10)
+"""scripts/csv_to_event_batch.py   v1.1  (2025-06-10)
 ────────────────────────────────────────────────────────
-- CHANGELOG — scripts/csv_to_event_batch.py  （newest → oldest）
+CHANGELOG:
+- 2025-06-09  v1.1 : LaTeX summary 用テーブルの行末を `\\` で出力するよう修正
 - 2025-06-10  v1.0 : 初版
 """
 
@@ -35,12 +36,12 @@ def compute_metrics(df: pd.DataFrame) -> tuple[float, float, float]:
     hit = df["HitRate_20d"].iloc[-1]
     return mae, rmae, hit
 
-# ── LaTeX summary 生成 ───────────────────────────────────────────────
+# ── LaTeX summary 生成 ─────────────────────────────────────────────────────
 def make_summary(rows: list[tuple[str, float, float, float, float]]) -> str:
     avg = lambda i: sum(r[i] for r in rows) / len(rows)
     med = lambda i: float(np.median([r[i] for r in rows]))
     rows.append(("Average", avg(1), avg(2), avg(3), avg(4)))
-    rows.append(("Median", med(1), med(2), med(3), med(4)))
+    rows.append(("Median",  med(1), med(2), med(3), med(4)))
 
     def f(x: float) -> str:
         return f"{x:,.2f}"
@@ -53,8 +54,11 @@ def make_summary(rows: list[tuple[str, float, float, float, float]]) -> str:
         r"Code & Close & MAE\_5d & RelMAE[\%] & HitRate[\%] \\",
         r"\hline",
     ]
+    # --- 行末は必ず `\\` とする ---
     for code, close, mae, rmae, hit in rows:
-        lines.append(f"{code} & {f(close)} & {f(mae)} & {f(rmae)} & {f(hit)} \\")
+        lines.append(
+            rf"{code} & {f(close)} & {f(mae)} & {f(rmae)} & {f(hit)} \\"
+        )
     lines += [r"\hline", r"\end{tabular}", r"\endgroup"]
     return "\n".join(lines)
 
