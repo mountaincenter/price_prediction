@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""scripts/fetch_statements.py   v1.1  (2025-06-08)
+"""scripts/fetch_statements.py   v1.2  (2025-06-08)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-08  v1.2 : fix .env path to repository root
 - 2025-06-08  v1.1 : .env から認証情報を読み込み、Refresh Token 対応
 - 2025-06-08  v1.0 : 初版。prices 内の銘柄の statements を CSV 保存
 """
@@ -19,9 +20,10 @@ import requests
 from dotenv import load_dotenv
 
 # ──────────────────────────────────────────────────────────────
-ROOT = Path(__file__).resolve().parent.parent
-PRICES_DIR = ROOT / "data" / "prices"
-EARN_DIR = ROOT / "data" / "earn"
+ROOT = Path(__file__).resolve().parents[2]
+TEX_ROOT = ROOT / "tex-src"
+PRICES_DIR = TEX_ROOT / "data" / "prices"
+EARN_DIR = TEX_ROOT / "data" / "earn"
 API_BASE = "https://api.jquants.com/v1"
 
 load_dotenv(ROOT / ".env")
