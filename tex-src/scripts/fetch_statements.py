@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""scripts/fetch_statements.py   v1.0  (2025-06-08)
+"""scripts/fetch_statements.py   v1.1  (2025-06-08)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-08  v1.1 : .env から認証情報を読み込み、Refresh Token 対応
 - 2025-06-08  v1.0 : 初版。prices 内の銘柄の statements を CSV 保存
 """
 
@@ -11,9 +12,11 @@ import argparse
 import os
 from datetime import datetime
 from pathlib import Path
+import logging
 
 import pandas as pd
 import requests
+from dotenv import load_dotenv
 
 # ──────────────────────────────────────────────────────────────
 ROOT = Path(__file__).resolve().parent.parent
@@ -21,14 +24,33 @@ PRICES_DIR = ROOT / "data" / "prices"
 EARN_DIR = ROOT / "data" / "earn"
 API_BASE = "https://api.jquants.com/v1"
 
+load_dotenv(ROOT / ".env")
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-def get_token(mail: str, password: str) -> str:
+
+def get_token() -> str:
+    refresh = os.getenv("JQUANTS_REFRESH_TOKEN")
+    if refresh:
+        res = requests.post(
+            f"{API_BASE}/token/auth_refresh?refreshtoken={refresh}",
+            timeout=10,
+        )
+        res.raise_for_status()
+        return res.json().get("idToken")
+
+    mail = os.getenv("JQUANTS_EMAIL")
+    pwd = os.getenv("JQUANTS_PASSWORD")
+    if not (mail and pwd):
+        raise SystemExit("JQUANTS_EMAIL/PASSWORD not set")
+
     res = requests.post(
         f"{API_BASE}/token/auth_user",
-        data={"mailaddress": mail, "password": password},
+        data={"mailaddress": mail, "password": pwd},
+        timeout=10,
     )
     res.raise_for_status()
-    return res.json()["accessToken"]
+    return res.json().get("accessToken")
 
 
 def fetch_statements(token: str, code: str, date: str) -> pd.DataFrame:
@@ -57,19 +79,14 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    mail = os.getenv("JQUANTS_EMAIL")
-    pwd = os.getenv("JQUANTS_PASSWORD")
-    if not (mail and pwd):
-        raise SystemExit("JQUANTS_EMAIL/PASSWORD not set")
-
-    token = get_token(mail, pwd)
+    token = get_token()
 
     EARN_DIR.mkdir(parents=True, exist_ok=True)
     for code in list_codes():
         df = fetch_statements(token, code, args.date)
         out = EARN_DIR / f"{code}.csv"
         df.to_csv(out, index=False)
-        print(f"✅ saved: {out}")
+        logger.info("saved: %s", out)
 
 
 if __name__ == "__main__":
