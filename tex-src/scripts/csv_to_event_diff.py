@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""scripts/csv_to_event_diff.py   v1.0  (2025-06-10)
+"""scripts/csv_to_event_diff.py   v1.1  (2025-06-10)
 ────────────────────────────────────────────────────────
-- CHANGELOG — scripts/csv_to_event_diff.py  （newest → oldest）
+CHANGELOG:
+- 2025-06-10  v1.1 : weekday/earn/market 各フェーズの簡易実装を追加
 - 2025-06-10  v1.0 : 初版
 """
 
@@ -24,6 +25,8 @@ from csv_to_center_shift_diff import (
 
 OUT_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/event"
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
+EARN_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/earn"
+MARKET_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/market"
 
 # ──────────────────────────────────────────────────────────────
 def resolve_csv(raw: Path) -> Path:
@@ -35,8 +38,88 @@ def resolve_csv(raw: Path) -> Path:
     raise FileNotFoundError(raw)
 
 # ──────────────────────────────────────────────────────────────
+def load_index(name: str) -> pd.DataFrame:
+    path = MARKET_DIR / f"{name}.csv"
+    df = pd.read_csv(path).rename(columns=lambda c: c.strip().replace("　", ""))
+    rename = {"Date": "Date", "日付": "Date", "Close": "Close", "終値": "Close"}
+    df = df.rename(columns=rename, errors="ignore")
+    if "Close" in df.columns:
+        df["Close"] = df["Close"].replace({",": ""}, regex=True).astype(float)
+    df["Date"] = pd.to_datetime(df["Date"])
+    df = df.sort_values("Date").reset_index(drop=True)
+    df["ret"] = np.log(df["Close"]).diff()
+    df["std"] = df["ret"].rolling(63, min_periods=2).std()
+    return df[["Date", "ret", "std"]]
+
+
+def load_earn_dates(code: str) -> set[pd.Timestamp]:
+    path = EARN_DIR / f"{code}.csv"
+    if not path.exists():
+        return set()
+    df = pd.read_csv(path, usecols=["DisclosedDate"], dtype=str)
+    return set(pd.to_datetime(df["DisclosedDate"], errors="coerce").dropna().dt.normalize())
+
+
+def compute_beta_weekday(dates: pd.Series) -> np.ndarray:
+    n = len(dates)
+    wk_map = {0: 1.10, 1: 1.05, 2: 1.00, 3: 0.98, 4: 0.95}
+    beta = dates.dt.dayofweek.map(wk_map).fillna(1.0).values
+
+    diff_next = (dates.shift(-1) - dates).dt.days.fillna(1)
+    diff_prev = (dates - dates.shift(1)).dt.days.fillna(1)
+    holiday = np.ones(n)
+    holiday[diff_next > 1] *= 0.90
+    holiday[diff_prev > 1] *= 0.95
+    inp = beta * holiday
+
+    lam = 0.90
+    out = np.empty(n)
+    for t in range(n):
+        out[t] = inp[t] if t == 0 else lam * out[t-1] + (1 - lam) * inp[t]
+        out[t] = np.clip(out[t], 0.8, 1.2)
+    return out
+
+
+def compute_beta_earn(dates: pd.Series, earn_dates: set[pd.Timestamp]) -> np.ndarray:
+    n = len(dates)
+    out = np.ones(n)
+    date_idx = {d.normalize(): i for i, d in enumerate(dates)}
+    for d in earn_dates:
+        if d in date_idx:
+            i = date_idx[d]
+        else:
+            i = np.searchsorted(dates.values, np.datetime64(d))
+            if i >= n:
+                continue
+        out[i] = max(out[i], 1.20)
+        if i > 0:
+            out[i-1] = max(out[i-1], 1.15)
+        if i + 1 < n:
+            out[i+1] = max(out[i+1], 1.10)
+    return out
+
+
+def compute_beta_market(dates: pd.Series, close: pd.Series, idx: dict[str, pd.DataFrame]) -> np.ndarray:
+    ret_code = np.log(close).diff()
+    df_code = pd.DataFrame({"Date": dates, "ret_code": ret_code})
+    prod = np.ones(len(dates))
+    lam = 0.90
+    for name, dfi in idx.items():
+        merged = pd.merge(df_code, dfi, on="Date", how="left").fillna(method="ffill")
+        rho = merged["ret_code"].rolling(63, min_periods=20).corr(merged["ret"])
+        z = merged["ret"] / merged["std"]
+        beta = (1 + rho * z).clip(0.8, 1.2).fillna(1.0)
+        ew = np.empty(len(beta))
+        for t in range(len(beta)):
+            ew[t] = beta.iloc[t] if t == 0 else lam * ew[t-1] + (1 - lam) * beta.iloc[t]
+            ew[t] = np.clip(ew[t], 0.8, 1.2)
+        prod *= ew
+    return prod
+
+# ──────────────────────────────────────────────────────────────
 def calc_event_beta(
     df: pd.DataFrame,
+    code: str | None = None,
     *,
     eta: float = ETA,
     l_init: float = L_INIT,
@@ -45,15 +128,19 @@ def calc_event_beta(
 ) -> pd.DataFrame:
     base = calc_center_shift(df, phase=2, eta=eta, l_init=l_init, l_min=l_min, l_max=l_max)
 
-    dow = df["Date"].dt.dayofweek
-    wk_map = {0: 1.05, 1: 1.02, 2: 1.00, 3: 0.98, 4: 0.95}
-    beta_weekday = dow.map(wk_map).fillna(1.0)
-    beta_earn = np.ones(len(df))
-    beta_market = np.ones(len(df))
+    beta_weekday = compute_beta_weekday(df["Date"])
+    earn_dates = load_earn_dates(code) if code else set()
+    beta_earn = compute_beta_earn(df["Date"], earn_dates)
+    idx = {
+        "topix": load_index("topix"),
+        "sp500": load_index("sp500"),
+        "usd_jpy": load_index("usd_jpy"),
+    }
+    beta_market = compute_beta_market(df["Date"], df["Close"], idx)
     beta_event = beta_weekday * beta_earn * beta_market
 
     out = base.copy()
-    out["Beta_weekday"] = beta_weekday.values
+    out["Beta_weekday"] = beta_weekday
     out["Beta_earn"] = beta_earn
     out["Beta_market"] = beta_market
     out["Beta_event"] = beta_event
@@ -174,6 +261,7 @@ def process_one(
     code = csv.stem
     df = calc_event_beta(
         read_prices(csv),
+        code=code,
         eta=eta,
         l_init=l_init,
         l_min=l_min,
