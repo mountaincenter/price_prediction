@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""scripts/xlsx_to_csv_perpbr.py   v1.0  (2025-06-08)
+"""scripts/xlsx_to_csv_perpbr.py   v1.1  (2025-06-08)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-08  v1.1 : フォーミュラセルの数値読み取りに対応
 - 2025-06-08  v1.0 : 初版 — perpbr.xlsx 一括 CSV 変換
 """
 
@@ -10,6 +11,7 @@ from __future__ import annotations
 from pathlib import Path
 import argparse
 import pandas as pd
+import openpyxl
 
 # ──────────────────────────────────────────────────────────────
 ROOT = Path(__file__).resolve().parents[2]
@@ -18,7 +20,27 @@ OUT_CSV = ROOT / "tex-src" / "data" / "earn" / "perpbr.csv"
 
 
 def read_xlsx(path: Path) -> pd.DataFrame:
-    return pd.read_excel(path, header=3)
+    """Read PER/PBR excel and normalize formula cells."""
+
+    wb = openpyxl.load_workbook(path, data_only=False)
+    ws = wb.active
+    header = []
+    for idx in range(1, 15):
+        val = ws.cell(row=4, column=idx).value
+        header.append(val if val is not None else f"Unnamed: {idx - 1}")
+    rows = []
+    for r in range(5, ws.max_row + 1):
+        row: list[float | str | None] = []
+        for c in range(1, 15):
+            val = ws.cell(row=r, column=c).value
+            if isinstance(val, str) and val.startswith("="):
+                try:
+                    val = float(val.lstrip("="))
+                except ValueError:
+                    pass
+            row.append(val)
+        rows.append(row)
+    return pd.DataFrame(rows, columns=header)
 
 
 def main() -> None:
