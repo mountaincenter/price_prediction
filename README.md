@@ -104,6 +104,31 @@ python tex-src/scripts/csv_to_open_price_batch.py
 ```bash
 pdflatex tex-src/backtest_open_price.tex
 ```
+### `csv_to_event_diff.py`
+
+イベント係数 $\beta$ を用いた差分テーブルを生成します。出力先は `tex-src/data/analysis/event/` です。
+
+```bash
+python tex-src/scripts/csv_to_event_diff.py 8801.csv
+```
+
+### `csv_to_event_batch.py`
+
+`data/prices` 内の全 CSV を対象に `csv_to_event_diff.py` を実行し、`summary.tex` を同ディレクトリに保存します。
+
+```bash
+python tex-src/scripts/csv_to_event_batch.py
+```
+
+### `backtest_event.tex`
+
+生成した diff テーブルをまとめたバックテスト用 LaTeX です。
+
+```bash
+pdflatex tex-src/backtest_event.tex
+```
+
+
 
 ## Testing
 
