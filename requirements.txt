@@ -30,6 +30,7 @@ plotly
 
 # API & 外部サービス
 requests
+jquants-api-client
 openai
 slack_sdk
 
