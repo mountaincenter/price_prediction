@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""scripts/csv_to_event_diff.py   v1.1  (2025-06-10)
+"""scripts/csv_to_event_diff.py   v1.2  (2025-06-10)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-10  v1.2 : \u03b2_earn を指数平滑化
 - 2025-06-10  v1.1 : weekday/earn/market 各フェーズの簡易実装を追加
 - 2025-06-10  v1.0 : 初版
 """
@@ -96,7 +97,12 @@ def compute_beta_earn(dates: pd.Series, earn_dates: set[pd.Timestamp]) -> np.nda
             out[i-1] = max(out[i-1], 1.15)
         if i + 1 < n:
             out[i+1] = max(out[i+1], 1.10)
-    return out
+    lam = 0.80
+    beta = np.empty(n)
+    for t in range(n):
+        beta[t] = out[t] if t == 0 else lam * beta[t-1] + (1 - lam) * out[t]
+        beta[t] = np.clip(beta[t], 0.8, 1.5)
+    return beta
 
 
 def compute_beta_market(dates: pd.Series, close: pd.Series, idx: dict[str, pd.DataFrame]) -> np.ndarray:

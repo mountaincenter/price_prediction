@@ -1,0 +1,49 @@
+%-------------------------------------------------------------------------------
+% event/phase1.tex   v1.0  (2025-06-10)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-10  v1.0 : 決算係数平滑化を記述
+%-------------------------------------------------------------------------------
+
+%=== Phase 1 : 係数スムージング ================================================
+\section*{event / Phase 1}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{決算係数の日次平滑化}\\
+        決算日前後で付与した
+        $\beta_{\text{earn},i,t}$ を
+        \[
+          \tilde\beta_{\text{earn},i,t}
+            = \lambda\,\tilde\beta_{\text{earn},i,t-1}
+              +(1-\lambda)\beta_{\text{earn},i,t},
+          \quad \lambda=0.8
+        \]
+        により指数平滑。
+  \item \textbf{イベント係数更新}\\
+        \(
+          \beta_{\text{event},i,t}^{(1)}
+          = \beta_{\text{weekday},i,t}^{(3)}
+           \,\tilde\beta_{\text{earn},i,t}
+           \,\beta_{\text{market},i,t}
+        \),
+        \; $0.8 \le \beta_{\text{event},i,t}^{(1)} \le 1.5$。
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\lambda & 平滑係数 ($0 < \lambda < 1$) \\
+\tilde\beta_{\text{earn},i,t} & 平滑後の決算係数 \\
+\beta_{\text{event},i,t}^{(1)} & Phase 1 出力 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
