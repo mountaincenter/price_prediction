@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""scripts/fetch_statements.py   v1.3  (2025-06-08)
+"""scripts/fetch_statements.py   v1.4  (2025-06-08)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-08  v1.4 : --date 省略時に全期間の statements を取得
 - 2025-06-08  v1.3 : jquantsapi.Client で statements を取得
 - 2025-06-08  v1.2 : fix .env path to repository root
 - 2025-06-08  v1.1 : .env から認証情報を読み込み、Refresh Token 対応
@@ -44,8 +45,10 @@ def get_client() -> Client:
     raise SystemExit("JQUANTS_EMAIL/PASSWORD not set")
 
 
-def fetch_statements(cli: Client, code: str, date: str) -> pd.DataFrame:
-    return cli.get_fins_statements(code=code, date_yyyymmdd=date)
+def fetch_statements(cli: Client, code: str, date: str | None = None) -> pd.DataFrame:
+    if date:
+        return cli.get_fins_statements(code=code, date_yyyymmdd=date)
+    return cli.get_fins_statements(code=code)
 
 
 def list_codes() -> list[str]:
@@ -56,8 +59,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="J-Quants statements downloader")
     parser.add_argument(
         "--date",
-        default=datetime.today().strftime("%Y%m%d"),
-        help="取得基準日 (yyyymmdd)",
+        default=None,
+        help="取得基準日 (yyyymmdd)。省略すると全期間取得",
     )
     args = parser.parse_args()
 
