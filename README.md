@@ -21,6 +21,13 @@ pip install -r requirements.txt
 （例: `8801.csv`）。各スクリプトは引数で明示しない場合、このディレク
 トリを自動的に参照します。
 
+`tex-src/data/earn/perpbr/` には東証が公開する月次の PER/PBR Excel (`perpbrYYYYMM.xlsx`) を配置します。`xlsx_to_csv_perpbr.py` を実行すると、未処理分をまとめて `tex-src/data/earn/perpbr.csv` に追記します。
+
+```bash
+python tex-src/scripts/xlsx_to_csv_perpbr.py
+```
+
+
 ## Scripts
 
 ### `csv_to_tex.py`
