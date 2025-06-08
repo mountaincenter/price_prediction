@@ -1,0 +1,1945 @@
+Year/Month,Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4,No. of cos.,Average_PER(times),Average_PBR(times),"Average_Earnings
+Per Share(Yen)","Average_Net Assets
+Per Share(Yen)","Weighted average_
+PER(times)","Weighted average_
+PBR(times)","Weighted average_
+Earnings(￥)","Weighted average_
+Net Assets(￥)"
+2024/01,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/01,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/01,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/01,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/01,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/01,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/01,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/01,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/01,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/01,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/01,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/01,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/01,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/01,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/01,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/01,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/01,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/01,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/01,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/01,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/01,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/01,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/01,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/01,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/01,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/01,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/01,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/01,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/01,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/01,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/01,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/01,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/01,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/01,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/01,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/01,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/01,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/01,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/01,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/01,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/01,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/01,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/01,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/01,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/01,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/01,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/01,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/01,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/01,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/01,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/01,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/01,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/01,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/01,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/01,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/01,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/01,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/01,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/01,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/01,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/01,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/01,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/01,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/01,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/01,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/01,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/01,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/01,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/01,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/01,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/01,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/01,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/01,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/01,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/01,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/01,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/01,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/01,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/01,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/01,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/01,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/01,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/01,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/01,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/01,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/01,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/01,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/01,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/01,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/01,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/01,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/01,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/01,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/01,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/01,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/01,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/01,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/01,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/01,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/01,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/01,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/01,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/01,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/01,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/01,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/01,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/01,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/01,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/01,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/01,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/01,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/01,－,－,大型株,Large ,,,,,,,,,
+2024/01,－,－,中型株,Medium ,,,,,,,,,
+2024/01,－,－,小型株,Small ,,,,,,,,,
+2024/02,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/02,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/02,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/02,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/02,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/02,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/02,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/02,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/02,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/02,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/02,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/02,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/02,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/02,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/02,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/02,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/02,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/02,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/02,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/02,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/02,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/02,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/02,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/02,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/02,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/02,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/02,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/02,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/02,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/02,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/02,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/02,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/02,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/02,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/02,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/02,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/02,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/02,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/02,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/02,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/02,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/02,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/02,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/02,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/02,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/02,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/02,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/02,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/02,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/02,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/02,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/02,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/02,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/02,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/02,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/02,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/02,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/02,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/02,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/02,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/02,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/02,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/02,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/02,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/02,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/02,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/02,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/02,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/02,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/02,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/02,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/02,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/02,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/02,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/02,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/02,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/02,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/02,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/02,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/02,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/02,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/02,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/02,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/02,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/02,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/02,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/02,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/02,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/02,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/02,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/02,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/02,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/02,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/02,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/02,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/02,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/02,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/02,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/02,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/02,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/02,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/02,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/02,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/02,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/02,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/02,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/02,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/02,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/02,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/02,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/02,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/02,－,－,大型株,Large ,,,,,,,,,
+2024/02,－,－,中型株,Medium ,,,,,,,,,
+2024/02,－,－,小型株,Small ,,,,,,,,,
+2024/03,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/03,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/03,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/03,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/03,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/03,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/03,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/03,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/03,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/03,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/03,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/03,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/03,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/03,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/03,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/03,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/03,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/03,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/03,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/03,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/03,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/03,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/03,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/03,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/03,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/03,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/03,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/03,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/03,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/03,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/03,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/03,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/03,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/03,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/03,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/03,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/03,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/03,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/03,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/03,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/03,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/03,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/03,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/03,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/03,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/03,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/03,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/03,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/03,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/03,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/03,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/03,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/03,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/03,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/03,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/03,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/03,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/03,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/03,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/03,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/03,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/03,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/03,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/03,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/03,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/03,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/03,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/03,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/03,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/03,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/03,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/03,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/03,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/03,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/03,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/03,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/03,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/03,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/03,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/03,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/03,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/03,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/03,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/03,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/03,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/03,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/03,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/03,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/03,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/03,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/03,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/03,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/03,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/03,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/03,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/03,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/03,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/03,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/03,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/03,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/03,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/03,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/03,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/03,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/03,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/03,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/03,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/03,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/03,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/03,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/03,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/03,－,－,大型株,Large ,,,,,,,,,
+2024/03,－,－,中型株,Medium ,,,,,,,,,
+2024/03,－,－,小型株,Small ,,,,,,,,,
+2024/04,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/04,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/04,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/04,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/04,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/04,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/04,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/04,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/04,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/04,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/04,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/04,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/04,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/04,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/04,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/04,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/04,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/04,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/04,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/04,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/04,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/04,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/04,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/04,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/04,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/04,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/04,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/04,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/04,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/04,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/04,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/04,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/04,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/04,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/04,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/04,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/04,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/04,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/04,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/04,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/04,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/04,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/04,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/04,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/04,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/04,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/04,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/04,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/04,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/04,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/04,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/04,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/04,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/04,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/04,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/04,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/04,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/04,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/04,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/04,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/04,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/04,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/04,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/04,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/04,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/04,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/04,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/04,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/04,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/04,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/04,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/04,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/04,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/04,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/04,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/04,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/04,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/04,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/04,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/04,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/04,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/04,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/04,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/04,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/04,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/04,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/04,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/04,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/04,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/04,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/04,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/04,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/04,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/04,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/04,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/04,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/04,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/04,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/04,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/04,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/04,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/04,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/04,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/04,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/04,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/04,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/04,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/04,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/04,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/04,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/04,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/04,－,－,大型株,Large ,,,,,,,,,
+2024/04,－,－,中型株,Medium ,,,,,,,,,
+2024/04,－,－,小型株,Small ,,,,,,,,,
+2024/05,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/05,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/05,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/05,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/05,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/05,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/05,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/05,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/05,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/05,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/05,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/05,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/05,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/05,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/05,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/05,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/05,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/05,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/05,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/05,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/05,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/05,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/05,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/05,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/05,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/05,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/05,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/05,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/05,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/05,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/05,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/05,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/05,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/05,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/05,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/05,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/05,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/05,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/05,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/05,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/05,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/05,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/05,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/05,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/05,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/05,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/05,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/05,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/05,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/05,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/05,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/05,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/05,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/05,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/05,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/05,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/05,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/05,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/05,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/05,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/05,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/05,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/05,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/05,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/05,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/05,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/05,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/05,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/05,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/05,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/05,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/05,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/05,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/05,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/05,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/05,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/05,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/05,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/05,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/05,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/05,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/05,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/05,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/05,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/05,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/05,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/05,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/05,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/05,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/05,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/05,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/05,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/05,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/05,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/05,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/05,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/05,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/05,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/05,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/05,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/05,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/05,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/05,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/05,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/05,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/05,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/05,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/05,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/05,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/05,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/05,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/05,－,－,大型株,Large ,,,,,,,,,
+2024/05,－,－,中型株,Medium ,,,,,,,,,
+2024/05,－,－,小型株,Small ,,,,,,,,,
+2024/06,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/06,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/06,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/06,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/06,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/06,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/06,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/06,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/06,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/06,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/06,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/06,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/06,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/06,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/06,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/06,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/06,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/06,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/06,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/06,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/06,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/06,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/06,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/06,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/06,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/06,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/06,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/06,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/06,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/06,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/06,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/06,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/06,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/06,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/06,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/06,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/06,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/06,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/06,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/06,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/06,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/06,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/06,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/06,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/06,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/06,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/06,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/06,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/06,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/06,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/06,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/06,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/06,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/06,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/06,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/06,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/06,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/06,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/06,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/06,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/06,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/06,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/06,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/06,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/06,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/06,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/06,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/06,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/06,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/06,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/06,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/06,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/06,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/06,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/06,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/06,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/06,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/06,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/06,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/06,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/06,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/06,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/06,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/06,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/06,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/06,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/06,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/06,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/06,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/06,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/06,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/06,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/06,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/06,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/06,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/06,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/06,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/06,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/06,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/06,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/06,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/06,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/06,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/06,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/06,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/06,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/06,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/06,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/06,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/06,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/06,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/06,－,－,大型株,Large ,,,,,,,,,
+2024/06,－,－,中型株,Medium ,,,,,,,,,
+2024/06,－,－,小型株,Small ,,,,,,,,,
+2024/07,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/07,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/07,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/07,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/07,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/07,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/07,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/07,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/07,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/07,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/07,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/07,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/07,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/07,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/07,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/07,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/07,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/07,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/07,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/07,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/07,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/07,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/07,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/07,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/07,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/07,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/07,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/07,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/07,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/07,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/07,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/07,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/07,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/07,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/07,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/07,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/07,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/07,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/07,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/07,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/07,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/07,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/07,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/07,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/07,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/07,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/07,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/07,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/07,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/07,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/07,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/07,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/07,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/07,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/07,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/07,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/07,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/07,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/07,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/07,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/07,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/07,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/07,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/07,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/07,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/07,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/07,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/07,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/07,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/07,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/07,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/07,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/07,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/07,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/07,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/07,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/07,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/07,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/07,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/07,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/07,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/07,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/07,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/07,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/07,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/07,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/07,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/07,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/07,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/07,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/07,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/07,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/07,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/07,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/07,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/07,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/07,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/07,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/07,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/07,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/07,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/07,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/07,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/07,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/07,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/07,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/07,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/07,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/07,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/07,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/07,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/07,－,－,大型株,Large ,,,,,,,,,
+2024/07,－,－,中型株,Medium ,,,,,,,,,
+2024/07,－,－,小型株,Small ,,,,,,,,,
+2024/08,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/08,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/08,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/08,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/08,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/08,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/08,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/08,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/08,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/08,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/08,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/08,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/08,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/08,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/08,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/08,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/08,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/08,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/08,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/08,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/08,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/08,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/08,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/08,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/08,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/08,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/08,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/08,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/08,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/08,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/08,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/08,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/08,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/08,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/08,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/08,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/08,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/08,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/08,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/08,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/08,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/08,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/08,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/08,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/08,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/08,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/08,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/08,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/08,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/08,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/08,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/08,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/08,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/08,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/08,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/08,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/08,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/08,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/08,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/08,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/08,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/08,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/08,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/08,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/08,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/08,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/08,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/08,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/08,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/08,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/08,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/08,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/08,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/08,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/08,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/08,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/08,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/08,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/08,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/08,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/08,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/08,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/08,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/08,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/08,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/08,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/08,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/08,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/08,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/08,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/08,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/08,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/08,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/08,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/08,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/08,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/08,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/08,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/08,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/08,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/08,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/08,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/08,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/08,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/08,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/08,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/08,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/08,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/08,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/08,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/08,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/08,－,－,大型株,Large ,,,,,,,,,
+2024/08,－,－,中型株,Medium ,,,,,,,,,
+2024/08,－,－,小型株,Small ,,,,,,,,,
+2024/09,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/09,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/09,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/09,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/09,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/09,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/09,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/09,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/09,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/09,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/09,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/09,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/09,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/09,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/09,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/09,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/09,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/09,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/09,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/09,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/09,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/09,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/09,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/09,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/09,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/09,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/09,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/09,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/09,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/09,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/09,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/09,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/09,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/09,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/09,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/09,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/09,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/09,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/09,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/09,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/09,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/09,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/09,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/09,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/09,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/09,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/09,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/09,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/09,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/09,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/09,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/09,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/09,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/09,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/09,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/09,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/09,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/09,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/09,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/09,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/09,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/09,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/09,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/09,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/09,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/09,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/09,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/09,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/09,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/09,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/09,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/09,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/09,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/09,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/09,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/09,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/09,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/09,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/09,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/09,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/09,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/09,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/09,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/09,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/09,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/09,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/09,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/09,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/09,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/09,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/09,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/09,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/09,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/09,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/09,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/09,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/09,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/09,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/09,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/09,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/09,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/09,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/09,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/09,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/09,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/09,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/09,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/09,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/09,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/09,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/09,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/09,－,－,大型株,Large ,,,,,,,,,
+2024/09,－,－,中型株,Medium ,,,,,,,,,
+2024/09,－,－,小型株,Small ,,,,,,,,,
+2024/10,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/10,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/10,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/10,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/10,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/10,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/10,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/10,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/10,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/10,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/10,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/10,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/10,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/10,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/10,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/10,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/10,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/10,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/10,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/10,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/10,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/10,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/10,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/10,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/10,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/10,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/10,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/10,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/10,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/10,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/10,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/10,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/10,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/10,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/10,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/10,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/10,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/10,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/10,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/10,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/10,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/10,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/10,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/10,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/10,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/10,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/10,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/10,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/10,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/10,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/10,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/10,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/10,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/10,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/10,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/10,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/10,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/10,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/10,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/10,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/10,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/10,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/10,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/10,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/10,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/10,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/10,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/10,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/10,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/10,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/10,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/10,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/10,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/10,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/10,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/10,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/10,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/10,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/10,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/10,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/10,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/10,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/10,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/10,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/10,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/10,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/10,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/10,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/10,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/10,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/10,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/10,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/10,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/10,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/10,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/10,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/10,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/10,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/10,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/10,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/10,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/10,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/10,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/10,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/10,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/10,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/10,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/10,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/10,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/10,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/10,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/10,－,－,大型株,Large ,,,,,,,,,
+2024/10,－,－,中型株,Medium ,,,,,,,,,
+2024/10,－,－,小型株,Small ,,,,,,,,,
+2024/11,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/11,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/11,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/11,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/11,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/11,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/11,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/11,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/11,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/11,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/11,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/11,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/11,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/11,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/11,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/11,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/11,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/11,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/11,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/11,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/11,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/11,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/11,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/11,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/11,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/11,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/11,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/11,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/11,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/11,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/11,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/11,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/11,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/11,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/11,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/11,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/11,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/11,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/11,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/11,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/11,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/11,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/11,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/11,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/11,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/11,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/11,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/11,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/11,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/11,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/11,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/11,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/11,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/11,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/11,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/11,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/11,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/11,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/11,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/11,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/11,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/11,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/11,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/11,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/11,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/11,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/11,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/11,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/11,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/11,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/11,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/11,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/11,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/11,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/11,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/11,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/11,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/11,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/11,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/11,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/11,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/11,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/11,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/11,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/11,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/11,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/11,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/11,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/11,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/11,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/11,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/11,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/11,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/11,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/11,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/11,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/11,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/11,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/11,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/11,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/11,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/11,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/11,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/11,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/11,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/11,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/11,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/11,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/11,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/11,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/11,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/11,－,－,大型株,Large ,,,,,,,,,
+2024/11,－,－,中型株,Medium ,,,,,,,,,
+2024/11,－,－,小型株,Small ,,,,,,,,,
+2024/12,プライム市場,Prime,総合,Composite,,,,,,,,,
+2024/12,プライム市場,Prime,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/12,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/12,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/12,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/12,プライム市場,Prime,2 鉱業,2 Mining,,,,,,,,,
+2024/12,プライム市場,Prime,3 建設業,3 Construction,,,,,,,,,
+2024/12,プライム市場,Prime,4 食料品,4 Foods,,,,,,,,,
+2024/12,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/12,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/12,プライム市場,Prime,7 化学,7 Chemicals,,,,,,,,,
+2024/12,プライム市場,Prime,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/12,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/12,プライム市場,Prime,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/12,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/12,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/12,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/12,プライム市場,Prime,14 金属製品,14 Metal Products,,,,,,,,,
+2024/12,プライム市場,Prime,15 機械,15 Machinery,,,,,,,,,
+2024/12,プライム市場,Prime,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/12,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/12,プライム市場,Prime,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/12,プライム市場,Prime,19 その他製品,19 Other Products,,,,,,,,,
+2024/12,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/12,プライム市場,Prime,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/12,プライム市場,Prime,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/12,プライム市場,Prime,23 空運業,23 Air Transportation,,,,,,,,,
+2024/12,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/12,プライム市場,Prime,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/12,プライム市場,Prime,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/12,プライム市場,Prime,27 小売業,27 Retail Trade,,,,,,,,,
+2024/12,プライム市場,Prime,28 銀行業,28 Banks,,,,,,,,,
+2024/12,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/12,プライム市場,Prime,30 保険業,30 Insurance,,,,,,,,,
+2024/12,プライム市場,Prime,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/12,プライム市場,Prime,32 不動産業,32 Real Estate,,,,,,,,,
+2024/12,プライム市場,Prime,33 サービス業,33 Services,,,,,,,,,
+2024/12,スタンダード市場,Standard,総合,Composite,,,,,,,,,
+2024/12,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/12,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/12,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/12,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/12,スタンダード市場,Standard,2 鉱業,2 Mining,,,,,,,,,
+2024/12,スタンダード市場,Standard,3 建設業,3 Construction,,,,,,,,,
+2024/12,スタンダード市場,Standard,4 食料品,4 Foods,,,,,,,,,
+2024/12,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/12,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/12,スタンダード市場,Standard,7 化学,7 Chemicals,,,,,,,,,
+2024/12,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/12,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/12,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/12,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/12,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/12,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/12,スタンダード市場,Standard,14 金属製品,14 Metal Products,,,,,,,,,
+2024/12,スタンダード市場,Standard,15 機械,15 Machinery,,,,,,,,,
+2024/12,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/12,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/12,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/12,スタンダード市場,Standard,19 その他製品,19 Other Products,,,,,,,,,
+2024/12,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/12,スタンダード市場,Standard,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/12,スタンダード市場,Standard,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/12,スタンダード市場,Standard,23 空運業,23 Air Transportation,,,,,,,,,
+2024/12,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/12,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/12,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/12,スタンダード市場,Standard,27 小売業,27 Retail Trade,,,,,,,,,
+2024/12,スタンダード市場,Standard,28 銀行業,28 Banks,,,,,,,,,
+2024/12,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/12,スタンダード市場,Standard,30 保険業,30 Insurance,,,,,,,,,
+2024/12,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/12,スタンダード市場,Standard,32 不動産業,32 Real Estate,,,,,,,,,
+2024/12,スタンダード市場,Standard,33 サービス業,33 Services,,,,,,,,,
+2024/12,グロース市場,Growth,総合,Composite,,,,,,,,,
+2024/12,グロース市場,Growth,総合（金融業を除く）,Non-Financial,,,,,,,,,
+2024/12,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,,,,,,,,,
+2024/12,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,,,,,,,,,
+2024/12,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",,,,,,,,,
+2024/12,グロース市場,Growth,2 鉱業,2 Mining,,,,,,,,,
+2024/12,グロース市場,Growth,3 建設業,3 Construction,,,,,,,,,
+2024/12,グロース市場,Growth,4 食料品,4 Foods,,,,,,,,,
+2024/12,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,,,,,,,,,
+2024/12,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,,,,,,,,,
+2024/12,グロース市場,Growth,7 化学,7 Chemicals,,,,,,,,,
+2024/12,グロース市場,Growth,8 医薬品,8 Pharmaceutical,,,,,,,,,
+2024/12,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,,,,,,,,,
+2024/12,グロース市場,Growth,10 ゴム製品,10 Rubber Products,,,,,,,,,
+2024/12,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,,,,,,,,,
+2024/12,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,,,,,,,,,
+2024/12,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,,,,,,,,,
+2024/12,グロース市場,Growth,14 金属製品,14 Metal Products,,,,,,,,,
+2024/12,グロース市場,Growth,15 機械,15 Machinery,,,,,,,,,
+2024/12,グロース市場,Growth,16 電気機器,16 Electric Appliances,,,,,,,,,
+2024/12,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,,,,,,,,,
+2024/12,グロース市場,Growth,18 精密機器,18 Precision Instruments,,,,,,,,,
+2024/12,グロース市場,Growth,19 その他製品,19 Other Products,,,,,,,,,
+2024/12,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,,,,,,,,,
+2024/12,グロース市場,Growth,21 陸運業,21 Land Transportation,,,,,,,,,
+2024/12,グロース市場,Growth,22 海運業,22 Marine Transportation,,,,,,,,,
+2024/12,グロース市場,Growth,23 空運業,23 Air Transportation,,,,,,,,,
+2024/12,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,,,,,,,,,
+2024/12,グロース市場,Growth,25 情報・通信業,25 Information & Communication,,,,,,,,,
+2024/12,グロース市場,Growth,26 卸売業,26 Wholesale Trade,,,,,,,,,
+2024/12,グロース市場,Growth,27 小売業,27 Retail Trade,,,,,,,,,
+2024/12,グロース市場,Growth,28 銀行業,28 Banks,,,,,,,,,
+2024/12,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,,,,,,,,,
+2024/12,グロース市場,Growth,30 保険業,30 Insurance,,,,,,,,,
+2024/12,グロース市場,Growth,31 その他金融業,31 Other Financing Business,,,,,,,,,
+2024/12,グロース市場,Growth,32 不動産業,32 Real Estate,,,,,,,,,
+2024/12,グロース市場,Growth,33 サービス業,33 Services,,,,,,,,,
+2024/12,－,－,大型株,Large ,,,,,,,,,
+2024/12,－,－,中型株,Medium ,,,,,,,,,
+2024/12,－,－,小型株,Small ,,,,,,,,,
+2025/01,プライム市場,Prime,総合,Composite,1632,16.9,1.2,161.46,2233.34,17.2,1.4,56149153351496,696945634013204
+2025/01,プライム市場,Prime,総合（金融業を除く）,Non-Financial,1517,17.3,1.3,160.15,2109.81,17.6,1.5,48030343504496,570091017710204
+2025/01,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,709,18.4,1.2,165.31,2564.49,18.2,1.5,27515106053306,329032221365433
+2025/01,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,808,16.2,1.5,155.62,1710.83,16.8,1.4,20515237451190,241058796344771
+2025/01,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,10,0.9,244.67,2656.87,10.4,0.9,71684000000,788521000000
+2025/01,プライム市場,Prime,2 鉱業,2 Mining,4,9.8,0.6,281.8,4475.93,6.4,0.5,438258000000,5200407000000
+2025/01,プライム市場,Prime,3 建設業,3 Construction,74,14.6,1.1,170.36,2256.35,14.6,1.2,1470386000000,18176707978000
+2025/01,プライム市場,Prime,4 食料品,4 Foods,67,18.8,1.2,144.87,2255.35,18.8,1.6,1697915000000,20416776358217
+2025/01,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,20,22.7,1,123.38,2769.09,35.7,1,109311909091,3983488000000
+2025/01,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,10,9.5,0.5,172.08,3068.24,11.3,0.5,142908000000,2933226000000
+2025/01,プライム市場,Prime,7 化学,7 Chemicals,119,19.4,1,125.78,2444.31,22.2,1.3,2163546000000,36098771000000
+2025/01,プライム市場,Prime,8 医薬品,8 Pharmaceutical,34,25.3,1.3,109.64,2085.55,39,2,1113598000000,21587181000000
+2025/01,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,6,7.5,0.8,255.71,2400.18,7.4,0.7,620601000000,6460661000000
+2025/01,プライム市場,Prime,10 ゴム製品,10 Rubber Products,11,10.8,0.9,279.93,3211.98,10.9,1,563330000000,5909134000000
+2025/01,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,23,16.8,1.3,264.33,3373.46,15,1,417771000000,6538880093647
+2025/01,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,22,8.7,0.7,333.51,4353.61,6.7,0.6,1127737000000,12296056000000
+2025/01,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,20,88,0.9,35.82,3445.28,19.4,1,400905000000,7840584000000
+2025/01,プライム市場,Prime,14 金属製品,14 Metal Products,28,17.5,0.7,105.25,2673.05,18.2,0.9,255128000000,4978567000000
+2025/01,プライム市場,Prime,15 機械,15 Machinery,113,16.6,1.4,216.05,2519.53,19.4,1.7,2559798000000,28785746000000
+2025/01,プライム市場,Prime,16 電気機器,16 Electric Appliances,130,24.7,1.6,151.35,2356.64,27.4,2.3,5630519644215,68366302815509
+2025/01,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,41,14.5,0.9,188.05,3207.46,9.6,1,8867944500000,87080861098060
+2025/01,プライム市場,Prime,18 精密機器,18 Precision Instruments,28,21.1,1.8,153.37,1830.99,25.2,3.1,789792000000,6318270000000
+2025/01,プライム市場,Prime,19 その他製品,19 Other Products,37,15.1,1.3,184.53,2123.65,23.9,2.7,1054301000000,9437717000000
+2025/01,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,22,6.5,0.7,236.88,2237.83,4.5,0.6,2257724334000,16650437874171
+2025/01,プライム市場,Prime,21 陸運業,21 Land Transportation,38,13.9,1,198.55,2709.8,12.9,1.1,1700550000000,20250903000000
+2025/01,プライム市場,Prime,22 海運業,22 Marine Transportation,5,7.5,0.8,460.88,4447.66,9,0.8,632761000000,6969357000000
+2025/01,プライム市場,Prime,23 空運業,23 Air Transportation,2,10.1,1.3,271.46,2171.47,10,1.3,252631000000,2000972000000
+2025/01,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,12,12.9,1,213.17,2848.15,14.8,1,106890000000,1634575000000
+2025/01,プライム市場,Prime,25 情報・通信業,25 Information & Communication,179,24.2,2.3,109.1,1140.19,25,1.7,3803666100000,54616956000000
+2025/01,プライム市場,Prime,26 卸売業,26 Wholesale Trade,122,12,1,215.71,2486.86,11,1.2,5140609000000,47309905000000
+2025/01,プライム市場,Prime,27 小売業,27 Retail Trade,135,20.9,1.9,144.37,1609.9,27.8,2.4,2040174948710,23340862693420
+2025/01,プライム市場,Prime,28 銀行業,28 Banks,68,12.8,0.4,171.98,4929.79,16.1,0.9,4723151847000,86472003303000
+2025/01,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,19,14.4,1.1,97.57,1297.84,16,1,498351000000,8392935000000
+2025/01,プライム市場,Prime,30 保険業,30 Insurance,8,13.3,1,244.07,3096.54,13.4,1.3,1994408000000,21295787000000
+2025/01,プライム市場,Prime,31 その他金融業,31 Other Financing Business,20,10.6,0.9,252.37,2978.7,12.3,1,902899000000,10693891000000
+2025/01,プライム市場,Prime,32 不動産業,32 Real Estate,50,13.5,1.6,191.24,1628.42,13.9,1.2,1339717000000,15068377000000
+2025/01,プライム市場,Prime,33 サービス業,33 Services,159,17.4,1.9,109.96,1020.9,40.6,1.8,1260186068480,29050814799180
+2025/01,スタンダード市場,Standard,総合,Composite,1572,12.9,0.8,109.62,1770,16.2,1.1,1737942822271,26433270849322
+2025/01,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,1532,12.9,0.8,110.98,1776.05,16.3,1.1,1618401432237,24670587689322
+2025/01,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,635,11.9,0.7,131,2307.34,13.8,0.8,750171245714,12867193891697
+2025/01,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,897,13.7,1,96.81,1399.94,18.4,1.4,868230186523,11803393797625
+2025/01,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,19.5,1.1,98.37,1678.36,12.8,0.9,4229000000,62558000000
+2025/01,スタンダード市場,Standard,2 鉱業,2 Mining,1,7.2,2.2,111.8,364.1,7.2,2.2,7515720000,24475720000
+2025/01,スタンダード市場,Standard,3 建設業,3 Construction,67,12.2,0.7,150.06,2552.32,20.8,0.9,55012000000,1249624000000
+2025/01,スタンダード市場,Standard,4 食料品,4 Foods,53,16.7,1.2,127.15,1806.7,16.4,1.2,70287960000,963732880000
+2025/01,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,28,13.1,0.5,85.96,2127.89,15.5,0.6,19315000000,468714000000
+2025/01,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,14,8,0.5,150.24,2326.32,9.8,0.5,12269000000,220644000000
+2025/01,スタンダード市場,Standard,7 化学,7 Chemicals,81,16.5,0.8,121.21,2565.73,15.3,0.8,89868000000,1667313011697
+2025/01,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,8,13.8,0.8,75.2,1338.21,11.3,1.5,11113000000,83030000000
+2025/01,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,4,13.7,0.7,82.09,1513.66,17.3,0.8,3853000000,79511000000
+2025/01,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,7,8.4,0.6,182.27,2542.57,9.9,0.7,11617000000,176491000000
+2025/01,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,29,6.9,0.6,169.94,1805.46,8.6,0.8,53136000000,594794000000
+2025/01,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,20,8.8,0.5,181.74,3265.47,10,0.5,27677000000,546406000000
+2025/01,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,10,15,0.7,76.54,1672.29,13.6,0.7,4839000000,90483000000
+2025/01,スタンダード市場,Standard,14 金属製品,14 Metal Products,58,11.2,0.5,154.18,3333.59,18.6,0.5,30833000000,1055420000000
+2025/01,スタンダード市場,Standard,15 機械,15 Machinery,102,11.1,0.7,150.64,2322.87,16.8,0.8,101278000000,2039265000000
+2025/01,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,99,13.3,0.8,118.37,2048.75,14.8,1,133536285714,2062698000000
+2025/01,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,44,7.8,0.5,188.89,2688.33,9.6,0.6,111705000000,1733009000000
+2025/01,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,16,15.7,1.1,57.5,833.79,12.6,1.4,31967000000,290065000000
+2025/01,スタンダード市場,Standard,19 その他製品,19 Other Products,62,12.3,0.5,85.87,2189.47,16,0.7,36877000000,795618000000
+2025/01,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,4,－,0.3,-76.9,3506.9,488.7,0.4,132000000,161364000000
+2025/01,スタンダード市場,Standard,21 陸運業,21 Land Transportation,20,8.4,0.6,241.52,3677.11,10.3,0.6,23690000000,381599000000
+2025/01,スタンダード市場,Standard,22 海運業,22 Marine Transportation,6,19.3,0.6,75.84,2471.96,11.7,0.6,8353000000,175443000000
+2025/01,スタンダード市場,Standard,23 空運業,23 Air Transportation,2,10,－,177.75,-224.16,10.7,1.9,2814000000,15491000000
+2025/01,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,22,12.5,0.5,119.61,2885.69,19.4,0.7,12397000000,362997000000
+2025/01,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,176,17.4,1.6,70.48,751.27,26.8,2.9,165232333333,1549968000000
+2025/01,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,164,10.2,0.7,156.55,2208.47,11.6,0.9,209731000000,2771186000000
+2025/01,スタンダード市場,Standard,27 小売業,27 Retail Trade,171,20.9,1.3,56.57,881.27,26.6,1.7,145284869800,2336709513072
+2025/01,スタンダード市場,Standard,28 銀行業,28 Banks,11,62.7,0.4,20.55,3441.95,73.8,1.6,11087390034,523286160000
+2025/01,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,15,9.1,0.9,96.28,1025.29,9.2,1,27872000000,260622000000
+2025/01,スタンダード市場,Standard,30 保険業,30 Insurance,－,－,－,－,－,－,－,－,－
+2025/01,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,14,14.6,1.1,44.61,592.23,10.3,0.8,80582000000,978775000000
+2025/01,スタンダード市場,Standard,32 不動産業,32 Real Estate,65,11.9,0.9,94.48,1238.8,11.1,1,113713000000,1245392846500
+2025/01,スタンダード市場,Standard,33 サービス業,33 Services,193,15.1,1.2,73.7,949.4,16.8,1.4,120126263390,1466585718053
+2025/01,グロース市場,Growth,総合,Composite,604,43.8,3,26.02,383.58,127.2,3.4,61105689000,2282703072622
+2025/01,グロース市場,Growth,総合（金融業を除く）,Non-Financial,592,46.3,3,24.38,374.47,176,3.5,41213689000,2059553072622
+2025/01,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,77,－,3,-11.51,270.83,－,3,-42802751000,391744561000
+2025/01,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,515,39.5,3,29.75,389.96,72.5,3.7,84016440000,1667808511622
+2025/01,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,2 鉱業,2 Mining,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,3 建設業,3 Construction,7,18.8,1.9,64.92,636.48,19.8,2.2,2734000000,24263000000
+2025/01,グロース市場,Growth,4 食料品,4 Foods,4,－,4.6,-84.27,214.58,－,7.8,-2430000000,8179000000
+2025/01,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,7 化学,7 Chemicals,6,－,3.1,-3.22,384.4,－,3.3,-264883000,21449830000
+2025/01,グロース市場,Growth,8 医薬品,8 Pharmaceutical,38,－,4,-29.51,144.42,－,3.6,-40459000000,168913000000
+2025/01,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,10 ゴム製品,10 Rubber Products,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,2,14.1,1.7,128.14,1080.19,10.2,1.2,561000000,4567000000
+2025/01,グロース市場,Growth,14 金属製品,14 Metal Products,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,15 機械,15 Machinery,4,－,3.4,-3.8,241.08,412.8,3.1,124000000,16599000000
+2025/01,グロース市場,Growth,16 電気機器,16 Electric Appliances,6,－,2.1,-50.23,364.82,－,2.1,-3310000000,21976000000
+2025/01,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,3,12.4,1.8,111.81,780.98,14,2.1,2169000000,14435000000
+2025/01,グロース市場,Growth,18 精密機器,18 Precision Instruments,7,－,13.6,-18.83,71.25,－,2.7,-4345868000,53144731000
+2025/01,グロース市場,Growth,19 その他製品,19 Other Products,7,15.6,1.7,64,577.96,26.2,1.6,5153000000,82481000000
+2025/01,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,2,21.4,3.3,70.86,454.38,23.2,3.2,3074000000,22460000000
+2025/01,グロース市場,Growth,21 陸運業,21 Land Transportation,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,22 海運業,22 Marine Transportation,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,23 空運業,23 Air Transportation,1,12.7,1.4,49.68,461.75,12.7,1.4,2997000000,27857000000
+2025/01,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,1,71.9,1.2,4.75,293.36,71.9,1.2,49000000,3024000000
+2025/01,グロース市場,Growth,25 情報・通信業,25 Information & Communication,248,72.2,3.6,15.92,318.85,－,4.6,-728027000,614845630798
+2025/01,グロース市場,Growth,26 卸売業,26 Wholesale Trade,10,－,3.3,-41.86,272.68,－,4.4,-1488423000,30732068675
+2025/01,グロース市場,Growth,27 小売業,27 Retail Trade,32,29.3,3,39.66,393.19,35.9,3.1,15653784000,183913294534
+2025/01,グロース市場,Growth,28 銀行業,28 Banks,－,－,－,－,－,－,－,－,－
+2025/01,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,3,13.6,2.2,221.53,1349.91,24.8,3.9,11396000000,73136000000
+2025/01,グロース市場,Growth,30 保険業,30 Insurance,4,21.4,1.4,61.77,959.67,24.9,1.4,7982000000,138466000000
+2025/01,グロース市場,Growth,31 その他金融業,31 Other Financing Business,5,18.3,3.2,74.01,422.42,65.8,2.9,514000000,11548000000
+2025/01,グロース市場,Growth,32 不動産業,32 Real Estate,22,16.1,2.3,109.38,777.1,16.2,2.2,21791000000,160715993615
+2025/01,グロース市場,Growth,33 サービス業,33 Services,192,29.8,2.7,38.88,433.5,50.9,3.4,39934106000,599997524000
+2025/01,－,－,大型株,Large ,100,23.7,2.2,280.41,2978.61,17.5,1.5,35176326100000,399693942000000
+2025/01,－,－,中型株,Medium ,400,17.9,1.4,190.17,2473.19,16.7,1.2,15835978292710,214869935220994
+2025/01,－,－,小型株,Small ,1192,15.3,1,138.67,2070.49,16.8,1.1,5448651638786,86588265810736
+2025/02,プライム市場,Prime,総合,Composite,1629,16.3,1.2,161.32,2231.39,16.6,1.3,56073479351496,696775904013204
+2025/02,プライム市場,Prime,総合（金融業を除く）,Non-Financial,1513,16.6,1.3,160.16,2108.87,16.9,1.4,47956969504496,569927075710204
+2025/02,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,708,17.6,1.1,165.52,2561.03,17.4,1.5,27519058053306,328939885365433
+2025/02,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,805,15.8,1.4,155.44,1711.18,16.2,1.4,20437911451190,240987190344771
+2025/02,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,9.9,0.9,244.67,2656.87,10.4,0.9,71684000000,788521000000
+2025/02,プライム市場,Prime,2 鉱業,2 Mining,4,11.1,0.7,271.91,4491.78,7.4,0.5,388435000000,5280258000000
+2025/02,プライム市場,Prime,3 建設業,3 Construction,74,14.3,1.1,170.29,2256.56,14.4,1.2,1470386000000,18176707978000
+2025/02,プライム市場,Prime,4 食料品,4 Foods,67,18.2,1.2,145.74,2257.49,18.2,1.5,1706160000000,20437111358217
+2025/02,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,20,21.8,1,121.4,2652.47,33.1,0.9,110638909091,3993083000000
+2025/02,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,10,9.2,0.5,172.08,3068.24,10.9,0.5,142908000000,2933226000000
+2025/02,プライム市場,Prime,7 化学,7 Chemicals,119,18.9,1,126.1,2445.42,21.4,1.3,2164320000000,36101281000000
+2025/02,プライム市場,Prime,8 医薬品,8 Pharmaceutical,34,24.1,1.3,109.69,2085.96,37.8,1.9,1113598000000,21587181000000
+2025/02,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,6,7.2,0.8,255.71,2400.18,7.3,0.7,620601000000,6460661000000
+2025/02,プライム市場,Prime,10 ゴム製品,10 Rubber Products,11,10.5,0.9,279.93,3211.98,11,1,563330000000,5909134000000
+2025/02,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,23,15.7,1.2,263.05,3397.38,14.2,0.9,417771000000,6538880093647
+2025/02,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,22,9,0.7,333.51,4353.61,6.9,0.6,1127737000000,12296056000000
+2025/02,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,20,81.7,0.8,35.82,3445.28,18,0.9,400905000000,7840584000000
+2025/02,プライム市場,Prime,14 金属製品,14 Metal Products,28,17.3,0.7,105.25,2673.05,17.7,0.9,255128000000,4978567000000
+2025/02,プライム市場,Prime,15 機械,15 Machinery,113,15.7,1.3,214.86,2516.44,18,1.6,2555812000000,28765662000000
+2025/02,プライム市場,Prime,16 電気機器,16 Electric Appliances,129,22.8,1.5,153.29,2351.49,26.4,2.2,5633809644215,68309921815509
+2025/02,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,41,14.1,0.8,187.6,3203.05,8.9,0.9,8862246500000,87032550098060
+2025/02,プライム市場,Prime,18 精密機器,18 Precision Instruments,28,19.2,1.6,153.64,1831.99,22,2.8,789792000000,6318270000000
+2025/02,プライム市場,Prime,19 その他製品,19 Other Products,37,14.9,1.3,184.53,2123.65,25.5,2.8,1054301000000,9437717000000
+2025/02,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,22,6.6,0.7,236.88,2237.83,4.6,0.6,2257724334000,16650437874171
+2025/02,プライム市場,Prime,21 陸運業,21 Land Transportation,38,14,1,198.55,2709.8,13,1.1,1700550000000,20250903000000
+2025/02,プライム市場,Prime,22 海運業,22 Marine Transportation,5,7.8,0.8,460.84,4447.32,9.7,0.9,632761000000,6969357000000
+2025/02,プライム市場,Prime,23 空運業,23 Air Transportation,2,10,1.3,271.46,2171.47,9.9,1.3,252631000000,2000972000000
+2025/02,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,12,12.7,0.9,213.17,2848.15,14.5,0.9,106890000000,1634575000000
+2025/02,プライム市場,Prime,25 情報・通信業,25 Information & Communication,177,23.9,2.3,108.7,1141.38,24.4,1.7,3782918100000,54472753000000
+2025/02,プライム市場,Prime,26 卸売業,26 Wholesale Trade,122,11.7,1,216.01,2488.95,10.6,1.2,5138375000000,47310282000000
+2025/02,プライム市場,Prime,27 小売業,27 Retail Trade,135,20,1.8,142.69,1601.05,25.8,2.2,2035774948710,23354058693420
+2025/02,プライム市場,Prime,28 銀行業,28 Banks,68,12.6,0.4,172.03,4931.21,15.6,0.9,4723151847000,86472003303000
+2025/02,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,19,14.3,1.1,97.61,1298,15.2,0.9,498351000000,8392935000000
+2025/02,プライム市場,Prime,30 保険業,30 Insurance,9,14.5,1.1,205.8,2724.41,13.6,1.3,1992108000000,21289999000000
+2025/02,プライム市場,Prime,31 その他金融業,31 Other Financing Business,20,10.3,0.9,253.01,2986.1,11.6,1,902899000000,10693891000000
+2025/02,プライム市場,Prime,32 不動産業,32 Real Estate,50,13,1.5,191.36,1626.39,13.4,1.2,1341637000000,15079192000000
+2025/02,プライム市場,Prime,33 サービス業,33 Services,158,17,1.8,110.05,1015.89,36.9,1.6,1258145068480,29019172799180
+2025/02,スタンダード市場,Standard,総合,Composite,1570,13,0.8,109.57,1769.94,16.2,1.1,1725700822271,26394014849322
+2025/02,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,1530,12.9,0.8,110.91,1776,16.3,1.1,1606159432237,24631331689322
+2025/02,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,634,12.1,0.7,130.45,2308.41,13.9,0.8,744334245714,12862301891697
+2025/02,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,896,13.8,1,97.09,1399.27,18.3,1.3,861825186523,11769029797625
+2025/02,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,19.6,1.1,98.37,1678.36,13,0.9,4229000000,62558000000
+2025/02,スタンダード市場,Standard,2 鉱業,2 Mining,1,6.6,2,111.8,364.1,6.6,2,7515720000,24475720000
+2025/02,スタンダード市場,Standard,3 建設業,3 Construction,66,12.1,0.7,153.78,2553.81,21.2,0.9,55590000000,1248857000000
+2025/02,スタンダード市場,Standard,4 食料品,4 Foods,53,16.6,1.2,127.3,1807.12,16.3,1.2,70353960000,963925880000
+2025/02,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,28,13.6,0.6,85.96,2127.89,16.4,0.7,19315000000,468714000000
+2025/02,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,14,8.2,0.5,150.24,2326.32,10,0.6,12269000000,220644000000
+2025/02,スタンダード市場,Standard,7 化学,7 Chemicals,81,16,0.8,121.73,2569.96,15,0.8,90198000000,1667147011697
+2025/02,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,8,13.6,0.8,75.19,1338.17,10.6,1.4,11113000000,83030000000
+2025/02,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,4,12.9,0.7,82.09,1513.66,16.4,0.8,3853000000,79511000000
+2025/02,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,7,10.4,0.7,182.27,2542.57,14.2,0.9,11617000000,176491000000
+2025/02,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,29,7.2,0.7,171.49,1804.89,9,0.8,53385000000,594707000000
+2025/02,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,19,8.7,0.5,188.78,3328.1,10.7,0.5,27644000000,543685000000
+2025/02,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,10,17.5,0.8,76.54,1672.29,16.4,0.9,4839000000,90483000000
+2025/02,スタンダード市場,Standard,14 金属製品,14 Metal Products,58,11.4,0.5,152.98,3325.81,19.1,0.5,30185000000,1055523000000
+2025/02,スタンダード市場,Standard,15 機械,15 Machinery,102,10.9,0.7,155.35,2330.29,16.4,0.8,103417000000,2041166000000
+2025/02,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,99,13.4,0.8,118.74,2048.05,14.4,0.9,134047285714,2063402000000
+2025/02,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,44,7.7,0.5,188.89,2688.33,9.3,0.6,111705000000,1733009000000
+2025/02,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,16,15.3,1.1,57.5,833.79,11.4,1.3,31967000000,290065000000
+2025/02,スタンダード市場,Standard,19 その他製品,19 Other Products,62,15.1,0.5,70.21,2187.3,21.5,0.8,28426000000,790799000000
+2025/02,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,4,－,0.4,-76.9,3506.9,500.9,0.4,132000000,161364000000
+2025/02,スタンダード市場,Standard,21 陸運業,21 Land Transportation,20,8.5,0.6,241.52,3677.11,10.4,0.6,23690000000,381599000000
+2025/02,スタンダード市場,Standard,22 海運業,22 Marine Transportation,6,19.7,0.6,75.84,2471.96,11.3,0.5,8353000000,175443000000
+2025/02,スタンダード市場,Standard,23 空運業,23 Air Transportation,2,10.3,－,177.75,-224.16,10.6,1.9,2814000000,15491000000
+2025/02,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,22,11.4,0.5,129.82,2897.95,14,0.6,16880000000,367244000000
+2025/02,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,177,17.5,1.6,70.69,753.25,27,2.9,165477333333,1552457000000
+2025/02,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,164,10.4,0.7,156.76,2208.45,11.5,0.9,210735000000,2770821000000
+2025/02,スタンダード市場,Standard,27 小売業,27 Retail Trade,171,20.5,1.3,56.15,876.37,25.6,1.6,145307869800,2336977513072
+2025/02,スタンダード市場,Standard,28 銀行業,28 Banks,11,58.8,0.4,20.55,3441.95,65,1.4,11087390034,523286160000
+2025/02,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,15,9,0.8,96.28,1025.24,9.2,1,27872000000,260622000000
+2025/02,スタンダード市場,Standard,30 保険業,30 Insurance,－,－,－,－,－,－,－,－,－
+2025/02,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,14,14.3,1.1,47.02,591.76,10.3,0.8,80582000000,978775000000
+2025/02,スタンダード市場,Standard,32 不動産業,32 Real Estate,64,12.1,0.9,87.88,1225.12,11,0.9,100447000000,1183630846500
+2025/02,スタンダード市場,Standard,33 サービス業,33 Services,193,15.1,1.2,75.16,959.96,17.1,1.4,120654263390,1488111718053
+2025/02,グロース市場,Growth,総合,Composite,602,42.8,3,26.59,385.37,123.8,3.4,61834278000,2273578751947
+2025/02,グロース市場,Growth,総合（金融業を除く）,Non-Financial,591,45.3,3,24.92,375.96,172.6,3.5,42317278000,2062586751947
+2025/02,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,77,－,3.4,-11.34,270.25,－,3.3,-42802751000,391744561000
+2025/02,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,514,38.2,3,30.35,391.8,70.7,3.6,85120029000,1670842190947
+2025/02,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,2 鉱業,2 Mining,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,3 建設業,3 Construction,7,18.7,1.9,64.92,636.48,19.4,2.2,2734000000,24263000000
+2025/02,グロース市場,Growth,4 食料品,4 Foods,4,－,5.1,-84.26,214.13,－,8.3,-2430000000,8179000000
+2025/02,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,7 化学,7 Chemicals,6,－,3.3,-3.22,384.4,－,3.7,-264883000,21449830000
+2025/02,グロース市場,Growth,8 医薬品,8 Pharmaceutical,38,－,4.4,-29.24,143.85,－,3.9,-40459000000,168913000000
+2025/02,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,10 ゴム製品,10 Rubber Products,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,2,14.4,1.7,128.14,1080.19,10.6,1.3,561000000,4567000000
+2025/02,グロース市場,Growth,14 金属製品,14 Metal Products,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,15 機械,15 Machinery,4,－,3.3,-3.8,241.08,407.2,3,124000000,16599000000
+2025/02,グロース市場,Growth,16 電気機器,16 Electric Appliances,6,－,2.1,-49.7,362.72,－,2.1,-3310000000,21976000000
+2025/02,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,3,13.2,1.9,111.81,780.98,14,2.1,2169000000,14435000000
+2025/02,グロース市場,Growth,18 精密機器,18 Precision Instruments,7,－,22.4,-18.82,71.23,－,3.7,-4345868000,53144731000
+2025/02,グロース市場,Growth,19 その他製品,19 Other Products,7,16.1,1.8,64,576.8,27.3,1.7,5153000000,82481000000
+2025/02,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,2,25.5,4,70.72,453.75,26.8,3.7,3074000000,22460000000
+2025/02,グロース市場,Growth,21 陸運業,21 Land Transportation,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,22 海運業,22 Marine Transportation,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,23 空運業,23 Air Transportation,1,10.9,1.2,49.68,461.75,10.9,1.2,2997000000,27857000000
+2025/02,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,1,73.6,1.2,4.75,293.36,73.6,1.2,49000000,3024000000
+2025/02,グロース市場,Growth,25 情報・通信業,25 Information & Communication,247,71.2,3.6,16.08,319.05,－,4.7,-108861000,615642378798
+2025/02,グロース市場,Growth,26 卸売業,26 Wholesale Trade,10,－,2.9,-37.08,293.25,－,4,-1333000000,31494000000
+2025/02,グロース市場,Growth,27 小売業,27 Retail Trade,32,31,2.7,36.54,420.13,28.9,2.4,15552784000,184797294534
+2025/02,グロース市場,Growth,28 銀行業,28 Banks,－,－,－,－,－,－,－,－,－
+2025/02,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,2,10.3,1.8,329.15,1922.8,13.3,2.4,11021000000,60978000000
+2025/02,グロース市場,Growth,30 保険業,30 Insurance,4,19.5,1.3,61.75,959.5,22,1.3,7982000000,138466000000
+2025/02,グロース市場,Growth,31 その他金融業,31 Other Financing Business,5,17.2,3,74.01,422.42,61.1,2.7,514000000,11548000000
+2025/02,グロース市場,Growth,32 不動産業,32 Real Estate,22,16.5,2.3,108.86,778.08,15.8,2.1,21765000000,161072993615
+2025/02,グロース市場,Growth,33 サービス業,33 Services,192,27.7,2.6,40.56,432.12,50.7,3.4,40390106000,600231524000
+2025/02,－,－,大型株,Large ,100,21.8,2.1,280.65,2980.77,16.7,1.5,35176326100000,399693942000000
+2025/02,－,－,中型株,Medium ,399,17.5,1.3,190.18,2479.37,16.4,1.2,15774099292710,214839782220994
+2025/02,－,－,小型株,Small ,1192,15,1,138.52,2066.06,16.5,1,5440575638786,86488031810736
+2025/03,プライム市場,Prime,総合,Composite,1630,16.2,1.2,159.54,2209.51,16.4,1.3,56015165258877,702221773894204
+2025/03,プライム市場,Prime,総合（金融業を除く）,Non-Financial,1514,16.4,1.2,159.18,2094.82,16.6,1.4,47893508411877,575353406591204
+2025/03,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,708,17,1.1,165.86,2548.53,17.2,1.4,27202475719973,333164989365433
+2025/03,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,806,15.9,1.4,153.31,1696.28,15.9,1.4,20691032691904,242188417225771
+2025/03,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,10,0.9,244.67,2656.87,10.6,1,71684000000,788521000000
+2025/03,プライム市場,Prime,2 鉱業,2 Mining,4,11,0.7,290.26,4675.76,6.2,0.5,493774000000,5925535000000
+2025/03,プライム市場,Prime,3 建設業,3 Construction,74,14.2,1.1,171.1,2249.94,14.2,1.1,1486193000000,18379853978000
+2025/03,プライム市場,Prime,4 食料品,4 Foods,67,18.3,1.2,143.45,2264.02,22.7,1.5,1408862000000,20946460358217
+2025/03,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,20,22.3,1,115.77,2487.2,33.7,0.9,111446909091,3994643000000
+2025/03,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,10,9,0.5,175.41,3084.96,10.8,0.5,143572000000,2936555000000
+2025/03,プライム市場,Prime,7 化学,7 Chemicals,119,17.3,1,136.06,2449.07,19.5,1.2,2340560000000,36778218000000
+2025/03,プライム市場,Prime,8 医薬品,8 Pharmaceutical,34,20.8,1.3,128.46,2116.6,29.7,1.9,1395395000000,22240086000000
+2025/03,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,6,7,0.8,255.71,2400.18,7.3,0.7,620601000000,6460661000000
+2025/03,プライム市場,Prime,10 ゴム製品,10 Rubber Products,11,11.1,0.9,270.25,3401.26,12.8,1,500053000000,6557179000000
+2025/03,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,23,16.7,1.2,238.98,3424.42,27.4,0.9,216488000000,6531542093647
+2025/03,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,22,8.8,0.7,333.11,4354.26,6.7,0.6,1126506000000,12298032000000
+2025/03,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,20,85.6,0.8,33.13,3488.26,17.1,0.9,397725000000,7856839000000
+2025/03,プライム市場,Prime,14 金属製品,14 Metal Products,28,16.6,0.7,108.84,2719.02,20.2,0.9,220677000000,5035226000000
+2025/03,プライム市場,Prime,15 機械,15 Machinery,113,15.1,1.3,212.62,2492.73,18.2,1.6,2569385666667,29446382000000
+2025/03,プライム市場,Prime,16 電気機器,16 Electric Appliances,129,22.2,1.4,148.99,2324.56,26.4,2.1,5428018644215,68989373815509
+2025/03,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,41,13.9,0.8,190.56,3227.46,8.7,0.9,8827081500000,87205994098060
+2025/03,プライム市場,Prime,18 精密機器,18 Precision Instruments,28,18,1.6,162.35,1869.29,21.3,2.7,801024000000,6379124000000
+2025/03,プライム市場,Prime,19 その他製品,19 Other Products,37,14,1.3,176.84,1897.18,23,2.6,1095080000000,9508674000000
+2025/03,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,22,6.8,0.7,233.93,2246.99,4.7,0.6,2252393334000,16661535874171
+2025/03,プライム市場,Prime,21 陸運業,21 Land Transportation,38,14.4,1,197.72,2722.23,13,1.1,1694796000000,20316501000000
+2025/03,プライム市場,Prime,22 海運業,22 Marine Transportation,5,7.4,0.8,460.79,4446.88,9,0.8,632761000000,6969357000000
+2025/03,プライム市場,Prime,23 空運業,23 Air Transportation,2,9.8,1.2,271.46,2171.47,9.7,1.2,252631000000,2000972000000
+2025/03,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,12,13.7,1,211.05,2877.56,14.6,0.9,106503000000,1638625000000
+2025/03,プライム市場,Prime,25 情報・通信業,25 Information & Communication,177,23.2,2.3,110.98,1129.14,23.2,1.7,3879683100000,54451422000000
+2025/03,プライム市場,Prime,26 卸売業,26 Wholesale Trade,122,12.2,1,206.23,2410.84,10.9,1.2,5133488000000,47291657000000
+2025/03,プライム市場,Prime,27 小売業,27 Retail Trade,135,20.2,1.8,142.54,1606.17,25.7,2.2,2051017903710,23410750574420
+2025/03,プライム市場,Prime,28 銀行業,28 Banks,68,13.2,0.5,172.33,4938.35,16.1,0.9,4723151847000,86472003303000
+2025/03,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,19,13,1,101.32,1320.11,14.2,0.8,503498000000,8412474000000
+2025/03,プライム市場,Prime,30 保険業,30 Insurance,9,15.1,1.1,177.75,2384.85,14.2,1.3,1992108000000,21289999000000
+2025/03,プライム市場,Prime,31 その他金融業,31 Other Financing Business,20,11.1,0.9,190.57,2379.01,11.6,1,902899000000,10693891000000
+2025/03,プライム市場,Prime,32 不動産業,32 Real Estate,50,12.7,1.5,187.9,1583.81,13.6,1.2,1374257000000,15230337000000
+2025/03,プライム市場,Prime,33 サービス業,33 Services,159,17.3,1.8,105.65,1019.31,34.7,1.5,1261851354194,29123349799180
+2025/03,スタンダード市場,Standard,総合,Composite,1568,12.8,0.8,109.63,1757.23,16.5,1.1,1687201980938,26402247743938
+2025/03,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,1528,12.8,0.8,111.03,1762.91,16.5,1.1,1580905590904,24629041583938
+2025/03,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,632,11.9,0.7,130.04,2290.79,14.5,0.8,708767245714,12928896642313
+2025/03,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,896,13.6,1,97.62,1390.56,18.2,1.4,872138345190,11700144941625
+2025/03,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,20.1,1.2,98.36,1677.95,13.2,0.9,4229000000,62558000000
+2025/03,スタンダード市場,Standard,2 鉱業,2 Mining,1,6.6,2,111.8,364.1,6.6,2,7515720000,24475720000
+2025/03,スタンダード市場,Standard,3 建設業,3 Construction,66,11.8,0.7,150.99,2482.31,21.2,0.9,55644000000,1250549000000
+2025/03,スタンダード市場,Standard,4 食料品,4 Foods,53,16,1.2,130.48,1776.54,15.7,1.2,74171960000,976156880000
+2025/03,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,28,14.4,0.5,82.13,2154.36,16.3,0.7,19189000000,474119000000
+2025/03,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,14,8.7,0.5,144.9,2378.74,9.8,0.6,12872000000,224481000000
+2025/03,スタンダード市場,Standard,7 化学,7 Chemicals,81,15.5,0.7,123.19,2561.07,14.6,0.8,91987000000,1679462762313
+2025/03,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,8,13.8,0.8,75.16,1349.14,10.6,1.4,11112000000,84709000000
+2025/03,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,4,9,0.7,117.18,1535.11,9,0.8,7001000000,81434000000
+2025/03,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,7,9.6,0.7,166.82,2284.74,14.4,0.9,11873000000,182001000000
+2025/03,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,29,7.1,0.7,172.94,1806.47,8.8,0.8,54959000000,597354000000
+2025/03,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,19,8.5,0.5,166.94,3042.68,11,0.6,27868000000,544569000000
+2025/03,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,10,16,0.8,80.79,1710.51,17.1,1,5489000000,94540000000
+2025/03,スタンダード市場,Standard,14 金属製品,14 Metal Products,57,11.1,0.5,155.54,3364.38,18.1,0.5,31367000000,1053166000000
+2025/03,スタンダード市場,Standard,15 機械,15 Machinery,102,11.4,0.7,143,2260.53,25.9,0.8,59959000000,2030840000000
+2025/03,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,98,12.7,0.8,121.78,2051.24,13.5,0.9,139977285714,2079940000000
+2025/03,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,43,7.8,0.6,193.53,2743.63,9.8,0.6,111661000000,1730319000000
+2025/03,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,16,16.9,1.1,53.8,865.73,19.9,1.2,18401000000,299084000000
+2025/03,スタンダード市場,Standard,19 その他製品,19 Other Products,63,13.1,0.5,81.91,2176.68,20.2,0.8,30880000000,796721000000
+2025/03,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,4,－,0.4,-75.66,3555.23,242.1,0.4,295000000,167706000000
+2025/03,スタンダード市場,Standard,21 陸運業,21 Land Transportation,20,8.6,0.6,243.6,3687.81,10.5,0.7,23941000000,382888000000
+2025/03,スタンダード市場,Standard,22 海運業,22 Marine Transportation,6,10.3,0.6,141.98,2508.48,9.7,0.5,9226000000,175925000000
+2025/03,スタンダード市場,Standard,23 空運業,23 Air Transportation,2,10.2,－,177.75,-224.16,10.7,1.9,2814000000,15491000000
+2025/03,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,22,11.2,0.5,126.76,2858.9,13.8,0.6,16880000000,367244000000
+2025/03,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,177,17.2,1.7,72.98,758.38,27.2,2.9,169647000000,1568490000000
+2025/03,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,164,10.3,0.7,155.93,2211.49,11.4,0.9,217474000000,2804121000000
+2025/03,スタンダード市場,Standard,27 小売業,27 Retail Trade,171,20.5,1.3,56.53,878.12,24.7,1.6,151962869800,2361834513072
+2025/03,スタンダード市場,Standard,28 銀行業,28 Banks,11,58.4,0.3,20.55,3441.95,64.1,1.4,11087390034,523286160000
+2025/03,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,15,9.4,0.9,94.67,1026.15,10.6,1,24968000000,262624000000
+2025/03,スタンダード市場,Standard,30 保険業,30 Insurance,－,－,－,－,－,－,－,－,－
+2025/03,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,14,16.1,1.2,42.87,597.29,11.7,0.8,70241000000,987296000000
+2025/03,スタンダード市場,Standard,32 不動産業,32 Real Estate,64,11.6,0.9,90.78,1221.47,11.2,0.9,84560000000,1007012846500
+2025/03,スタンダード市場,Standard,33 サービス業,33 Services,193,15.1,1.2,73.94,937.57,16.3,1.4,127949755390,1511849862053
+2025/03,グロース市場,Growth,総合,Composite,601,40.2,2.9,28.26,391.28,189,3.3,40614406667,2328051888203
+2025/03,グロース市場,Growth,総合（金融業を除く）,Non-Financial,590,43.1,3,26.12,381.15,694.2,3.5,10565406667,2099289888203
+2025/03,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,78,－,4.1,-14.04,247.76,－,3.8,-72269098000,363523327054
+2025/03,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,512,35.4,2.8,32.23,401.47,71.8,3.4,82834504667,1735766561149
+2025/03,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,2 鉱業,2 Mining,－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,3 建設業,3 Construction,7,18.5,1.9,66.77,644.94,18.7,2.2,2864000000,24858000000
+2025/03,グロース市場,Growth,4 食料品,4 Foods,4,－,5,-84.24,213.97,－,8.1,-2430000000,8179000000
+2025/03,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,1,37.9,－,71.81,-12.65,37.9,－,506653000,-89233946
+2025/03,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,7 化学,7 Chemicals,6,－,3.5,-3.22,384.33,－,3.9,-264883000,21449830000
+2025/03,グロース市場,Growth,8 医薬品,8 Pharmaceutical,38,－,5,-40.96,138.25,－,4.7,-72571000000,142223000000
+2025/03,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,10 ゴム製品,10 Rubber Products,－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,2,17.2,1.3,52.28,671.13,21.8,1.2,248000000,4607000000
+2025/03,グロース市場,Growth,14 金属製品,14 Metal Products,1,43.8,9.9,101.85,452.41,43.8,9.9,901000000,4002000000
+2025/03,グロース市場,Growth,15 機械,15 Machinery,4,－,4,-0.92,206.42,174.7,3.6,296000000,14529000000
+2025/03,グロース市場,Growth,16 電気機器,16 Electric Appliances,6,－,2.1,-7.6,364.25,－,2,-1172000000,22060000000
+2025/03,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,3,15,2.1,111.81,780.98,15.1,2.3,2169000000,14435000000
+2025/03,グロース市場,Growth,18 精密機器,18 Precision Instruments,7,－,23.8,-18.87,71.22,－,3.8,-4358868000,53143731000
+2025/03,グロース市場,Growth,19 その他製品,19 Other Products,6,19.4,2.3,64.22,545.88,40.1,2.2,4407000000,78984000000
+2025/03,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,1,20.2,4.8,105.41,442.2,20.2,4.8,1986000000,8331000000
+2025/03,グロース市場,Growth,21 陸運業,21 Land Transportation,－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,22 海運業,22 Marine Transportation,－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,23 空運業,23 Air Transportation,1,10.4,1.1,49.68,461.75,10.4,1.1,2997000000,27857000000
+2025/03,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,1,71.3,1.2,4.75,293.36,71.3,1.2,49000000,3024000000
+2025/03,グロース市場,Growth,25 情報・通信業,25 Information & Communication,247,67.6,3.4,16.6,334.36,－,4.2,-4088834333,669492834000
+2025/03,グロース市場,Growth,26 卸売業,26 Wholesale Trade,10,－,2.9,-33.7,306.21,－,3.8,-375000000,35378000000
+2025/03,グロース市場,Growth,27 小売業,27 Retail Trade,32,28.4,2.6,39.54,427,30.3,2.6,15933784000,185982294534
+2025/03,グロース市場,Growth,28 銀行業,28 Banks,－,－,－,－,－,－,－,－,－
+2025/03,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,2,6.6,1.4,478.59,2169.97,6,1.6,21553000000,78748000000
+2025/03,グロース市場,Growth,30 保険業,30 Insurance,4,18.7,1.2,61.59,958.1,22.5,1.3,7982000000,138466000000
+2025/03,グロース市場,Growth,31 その他金融業,31 Other Financing Business,5,19.7,3.5,74.01,422.25,67,3,514000000,11548000000
+2025/03,グロース市場,Growth,32 不動産業,32 Real Estate,21,15.9,2.4,120.78,803.49,15.8,2.2,23040000000,162098993615
+2025/03,グロース市場,Growth,33 サービス業,33 Services,192,25.4,2.5,43.29,435.71,50.4,3.3,40428555000,618744439000
+2025/03,－,－,大型株,Large ,100,20.9,2,274.05,2900.76,16.5,1.4,34895638100000,402112659000000
+2025/03,－,－,中型株,Medium ,399,17.7,1.3,185.57,2459.49,16.3,1.2,15896193959377,217378932220994
+2025/03,－,－,小型株,Small ,1191,14.8,1,138.28,2044.15,16.1,1,5528418879500,86777285691736
+2025/04,プライム市場,Prime,総合,Composite,1626,16.3,1.2,159.65,2209.99,16.5,1.3,56111693489646,702677022894204
+2025/04,プライム市場,Prime,総合（金融業を除く）,Non-Financial,1510,16.6,1.3,159.26,2094.33,16.9,1.4,47990036642646,575808655591204
+2025/04,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,708,16.7,1.1,165.85,2546.45,17.3,1.4,27289708950742,333602213365433
+2025/04,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,802,16.4,1.5,153.44,1695.2,16.4,1.4,20700327691904,242206442225771
+2025/04,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,10,0.9,244.67,2656.87,10.4,0.9,71684000000,788521000000
+2025/04,プライム市場,Prime,2 鉱業,2 Mining,4,10.2,0.6,290.26,4675.76,5.5,0.5,493774000000,5925535000000
+2025/04,プライム市場,Prime,3 建設業,3 Construction,74,15,1.1,171.74,2257.25,14.9,1.2,1501751000000,18605158978000
+2025/04,プライム市場,Prime,4 食料品,4 Foods,67,18.9,1.2,143.46,2269.15,23.6,1.6,1407942000000,20948251358217
+2025/04,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,20,21.8,1,115.77,2487.2,31.5,0.9,111446909091,3994643000000
+2025/04,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,10,9.3,0.5,175.41,3084.96,11.2,0.5,143572000000,2936555000000
+2025/04,プライム市場,Prime,7 化学,7 Chemicals,119,16.8,0.9,137.06,2453.66,19.1,1.2,2343051000000,36782235000000
+2025/04,プライム市場,Prime,8 医薬品,8 Pharmaceutical,34,20.8,1.3,129.02,2123.31,31.3,2,1395395000000,22240086000000
+2025/04,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,6,6.7,0.7,256.4,2405.7,6.3,0.6,620601000000,6460661000000
+2025/04,プライム市場,Prime,10 ゴム製品,10 Rubber Products,11,10.7,0.9,270.25,3401.26,12.6,1,500053000000,6557179000000
+2025/04,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,23,16.4,1.1,239.35,3429.28,26.8,0.9,216488000000,6531542093647
+2025/04,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,21,8.8,0.7,342.58,4397.03,6.4,0.6,1117450000000,12069435000000
+2025/04,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,21,70.1,0.8,37.41,3371.97,14.4,0.8,500349000000,8577641000000
+2025/04,プライム市場,Prime,14 金属製品,14 Metal Products,28,16.3,0.7,109.91,2741.34,19.6,0.9,220677000000,5035226000000
+2025/04,プライム市場,Prime,15 機械,15 Machinery,113,14.6,1.2,210.91,2477.67,18.1,1.6,2569385666667,29446382000000
+2025/04,プライム市場,Prime,16 電気機器,16 Electric Appliances,129,21.8,1.4,148.71,2324.23,26.1,2,5420112874984,68928584815509
+2025/04,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,41,14.1,0.8,191.12,3237.45,9,0.9,8827081500000,87205994098060
+2025/04,プライム市場,Prime,18 精密機器,18 Precision Instruments,28,17.6,1.5,162.53,1873.02,20.8,2.6,801024000000,6379124000000
+2025/04,プライム市場,Prime,19 その他製品,19 Other Products,37,14,1.3,177.44,1904.65,24.7,2.8,1095080000000,9508674000000
+2025/04,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,22,6.9,0.7,234.77,2261.12,4.8,0.6,2252393334000,16661535874171
+2025/04,プライム市場,Prime,21 陸運業,21 Land Transportation,38,14.5,1.1,198.33,2729.41,13.3,1.1,1694796000000,20316501000000
+2025/04,プライム市場,Prime,22 海運業,22 Marine Transportation,5,7,0.7,462.51,4473.73,8.4,0.8,632761000000,6969357000000
+2025/04,プライム市場,Prime,23 空運業,23 Air Transportation,2,9.8,1.2,271.46,2171.47,9.7,1.2,252631000000,2000972000000
+2025/04,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,12,13.4,0.9,185.34,2629.12,14.6,1,106503000000,1638625000000
+2025/04,プライム市場,Prime,25 情報・通信業,25 Information & Communication,176,24,2.4,112.19,1135.34,24.2,1.7,3880780100000,54428367000000
+2025/04,プライム市場,Prime,26 卸売業,26 Wholesale Trade,121,12.2,1.1,210.19,2436.13,11.2,1.2,5135488000000,47211137000000
+2025/04,プライム市場,Prime,27 小売業,27 Retail Trade,135,21.6,1.9,142.65,1609.02,27.2,2.4,2051279903710,23411117574420
+2025/04,プライム市場,Prime,28 銀行業,28 Banks,68,12.6,0.4,172.7,4948.51,14.7,0.8,4723151847000,86472003303000
+2025/04,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,19,12.3,0.9,102.08,1333.59,13,0.8,503498000000,8412474000000
+2025/04,プライム市場,Prime,30 保険業,30 Insurance,9,14.8,1.1,179.23,2398.36,13.8,1.3,1992108000000,21289999000000
+2025/04,プライム市場,Prime,31 その他金融業,31 Other Financing Business,20,11.1,0.9,190.58,2378.82,11.4,1,902899000000,10693891000000
+2025/04,プライム市場,Prime,32 不動産業,32 Real Estate,50,13,1.5,187.9,1583.8,14,1.3,1374257000000,15230337000000
+2025/04,プライム市場,Prime,33 サービス業,33 Services,157,17.8,1.8,102.62,988.2,35.3,1.5,1252229354194,29019277799180
+2025/04,スタンダード市場,Standard,総合,Composite,1566,12.8,0.8,109.13,1756.43,16.8,1.1,1683207176938,26354564957938
+2025/04,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,1526,12.8,0.8,110.51,1762.08,16.7,1.1,1576913786904,24581076797938
+2025/04,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,631,11.8,0.7,129.55,2295.41,14.3,0.8,707364245714,12920156642313
+2025/04,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,895,13.7,1,97.1,1386.07,18.7,1.4,869549541190,11660920155625
+2025/04,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,20,1.2,98.36,1677.95,13.6,0.9,4229000000,62558000000
+2025/04,スタンダード市場,Standard,2 鉱業,2 Mining,1,6.4,2,111.8,364.1,6.4,2,7515720000,24475720000
+2025/04,スタンダード市場,Standard,3 建設業,3 Construction,66,12.1,0.7,151.12,2487.48,21.9,1,55661000000,1250676000000
+2025/04,スタンダード市場,Standard,4 食料品,4 Foods,53,16.5,1.2,130.7,1780.73,16.3,1.2,74171960000,976156880000
+2025/04,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,27,14.1,0.5,82.28,2184.42,16.2,0.7,18776000000,467136000000
+2025/04,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,14,8.7,0.5,143.81,2383.77,9.8,0.6,12693000000,225017000000
+2025/04,スタンダード市場,Standard,7 化学,7 Chemicals,81,15.1,0.7,123.48,2560.42,14.2,0.8,92020000000,1680165762313
+2025/04,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,8,13.7,0.8,75.16,1349.12,10.7,1.4,11112000000,84709000000
+2025/04,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,4,8.7,0.7,117.18,1535.11,8.7,0.7,7001000000,81434000000
+2025/04,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,7,9.5,0.7,166.82,2284.74,14.4,0.9,11873000000,182001000000
+2025/04,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,28,6.9,0.7,180.35,1849.83,8.9,0.8,55260000000,591886000000
+2025/04,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,19,8.3,0.5,166.94,3042.68,10.3,0.5,27868000000,544569000000
+2025/04,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,10,16,0.8,80.79,1710.51,15.4,0.9,5489000000,94540000000
+2025/04,スタンダード市場,Standard,14 金属製品,14 Metal Products,57,10.9,0.5,155.54,3364.38,17.7,0.5,31367000000,1053166000000
+2025/04,スタンダード市場,Standard,15 機械,15 Machinery,102,11.3,0.7,142.63,2261.78,26.1,0.8,59646000000,2031892000000
+2025/04,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,99,13,0.7,117.24,2046.54,13.4,0.9,139533285714,2081563000000
+2025/04,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,43,7.7,0.5,193.79,2750.09,9.4,0.6,111661000000,1730319000000
+2025/04,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,16,16.1,1,53.8,865.73,18.1,1.1,18401000000,299084000000
+2025/04,スタンダード市場,Standard,19 その他製品,19 Other Products,63,12.9,0.5,80.91,2181.85,20.2,0.8,30492000000,796518000000
+2025/04,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,4,－,0.4,-75.66,3555.23,253.8,0.4,295000000,167706000000
+2025/04,スタンダード市場,Standard,21 陸運業,21 Land Transportation,20,8.5,0.6,243.6,3687.81,10.5,0.7,23941000000,382888000000
+2025/04,スタンダード市場,Standard,22 海運業,22 Marine Transportation,6,10.4,0.6,141.98,2508.48,10,0.5,9226000000,175925000000
+2025/04,スタンダード市場,Standard,23 空運業,23 Air Transportation,2,10.5,－,177.75,-224.16,10.6,1.9,2814000000,15491000000
+2025/04,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,22,11.2,0.5,128.03,2858.57,14,0.6,16880000000,367244000000
+2025/04,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,177,17.4,1.7,72.29,756.57,29,3.1,167531000000,1562726000000
+2025/04,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,163,10.3,0.7,151.86,2181.04,11.4,0.9,215264000000,2783015000000
+2025/04,スタンダード市場,Standard,27 小売業,27 Retail Trade,171,20,1.3,58.71,885.31,24.7,1.6,157176869800,2373180513072
+2025/04,スタンダード市場,Standard,28 銀行業,28 Banks,11,57.8,0.3,20.55,3441.95,64.9,1.4,11087390034,523286160000
+2025/04,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,15,9.2,0.9,94.67,1026.15,10.6,1,24968000000,262624000000
+2025/04,スタンダード市場,Standard,30 保険業,30 Insurance,－,－,－,－,－,－,－,－,－
+2025/04,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,14,15.7,1.1,43.54,598.95,12,0.9,70238000000,987578000000
+2025/04,スタンダード市場,Standard,32 不動産業,32 Real Estate,63,12.1,0.9,90.45,1237.24,11.5,1,80622000000,978837846500
+2025/04,スタンダード市場,Standard,33 サービス業,33 Services,194,15,1.2,73.94,936.61,16.2,1.4,128393951390,1516197076053
+2025/04,グロース市場,Growth,総合,Composite,610,40.1,3,28.87,390.43,204.8,3.4,39104184667,2369910130149
+2025/04,グロース市場,Growth,総合（金融業を除く）,Non-Financial,599,42.9,3,26.78,380.47,846.7,3.6,9055184667,2141148130149
+2025/04,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,78,－,3.6,-12.75,268.94,－,3.7,-71973883000,373740830000
+2025/04,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,521,36,3,32.7,397.17,77.5,3.6,81029067667,1767407300149
+2025/04,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,2 鉱業,2 Mining,－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,3 建設業,3 Construction,8,20.6,2.1,56.9,567.47,25.3,2.7,2705531000,25186459000
+2025/04,グロース市場,Growth,4 食料品,4 Foods,4,－,4.5,-82.71,212.47,－,7.5,-2430000000,8179000000
+2025/04,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,1,18.2,8.4,141.97,306.56,18.2,8.4,1061000000,2291000000
+2025/04,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,7 化学,7 Chemicals,6,－,3.7,-3.22,384.33,－,4,-264883000,21449830000
+2025/04,グロース市場,Growth,8 医薬品,8 Pharmaceutical,38,－,4.8,-40.81,136.85,－,4.9,-72809000000,141193000000
+2025/04,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,10 ゴム製品,10 Rubber Products,－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,2,16.2,1.3,52.24,670.69,20.6,1.1,248000000,4607000000
+2025/04,グロース市場,Growth,14 金属製品,14 Metal Products,1,45,10.1,101.85,452.41,45,10.1,901000000,4002000000
+2025/04,グロース市場,Growth,15 機械,15 Machinery,4,＊,3.6,0.38,206.32,160.6,3.3,296000000,14529000000
+2025/04,グロース市場,Growth,16 電気機器,16 Electric Appliances,6,－,2.1,-4.58,364.21,－,2,-1085000000,22064000000
+2025/04,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,3,12.4,1.8,111.78,780.83,13.1,2,2169000000,14435000000
+2025/04,グロース市場,Growth,18 精密機器,18 Precision Instruments,7,－,6.9,-20.71,195.08,－,3,-4479000000,61224000000
+2025/04,グロース市場,Growth,19 その他製品,19 Other Products,6,18.9,2,65.6,633.76,40.9,2.3,4419000000,79767000000
+2025/04,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,1,18.2,4.3,104.9,440.05,18.2,4.3,1986000000,8331000000
+2025/04,グロース市場,Growth,21 陸運業,21 Land Transportation,－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,22 海運業,22 Marine Transportation,－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,23 空運業,23 Air Transportation,1,10.1,1.1,49.68,461.75,10.1,1.1,2997000000,27857000000
+2025/04,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,1,70.1,1.1,4.75,293.36,70.1,1.1,49000000,3024000000
+2025/04,グロース市場,Growth,25 情報・通信業,25 Information & Communication,254,71.7,3.6,16.46,326.13,－,4.4,-6772802333,679506114000
+2025/04,グロース市場,Growth,26 卸売業,26 Wholesale Trade,10,－,2.9,-32.82,306.24,－,4.2,-298000000,35470000000
+2025/04,グロース市場,Growth,27 小売業,27 Retail Trade,32,30.1,2.6,37.5,431.98,31.8,2.7,15815784000,186464294534
+2025/04,グロース市場,Growth,28 銀行業,28 Banks,－,－,－,－,－,－,－,－,－
+2025/04,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,2,6.5,1.4,477.59,2163.86,5.7,1.6,21553000000,78748000000
+2025/04,グロース市場,Growth,30 保険業,30 Insurance,4,18.5,1.2,61.51,957.42,22.9,1.3,7982000000,138466000000
+2025/04,グロース市場,Growth,31 その他金融業,31 Other Financing Business,5,19.8,3.5,73.63,420.43,67.5,3,514000000,11548000000
+2025/04,グロース市場,Growth,32 不動産業,32 Real Estate,21,15.8,2.5,130.56,816.7,16.4,2.4,24221000000,163494993615
+2025/04,グロース市場,Growth,33 サービス業,33 Services,193,24.7,2.5,44.72,436.88,51.9,3.3,40325555000,638073439000
+2025/04,－,－,大型株,Large ,100,20.8,2,274.63,2907.15,16.6,1.4,34911018100000,402337206000000
+2025/04,－,－,中型株,Medium ,400,17.9,1.4,186.12,2466.49,16.4,1.2,15998817959377,218099734220994
+2025/04,－,－,小型株,Small ,1187,14.9,1,138.04,2040.02,16.2,1,5507894110269,86293585691736
+2025/05,プライム市場,Prime,総合,Composite,1621,16.9,1.2,159.44,2214.43,17.3,1.4,56034840509222,703188145894204
+2025/05,プライム市場,Prime,総合（金融業を除く）,Non-Financial,1505,17.2,1.3,159.03,2098.5,17.6,1.5,47914552662222,576304445591204
+2025/05,プライム市場,Prime,　　　　　 製造業,　　　　 Manufacturing ,706,17.5,1.1,166.41,2550.75,18,1.5,27311318303651,333620906365433
+2025/05,プライム市場,Prime,　　　　 非製造業,　　　　 Non-Manufacturing ,799,16.9,1.5,152.52,1698.88,17.1,1.5,20603234358571,242683539225771
+2025/05,プライム市場,Prime,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,10.1,0.9,244.67,2656.87,10.3,0.9,71684000000,788521000000
+2025/05,プライム市場,Prime,2 鉱業,2 Mining,4,11.1,0.7,290.26,4675.76,5.9,0.5,493774000000,5925535000000
+2025/05,プライム市場,Prime,3 建設業,3 Construction,74,15.4,1.2,171.72,2256.98,15.2,1.2,1501751000000,18605158978000
+2025/05,プライム市場,Prime,4 食料品,4 Foods,67,19.1,1.2,140.79,2279.8,23.8,1.6,1401552000000,20961782358217
+2025/05,プライム市場,Prime,5 繊維製品,5 Textiles & Apparels,20,20.5,1.1,128.11,2474.75,34.9,0.9,106368000000,3955699000000
+2025/05,プライム市場,Prime,6 パルプ・紙,6 Pulp & Paper,10,9.3,0.5,175.41,3084.96,10.9,0.5,143572000000,2936555000000
+2025/05,プライム市場,Prime,7 化学,7 Chemicals,119,17.5,1,137.07,2453.71,20.1,1.3,2343262000000,36783105000000
+2025/05,プライム市場,Prime,8 医薬品,8 Pharmaceutical,34,20.5,1.3,128.99,2084.11,30.7,1.9,1403184000000,22252411000000
+2025/05,プライム市場,Prime,9 石油・石炭製品,9 Oil & Coal Products,6,6.8,0.7,259.82,2442.19,5.9,0.6,620601000000,6460661000000
+2025/05,プライム市場,Prime,10 ゴム製品,10 Rubber Products,11,11.3,0.9,270.25,3401.26,13.2,1,500053000000,6557179000000
+2025/05,プライム市場,Prime,11 ガラス・土石製品,11 Glass & Ceramics Products,23,18,1.3,239.35,3429.28,27.8,0.9,216488000000,6531542093647
+2025/05,プライム市場,Prime,12 鉄鋼,12 Iron & Steel,21,8.8,0.7,338.37,4394.75,6.4,0.6,1098246000000,12059061000000
+2025/05,プライム市場,Prime,13 非鉄金属,13 Nonferrous Metals,21,79.3,0.9,37.41,3371.97,17.1,1,500349000000,8577641000000
+2025/05,プライム市場,Prime,14 金属製品,14 Metal Products,28,17.1,0.7,109.89,2741.07,20.5,0.9,220677000000,5035226000000
+2025/05,プライム市場,Prime,15 機械,15 Machinery,112,15.9,1.4,212.46,2498.11,19.9,1.7,2571313666667,29463837000000
+2025/05,プライム市場,Prime,16 電気機器,16 Electric Appliances,128,22.7,1.5,150.33,2331,27.5,2.2,5413167136984,68706384815509
+2025/05,プライム市場,Prime,17 輸送用機器,17 Transportation Equipment,41,14.9,0.9,191.73,3240.5,9.3,0.9,8876381500000,87452024098060
+2025/05,プライム市場,Prime,18 精密機器,18 Precision Instruments,28,18.1,1.6,162.5,1872.83,20.8,2.6,801024000000,6379124000000
+2025/05,プライム市場,Prime,19 その他製品,19 Other Products,37,14.4,1.3,177.93,1909.21,24.8,2.9,1095080000000,9508674000000
+2025/05,プライム市場,Prime,20 電気・ガス業,20 Electric Power & Gas,22,6.8,0.7,235.3,2261.34,4.6,0.6,2253303334000,16661903874171
+2025/05,プライム市場,Prime,21 陸運業,21 Land Transportation,38,14.5,1.1,198.78,2735.37,13.4,1.1,1694796000000,20316501000000
+2025/05,プライム市場,Prime,22 海運業,22 Marine Transportation,5,7.5,0.8,462.51,4473.73,9.3,0.8,632761000000,6969357000000
+2025/05,プライム市場,Prime,23 空運業,23 Air Transportation,2,10.6,1.3,271.46,2171.47,10.5,1.3,252631000000,2000972000000
+2025/05,プライム市場,Prime,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,12,16,1.1,185.69,2636.99,17.2,1.1,106561000000,1640260000000
+2025/05,プライム市場,Prime,25 情報・通信業,25 Information & Communication,174,24.9,2.4,110.8,1131.43,25.5,1.8,3855247100000,54255758000000
+2025/05,プライム市場,Prime,26 卸売業,26 Wholesale Trade,121,12.6,1.1,209.12,2411.54,11.9,1.3,5138089000000,47225621000000
+2025/05,プライム市場,Prime,27 小売業,27 Retail Trade,135,22,1.9,140.55,1638.15,28.9,2.4,1981052570377,24016186574420
+2025/05,プライム市場,Prime,28 銀行業,28 Banks,68,13.5,0.5,172.83,4952.58,16.1,0.9,4723151847000,86472003303000
+2025/05,プライム市場,Prime,29 証券、商品先物取引業,29 Securities & Commodity Futures,19,13,1,102.08,1333.59,14.2,0.9,503498000000,8412474000000
+2025/05,プライム市場,Prime,30 保険業,30 Insurance,9,15.5,1.2,179.23,2398.36,14.6,1.4,1992108000000,21289999000000
+2025/05,プライム市場,Prime,31 その他金融業,31 Other Financing Business,20,11.3,0.9,190.26,2382.36,12,1,901530000000,10709224000000
+2025/05,プライム市場,Prime,32 不動産業,32 Real Estate,49,13.4,1.6,187.83,1586.62,14.3,1.3,1366856000000,15230460000000
+2025/05,プライム市場,Prime,33 サービス業,33 Services,157,18.5,1.9,101.61,994.52,36.8,1.6,1254728354194,29047304799180
+2025/05,スタンダード市場,Standard,総合,Composite,1565,13.2,0.8,109.6,1755.08,17.5,1.1,1689352182271,26418638958457
+2025/05,スタンダード市場,Standard,総合（金融業を除く）,Non-Financial,1525,13.1,0.8,111,1760.69,17.4,1.1,1583058792237,24645150798457
+2025/05,スタンダード市場,Standard,　　　　　 製造業,　　　　 Manufacturing ,628,12.2,0.7,129.52,2294.75,14.9,0.8,707336245714,12904335642313
+2025/05,スタンダード市場,Standard,　　　　 非製造業,　　　　 Non-Manufacturing ,897,14,1,98.03,1386.79,19.4,1.4,875722546523,11740815156144
+2025/05,スタンダード市場,Standard,1 水産・農林業,"1 Fishery,Agriculture & Forestry",6,20,1.2,98.36,1677.95,13.5,0.9,4229000000,62558000000
+2025/05,スタンダード市場,Standard,2 鉱業,2 Mining,1,6,1.8,111.8,364.1,6,1.8,7515720000,24475720000
+2025/05,スタンダード市場,Standard,3 建設業,3 Construction,66,12.2,0.7,152.24,2493.44,22.1,1,55742000000,1253532000000
+2025/05,スタンダード市場,Standard,4 食料品,4 Foods,52,17,1.2,128.58,1777.02,16.8,1.3,72716960000,965120880000
+2025/05,スタンダード市場,Standard,5 繊維製品,5 Textiles & Apparels,27,14.3,0.6,84.97,2183.28,16.6,0.7,18963000000,467057000000
+2025/05,スタンダード市場,Standard,6 パルプ・紙,6 Pulp & Paper,14,8.9,0.5,143.81,2383.77,9.9,0.6,12693000000,225017000000
+2025/05,スタンダード市場,Standard,7 化学,7 Chemicals,81,15.9,0.8,122.5,2563.05,14.8,0.8,91838000000,1680443762313
+2025/05,スタンダード市場,Standard,8 医薬品,8 Pharmaceutical,8,13.9,0.8,75.15,1349.1,11.6,1.5,11112000000,84709000000
+2025/05,スタンダード市場,Standard,9 石油・石炭製品,9 Oil & Coal Products,4,9.6,0.7,110.22,1583.77,9.4,0.8,6731000000,83321000000
+2025/05,スタンダード市場,Standard,10 ゴム製品,10 Rubber Products,7,9.6,0.7,166.82,2284.74,14.4,0.9,11873000000,182001000000
+2025/05,スタンダード市場,Standard,11 ガラス・土石製品,11 Glass & Ceramics Products,28,7.8,0.7,174.4,1856.45,9.7,0.9,55020000000,592153000000
+2025/05,スタンダード市場,Standard,12 鉄鋼,12 Iron & Steel,18,8.3,0.5,175.21,3184.45,10,0.5,26872000000,517573000000
+2025/05,スタンダード市場,Standard,13 非鉄金属,13 Nonferrous Metals,10,15.3,0.7,81.56,1722.35,14.8,0.9,5534000000,95226000000
+2025/05,スタンダード市場,Standard,14 金属製品,14 Metal Products,57,11.1,0.5,156.13,3367.69,17.7,0.5,32224000000,1056540000000
+2025/05,スタンダード市場,Standard,15 機械,15 Machinery,102,11.6,0.7,140.87,2265.92,27.1,0.8,59101000000,2060731000000
+2025/05,スタンダード市場,Standard,16 電気機器,16 Electric Appliances,98,13.3,0.8,120.53,2032.93,13.9,0.9,140569285714,2065529000000
+2025/05,スタンダード市場,Standard,17 輸送用機器,17 Transportation Equipment,43,7.9,0.6,187.8,2675.84,10.3,0.7,111661000000,1730319000000
+2025/05,スタンダード市場,Standard,18 精密機器,18 Precision Instruments,16,17.5,1.1,53.55,866.64,19.2,1.2,18372000000,299188000000
+2025/05,スタンダード市場,Standard,19 その他製品,19 Other Products,63,13.2,0.5,84.86,2188.69,21.1,0.8,32056000000,799407000000
+2025/05,スタンダード市場,Standard,20 電気・ガス業,20 Electric Power & Gas,4,－,0.4,-75.66,3555.23,262.6,0.5,295000000,167706000000
+2025/05,スタンダード市場,Standard,21 陸運業,21 Land Transportation,20,8.8,0.6,243.6,3687.81,11,0.7,23941000000,382888000000
+2025/05,スタンダード市場,Standard,22 海運業,22 Marine Transportation,6,10.5,0.6,141.98,2508.48,9.6,0.5,9226000000,175925000000
+2025/05,スタンダード市場,Standard,23 空運業,23 Air Transportation,2,9.7,－,171.71,-186.36,10.3,1.9,2814000000,15491000000
+2025/05,スタンダード市場,Standard,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,22,11.6,0.5,128.03,2858.57,15.1,0.7,16880000000,367244000000
+2025/05,スタンダード市場,Standard,25 情報・通信業,25 Information & Communication,177,18.2,1.7,72.24,758.88,29,3.1,167735000000,1565873000000
+2025/05,スタンダード市場,Standard,26 卸売業,26 Wholesale Trade,162,10.9,0.8,152.08,2178.76,13.7,1.1,214673000000,2768873000000
+2025/05,スタンダード市場,Standard,27 小売業,27 Retail Trade,171,18.7,1.3,64.33,905.46,24.7,1.6,161781974133,2450863505591
+2025/05,スタンダード市場,Standard,28 銀行業,28 Banks,11,60.2,0.4,20.55,3441.95,72.3,1.5,11087390034,523286160000
+2025/05,スタンダード市場,Standard,29 証券、商品先物取引業,29 Securities & Commodity Futures,15,9.4,0.9,94.67,1026.15,11,1.1,24968000000,262624000000
+2025/05,スタンダード市場,Standard,30 保険業,30 Insurance,－,－,－,－,－,－,－,－,－
+2025/05,スタンダード市場,Standard,31 その他金融業,31 Other Financing Business,14,16.1,1.2,43.78,599.2,12.4,0.9,70238000000,987578000000
+2025/05,スタンダード市場,Standard,32 不動産業,32 Real Estate,64,12.5,0.9,90.22,1232.78,11.5,1,82527000000,985037846500
+2025/05,スタンダード市場,Standard,33 サービス業,33 Services,196,15.4,1.2,73.48,930.58,16.8,1.4,128362852390,1520348084053
+2025/05,グロース市場,Growth,総合,Composite,607,40.3,3.2,30.58,389.4,184.1,3.7,47000618667,2367290685801
+2025/05,グロース市場,Growth,総合（金融業を除く）,Non-Financial,597,42.4,3.2,28.86,380.62,472.4,3.9,17548618667,2141329685801
+2025/05,グロース市場,Growth,　　　　　 製造業,　　　　 Manufacturing ,78,－,4,-14.67,266.69,－,4.5,-72759883000,371911830000
+2025/05,グロース市場,Growth,　　　　 非製造業,　　　　 Non-Manufacturing ,519,35.3,3.1,35.41,397.74,73.4,3.7,90308501667,1769417855801
+2025/05,グロース市場,Growth,1 水産・農林業,"1 Fishery,Agriculture & Forestry",－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,2 鉱業,2 Mining,－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,3 建設業,3 Construction,8,22.4,2.2,56.96,567.34,30.1,3.2,2705531000,25186459000
+2025/05,グロース市場,Growth,4 食料品,4 Foods,4,－,4.3,-78.29,213.36,－,7.2,-1466000000,8373000000
+2025/05,グロース市場,Growth,5 繊維製品,5 Textiles & Apparels,1,26.2,12.1,141.97,306.56,26.2,12.1,1061000000,2291000000
+2025/05,グロース市場,Growth,6 パルプ・紙,6 Pulp & Paper,－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,7 化学,7 Chemicals,6,－,4,-3.22,384.33,－,4.5,-264883000,21449830000
+2025/05,グロース市場,Growth,8 医薬品,8 Pharmaceutical,38,－,5.5,-40.34,135.74,－,6.4,-72509000000,140551000000
+2025/05,グロース市場,Growth,9 石油・石炭製品,9 Oil & Coal Products,－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,10 ゴム製品,10 Rubber Products,－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,11 ガラス・土石製品,11 Glass & Ceramics Products,－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,12 鉄鋼,12 Iron & Steel,－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,13 非鉄金属,13 Nonferrous Metals,2,18.7,1.5,52.24,670.69,22.6,1.2,248000000,4607000000
+2025/05,グロース市場,Growth,14 金属製品,14 Metal Products,1,45.7,10.3,101.85,452.41,45.7,10.3,901000000,4002000000
+2025/05,グロース市場,Growth,15 機械,15 Machinery,4,166.6,3.7,4.88,222.24,96.3,3.3,527000000,15346000000
+2025/05,グロース市場,Growth,16 電気機器,16 Electric Appliances,6,－,3.1,-38.43,330.89,－,2.9,-3366000000,19866000000
+2025/05,グロース市場,Growth,17 輸送用機器,17 Transportation Equipment,3,17,2.4,111.78,780.83,16.4,2.5,2169000000,14435000000
+2025/05,グロース市場,Growth,18 精密機器,18 Precision Instruments,7,－,5.8,-20.71,195.08,－,2.8,-4479000000,61224000000
+2025/05,グロース市場,Growth,19 その他製品,19 Other Products,6,21.3,2.2,65.58,633.64,48.4,2.7,4419000000,79767000000
+2025/05,グロース市場,Growth,20 電気・ガス業,20 Electric Power & Gas,2,38.1,22,127.64,221.5,28.3,10,2958446000,8356043000
+2025/05,グロース市場,Growth,21 陸運業,21 Land Transportation,－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,22 海運業,22 Marine Transportation,－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,23 空運業,23 Air Transportation,1,10.4,1.1,49.68,461.75,10.4,1.1,2997000000,27857000000
+2025/05,グロース市場,Growth,24 倉庫・運輸関連業,24 Warehousing & Harbor Transportation Services,1,－,1.8,-82.27,202.85,－,1.8,-848000000,2091000000
+2025/05,グロース市場,Growth,25 情報・通信業,25 Information & Communication,252,57.8,3.8,21.41,328.88,688,4.7,4603780667,676350053000
+2025/05,グロース市場,Growth,26 卸売業,26 Wholesale Trade,10,－,3.2,-4.32,291.45,271.4,4.2,546000000,35032000000
+2025/05,グロース市場,Growth,27 小売業,27 Retail Trade,32,31.8,2.8,37.77,436.71,32,2.7,15702936000,187385343186
+2025/05,グロース市場,Growth,28 銀行業,28 Banks,－,－,－,－,－,－,－,－,－
+2025/05,グロース市場,Growth,29 証券、商品先物取引業,29 Securities & Commodity Futures,2,6.7,1.5,477.59,2163.86,5.7,1.6,21553000000,78748000000
+2025/05,グロース市場,Growth,30 保険業,30 Insurance,4,20.9,1.3,61.49,957.25,26.2,1.5,7982000000,138466000000
+2025/05,グロース市場,Growth,31 その他金融業,31 Other Financing Business,4,33.3,4.4,32.18,244.7,－,3.3,-83000000,8747000000
+2025/05,グロース市場,Growth,32 不動産業,32 Real Estate,20,18.3,2.7,124.28,837.21,20.3,2.5,20697000000,168148993615
+2025/05,グロース市場,Growth,33 サービス業,33 Services,193,25.7,2.6,44.82,436.63,53.6,3.4,40945808000,639010964000
+2025/05,－,－,大型株,Large ,100,21.9,2.1,274.72,2915.98,17.4,1.5,34892854100000,402934082000000
+2025/05,－,－,中型株,Medium ,398,18.5,1.4,185.79,2474.62,17.1,1.2,15940287626044,217924316220994
+2025/05,－,－,小型株,Small ,1185,15.4,1,137.86,2042.4,16.9,1.1,5508447463178,86469720691736

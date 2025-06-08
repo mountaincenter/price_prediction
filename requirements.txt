@@ -7,6 +7,7 @@ pandas>=1.5,<2
 jinja2
 fastapi
 uvicorn[standard]
+openpyxl
 
 # データ解析・統計分析
 scipy
