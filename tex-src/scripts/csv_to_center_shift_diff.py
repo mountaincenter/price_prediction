@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.23  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.24  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-11  v2.24: '-' データを欠損として処理
 - 2025-06-06  v2.23: λ=0.90/0.94/0.98 各固定テーブルを出力
 - 2025-06-06  v2.22: η / λ 各種パラメータを CLI で指定可能に
 - 2025-06-06  v2.21: C_pred/Norm_err の σ スケーリング修正
@@ -86,7 +87,10 @@ def read_prices(csv: Path) -> pd.DataFrame:
     df = df.sort_values("Date").reset_index(drop=True)
     df["DispDate"] = df["Date"].dt.strftime("%m-%d")
     for c in ["High", "Low", "Close"]:
-        df[c] = df[c].replace({",": ""}, regex=True).astype(float)
+        df[c] = pd.to_numeric(
+            df[c].replace({",": "", "-": ""}, regex=True), errors="coerce"
+        )
+    df[["High", "Low", "Close"]] = df[["High", "Low", "Close"]].fillna(method="ffill").fillna(method="bfill")
     return df
 
 # ──────────────────────────────────────────────────────────────

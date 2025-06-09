@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""scripts/csv_to_event_diff.py   v1.2  (2025-06-10)
+"""scripts/csv_to_event_diff.py   v1.4  (2025-06-11)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-11  v1.4 : β 各要素の中間変数を出力
+- 2025-06-09  v1.3 : 出力カラムを整理し \u03b1/\u03bb 関連列を削除
 - 2025-06-10  v1.2 : \u03b2_earn を指数平滑化
 - 2025-06-10  v1.1 : weekday/earn/market 各フェーズの簡易実装を追加
 - 2025-06-10  v1.0 : 初版
@@ -61,29 +63,29 @@ def load_earn_dates(code: str) -> set[pd.Timestamp]:
     return set(pd.to_datetime(df["DisclosedDate"], errors="coerce").dropna().dt.normalize())
 
 
-def compute_beta_weekday(dates: pd.Series) -> np.ndarray:
+def compute_beta_weekday(dates: pd.Series) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     n = len(dates)
     wk_map = {0: 1.10, 1: 1.05, 2: 1.00, 3: 0.98, 4: 0.95}
-    beta = dates.dt.dayofweek.map(wk_map).fillna(1.0).values
+    base = dates.dt.dayofweek.map(wk_map).fillna(1.0).values
 
     diff_next = (dates.shift(-1) - dates).dt.days.fillna(1)
     diff_prev = (dates - dates.shift(1)).dt.days.fillna(1)
     holiday = np.ones(n)
     holiday[diff_next > 1] *= 0.90
     holiday[diff_prev > 1] *= 0.95
-    inp = beta * holiday
+    inp = base * holiday
 
     lam = 0.90
     out = np.empty(n)
     for t in range(n):
         out[t] = inp[t] if t == 0 else lam * out[t-1] + (1 - lam) * inp[t]
         out[t] = np.clip(out[t], 0.8, 1.2)
-    return out
+    return out, base, holiday
 
 
-def compute_beta_earn(dates: pd.Series, earn_dates: set[pd.Timestamp]) -> np.ndarray:
+def compute_beta_earn(dates: pd.Series, earn_dates: set[pd.Timestamp]) -> tuple[np.ndarray, np.ndarray]:
     n = len(dates)
-    out = np.ones(n)
+    raw = np.ones(n)
     date_idx = {d.normalize(): i for i, d in enumerate(dates)}
     for d in earn_dates:
         if d in date_idx:
@@ -92,24 +94,29 @@ def compute_beta_earn(dates: pd.Series, earn_dates: set[pd.Timestamp]) -> np.nda
             i = np.searchsorted(dates.values, np.datetime64(d))
             if i >= n:
                 continue
-        out[i] = max(out[i], 1.20)
+        raw[i] = max(raw[i], 1.20)
         if i > 0:
-            out[i-1] = max(out[i-1], 1.15)
+            raw[i-1] = max(raw[i-1], 1.15)
         if i + 1 < n:
-            out[i+1] = max(out[i+1], 1.10)
+            raw[i+1] = max(raw[i+1], 1.10)
     lam = 0.80
     beta = np.empty(n)
     for t in range(n):
-        beta[t] = out[t] if t == 0 else lam * beta[t-1] + (1 - lam) * out[t]
+        beta[t] = raw[t] if t == 0 else lam * beta[t-1] + (1 - lam) * raw[t]
         beta[t] = np.clip(beta[t], 0.8, 1.5)
-    return beta
+    return beta, raw
 
 
-def compute_beta_market(dates: pd.Series, close: pd.Series, idx: dict[str, pd.DataFrame]) -> np.ndarray:
+def compute_beta_market(
+    dates: pd.Series,
+    close: pd.Series,
+    idx: dict[str, pd.DataFrame],
+) -> tuple[np.ndarray, dict[str, np.ndarray]]:
     ret_code = np.log(close).diff()
     df_code = pd.DataFrame({"Date": dates, "ret_code": ret_code})
     prod = np.ones(len(dates))
     lam = 0.90
+    comp: dict[str, np.ndarray] = {}
     for name, dfi in idx.items():
         merged = pd.merge(df_code, dfi, on="Date", how="left").fillna(method="ffill")
         rho = merged["ret_code"].rolling(63, min_periods=20).corr(merged["ret"])
@@ -120,7 +127,8 @@ def compute_beta_market(dates: pd.Series, close: pd.Series, idx: dict[str, pd.Da
             ew[t] = beta.iloc[t] if t == 0 else lam * ew[t-1] + (1 - lam) * beta.iloc[t]
             ew[t] = np.clip(ew[t], 0.8, 1.2)
         prod *= ew
-    return prod
+        comp[name] = ew
+    return prod, comp
 
 # ──────────────────────────────────────────────────────────────
 def calc_event_beta(
@@ -134,20 +142,25 @@ def calc_event_beta(
 ) -> pd.DataFrame:
     base = calc_center_shift(df, phase=2, eta=eta, l_init=l_init, l_min=l_min, l_max=l_max)
 
-    beta_weekday = compute_beta_weekday(df["Date"])
+    beta_weekday, wd_base, wd_holiday = compute_beta_weekday(df["Date"])
     earn_dates = load_earn_dates(code) if code else set()
-    beta_earn = compute_beta_earn(df["Date"], earn_dates)
+    beta_earn, earn_raw = compute_beta_earn(df["Date"], earn_dates)
     idx = {
         "topix": load_index("topix"),
         "sp500": load_index("sp500"),
         "usd_jpy": load_index("usd_jpy"),
     }
-    beta_market = compute_beta_market(df["Date"], df["Close"], idx)
+    beta_market, beta_comp = compute_beta_market(df["Date"], df["Close"], idx)
     beta_event = beta_weekday * beta_earn * beta_market
 
     out = base.copy()
+    out["Beta_wd_base"] = wd_base
+    out["Beta_wd_holiday"] = wd_holiday
     out["Beta_weekday"] = beta_weekday
+    out["Beta_earn_raw"] = earn_raw
     out["Beta_earn"] = beta_earn
+    for name, arr in beta_comp.items():
+        out[f"Beta_mkt_{name}"] = arr
     out["Beta_market"] = beta_market
     out["Beta_event"] = beta_event
 
@@ -170,9 +183,11 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
     for c in [
-        "Beta_weekday","Beta_earn","Beta_market","Beta_event",
+        "Beta_wd_base","Beta_wd_holiday","Beta_weekday",
+        "Beta_earn_raw","Beta_earn",
+        "Beta_mkt_topix","Beta_mkt_sp500","Beta_mkt_usd_jpy","Beta_market",
+        "Beta_event",
         "B_{t-1}","C_pred_evt","C_real","C_diff","C_diff_sign","Norm_err",
-        "MAE_5d","RelMAE","HitRate_20d",
     ]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
@@ -180,14 +195,22 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     dfn = pd.concat([dfn, pd.DataFrame([avg, med])], ignore_index=True)
 
     cols_src = [
-        "Date","Beta_weekday","Beta_earn","Beta_market","Beta_event",
+        "Date",
+        "Beta_wd_base","Beta_wd_holiday","Beta_weekday",
+        "Beta_earn_raw","Beta_earn",
+        "Beta_mkt_topix","Beta_mkt_sp500","Beta_mkt_usd_jpy","Beta_market",
+        "Beta_event",
         "B_{t-1}","C_pred_evt","C_real","C_diff","C_diff_sign","Norm_err",
-        r"$\alpha_t$",r"$\lambda_{\text{shift}}$",r"$\Delta\alpha_t$",
-        "MAE_5d","RelMAE","HitRate_20d",
     ]
     header = {
+        "Beta_wd_base": r"$wd_b$",
+        "Beta_wd_holiday": r"$wd_h$",
         "Beta_weekday": r"$\beta_{wd}$",
+        "Beta_earn_raw": r"$earn_r$",
         "Beta_earn": r"$\beta_{earn}$",
+        "Beta_mkt_topix": r"$mkt_{TPX}$",
+        "Beta_mkt_sp500": r"$mkt_{SP5}$",
+        "Beta_mkt_usd_jpy": r"$mkt_{USD}$",
         "Beta_market": r"$\beta_{mkt}$",
         "Beta_event": r"$\beta_{evt}$",
         "B_{t-1}": r"$B$",
@@ -196,12 +219,6 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "C_diff": r"$C_\Delta$",
         "C_diff_sign": r"$\mathrm{sgn}\,C_\Delta$",
         "Norm_err": r"$|C_\Delta|/\sigma$",
-        r"$\alpha_t$": r"$\alpha_t$",
-        r"$\lambda_{\text{shift}}$": r"$\lambda$",
-        r"$\Delta\alpha_t$": r"$\Delta\alpha$",
-        "MAE_5d": r"$\mathrm{MAE}_5$",
-        "RelMAE": r"$\mathrm{RMAE}$",
-        "HitRate_20d": r"$\mathrm{HR}_{20}[\%]$",
     }
     cols = [header.get(c, c) for c in cols_src]
 
@@ -210,10 +227,11 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return v
         if pd.isna(v):
             return "--"
-        if col in {r"$\beta_{wd}$", r"$\beta_{earn}$", r"$\beta_{mkt}$", r"$\beta_{evt}$",
-                    r"$\alpha_t$", r"$\lambda$", r"$\Delta\alpha$"}:
-            return f"{v:.2f}"
-        if col in {r"$\mathrm{RMAE}$", r"$\mathrm{HR}_{20}[\%]$"}:
+        if col in {
+            r"$\beta_{wd}$", r"$\beta_{earn}$", r"$\beta_{mkt}$", r"$\beta_{evt}$",
+            r"$wd_b$", r"$wd_h$", r"$earn_r$",
+            r"$mkt_{TPX}$", r"$mkt_{SP5}$", r"$mkt_{USD}$",
+        }:
             return f"{v:.2f}"
         return f"{v:.1f}"
 
@@ -228,7 +246,9 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     footnote_lines = [
         r"\begin{tablenotes}\footnotesize",
-        r"\item $\beta_{wd}=\beta_{weekday}$, $B=B_{t-1}$,",
+        r"\item $wd_b$=weekday base, $wd_h$=holiday adj.,",
+        r"$earn_r$=raw earn beta, $mkt_{*}$=market beta comps,",
+        r"$\beta_{wd}=\beta_{weekday}$, $B=B_{t-1}$,",
         r"$C_p=C_{\text{pred}}\beta_{evt}$, $C_r=C_{\text{real}}$,",
         r"$C_\Delta=C_{\text{diff}}$, $|C_\Delta|/\sigma=|C_{\text{diff}}|/\sigma_t^{\text{shift}}$.",
         r"\end{tablenotes}",

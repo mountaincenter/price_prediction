@@ -13,11 +13,11 @@ def test_calc_event_beta():
     csv = Path('tex-src/data/prices/1321.csv')
     df = diff.calc_event_beta(diff.read_prices(csv))
     required = {
-        'MAE_5d', 'HitRate_20d', 'RelMAE',
-        'Beta_weekday', 'Beta_event', 'C_pred_evt'
+        'Beta_weekday', 'Beta_event', 'C_pred_evt',
+        'Beta_earn', 'Beta_market'
     }
     assert required.issubset(df.columns)
-    assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
+    assert 0.8 <= df['Beta_event'].iloc[-1] <= 1.5
 
 
 def test_process_one(tmp_path):
