@@ -139,3 +139,5 @@ pip install -r requirements.txt
 pytest -q
 ```
 
+`tests/test_event_beta_range.py` では Beta 系関数の戻り値レンジを確認できます。
+

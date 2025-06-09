@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""scripts/csv_to_event_diff.py   v1.1  (2025-06-10)
+"""scripts/csv_to_event_diff.py   v1.2  (2025-06-09)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-09  v1.2 : weekday/earn/market アルゴリズム改良
 - 2025-06-10  v1.1 : weekday/earn/market 各フェーズの簡易実装を追加
 - 2025-06-10  v1.0 : 初版
 """
@@ -62,7 +63,7 @@ def load_earn_dates(code: str) -> set[pd.Timestamp]:
 
 def compute_beta_weekday(dates: pd.Series) -> np.ndarray:
     n = len(dates)
-    wk_map = {0: 1.10, 1: 1.05, 2: 1.00, 3: 0.98, 4: 0.95}
+    wk_map = {0: 1.12, 1: 1.06, 2: 1.00, 3: 0.97, 4: 0.94}
     beta = dates.dt.dayofweek.map(wk_map).fillna(1.0).values
 
     diff_next = (dates.shift(-1) - dates).dt.days.fillna(1)
@@ -72,7 +73,7 @@ def compute_beta_weekday(dates: pd.Series) -> np.ndarray:
     holiday[diff_prev > 1] *= 0.95
     inp = beta * holiday
 
-    lam = 0.90
+    lam = 0.92 if n > 150 else 0.88
     out = np.empty(n)
     for t in range(n):
         out[t] = inp[t] if t == 0 else lam * out[t-1] + (1 - lam) * inp[t]
@@ -83,19 +84,13 @@ def compute_beta_weekday(dates: pd.Series) -> np.ndarray:
 def compute_beta_earn(dates: pd.Series, earn_dates: set[pd.Timestamp]) -> np.ndarray:
     n = len(dates)
     out = np.ones(n)
-    date_idx = {d.normalize(): i for i, d in enumerate(dates)}
     for d in earn_dates:
-        if d in date_idx:
-            i = date_idx[d]
-        else:
-            i = np.searchsorted(dates.values, np.datetime64(d))
-            if i >= n:
-                continue
-        out[i] = max(out[i], 1.20)
-        if i > 0:
-            out[i-1] = max(out[i-1], 1.15)
-        if i + 1 < n:
-            out[i+1] = max(out[i+1], 1.10)
+        base = np.searchsorted(dates.values, np.datetime64(d))
+        for off in range(-2, 3):
+            i = base + off
+            if 0 <= i < n:
+                w = 1.20 - 0.05 * abs(off)
+                out[i] = max(out[i], np.clip(w, 0.8, 1.5))
     return out
 
 
@@ -104,9 +99,10 @@ def compute_beta_market(dates: pd.Series, close: pd.Series, idx: dict[str, pd.Da
     df_code = pd.DataFrame({"Date": dates, "ret_code": ret_code})
     prod = np.ones(len(dates))
     lam = 0.90
+    window = 42
     for name, dfi in idx.items():
         merged = pd.merge(df_code, dfi, on="Date", how="left").fillna(method="ffill")
-        rho = merged["ret_code"].rolling(63, min_periods=20).corr(merged["ret"])
+        rho = merged["ret_code"].rolling(window, min_periods=20).corr(merged["ret"])
         z = merged["ret"] / merged["std"]
         beta = (1 + rho * z).clip(0.8, 1.2).fillna(1.0)
         ew = np.empty(len(beta))
@@ -114,7 +110,7 @@ def compute_beta_market(dates: pd.Series, close: pd.Series, idx: dict[str, pd.Da
             ew[t] = beta.iloc[t] if t == 0 else lam * ew[t-1] + (1 - lam) * beta.iloc[t]
             ew[t] = np.clip(ew[t], 0.8, 1.2)
         prod *= ew
-    return prod
+    return np.clip(prod, 0.8, 1.2)
 
 # ──────────────────────────────────────────────────────────────
 def calc_event_beta(
@@ -135,6 +131,7 @@ def calc_event_beta(
         "topix": load_index("topix"),
         "sp500": load_index("sp500"),
         "usd_jpy": load_index("usd_jpy"),
+        "nikkei225_vi": load_index("nikkei225_vi"),
     }
     beta_market = compute_beta_market(df["Date"], df["Close"], idx)
     beta_event = beta_weekday * beta_earn * beta_market

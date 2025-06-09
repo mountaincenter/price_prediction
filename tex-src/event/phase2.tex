@@ -1,0 +1,35 @@
+%-------------------------------------------------------------------------------
+% event/phase2.tex   v1.0  (2025-06-09)
+%-------------------------------------------------------------------------------
+% CHANGELOG
+% - 2025-06-09  v1.0 : weekday/earn/market 改良版を追加
+%-------------------------------------------------------------------------------
+
+%=== Phase 2 : イベント係数改良版 ===============================================
+\section*{event / Phase 2 : 改良版}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item weekday 係数を自己適応的 EWMA\,(\(\lambda_{\text{wd}}\)) で平滑。
+  \item 決算日の近傍 \(\pm2\) 日まで減衰する係数 \(w_d\) を適用。
+  \item 市場係数は日経平均VIを加え、42 日相関で EWMA 更新。
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.90\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\hfil$\displaystyle}l<{$\hfil}@{\quad}X@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\lambda_{\text{wd}} & len(dates)>150 なら 0.92, それ以外 0.88 \\
+ w_d & 決算日からの距離による係数 (1.20--1.10) \\
+\beta_{\text{market},i,t}^{(m2)} & 42日相関 + VI 平滑後係数 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+\bigskip
+%===============================================================================
