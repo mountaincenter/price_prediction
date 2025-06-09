@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_diff.py   v1.2  (2025-06-11)
+scripts/csv_to_range_diff.py   v1.3  (2025-06-11)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-11  v1.3 : '-' データを欠損として処理
 - 2025-06-07  v1.2 : Phase 5 残差補正を追加
 - 2025-06-07  v1.1 : m_pred 計算を価格換算に修正
 - 2025-06-11  v1.0 : 初版
@@ -57,7 +58,12 @@ def read_prices(csv: Path) -> pd.DataFrame:
     df["DispDate"] = df["Date"].dt.strftime("%m-%d")
     for c in ["High", "Low", "Close", "Volume"]:
         if c in df.columns:
-            df[c] = df[c].replace({",": ""}, regex=True).astype(float)
+            df[c] = pd.to_numeric(
+                df[c].replace({",": "", "-": ""}, regex=True), errors="coerce"
+            )
+    cols = [c for c in ["High", "Low", "Close", "Volume"] if c in df.columns]
+    if cols:
+        df[cols] = df[cols].ffill().bfill()
     return df
 
 # ──────────────────────────────────────────────────────────────

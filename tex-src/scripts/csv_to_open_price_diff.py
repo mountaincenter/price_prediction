@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_diff.py   v1.4  (2025-06-10)
+scripts/csv_to_open_price_diff.py   v1.5  (2025-06-10)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_diff.py  （newest → oldest）
+- 2025-06-11  v1.5 : '-' データを欠損として処理
 - 2025-06-10  v1.4 : Phase 5 クリップ (G_fin) 実装
 - 2025-06-07  v1.3 : tex-src/open_price の数式を反映し各 Phase を実装
 - 2025-06-07  v1.2 : 加法モデルに修正し各 Phase の G 列を追加
@@ -61,7 +62,12 @@ def read_prices(csv: Path) -> pd.DataFrame:
     df["DispDate"] = df["Date"].dt.strftime("%m-%d")
     for c in ["High", "Low", "Open", "Close", "Volume", "5DMA", "25DVMA"]:
         if c in df.columns:
-            df[c] = df[c].replace({",": ""}, regex=True).astype(float)
+            df[c] = pd.to_numeric(
+                df[c].replace({",": "", "-": ""}, regex=True), errors="coerce"
+            )
+    cols = [c for c in ["High", "Low", "Open", "Close", "Volume", "5DMA", "25DVMA"] if c in df.columns]
+    if cols:
+        df[cols] = df[cols].ffill().bfill()
     return df
 
 # ──────────────────────────────────────────────────────────────
