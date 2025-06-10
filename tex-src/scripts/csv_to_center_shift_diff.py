@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.27  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.28  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-10  v2.28: C_Δ/C_r を百分率表示し脚注に ×100 追加
 - 2025-06-10  v2.27: C_ratio 表示桁数を増やす
 - 2025-06-10  v2.26: C_ratio/Outlier 列をテーブル出力
 - 2025-06-10  v2.25: C_diff/C_real 比率列を追加
@@ -241,7 +242,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         if col == r"$\mathrm{Out}$":
             return f"{int(v)}"
         if col == r"$C_\Delta/C_r$":
-            return f"{v:.4f}"
+            return f"{100*v:.1f}"
         return f"{v:.1f}"
 
     disp = pd.DataFrame({
@@ -261,7 +262,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"\item $\kappa=\kappa(\sigma)$, $B=B_{t-1}$, "
         r"$C_p=C_{\text{pred}}$, $C_r=C_{\text{real}}$, "
         r"$C_\Delta=C_{\text{diff}}$, "
-        r"$C_\Delta/C_r=\dfrac{C_{\text{diff}}}{C_{\text{real}}}$, "
+        r"$C_\Delta/C_r=\dfrac{C_{\text{diff}}}{C_{\text{real}}}\times100$, "
         r"$\mathrm{Out}=\text{Outlier}$, "
         r"$\mathrm{sgn}\,C_\Delta=\operatorname{sign}(C_{\text{diff}})$, "
         r"$|C_\Delta|/\sigma=\dfrac{|C_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
