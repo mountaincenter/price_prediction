@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.28  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.29  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-10  v2.29: |C_ratio|≥0.02 を外れ値条件に追加
 - 2025-06-10  v2.28: C_Δ/C_r を百分率表示し脚注に ×100 追加
 - 2025-06-10  v2.27: C_ratio 表示桁数を増やす
 - 2025-06-10  v2.26: C_ratio/Outlier 列をテーブル出力
@@ -171,7 +172,8 @@ def calc_center_shift(
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
-    out["Outlier"]    = (np.abs(z) > 3).astype(int)
+    ratio_flag = np.abs(out["C_ratio"]) >= 0.02
+    out["Outlier"]    = ((np.abs(z) > 3) | ratio_flag).astype(int)
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %
     hit = (np.sign(out[r"$\alpha_t$"]) ==

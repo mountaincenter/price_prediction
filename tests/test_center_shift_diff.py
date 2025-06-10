@@ -19,6 +19,9 @@ def test_calc_center_shift_phase2():
     assert set(df['Outlier'].unique()) <= {0, 1}
     assert df['C_ratio'].notna().any()
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
+    mask = df['C_ratio'].abs() >= 0.02
+    if mask.any():
+        assert (df.loc[mask, 'Outlier'] == 1).all()
 
 
 def test_process_one(tmp_path):
