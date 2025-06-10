@@ -14,9 +14,11 @@ def test_calc_open_price_phase2():
     df = diff.calc_open_price(diff.read_prices(csv), phase=5)
     required = {
         'MAE_5d', 'HitRate_20d', 'RelMAE',
-        'G_phase0', 'G_phase1', 'G_phase2', 'G_final'
+        'G_phase0', 'G_phase1', 'G_phase2', 'G_final',
+        'O_ratio'
     }
     assert required.issubset(df.columns)
+    assert df['O_ratio'].notna().any()
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
 
 

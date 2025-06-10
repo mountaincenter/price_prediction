@@ -12,8 +12,9 @@ spec.loader.exec_module(diff)
 def test_calc_range():
     csv = Path('tex-src/data/prices/1321.csv')
     df = diff.calc_range(diff.read_prices(csv))
-    required = {'MAE_5d', 'HitRate_20d', 'RelMAE', 'B_final'}
+    required = {'MAE_5d', 'HitRate_20d', 'RelMAE', 'B_final', 'M_ratio'}
     assert required.issubset(df.columns)
+    assert df['M_ratio'].notna().any()
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
 
 
