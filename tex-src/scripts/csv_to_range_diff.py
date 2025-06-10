@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_diff.py   v1.4  (2025-06-11)
+scripts/csv_to_range_diff.py   v1.5  (2025-06-11)
 ────────────────────────────────────────────────────────
-CHANGELOG:
+- CHANGELOG:
+- 2025-06-11  v1.5 : M_ratio 列をテーブル出力
 - 2025-06-10  v1.4 : m_diff/m_real 比率列を追加
 - 2025-06-11  v1.3 : 欠損値 '-' を NaN 変換
 - 2025-06-07  v1.2 : Phase 5 残差補正を追加
@@ -168,7 +169,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
-    for c in ["B_phase1","B_phase2","B_phase3","B_final","M_pred","M_real","M_diff","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
+    for c in ["B_phase1","B_phase2","B_phase3","B_final","M_pred","M_real","M_diff","M_ratio","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
         med[c] = np.median(vals)
@@ -183,6 +184,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "M_pred",
         "M_real",
         "M_diff",
+        "M_ratio",
         "Norm_err",
         "MAE_5d",
         "RelMAE",
@@ -196,6 +198,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "M_pred": r"$m_{\mathrm{pred}}$",
         "M_real": r"$m_{\mathrm{real}}$",
         "M_diff": r"$m_\Delta$",
+        "M_ratio": r"$m_\Delta/m$",
         "Norm_err": r"$|m_\Delta|/\sigma$",
         "MAE_5d": r"$\mathrm{MAE}_5$",
         "RelMAE": r"$\mathrm{RMAE}$",
@@ -227,6 +230,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     footnote_lines = [
         r"\begin{tablenotes}\footnotesize",
         r"\item $m_\Delta=m_{\text{pred}}-m_{\text{real}}$,",
+        r"$m_\Delta/m=\dfrac{m_{\text{pred}}-m_{\text{real}}}{m_{\text{real}}}$",
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$,",
         r"$\mathrm{RMAE}=\mathrm{MAE}_5/\text{Close}$",
         r"\end{tablenotes}",

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.25  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.26  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-10  v2.26: C_ratio/Outlier 列をテーブル出力
 - 2025-06-10  v2.25: C_diff/C_real 比率列を追加
 - 2025-06-06  v2.24: Norm_err の z-score で外れ値判定列を追加
 - 2025-06-06  v2.23: λ=0.90/0.94/0.98 各固定テーブルを出力
@@ -183,7 +184,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
     for c in [r"$\kappa(\sigma)$","B_{t-1}","C_pred","C_real","C_diff",
-              "C_diff_sign","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
+              "C_ratio","C_diff_sign","Norm_err","Outlier",
+              "MAE_5d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
         med[c] = np.median(vals)
@@ -196,8 +198,10 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "C_pred",
         "C_real",
         "C_diff",
+        "C_ratio",
         "C_diff_sign",
         "Norm_err",
+        "Outlier",
         r"$\alpha_t$",
         r"$\lambda_{\text{shift}}$",
         r"$\Delta\alpha_t$",
@@ -211,8 +215,10 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "C_pred":             r"$C_p$",
         "C_real":             r"$C_r$",
         "C_diff":             r"$C_\Delta$",
+        "C_ratio":            r"$C_\Delta/C_r$",
         "C_diff_sign":        r"$\mathrm{sgn}\,C_\Delta$",
         "Norm_err":           r"$|C_\Delta|/\sigma$",
+        "Outlier":            r"$\mathrm{Out}$",
         r"$\alpha_t$":        r"$\alpha_t$",
         r"$\lambda_{\text{shift}}$": r"$\lambda$",
         r"$\Delta\alpha_t$": r"$\Delta\alpha$",
@@ -231,6 +237,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return f"{v:.2f}"
         if col in {r"$\mathrm{RMAE}$", r"$\mathrm{HR}_{20}[\%]$"}:
             return f"{v:.2f}"
+        if col == r"$\mathrm{Out}$":
+            return f"{int(v)}"
         return f"{v:.1f}"
 
     disp = pd.DataFrame({
@@ -250,6 +258,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"\item $\kappa=\kappa(\sigma)$, $B=B_{t-1}$, "
         r"$C_p=C_{\text{pred}}$, $C_r=C_{\text{real}}$, "
         r"$C_\Delta=C_{\text{diff}}$, "
+        r"$C_\Delta/C_r=\dfrac{C_{\text{diff}}}{C_{\text{real}}}$, "
+        r"$\mathrm{Out}=\text{Outlier}$, "
         r"$\mathrm{sgn}\,C_\Delta=\operatorname{sign}(C_{\text{diff}})$, "
         r"$|C_\Delta|/\sigma=\dfrac{|C_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "

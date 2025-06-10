@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_diff.py   v1.6  (2025-06-10)
+scripts/csv_to_open_price_diff.py   v1.7  (2025-06-10)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_diff.py  （newest → oldest）
+- 2025-06-10  v1.7 : O_ratio 列をテーブル出力
 - 2025-06-10  v1.6 : O_diff/O_real 比率列を追加
 - 2025-06-10  v1.5 : 欠損値 '-' を NaN 変換
 - 2025-06-10  v1.4 : Phase 5 クリップ (G_fin) 実装
@@ -207,7 +208,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
     for c in [r"$\kappa(\sigma)$","B_{t-1}","G_phase0","G_phase1","G_phase2",
-              "G_final","O_pred","O_real","O_diff",
+              "G_final","O_pred","O_real","O_diff","O_ratio",
               "O_diff_sign","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
@@ -225,6 +226,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "O_pred",
         "O_real",
         "O_diff",
+        "O_ratio",
         "O_diff_sign",
         "Norm_err",
         r"$\alpha_t$",
@@ -244,6 +246,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "O_pred":             r"$O_p$",
         "O_real":             r"$O_r$",
         "O_diff":             r"$O_\Delta$",
+        "O_ratio":            r"$O_\Delta/O_r$",
         "O_diff_sign":        r"$\mathrm{sgn}\,O_\Delta$",
         "Norm_err":           r"$|O_\Delta|/\sigma$",
         r"$\alpha_t$":        r"$\alpha_t$",
@@ -283,6 +286,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"\item $\kappa=\kappa(\sigma)$, $B=B_{t-1}$, "
         r"$O_p=O_{\text{pred}}$, $O_r=O_{\text{real}}$, "
         r"$O_\Delta=O_{\text{diff}}$, "
+        r"$O_\Delta/O_r=\dfrac{O_{\text{diff}}}{O_{\text{real}}}$, "
         r"$\mathrm{sgn}\,O_\Delta=\operatorname{sign}(O_{\text{diff}})$, "
         r"$|O_\Delta|/\sigma=\dfrac{|O_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "

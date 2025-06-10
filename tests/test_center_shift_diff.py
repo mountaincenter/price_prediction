@@ -29,6 +29,7 @@ def test_process_one(tmp_path):
     assert text.strip() != ''
     assert text.count('\\begin{threeparttable}') == 3
     assert text.count('\\clearpage') == 2
+    assert 'C_\\Delta/C_r' in text and '\\mathrm{Out}' in text
     assert 'λ = 0.90' in text and 'λ = 0.94' in text and 'λ = 0.98' in text
 
 
