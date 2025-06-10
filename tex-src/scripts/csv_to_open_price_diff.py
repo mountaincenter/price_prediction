@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_diff.py   v1.7  (2025-06-10)
+scripts/csv_to_open_price_diff.py   v1.8  (2025-06-10)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_diff.py  （newest → oldest）
+- 2025-06-10  v1.8 : O_ratio 表示桁数を増やす
 - 2025-06-10  v1.7 : O_ratio 列をテーブル出力
 - 2025-06-10  v1.6 : O_diff/O_real 比率列を追加
 - 2025-06-10  v1.5 : 欠損値 '-' を NaN 変換
@@ -267,6 +268,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return f"{v:.2f}"
         if col in {r"$\mathrm{RMAE}$", r"$\mathrm{HR}_{20}[\%]$"}:
             return f"{v:.2f}"
+        if col == r"$O_\Delta/O_r$":
+            return f"{v:.4f}"
         return f"{v:.1f}"
 
     disp = pd.DataFrame({

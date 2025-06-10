@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_diff.py   v1.5  (2025-06-11)
+scripts/csv_to_range_diff.py   v1.6  (2025-06-11)
 ────────────────────────────────────────────────────────
 - CHANGELOG:
+- 2025-06-11  v1.6 : M_ratio 表示桁数を増やす
 - 2025-06-11  v1.5 : M_ratio 列をテーブル出力
 - 2025-06-10  v1.4 : m_diff/m_real 比率列を追加
 - 2025-06-11  v1.3 : 欠損値 '-' を NaN 変換
@@ -215,6 +216,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return f"{v:.2f}"
         if col in {r"$\mathrm{RMAE}$", r"$\mathrm{HR}_{20}[\%]$"}:
             return f"{v:.2f}"
+        if col == r"$m_\Delta/m$":
+            return f"{v:.4f}"
         return f"{v:.1f}"
 
     disp = pd.DataFrame({

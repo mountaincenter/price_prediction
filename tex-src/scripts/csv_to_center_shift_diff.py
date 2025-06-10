@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.26  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.27  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-10  v2.27: C_ratio 表示桁数を増やす
 - 2025-06-10  v2.26: C_ratio/Outlier 列をテーブル出力
 - 2025-06-10  v2.25: C_diff/C_real 比率列を追加
 - 2025-06-06  v2.24: Norm_err の z-score で外れ値判定列を追加
@@ -239,6 +240,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return f"{v:.2f}"
         if col == r"$\mathrm{Out}$":
             return f"{int(v)}"
+        if col == r"$C_\Delta/C_r$":
+            return f"{v:.4f}"
         return f"{v:.1f}"
 
     disp = pd.DataFrame({
