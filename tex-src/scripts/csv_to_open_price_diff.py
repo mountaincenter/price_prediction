@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_diff.py   v1.4  (2025-06-10)
+scripts/csv_to_open_price_diff.py   v1.6  (2025-06-10)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_diff.py  （newest → oldest）
+- 2025-06-10  v1.6 : O_diff/O_real 比率列を追加
+- 2025-06-10  v1.5 : 欠損値 '-' を NaN 変換
 - 2025-06-10  v1.4 : Phase 5 クリップ (G_fin) 実装
 - 2025-06-07  v1.3 : tex-src/open_price の数式を反映し各 Phase を実装
 - 2025-06-07  v1.2 : 加法モデルに修正し各 Phase の G 列を追加
@@ -61,8 +63,13 @@ def read_prices(csv: Path) -> pd.DataFrame:
     df["DispDate"] = df["Date"].dt.strftime("%m-%d")
     for c in ["High", "Low", "Open", "Close", "Volume", "5DMA", "25DVMA"]:
         if c in df.columns:
-            df[c] = df[c].replace({",": ""}, regex=True).astype(float)
-    return df
+            df[c] = (
+                df[c]
+                .replace({",": "", "-": np.nan}, regex=True)
+                .pipe(pd.to_numeric, errors="coerce")
+            )
+    df = df.dropna(subset=["High", "Low", "Open"])
+    return df.reset_index(drop=True)
 
 # ──────────────────────────────────────────────────────────────
 def kappa_sigma(s: float) -> float:
@@ -182,6 +189,7 @@ def calc_open_price(
     out["O_pred"]  = out["B_{t-1}"] + o_gap
     out["O_real"]  = df["Open"]
     out["O_diff"]  = out["O_pred"] - out["O_real"]
+    out["O_ratio"] = np.where(out["O_real"] != 0, out["O_diff"] / out["O_real"], np.nan)
 
     out["O_diff_sign"] = np.sign(out["O_diff"])
     out["Norm_err"]    = np.abs(out["O_diff"]) / out[r"$\sigma_t^{\mathrm{shift}}$"]

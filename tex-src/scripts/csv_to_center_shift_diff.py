@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.23  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.25  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-10  v2.25: C_diff/C_real 比率列を追加
+- 2025-06-06  v2.24: Norm_err の z-score で外れ値判定列を追加
 - 2025-06-06  v2.23: λ=0.90/0.94/0.98 各固定テーブルを出力
 - 2025-06-06  v2.22: η / λ 各種パラメータを CLI で指定可能に
 - 2025-06-06  v2.21: C_pred/Norm_err の σ スケーリング修正
@@ -86,8 +88,13 @@ def read_prices(csv: Path) -> pd.DataFrame:
     df = df.sort_values("Date").reset_index(drop=True)
     df["DispDate"] = df["Date"].dt.strftime("%m-%d")
     for c in ["High", "Low", "Close"]:
-        df[c] = df[c].replace({",": ""}, regex=True).astype(float)
-    return df
+        df[c] = (
+            df[c]
+            .replace({",": "", "-": np.nan}, regex=True)
+            .pipe(pd.to_numeric, errors="coerce")
+        )
+    df = df.dropna(subset=["High", "Low", "Close"])
+    return df.reset_index(drop=True)
 
 # ──────────────────────────────────────────────────────────────
 def kappa_sigma(s: float) -> float:
@@ -156,9 +163,12 @@ def calc_center_shift(
     out["C_pred"]  = out["B_{t-1}"] * (1 + out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     out["C_real"]  = (out["High"] + out["Low"]) / 2
     out["C_diff"]  = out["C_pred"] - out["C_real"]
+    out["C_ratio"] = np.where(out["C_real"] != 0, out["C_diff"] / out["C_real"], np.nan)
 
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
+    z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
+    out["Outlier"]    = (np.abs(z) > 3).astype(int)
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %
     hit = (np.sign(out[r"$\alpha_t$"]) ==

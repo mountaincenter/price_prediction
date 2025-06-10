@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_diff.py   v1.2  (2025-06-11)
+scripts/csv_to_range_diff.py   v1.4  (2025-06-11)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-10  v1.4 : m_diff/m_real 比率列を追加
+- 2025-06-11  v1.3 : 欠損値 '-' を NaN 変換
 - 2025-06-07  v1.2 : Phase 5 残差補正を追加
 - 2025-06-07  v1.1 : m_pred 計算を価格換算に修正
 - 2025-06-11  v1.0 : 初版
@@ -57,8 +59,13 @@ def read_prices(csv: Path) -> pd.DataFrame:
     df["DispDate"] = df["Date"].dt.strftime("%m-%d")
     for c in ["High", "Low", "Close", "Volume"]:
         if c in df.columns:
-            df[c] = df[c].replace({",": ""}, regex=True).astype(float)
-    return df
+            df[c] = (
+                df[c]
+                .replace({",": "", "-": np.nan}, regex=True)
+                .pipe(pd.to_numeric, errors="coerce")
+            )
+    df = df.dropna(subset=["High", "Low", "Close"])
+    return df.reset_index(drop=True)
 
 # ──────────────────────────────────────────────────────────────
 
@@ -146,6 +153,7 @@ def calc_range(
         "M_pred": m_pred,
         "M_real": m_real,
         "M_diff": diff,
+        "M_ratio": np.where(m_real != 0, diff / m_real, np.nan),
         "Norm_err": np.abs(diff) / (sig * close),
         "MAE_5d": pd.Series(diff).abs().rolling(5, min_periods=1).mean(),
         "RelMAE": pd.Series(diff).abs().rolling(5, min_periods=1).mean() / close * 100,

@@ -13,9 +13,11 @@ def test_calc_center_shift_phase2():
     csv = Path('tex-src/data/prices/1321.csv')
     df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
     assert {
-        'MAE_5d', 'HitRate_20d', 'RelMAE',
+        'MAE_5d', 'HitRate_20d', 'RelMAE', 'Outlier', 'C_ratio',
         r'$\lambda_{\text{shift}}$', r'$\Delta\alpha_t$'
     }.issubset(df.columns)
+    assert set(df['Outlier'].unique()) <= {0, 1}
+    assert df['C_ratio'].notna().any()
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
 
 
