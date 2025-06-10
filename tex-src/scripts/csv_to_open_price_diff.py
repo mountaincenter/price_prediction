@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_open_price_diff.py   v1.4  (2025-06-10)
+scripts/csv_to_open_price_diff.py   v1.8  (2025-06-10)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_open_price_diff.py  （newest → oldest）
+- 2025-06-10  v1.8 : O_ratio 表示桁数を増やす
+- 2025-06-10  v1.7 : O_ratio 列をテーブル出力
+- 2025-06-10  v1.6 : O_diff/O_real 比率列を追加
+- 2025-06-10  v1.5 : 欠損値 '-' を NaN 変換
 - 2025-06-10  v1.4 : Phase 5 クリップ (G_fin) 実装
 - 2025-06-07  v1.3 : tex-src/open_price の数式を反映し各 Phase を実装
 - 2025-06-07  v1.2 : 加法モデルに修正し各 Phase の G 列を追加
@@ -61,8 +65,13 @@ def read_prices(csv: Path) -> pd.DataFrame:
     df["DispDate"] = df["Date"].dt.strftime("%m-%d")
     for c in ["High", "Low", "Open", "Close", "Volume", "5DMA", "25DVMA"]:
         if c in df.columns:
-            df[c] = df[c].replace({",": ""}, regex=True).astype(float)
-    return df
+            df[c] = (
+                df[c]
+                .replace({",": "", "-": np.nan}, regex=True)
+                .pipe(pd.to_numeric, errors="coerce")
+            )
+    df = df.dropna(subset=["High", "Low", "Open"])
+    return df.reset_index(drop=True)
 
 # ──────────────────────────────────────────────────────────────
 def kappa_sigma(s: float) -> float:
@@ -182,6 +191,7 @@ def calc_open_price(
     out["O_pred"]  = out["B_{t-1}"] + o_gap
     out["O_real"]  = df["Open"]
     out["O_diff"]  = out["O_pred"] - out["O_real"]
+    out["O_ratio"] = np.where(out["O_real"] != 0, out["O_diff"] / out["O_real"], np.nan)
 
     out["O_diff_sign"] = np.sign(out["O_diff"])
     out["Norm_err"]    = np.abs(out["O_diff"]) / out[r"$\sigma_t^{\mathrm{shift}}$"]
@@ -199,7 +209,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
     for c in [r"$\kappa(\sigma)$","B_{t-1}","G_phase0","G_phase1","G_phase2",
-              "G_final","O_pred","O_real","O_diff",
+              "G_final","O_pred","O_real","O_diff","O_ratio",
               "O_diff_sign","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
@@ -217,6 +227,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "O_pred",
         "O_real",
         "O_diff",
+        "O_ratio",
         "O_diff_sign",
         "Norm_err",
         r"$\alpha_t$",
@@ -236,6 +247,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "O_pred":             r"$O_p$",
         "O_real":             r"$O_r$",
         "O_diff":             r"$O_\Delta$",
+        "O_ratio":            r"$O_\Delta/O_r$",
         "O_diff_sign":        r"$\mathrm{sgn}\,O_\Delta$",
         "Norm_err":           r"$|O_\Delta|/\sigma$",
         r"$\alpha_t$":        r"$\alpha_t$",
@@ -256,6 +268,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return f"{v:.2f}"
         if col in {r"$\mathrm{RMAE}$", r"$\mathrm{HR}_{20}[\%]$"}:
             return f"{v:.2f}"
+        if col == r"$O_\Delta/O_r$":
+            return f"{v:.4f}"
         return f"{v:.1f}"
 
     disp = pd.DataFrame({
@@ -275,6 +289,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"\item $\kappa=\kappa(\sigma)$, $B=B_{t-1}$, "
         r"$O_p=O_{\text{pred}}$, $O_r=O_{\text{real}}$, "
         r"$O_\Delta=O_{\text{diff}}$, "
+        r"$O_\Delta/O_r=\dfrac{O_{\text{diff}}}{O_{\text{real}}}$, "
         r"$\mathrm{sgn}\,O_\Delta=\operatorname{sign}(O_{\text{diff}})$, "
         r"$|O_\Delta|/\sigma=\dfrac{|O_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "
