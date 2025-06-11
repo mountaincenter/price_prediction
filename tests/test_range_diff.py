@@ -17,9 +17,14 @@ def test_calc_range():
     assert df['M_ratio'].notna().any()
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
     assert set(df['Outlier'].unique()) <= {0, 1}
-    mask = df['M_ratio'].abs() >= 0.10
+    thr = df['M_ratio'].abs().quantile(0.995)
+    mask = df['M_ratio'].abs() >= thr
     if mask.any():
         assert (df.loc[mask, 'Outlier'] == 1).all()
+    z = (df['Norm_err'] - df['Norm_err'].mean()) / df['Norm_err'].std(ddof=0)
+    mask_z = z.abs() > 3
+    if mask_z.any():
+        assert (df.loc[mask_z, 'Outlier'] == 1).all()
 
 
 def test_process_one(tmp_path):

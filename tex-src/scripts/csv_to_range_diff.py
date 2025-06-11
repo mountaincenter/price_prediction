@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_diff.py   v1.7  (2025-06-11)
+scripts/csv_to_range_diff.py   v1.8  (2025-06-11)
 ────────────────────────────────────────────────────────
 - CHANGELOG:
+- 2025-06-12  v1.8 : Outlier 判定に z-score と 99.5% 閾値を併用
 - 2025-06-11  v1.7 : M_ratio を百分率表示し 10% 乖離で Outlier 判定
 - 2025-06-11  v1.6 : M_ratio 表示桁数を増やす
 - 2025-06-11  v1.5 : M_ratio 列をテーブル出力
@@ -147,6 +148,12 @@ def calc_range(
 
     diff = m_pred - m_real
 
+    ratio = np.where(m_real != 0, diff / m_real, np.nan)
+    norm_err = np.abs(diff) / (sig * close)
+    z = (norm_err - np.nanmean(norm_err)) / np.nanstd(norm_err)
+    ratio_th = np.nanquantile(np.abs(ratio), 0.995)
+    outlier = ((np.abs(ratio) >= ratio_th) | (np.abs(z) > 3)).astype(int)
+
     out = pd.DataFrame({
         "Date": df["DispDate"],
         "B_phase1": beta1,
@@ -156,9 +163,9 @@ def calc_range(
         "M_pred": m_pred,
         "M_real": m_real,
         "M_diff": diff,
-        "M_ratio": np.where(m_real != 0, diff / m_real, np.nan),
-        "Outlier": (np.abs(np.where(m_real != 0, diff / m_real, np.nan)) >= 0.10).astype(int),
-        "Norm_err": np.abs(diff) / (sig * close),
+        "M_ratio": ratio,
+        "Outlier": outlier,
+        "Norm_err": norm_err,
         "MAE_5d": pd.Series(diff).abs().rolling(5, min_periods=1).mean(),
         "RelMAE": pd.Series(diff).abs().rolling(5, min_periods=1).mean() / close * 100,
         "HitRate_20d": pd.Series((m_pred >= m_real).astype(int)).rolling(20, min_periods=1).mean() * 100,
