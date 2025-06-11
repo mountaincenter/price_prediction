@@ -12,9 +12,12 @@ spec.loader.exec_module(fund)
 def test_make_table_and_process(tmp_path):
     events = Path('tests/fixtures/events.csv')
     out = tmp_path / 'fund.tex'
-    fund.process_all(events_csv=events, out_file=out, prices_dir=Path('tests/fixtures/prices'))
+    csv_out = tmp_path / 'fund.csv'
+    fund.process_all(events_csv=events, out_file=out, prices_dir=Path('tests/fixtures/prices'), csv_file=csv_out)
     assert out.exists()
     text = out.read_text()
-    assert '\\begin{tabular}' in text
+    assert '\\begin{longtable}' in text
     assert '1321' in text
-    assert any(suffix in text for suffix in ['_J_d', '_T_d', '_U_d-1'])
+    assert 'Total' in text
+    assert any(tag in text for tag in ['\\_J\\_d', '\\_T\\_d', '\\_U\\_d', '\\_U\\_d-1', '\\_U\\_d+1'])
+    assert csv_out.exists()

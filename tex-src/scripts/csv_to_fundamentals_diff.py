@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """scripts/csv_to_fundamentals_diff.py
-  v1.2  (2025-06-12)
+  v1.3  (2025-06-13)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-13  v1.3 : Total 列を追加し長大表を longtable で出力、CSV も保存
 - 2025-06-12  Row ラベル中の `_` を `\_` にエスケープして LaTeX コンパイルエラーを解消
 - 2025-06-10  v1.1 : 単独コンパイル可能な TeX を出力
 - 2025-06-10  v1.0 : 初版
@@ -26,6 +27,7 @@ END_DATE   = pd.Timestamp("2025-06-09")
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data" / "prices"
 EVENTS_CSV = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data" / "events.csv"
 OUT_TEX    = Path(__file__).resolve().parent.parent.parent / "tex-src" / "fundamentals.tex"
+OUT_CSV    = OUT_TEX.with_suffix('.csv')
 
 # ──────────────────────────────────────────────────────────────
 def read_events(csv: Path) -> pd.DataFrame:
@@ -62,6 +64,7 @@ def build_rows(
     rows: list[dict[str, int]] = []
     for d in all_dates:
         base = {c: data[c].get(d, 0) for c in codes}
+        total = sum(base.values())
         evs: list[str] = []
         for _, r in events.iterrows():
             delta = (d - r["Date"].date()).days
@@ -75,20 +78,21 @@ def build_rows(
                     tag = f"{d}_{r['Code']}_d{sign}"
                     evs.append(tag)
         if not evs:
-            rows.append({"Row": str(d), **base})
+            rows.append({"Row": str(d), **base, "Total": total})
         else:
             for t in evs:
-                rows.append({"Row": t, **base})
+                rows.append({"Row": t, **base, "Total": total})
     return rows
 
 # ──────────────────────────────────────────────────────────────
 def make_table(rows: list[dict[str, int]], codes: list[str]) -> str:
     """DataFrame → LaTeX 変換（Row ラベルの _ をエスケープ）"""
     df = pd.DataFrame(rows)
+    df = df[["Row", *codes, "Total"]]
     # Row 列のアンダースコアを LaTeX 用にエスケープ
     df["Row"] = df["Row"].str.replace("_", r"\_", regex=False)
-    fmt_str = "l" + "c" * len(codes)
-    latex = df.to_latex(index=False, escape=False, column_format=fmt_str)
+    fmt_str = "l" + "c" * (len(codes) + 1)
+    latex = df.to_latex(index=False, escape=False, column_format=fmt_str, longtable=True)
     return "\n".join(
         [
             r"\begingroup",
@@ -105,18 +109,20 @@ def process_all(
     events_csv: Path = EVENTS_CSV,
     out_file: Path = OUT_TEX,
     prices_dir: Path = PRICES_DIR,
+    csv_file: Path = OUT_CSV,
 ) -> Path:
     codes, data = collect_outliers(prices_dir)
     events = read_events(events_csv)
     rows = build_rows(codes, data, events)
+    df = pd.DataFrame(rows)[["Row", *codes, "Total"]]
     table = make_table(rows, codes)
     doc = "\n".join(
         [
             "%-------------------------------------------------------------------------------",
-            "% fundamentals.tex   v1.2  (2025-06-12)",
+            "% fundamentals.tex   v1.3  (2025-06-13)",
             "%-------------------------------------------------------------------------------",
             r"\documentclass[dvipdfmx,oneside]{article}",
-            r"\usepackage{amsmath,amssymb,tabularx,booktabs}",
+            r"\usepackage{amsmath,amssymb,tabularx,booktabs,longtable}",
             r"\usepackage{geometry}",
             r"\geometry{margin=15mm}",
             r"\renewcommand{\arraystretch}{1.2}",
@@ -128,6 +134,7 @@ def process_all(
     )
     out_file.parent.mkdir(parents=True, exist_ok=True)
     out_file.write_text(doc, encoding="utf-8")
+    df.to_csv(csv_file, index=False)
     return out_file
 
 # ──────────────────────────────────────────────────────────────
@@ -136,8 +143,9 @@ def main() -> None:
     parser.add_argument("--events", type=Path, default=EVENTS_CSV)
     parser.add_argument("--out", type=Path, default=OUT_TEX)
     parser.add_argument("--prices", type=Path, default=PRICES_DIR)
+    parser.add_argument("--csv", type=Path, default=OUT_CSV)
     args = parser.parse_args()
-    out = process_all(events_csv=args.events, out_file=args.out, prices_dir=args.prices)
+    out = process_all(events_csv=args.events, out_file=args.out, prices_dir=args.prices, csv_file=args.csv)
     print(f"✅ fundamentals → {out.relative_to(out.parent.parent)}")
 
 if __name__ == "__main__":
