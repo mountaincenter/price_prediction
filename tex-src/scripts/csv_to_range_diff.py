@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_diff.py   v1.6  (2025-06-11)
+scripts/csv_to_range_diff.py   v1.7  (2025-06-11)
 ────────────────────────────────────────────────────────
 - CHANGELOG:
+- 2025-06-11  v1.7 : M_ratio を百分率表示し 10% 乖離で Outlier 判定
 - 2025-06-11  v1.6 : M_ratio 表示桁数を増やす
 - 2025-06-11  v1.5 : M_ratio 列をテーブル出力
 - 2025-06-10  v1.4 : m_diff/m_real 比率列を追加
@@ -156,6 +157,7 @@ def calc_range(
         "M_real": m_real,
         "M_diff": diff,
         "M_ratio": np.where(m_real != 0, diff / m_real, np.nan),
+        "Outlier": (np.abs(np.where(m_real != 0, diff / m_real, np.nan)) >= 0.10).astype(int),
         "Norm_err": np.abs(diff) / (sig * close),
         "MAE_5d": pd.Series(diff).abs().rolling(5, min_periods=1).mean(),
         "RelMAE": pd.Series(diff).abs().rolling(5, min_periods=1).mean() / close * 100,
@@ -170,7 +172,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
-    for c in ["B_phase1","B_phase2","B_phase3","B_final","M_pred","M_real","M_diff","M_ratio","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
+    for c in ["B_phase1","B_phase2","B_phase3","B_final","M_pred","M_real","M_diff","M_ratio","Outlier","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
         med[c] = np.median(vals)
@@ -186,6 +188,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "M_real",
         "M_diff",
         "M_ratio",
+        "Outlier",
         "Norm_err",
         "MAE_5d",
         "RelMAE",
@@ -200,6 +203,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "M_real": r"$m_{\mathrm{real}}$",
         "M_diff": r"$m_\Delta$",
         "M_ratio": r"$m_\Delta/m$",
+        "Outlier": r"$\mathrm{Out}$",
         "Norm_err": r"$|m_\Delta|/\sigma$",
         "MAE_5d": r"$\mathrm{MAE}_5$",
         "RelMAE": r"$\mathrm{RMAE}$",
@@ -217,7 +221,9 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         if col in {r"$\mathrm{RMAE}$", r"$\mathrm{HR}_{20}[\%]$"}:
             return f"{v:.2f}"
         if col == r"$m_\Delta/m$":
-            return f"{v:.4f}"
+            return f"{100*v:.1f}"
+        if col == r"$\mathrm{Out}$":
+            return f"{int(v)}"
         return f"{v:.1f}"
 
     disp = pd.DataFrame({
@@ -233,7 +239,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     footnote_lines = [
         r"\begin{tablenotes}\footnotesize",
         r"\item $m_\Delta=m_{\text{pred}}-m_{\text{real}}$,",
-        r"$m_\Delta/m=\dfrac{m_{\text{pred}}-m_{\text{real}}}{m_{\text{real}}}$",
+        r"$m_\Delta/m=\dfrac{m_{\text{pred}}-m_{\text{real}}}{m_{\text{real}}}\times100$,",
+        r"$\mathrm{Out}=\text{Outlier}$,",
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$,",
         r"$\mathrm{RMAE}=\mathrm{MAE}_5/\text{Close}$",
         r"\end{tablenotes}",
