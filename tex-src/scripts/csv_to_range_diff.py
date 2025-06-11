@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_range_diff.py   v1.8  (2025-06-11)
+scripts/csv_to_range_diff.py   v1.9  (2025-06-11)
 ────────────────────────────────────────────────────────
 - CHANGELOG:
+- 2025-06-11  v1.9 : 銘柄別 IQR を用いた m_pred クリップ
 - 2025-06-12  v1.8 : Outlier 判定に z-score と 99.5% 閾値を併用
 - 2025-06-11  v1.7 : M_ratio を百分率表示し 10% 乖離で Outlier 判定
 - 2025-06-11  v1.6 : M_ratio 表示桁数を増やす
@@ -146,7 +147,16 @@ def calc_range(
         base_pred = sig[t] * bar_beta[t] * close[t]
         m_pred[t] = base_pred + bias[t]
 
-    diff = m_pred - m_real
+    m_fin = np.zeros(n)
+    for t in range(n):
+        hist = m_real[max(0, t-63):t] if t else m_real[:1]
+        q1 = np.percentile(hist, 25)
+        q3 = np.percentile(hist, 75)
+        cap = q3 + 1.5 * (q3 - q1)
+        cap = max(cap, 1e-4)
+        m_fin[t] = np.clip(m_pred[t], 0, cap)
+
+    diff = m_fin - m_real
 
     ratio = np.where(m_real != 0, diff / m_real, np.nan)
     norm_err = np.abs(diff) / (sig * close)
@@ -161,6 +171,7 @@ def calc_range(
         "B_phase3": beta3,
         "B_final": bar_beta,
         "M_pred": m_pred,
+        "M_final": m_fin,
         "M_real": m_real,
         "M_diff": diff,
         "M_ratio": ratio,
@@ -168,7 +179,7 @@ def calc_range(
         "Norm_err": norm_err,
         "MAE_5d": pd.Series(diff).abs().rolling(5, min_periods=1).mean(),
         "RelMAE": pd.Series(diff).abs().rolling(5, min_periods=1).mean() / close * 100,
-        "HitRate_20d": pd.Series((m_pred >= m_real).astype(int)).rolling(20, min_periods=1).mean() * 100,
+        "HitRate_20d": pd.Series((m_fin >= m_real).astype(int)).rolling(20, min_periods=1).mean() * 100,
     })
     return out
 
@@ -179,7 +190,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
-    for c in ["B_phase1","B_phase2","B_phase3","B_final","M_pred","M_real","M_diff","M_ratio","Outlier","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
+    for c in ["B_phase1","B_phase2","B_phase3","B_final","M_pred","M_final","M_real","M_diff","M_ratio","Outlier","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
         med[c] = np.median(vals)
@@ -192,6 +203,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "B_phase3",
         "B_final",
         "M_pred",
+        "M_final",
         "M_real",
         "M_diff",
         "M_ratio",
@@ -207,6 +219,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "B_phase3": r"$\beta^{(3)}$",
         "B_final": r"$\bar\beta$",
         "M_pred": r"$m_{\mathrm{pred}}$",
+        "M_final": r"$m_{\mathrm{fin}}$",
         "M_real": r"$m_{\mathrm{real}}$",
         "M_diff": r"$m_\Delta$",
         "M_ratio": r"$m_\Delta/m$",
@@ -245,8 +258,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     footnote_lines = [
         r"\begin{tablenotes}\footnotesize",
-        r"\item $m_\Delta=m_{\text{pred}}-m_{\text{real}}$,",
-        r"$m_\Delta/m=\dfrac{m_{\text{pred}}-m_{\text{real}}}{m_{\text{real}}}\times100$,",
+        r"\item $m_\Delta=m_{\text{fin}}-m_{\text{real}}$,",
+        r"$m_\Delta/m=\dfrac{m_{\text{fin}}-m_{\text{real}}}{m_{\text{real}}}\times100$,",
         r"$\mathrm{Out}=\text{Outlier}$,",
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$,",
         r"$\mathrm{RMAE}=\mathrm{MAE}_5/\text{Close}$",

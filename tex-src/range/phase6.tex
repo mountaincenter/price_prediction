@@ -1,0 +1,47 @@
+%-------------------------------------------------------------------------------
+% range/phase6.tex   v1.0  (2025-06-11)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- newest -> oldest
+% - 2025-06-11  v1.0 : 初版 (m_fin クリップ)
+%-------------------------------------------------------------------------------
+
+%=== Phase-6 : 騰落キャップ =============================================
+\section*{range / Phase 6}\nopagebreak[4]
+%────────────────────────────────────
+\subsection*{ステップ・目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item 直近63日間の半レンジ \(R_{t-k}\) から
+        四分位点 \(Q_{75}, Q_{25}\) を取得
+  \item クリップ上限を
+        \( m_{\text{cap}} = Q_{75} + 1.5(Q_{75}-Q_{25}) \) とする
+  \item 最終半レンジを
+        \( m_t^{\text{fin}} = \operatorname{clip}(m_t^{\text{pred}}, 0, m_{\text{cap}}) \)
+\end{enumerate}
+\end{flushleft}
+
+\subsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item 急激な騰落はファンダメンタル要因が必要となるため、
+        本手法では IQR に基づく上限で抑制する
+  \item 上限計算に過去 63 日を用いることで銘柄ごとの体感値を反映
+\end{itemize}
+\end{flushleft}
+
+\subsection*{追加変数・係数}
+\begin{flushleft}
+\begin{minipage}{0.88\textwidth}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+記号 & 定義・役割 \\
+\midrule
+\(Q_{75},Q_{25}\) & 75/25 パーセンタイル (63~d) \\
+\(m_{\text{cap}}\) & クリップ上限 (1.5~IQR) \\
+\(m_t^{\text{pred}}\) & Phase 5 出力 \\
+\(m_t^{\text{fin}}\) & Phase 6 最終半レンジ \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{flushleft}
+%-------------------------------------------------------------------------------

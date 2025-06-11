@@ -12,11 +12,12 @@ spec.loader.exec_module(diff)
 def test_calc_range():
     csv = Path('tex-src/data/prices/1321.csv')
     df = diff.calc_range(diff.read_prices(csv))
-    required = {'MAE_5d', 'HitRate_20d', 'RelMAE', 'B_final', 'M_ratio', 'Outlier'}
+    required = {'MAE_5d', 'HitRate_20d', 'RelMAE', 'B_final', 'M_ratio', 'Outlier', 'M_final'}
     assert required.issubset(df.columns)
     assert df['M_ratio'].notna().any()
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
     assert set(df['Outlier'].unique()) <= {0, 1}
+    assert (df['M_final'] <= df['M_pred']).all()
     thr = df['M_ratio'].abs().quantile(0.995)
     mask = df['M_ratio'].abs() >= thr
     if mask.any():
@@ -36,6 +37,7 @@ def test_process_one(tmp_path):
     assert text.count('\\begin{threeparttable}') == 3
     assert text.count('\\clearpage') == 2
     assert 'm_\\Delta/m' in text and '\\mathrm{Out}' in text
+    assert 'm_{\\mathrm{fin}}' in text
 
 
 def test_custom_params():
