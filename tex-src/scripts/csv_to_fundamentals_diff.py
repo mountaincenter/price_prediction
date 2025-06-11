@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-"""scripts/csv_to_fundamentals_diff.py   v1.0  (2025-06-10)
+"""scripts/csv_to_fundamentals_diff.py
+  v1.2  (2025-06-12)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-12  Row ラベル中の `_` を `\_` にエスケープして LaTeX コンパイルエラーを解消
+- 2025-06-10  v1.1 : 単独コンパイル可能な TeX を出力
 - 2025-06-10  v1.0 : 初版
 """
 
@@ -34,7 +37,7 @@ def read_events(csv: Path) -> pd.DataFrame:
 
 # ──────────────────────────────────────────────────────────────
 def collect_outliers(prices_dir: Path) -> tuple[list[str], dict[str, dict[pd.Timestamp, int]]]:
-    codes = []
+    codes: list[str] = []
     data: dict[str, dict[pd.Timestamp, int]] = {}
     for csv_path in sorted(prices_dir.glob("*.csv")):
         code = csv_path.stem
@@ -50,12 +53,16 @@ def collect_outliers(prices_dir: Path) -> tuple[list[str], dict[str, dict[pd.Tim
     return codes, data
 
 # ──────────────────────────────────────────────────────────────
-def build_rows(codes: list[str], data: dict[str, dict[pd.Timestamp, int]], events: pd.DataFrame) -> list[dict[str, int]]:
+def build_rows(
+    codes: list[str],
+    data: dict[str, dict[pd.Timestamp, int]],
+    events: pd.DataFrame,
+) -> list[dict[str, int]]:
     all_dates = sorted({d for flags in data.values() for d in flags})
-    rows = []
+    rows: list[dict[str, int]] = []
     for d in all_dates:
         base = {c: data[c].get(d, 0) for c in codes}
-        evs = []
+        evs: list[str] = []
         for _, r in events.iterrows():
             delta = (d - r["Date"].date()).days
             if r["IsTrump"]:
@@ -76,10 +83,21 @@ def build_rows(codes: list[str], data: dict[str, dict[pd.Timestamp, int]], event
 
 # ──────────────────────────────────────────────────────────────
 def make_table(rows: list[dict[str, int]], codes: list[str]) -> str:
+    """DataFrame → LaTeX 変換（Row ラベルの _ をエスケープ）"""
     df = pd.DataFrame(rows)
+    # Row 列のアンダースコアを LaTeX 用にエスケープ
+    df["Row"] = df["Row"].str.replace("_", r"\_", regex=False)
     fmt_str = "l" + "c" * len(codes)
     latex = df.to_latex(index=False, escape=False, column_format=fmt_str)
-    return "\n".join([r"\begingroup", r"\footnotesize", latex.rstrip(), r"\endgroup"]) + "\n"
+    return "\n".join(
+        [
+            r"\begingroup",
+            r"\footnotesize",
+            latex.rstrip(),
+            r"\endgroup",
+            "",
+        ]
+    )
 
 # ──────────────────────────────────────────────────────────────
 def process_all(
@@ -91,9 +109,25 @@ def process_all(
     codes, data = collect_outliers(prices_dir)
     events = read_events(events_csv)
     rows = build_rows(codes, data, events)
-    tex = make_table(rows, codes)
+    table = make_table(rows, codes)
+    doc = "\n".join(
+        [
+            "%-------------------------------------------------------------------------------",
+            "% fundamentals.tex   v1.2  (2025-06-12)",
+            "%-------------------------------------------------------------------------------",
+            r"\documentclass[dvipdfmx,oneside]{article}",
+            r"\usepackage{amsmath,amssymb,tabularx,booktabs}",
+            r"\usepackage{geometry}",
+            r"\geometry{margin=15mm}",
+            r"\renewcommand{\arraystretch}{1.2}",
+            r"\begin{document}",
+            table.rstrip(),
+            r"\end{document}",
+            "",
+        ]
+    )
     out_file.parent.mkdir(parents=True, exist_ok=True)
-    out_file.write_text(tex, encoding="utf-8")
+    out_file.write_text(doc, encoding="utf-8")
     return out_file
 
 # ──────────────────────────────────────────────────────────────
