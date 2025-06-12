@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.31  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.33  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-12  v2.33: read_macro_events のトランプ判定を追加
 - 2025-06-13  v2.31: process_one で events_csv を受け取り可能に
 - 2025-06-12  v2.30: マクロイベント日を読み込み Outlier=2 としてマーキング
 - 2025-06-10  v2.29: |C_ratio|≥0.02 を外れ値条件に追加
@@ -106,9 +107,31 @@ def read_prices(csv: Path) -> pd.DataFrame:
 def read_macro_events(csv: Path) -> set[pd.Timestamp]:
     """マクロイベント CSV から日付一覧を取得"""
     df = pd.read_csv(csv, encoding="utf-8-sig")
-    col = "Date" if "Date" in df.columns else "日付"
-    dates = pd.to_datetime(df[col].astype(str).str.replace("(予定)", "", regex=False), errors="coerce")
-    return set(dates.dropna().dt.normalize())
+    date_col = "Date" if "Date" in df.columns else "日付"
+    dates = pd.to_datetime(
+        df[date_col].astype(str).str.replace("(予定)", "", regex=False),
+        errors="coerce",
+    )
+    df["Date_norm"] = dates.dt.normalize()
+
+    cat = df.get("カテゴリ", "").astype(str)
+    _ = df.get("国")  # 国列は現状利用しないが読み込む
+
+    out: set[pd.Timestamp] = set()
+    for d, c in zip(df["Date_norm"], cat):
+        if pd.isna(d):
+            continue
+        is_trump = "トランプ" in c
+        if is_trump:
+            out.add(d)
+            out.add(d + pd.Timedelta(days=1))
+        else:
+            out.update({
+                d - pd.Timedelta(days=1),
+                d,
+                d + pd.Timedelta(days=1),
+            })
+    return out
 
 # ──────────────────────────────────────────────────────────────
 def kappa_sigma(s: float) -> float:
