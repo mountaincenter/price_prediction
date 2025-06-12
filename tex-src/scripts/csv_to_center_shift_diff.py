@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.30  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.31  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.31: process_one で events_csv を受け取り可能に
 - 2025-06-12  v2.30: マクロイベント日を読み込み Outlier=2 としてマーキング
 - 2025-06-10  v2.29: |C_ratio|≥0.02 を外れ値条件に追加
 - 2025-06-10  v2.28: C_Δ/C_r を百分率表示し脚注に ×100 追加
@@ -323,6 +324,7 @@ def process_one(
     l_init: float = L_INIT,
     l_min: float = L_MIN,
     l_max: float = L_MAX,
+    events_csv: Path | None = EVENTS_CSV,
 ) -> Path:
     """csv を処理して diff.tex を生成し、そのパスを返す"""
     code = csv.stem
@@ -335,6 +337,7 @@ def process_one(
             l_init=lam,
             l_min=lam,
             l_max=lam,
+            events_csv=events_csv,
         )
         title = f"code:{code} λ = {lam:.2f} ({label})"
         tables.append(make_table(df, title))

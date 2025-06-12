@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.11  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.12  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-13  v6.12: マクロイベント日をイベント値2として処理
 - 2025-06-06  v6.11: diff テーブルを λ 固定で3ページ出力
 - 2025-06-06  v6.10: η / λ を diff.py と同様に指定可能に
 - 2025-06-06  v6.9 : 新スケーリング式に対応
@@ -38,6 +39,7 @@ from csv_to_center_shift_diff import (
     L_INIT,
     L_MIN,
     L_MAX,
+    EVENTS_CSV,
 )
 
 # --------------------------------------------------------------------------
@@ -97,14 +99,15 @@ def main() -> None:
             l_init=args.init_lambda,
             l_min=args.min_lambda,
             l_max=args.max_lambda,
+            events_csv=EVENTS_CSV,
         )
         print(f"✅ {csv_path.stem} → {out.relative_to(OUT_DIR.parent.parent)}")
 
         # 2. 指標計算
         raw = read_prices(csv_path)
-        df0 = calc_center_shift(raw, phase=0, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
-        df1 = calc_center_shift(raw, phase=1, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
-        df2 = calc_center_shift(raw, phase=2, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda)
+        df0 = calc_center_shift(raw, phase=0, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda, events_csv=EVENTS_CSV)
+        df1 = calc_center_shift(raw, phase=1, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda, events_csv=EVENTS_CSV)
+        df2 = calc_center_shift(raw, phase=2, eta=args.eta, l_init=args.init_lambda, l_min=args.min_lambda, l_max=args.max_lambda, events_csv=EVENTS_CSV)
 
         mae2, r2, h2 = compute_metrics(df2)
         _, r0, h0 = compute_metrics(df0)

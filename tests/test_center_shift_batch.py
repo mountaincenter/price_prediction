@@ -37,3 +37,11 @@ def test_compute_metrics_custom():
     assert mae == df['MAE_5d'].iloc[-1]
     assert rmae == df['RelMAE'].iloc[-1]
     assert 0 <= hit <= 100
+
+
+def test_event_outlier_batch():
+    csv = Path('tex-src/data/prices/1321.csv')
+    events = Path('tests/fixtures/events.csv')
+    raw = batch.read_prices(csv)
+    df = batch.calc_center_shift(raw, phase=2, events_csv=events)
+    assert 2 in set(df['Outlier'].unique())
