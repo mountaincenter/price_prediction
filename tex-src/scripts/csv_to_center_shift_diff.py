@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.31  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.32  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-12  v2.32: Outlier=2 を外れ値かつイベント日のみに修正
 - 2025-06-13  v2.31: process_one で events_csv を受け取り可能に
 - 2025-06-12  v2.30: マクロイベント日を読み込み Outlier=2 としてマーキング
 - 2025-06-10  v2.29: |C_ratio|≥0.02 を外れ値条件に追加
@@ -191,7 +192,7 @@ def calc_center_shift(
     if event_dates is not None:
         dates_norm = df["Date"].dt.normalize()
         mask_evt = dates_norm.isin(event_dates)
-        outlier = np.where(mask_evt, 2, outlier)
+        outlier = np.where(mask_evt & (outlier == 1), 2, outlier)
     out["Outlier"] = outlier
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %
