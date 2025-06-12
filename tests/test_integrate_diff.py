@@ -27,3 +27,4 @@ def test_make_table_contains_median():
     df = integ.calc_integrate(integ.read_prices(csv), code='1321')
     tex = integ.make_table(df)
     assert 'Median' in tex
+    assert '\times100' in tex

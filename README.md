@@ -133,6 +133,8 @@ pdflatex tex-src/backtest_event.tex
 Open/High/Low/Close を統合した最終予測テーブルを生成します。出力先は
 `tex-src/data/analysis/integrate/` です。
 
+比率列 (``O_diff/O_r`` など) は百分率で小数第1位まで表示されます。
+
 ```bash
 python tex-src/scripts/csv_to_integrate.py 8801.csv
 ```

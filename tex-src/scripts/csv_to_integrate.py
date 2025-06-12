@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""scripts/csv_to_integrate.py   v1.0  (2025-06-12)
+"""scripts/csv_to_integrate.py   v1.1  (2025-06-12)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-12  v1.1 : 比率列を百分率(小数第1位)表示
 - 2025-06-12  v1.0 : 初版
 """
 
@@ -113,7 +114,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         if pd.isna(v):
             return "--"
         if col in {r"$O_\Delta/O_r$", r"$H_\Delta/H_r$", r"$L_\Delta/L_r$", r"$Cl_\Delta/Cl_r$"}:
-            return f"{v:.4f}"
+            return f"{100 * v:.1f}"
         return f"{v:.1f}"
 
     disp = pd.DataFrame({
@@ -128,6 +129,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"\begin{tablenotes}\footnotesize",
         r"\item $O_p=O_{\text{pred}}$, $O_r=O_{\text{real}}$, $O_\Delta=O_{\text{diff}}$.",
         r"\item $H_p=H_{\text{pred}}$, $L_p=L_{\text{pred}}$, $Cl_p=C_{\text{pred}}$.",
+        r"\item $O_\Delta/O_r$ などの比率は \(\times100\) で示す。",
         r"\end{tablenotes}",
     ])
 
