@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.29  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.30  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-12  v2.30: マクロイベント日を読み込み Outlier=2 としてマーキング
 - 2025-06-10  v2.29: |C_ratio|≥0.02 を外れ値条件に追加
 - 2025-06-10  v2.28: C_Δ/C_r を百分率表示し脚注に ×100 追加
 - 2025-06-10  v2.27: C_ratio 表示桁数を増やす
@@ -67,6 +68,7 @@ NUM_ROWS = 30                      # 最新 30 行 + Average
 VARIANT_LAMBDAS = [(0.90, "minimum"), (0.94, "default"), (0.98, "maximum")]
 OUT_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/center_shift"
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
+EVENTS_CSV = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/fundamentals_macro_topic.csv"
 
 # ──────────────────────────────────────────────────────────────
 def resolve_csv(raw: Path) -> Path:
@@ -100,6 +102,13 @@ def read_prices(csv: Path) -> pd.DataFrame:
     df = df.dropna(subset=["High", "Low", "Close"])
     return df.reset_index(drop=True)
 
+def read_macro_events(csv: Path) -> set[pd.Timestamp]:
+    """マクロイベント CSV から日付一覧を取得"""
+    df = pd.read_csv(csv, encoding="utf-8-sig")
+    col = "Date" if "Date" in df.columns else "日付"
+    dates = pd.to_datetime(df[col].astype(str).str.replace("(予定)", "", regex=False), errors="coerce")
+    return set(dates.dropna().dt.normalize())
+
 # ──────────────────────────────────────────────────────────────
 def kappa_sigma(s: float) -> float:
     for lo, hi, v in KAPPA_BUCKETS:
@@ -115,8 +124,12 @@ def calc_center_shift(
     l_init: float = L_INIT,
     l_min: float = L_MIN,
     l_max: float = L_MAX,
+    events_csv: Path | None = None,
 ) -> pd.DataFrame:
     n = len(df)
+    event_dates: set[pd.Timestamp] | None = None
+    if events_csv is not None:
+        event_dates = read_macro_events(events_csv)
     cl = df["Close"].values
     dcl = np.zeros(n); dcl[1:] = np.log(cl[1:] / cl[:-1])
 
@@ -173,7 +186,12 @@ def calc_center_shift(
     out["Norm_err"]    = np.abs(out["C_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
     ratio_flag = np.abs(out["C_ratio"]) >= 0.02
-    out["Outlier"]    = ((np.abs(z) > 3) | ratio_flag).astype(int)
+    outlier = ((np.abs(z) > 3) | ratio_flag).astype(int)
+    if event_dates is not None:
+        dates_norm = df["Date"].dt.normalize()
+        mask_evt = dates_norm.isin(event_dates)
+        outlier = np.where(mask_evt, 2, outlier)
+    out["Outlier"] = outlier
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %
     hit = (np.sign(out[r"$\alpha_t$"]) ==

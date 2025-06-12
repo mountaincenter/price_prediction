@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """scripts/csv_to_fundamentals_diff.py
-  v1.3  (2025-06-13)
+  v1.4  (2025-06-13)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-12  v1.4 : center_shift がイベント日判定 (2) に対応
 - 2025-06-13  v1.3 : Total 列を追加し長大表を longtable で出力、CSV も保存
 - 2025-06-12  Row ラベル中の `_` を `\_` にエスケープして LaTeX コンパイルエラーを解消
 - 2025-06-10  v1.1 : 単独コンパイル可能な TeX を出力
@@ -44,7 +45,7 @@ def collect_outliers(prices_dir: Path) -> tuple[list[str], dict[str, dict[pd.Tim
     for csv_path in sorted(prices_dir.glob("*.csv")):
         code = csv_path.stem
         raw = read_prices(csv_path)
-        df = calc_center_shift(raw)
+        df = calc_center_shift(raw, events_csv=EVENTS_CSV)
         df["Date_full"] = raw["Date"]
         mask = (df["Date_full"] >= START_DATE) & (df["Date_full"] <= END_DATE)
         flags = {
