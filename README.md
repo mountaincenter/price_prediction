@@ -128,6 +128,23 @@ python tex-src/scripts/csv_to_event_batch.py
 pdflatex tex-src/backtest_event.tex
 ```
 
+### `csv_to_integrate.py`
+
+Open/High/Low/Close を統合した最終予測テーブルを生成します。出力先は
+`tex-src/data/analysis/integrate/` です。
+
+```bash
+python tex-src/scripts/csv_to_integrate.py 8801.csv
+```
+
+### `backtest_integrate.tex`
+
+`csv_to_integrate.py` で生成した diff テーブルをまとめた LaTeX です。
+
+```bash
+pdflatex tex-src/backtest_integrate.tex
+```
+
 
 
 ## Testing
@@ -140,4 +157,5 @@ pytest -q
 ```
 
 `tests/test_event_beta_range.py` では Beta 系関数の戻り値レンジを確認できます。
+`tests/test_integrate_diff.py` では統合テーブル生成をテストしています。
 
