@@ -14,14 +14,13 @@ def test_calc_center_shift_phase2():
     df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
     assert {
         'MAE_5d', 'MAE_10d', 'HitRate_20d', 'RelMAE', 'Outlier', 'C_ratio', 'C_ratio_ma10',
-        'RatioFlag', r'$\lambda_{\text{shift}}$', r'$\Delta\alpha_t$'
+        r'$\lambda_{\text{shift}}$', r'$\Delta\alpha_t$'
     }.issubset(df.columns)
     assert set(df['Outlier'].unique()) <= set(range(10))
     assert df['C_ratio'].notna().any()
     assert df['C_ratio_ma10'].notna().any()
-    assert set(df['RatioFlag'].unique()) <= {0, 1}
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
-    mask = df['C_ratio_ma10'].abs() >= 0.01
+    mask = df['C_ratio'].abs() >= 0.01
     if mask.any():
         assert set(df.loc[mask, 'Outlier'].unique()) <= set(range(2, 10))
 
@@ -87,12 +86,4 @@ def test_calc_center_shift_phase6_base10():
             * df[r'$\sigma_t^{\mathrm{shift}}$'].iloc[idx]
         )
         assert abs(df['C_pred'].iloc[idx] - expect) < 1e-6
-
-
-def test_ratio_flag_ma10():
-    csv = Path('tex-src/data/prices/1321.csv')
-    df = diff.calc_center_shift(diff.read_prices(csv), phase=6)
-    mask = df['C_ratio_ma10'].abs() >= 0.01
-    if mask.any():
-        assert (df.loc[mask, 'RatioFlag'] == 1).all()
 
