@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.34  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.35  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.35: 決算発表イベント (Outlier=4) を追加
 - 2025-06-13  v2.34: イベント日かつ外れ値の場合は Outlier=3
 - 2025-06-12  v2.33: read_macro_events のトランプ判定を追加
 - 2025-06-13  v2.31: process_one で events_csv を受け取り可能に
@@ -72,6 +73,7 @@ VARIANT_LAMBDAS = [(0.90, "minimum"), (0.94, "default"), (0.98, "maximum")]
 OUT_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/center_shift"
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
 EVENTS_CSV = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/fundamentals_macro_topic.csv"
+STATEMENTS_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/earn"
 
 # ──────────────────────────────────────────────────────────────
 def resolve_csv(raw: Path) -> Path:
@@ -134,6 +136,20 @@ def read_macro_events(csv: Path) -> set[pd.Timestamp]:
             })
     return out
 
+def read_statement_events(code: str, dir_path: Path = STATEMENTS_DIR) -> set[pd.Timestamp]:
+    """決算発表 CSV から日付一覧を取得"""
+    csv = dir_path / f"{code}.csv"
+    if not csv.exists():
+        return set()
+    df = pd.read_csv(csv, encoding="utf-8-sig")
+    if "DisclosedDate" not in df.columns:
+        return set()
+    dates = pd.to_datetime(df["DisclosedDate"], errors="coerce").dropna().dt.normalize()
+    out: set[pd.Timestamp] = set()
+    for d in dates:
+        out.update({d - pd.Timedelta(days=1), d, d + pd.Timedelta(days=1)})
+    return out
+
 # ──────────────────────────────────────────────────────────────
 def kappa_sigma(s: float) -> float:
     for lo, hi, v in KAPPA_BUCKETS:
@@ -150,6 +166,7 @@ def calc_center_shift(
     l_min: float = L_MIN,
     l_max: float = L_MAX,
     events_csv: Path | None = None,
+    statement_dates: set[pd.Timestamp] | None = None,
 ) -> pd.DataFrame:
     n = len(df)
     event_dates: set[pd.Timestamp] | None = None
@@ -212,11 +229,14 @@ def calc_center_shift(
     z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
     ratio_flag = np.abs(out["C_ratio"]) >= 0.02
     outlier = ((np.abs(z) > 3) | ratio_flag).astype(int)
+    dates_norm = df["Date"].dt.normalize()
     if event_dates is not None:
-        dates_norm = df["Date"].dt.normalize()
         mask_evt = dates_norm.isin(event_dates)
         outlier = np.where(mask_evt & (outlier == 1), 3, outlier)
         outlier = np.where(mask_evt & (outlier == 0), 2, outlier)
+    if statement_dates is not None:
+        mask_stmt = dates_norm.isin(statement_dates)
+        outlier = np.where(mask_stmt & (outlier == 1), 4, outlier)
     out["Outlier"] = outlier
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %
@@ -350,10 +370,12 @@ def process_one(
     l_min: float = L_MIN,
     l_max: float = L_MAX,
     events_csv: Path | None = EVENTS_CSV,
+    statements_dir: Path = STATEMENTS_DIR,
 ) -> Path:
     """csv を処理して diff.tex を生成し、そのパスを返す"""
     code = csv.stem
     tables: list[str] = []
+    stmt_dates = read_statement_events(code, statements_dir)
     for lam, label in VARIANT_LAMBDAS:
         df = calc_center_shift(
             read_prices(csv),
@@ -363,6 +385,7 @@ def process_one(
             l_min=lam,
             l_max=lam,
             events_csv=events_csv,
+            statement_dates=stmt_dates,
         )
         title = f"code:{code} λ = {lam:.2f} ({label})"
         tables.append(make_table(df, title))
@@ -385,6 +408,8 @@ def main() -> None:
     parser.add_argument("--init-lambda", type=float, default=L_INIT, help="初期 λ_shift")
     parser.add_argument("--min-lambda", type=float, default=L_MIN, help="最小 λ_shift")
     parser.add_argument("--max-lambda", type=float, default=L_MAX, help="最大 λ_shift")
+    parser.add_argument("--events", type=Path, default=EVENTS_CSV)
+    parser.add_argument("--statements", type=Path, default=STATEMENTS_DIR)
     args = parser.parse_args()
 
     kwargs = dict(
@@ -392,6 +417,8 @@ def main() -> None:
         l_init=args.init_lambda,
         l_min=args.min_lambda,
         l_max=args.max_lambda,
+        events_csv=args.events,
+        statements_dir=args.statements,
     )
 
     if args.csv is None:
