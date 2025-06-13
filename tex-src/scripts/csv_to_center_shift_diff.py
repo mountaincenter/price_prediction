@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.37  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.38  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.38: ratio_flag を単日±1%に戻し平均は参考値
 - 2025-06-13  v2.37: 10日移動平均で外れ値判定を平滑化
 - 2025-06-13  v2.36: 外れ値閾値1%とし一般行を Outlier=9
 - 2025-06-13  v2.35: 外れ値行を NaN で無効化し再計算
@@ -223,7 +224,7 @@ def calc_center_shift(
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
-    ratio_flag = np.abs(out["C_ratio_ma10"]) >= 0.01
+    ratio_flag = np.abs(out["C_ratio"]) >= 0.01
     out_flag = ((np.abs(z) > 3) | ratio_flag).astype(int)
     dates_norm = df["Date"].dt.normalize()
     categories = np.zeros(n, dtype=int)

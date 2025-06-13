@@ -20,7 +20,7 @@ def test_calc_center_shift_phase2():
     assert df['C_ratio'].notna().any()
     assert df['C_ratio_ma10'].notna().any()
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
-    mask = df['C_ratio_ma10'].abs() >= 0.01
+    mask = df['C_ratio'].abs() >= 0.01
     if mask.any():
         assert set(df.loc[mask, 'Outlier'].unique()) <= set(range(2, 10))
 

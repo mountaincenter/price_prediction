@@ -1,7 +1,8 @@
 %-------------------------------------------------------------------------------
-% center_shift/phase6.tex   v1.0  (2025-06-13)
+% center_shift/phase6.tex   v1.1  (2025-06-13)
 %-------------------------------------------------------------------------------
 % CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-13  v1.1 : 判定は単日±1%基準とし平均は参考値
 % - 2025-06-13  v1.0 : 10日移動平均を用いた外れ値平滑化
 %-------------------------------------------------------------------------------
 
@@ -15,15 +16,15 @@
 \begin{flushleft}
 \begin{enumerate}
   \item \textbf{10DMA}\; \( \overline{C_{\Delta}/C_r} = \frac{1}{10}\sum_{k=0}^{9} \frac{C_{\Delta,t-k}}{C_{r,t-k}} \)
-  \item \textbf{判定基準}\; \( \left|\overline{C_{\Delta}/C_r}\right| \ge 1\% \) なら外れ値
-\end{enumerate}
+  \item \textbf{判定基準}\; 単日の \(\left|C_{\Delta}/C_r\right|\) が 1\% 以上なら外れ値
+  \end{enumerate}
 \end{flushleft}
 
 \subsubsection*{変数のポイント}
 \begin{flushleft}
 \begin{itemize}
-  \item 短期ノイズを抑えるため直近 10 日の平均を採用
-  \item 単日で 1\% を超えても平均が小さければ外れ値扱いしない
+  \item 短期ノイズを評価する参考として直近 10 日平均 \(\overline{C_{\Delta}/C_r}\) を併記
+  \item 判定は単日の比率 \(\left|C_{\Delta}/C_r\right|\) が 1\% を超えたかどうかで決定
 \end{itemize}
 \end{flushleft}
 
