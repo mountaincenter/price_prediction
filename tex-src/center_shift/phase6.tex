@@ -20,8 +20,9 @@
         \(\kappa_t=\kappa(\sigma_t^{\mathrm{shift}})\) を取得
   \item \textbf{方向スコア}：3 日平均リターンの符号を取り、閾値未満は 0 とする
   \item \textbf{中心シフト量}：\(\alpha_t=\kappa_t S_t\) としてボラ単位のシフトを計算
-  \item \textbf{予想中央値}：\(C_{p,t}=B_{t-1}\bigl(1+\alpha_t\sigma_t^{\mathrm{shift}}\bigr)\)
-  \item \textbf{誤差正規化}：\(\mathrm{Norm\_err}_t=|C_{p,t}-C_{r,t}|\big/\bigl(B_{t-1}\sigma_t^{\mathrm{shift}}\bigr)\)
+  \item \textbf{基準値平滑化}：前日中値を 10 日平均し \(\overline{B}_{10,t-1}\) を得る
+  \item \textbf{予想中央値}：\(C_{p,t}=\overline{B}_{10,t-1}\bigl(1+\alpha_t\sigma_t^{\mathrm{shift}}\bigr)\)
+  \item \textbf{誤差正規化}：\(\mathrm{Norm\_err}_t=|C_{p,t}-C_{r,t}|\big/\bigl(\overline{B}_{10,t-1}\sigma_t^{\mathrm{shift}}\bigr)\)
 \end{enumerate}
 \end{flushleft}
 
@@ -35,3 +36,4 @@
 
 \bigskip
 %==============================================================================
+

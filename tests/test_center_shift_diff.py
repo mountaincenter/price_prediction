@@ -71,3 +71,19 @@ def test_calc_center_shift_phase5_ma():
     df = diff.calc_center_shift(diff.read_prices(csv), phase=5)
     assert {'B_ma5', 'B_ma10'}.issubset(df.columns)
     assert df['B_ma5'].notna().any()
+    assert df['B_ma10'].notna().any()
+
+
+def test_calc_center_shift_phase6_base10():
+    csv = Path('tex-src/data/prices/1321.csv')
+    df = diff.calc_center_shift(diff.read_prices(csv), phase=6)
+    idx = df['C_pred'].first_valid_index()
+    if idx is not None:
+        base = df['B_ma10'].iloc[idx]
+        expect = base * (
+            1
+            + df[r'$\alpha_t$'].iloc[idx]
+            * df[r'$\sigma_t^{\mathrm{shift}}$'].iloc[idx]
+        )
+        assert abs(df['C_pred'].iloc[idx] - expect) < 1e-6
+

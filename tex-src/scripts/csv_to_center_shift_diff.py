@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.39  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.40  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.40: Phase6 で B_ma10 を基準値に使用
 - 2025-06-13  v2.39: B_ma5/B_ma10 平滑化を Phase5 用に追加
 - 2025-06-13  v2.38: ratio_flag を単日±1%に戻し平均は参考値
 - 2025-06-13  v2.37: 10日移動平均で外れ値判定を平滑化
@@ -218,7 +219,12 @@ def calc_center_shift(
     out["B_{t-1}"] = (out["High"].shift(1) + out["Low"].shift(1)) / 2
     out["B_ma5"]  = out["B_{t-1}"].rolling(5,  min_periods=1).mean()
     out["B_ma10"] = out["B_{t-1}"].rolling(10, min_periods=1).mean()
-    base = out["B_ma5"] if phase >= 5 else out["B_{t-1}"]
+    if phase >= 6:
+        base = out["B_ma10"]
+    elif phase >= 5:
+        base = out["B_ma5"]
+    else:
+        base = out["B_{t-1}"]
     out["C_pred"]  = base * (1 + out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     out["C_real"]  = (out["High"] + out["Low"]) / 2
     out["C_diff"]  = out["C_pred"] - out["C_real"]
