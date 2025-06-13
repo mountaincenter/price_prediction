@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """scripts/csv_to_outlier_diff.py
-  v1.3  (2025-06-13)
+  v1.4  (2025-06-13)
 ────────────────────────────────────────────────────────
 -CHANGELOG:
+- 2025-06-13  v1.4 : topic から特別日付(7,8)を読み込む
 - 2025-06-13  v1.3 : Outlier 区分0-8の優先度処理を更新
 - 2025-06-13  v1.2 : read_statement_events 実装、Outlier=0-8 対応
 - 2025-06-13  v1.1 : 月末月初/SQ判定 (5,6) 対応
@@ -40,14 +41,40 @@ def read_events(csv: Path) -> pd.DataFrame:
     return df[["Date", "Code", "IsTrump"]]
 
 
-def collect_outliers(prices_dir: Path, statements_dir: Path) -> tuple[list[str], dict[str, dict[pd.Timestamp, int]]]:
+def read_topic_dates(csv: Path) -> dict[int, set[pd.Timestamp]]:
+    df = pd.read_csv(csv, encoding="utf-8")
+    df["Date"] = pd.to_datetime(df["Row"], errors="coerce")
+    special: dict[int, set[pd.Timestamp]] = {7: set(), 8: set()}
+    for _, r in df.iterrows():
+        if pd.isna(r["Date"]):
+            continue
+        if len(r) <= 13 or not isinstance(r.iloc[-1], str) or not r.iloc[-1].strip():
+            continue
+        d = r["Date"].normalize()
+        if r["Date"].strftime("%Y-%m-%d") in {"2025-04-07", "2025-04-08"}:
+            special[7].add(d)
+        else:
+            special[8].add(d)
+    return {k: v for k, v in special.items() if v}
+
+
+def collect_outliers(
+    prices_dir: Path,
+    statements_dir: Path,
+    special_dates: dict[int, set[pd.Timestamp]] | None = None,
+) -> tuple[list[str], dict[str, dict[pd.Timestamp, int]]]:
     codes: list[str] = []
     data: dict[str, dict[pd.Timestamp, int]] = {}
     for csv_path in sorted(prices_dir.glob("*.csv")):
         code = csv_path.stem
         raw = read_prices(csv_path)
         stmt_dates = read_statement_events(code, statements_dir)
-        df = calc_center_shift(raw, events_csv=EVENTS_CSV, statement_dates=stmt_dates)
+        df = calc_center_shift(
+            raw,
+            events_csv=EVENTS_CSV,
+            statement_dates=stmt_dates,
+            special_dates=special_dates,
+        )
         df["Date_full"] = raw["Date"]
         mask = (df["Date_full"] >= START_DATE) & (df["Date_full"] <= END_DATE)
         flags = {
@@ -103,11 +130,13 @@ def process_all(
     *,
     events_csv: Path = EVENTS_CSV,
     statements_dir: Path = STATEMENTS_DIR,
+    topic_csv: Path | None = None,
     out_file: Path = OUT_TEX,
     prices_dir: Path = PRICES_DIR,
     csv_file: Path = OUT_CSV,
 ) -> Path:
-    codes, data = collect_outliers(prices_dir, statements_dir)
+    special = read_topic_dates(topic_csv) if topic_csv else None
+    codes, data = collect_outliers(prices_dir, statements_dir, special)
     events = read_events(events_csv)
     rows = build_rows(codes, data, events)
     df = pd.DataFrame(rows)[["Row", *codes, "Total"]]
@@ -136,6 +165,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="outlier diff table")
     parser.add_argument("--events", type=Path, default=EVENTS_CSV)
     parser.add_argument("--statements", type=Path, default=STATEMENTS_DIR)
+    parser.add_argument("--topic", type=Path)
     parser.add_argument("--out", type=Path, default=OUT_TEX)
     parser.add_argument("--prices", type=Path, default=PRICES_DIR)
     parser.add_argument("--csv", type=Path, default=OUT_CSV)
@@ -143,6 +173,7 @@ def main() -> None:
     out = process_all(
         events_csv=args.events,
         statements_dir=args.statements,
+        topic_csv=args.topic,
         out_file=args.out,
         prices_dir=args.prices,
         csv_file=args.csv,
