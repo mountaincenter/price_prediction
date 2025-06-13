@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """scripts/csv_to_fundamentals_diff.py
-  v1.4  (2025-06-13)
+  v1.5  (2025-06-13)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-13  v1.5 : Outlier=3 を保持可能にし Total は非ゼロ件数を計上
 - 2025-06-12  v1.4 : center_shift がイベント日判定 (2) に対応
 - 2025-06-13  v1.3 : Total 列を追加し長大表を longtable で出力、CSV も保存
 - 2025-06-12  Row ラベル中の `_` を `\_` にエスケープして LaTeX コンパイルエラーを解消
@@ -65,7 +66,7 @@ def build_rows(
     rows: list[dict[str, int]] = []
     for d in all_dates:
         base = {c: data[c].get(d, 0) for c in codes}
-        total = sum(base.values())
+        total = sum(1 for v in base.values() if v != 0)
         evs: list[str] = []
         for _, r in events.iterrows():
             delta = (d - r["Date"].date()).days
@@ -111,16 +112,22 @@ def process_all(
     out_file: Path = OUT_TEX,
     prices_dir: Path = PRICES_DIR,
     csv_file: Path = OUT_CSV,
+    allow_three: bool = False,
 ) -> Path:
     codes, data = collect_outliers(prices_dir)
     events = read_events(events_csv)
     rows = build_rows(codes, data, events)
+    if not allow_three:
+        for r in rows:
+            for c in codes:
+                if r[c] == 3:
+                    r[c] = 2
     df = pd.DataFrame(rows)[["Row", *codes, "Total"]]
     table = make_table(rows, codes)
     doc = "\n".join(
         [
             "%-------------------------------------------------------------------------------",
-            "% fundamentals.tex   v1.3  (2025-06-13)",
+            "% fundamentals.tex   v1.5  (2025-06-13)",
             "%-------------------------------------------------------------------------------",
             r"\documentclass[dvipdfmx,oneside]{article}",
             r"\usepackage{amsmath,amssymb,tabularx,booktabs,longtable}",
@@ -145,8 +152,15 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=OUT_TEX)
     parser.add_argument("--prices", type=Path, default=PRICES_DIR)
     parser.add_argument("--csv", type=Path, default=OUT_CSV)
+    parser.add_argument("--allow-three", action="store_true")
     args = parser.parse_args()
-    out = process_all(events_csv=args.events, out_file=args.out, prices_dir=args.prices, csv_file=args.csv)
+    out = process_all(
+        events_csv=args.events,
+        out_file=args.out,
+        prices_dir=args.prices,
+        csv_file=args.csv,
+        allow_three=args.allow_three,
+    )
     print(f"✅ fundamentals → {out.relative_to(out.parent.parent)}")
 
 if __name__ == "__main__":
