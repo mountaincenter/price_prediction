@@ -1,0 +1,33 @@
+%-------------------------------------------------------------------------------
+% center_shift/phase5.tex   v1.0  (2025-06-13)
+%-------------------------------------------------------------------------------
+% CHANGELOG  -- new entry on top (latest -> oldest)
+% - 2025-06-13  v1.0 : 短期ノイズ平滑化用に5日・10日平均を導入
+%-------------------------------------------------------------------------------
+
+%=== center_shift =============================================================
+\section*{center\_shift}\nopagebreak[4]
+
+%=== Phase 5 : 短期ノイズ平滑化 ==============================================
+\subsection*{Phase 5：短期ノイズ平滑化}\nopagebreak[4]
+%────────────────────────────────────
+\paragraph{ステップ／目的}
+\begin{flushleft}
+\begin{enumerate}
+  \item \textbf{基準値平滑化}：前日中値 \(B_{t-1}\) を 5 日・10 日移動平均して
+        \(\overline{B}_{t-1}\) を得る
+  \item \textbf{予想中央値}：\(C_{p,t}=\overline{B}_{t-1}\bigl(1+\alpha_t\sigma_t^{\mathrm{shift}}\bigr)\)
+  \item \textbf{誤差正規化}：\(\mathrm{Norm\_err}_t=|C_{p,t}-C_{r,t}|\big/\bigl(\overline{B}_{t-1}\sigma_t^{\mathrm{shift}}\bigr)\)
+\end{enumerate}
+\end{flushleft}
+
+\subsubsection*{変数のポイント}
+\begin{flushleft}
+\begin{itemize}
+  \item 短期的な値飛びを抑え、1\% 超の外れ値判定を安定化
+  \item 5 日平均に加え、参考値として 10 日平均も保持する
+\end{itemize}
+\end{flushleft}
+
+\bigskip
+%==============================================================================

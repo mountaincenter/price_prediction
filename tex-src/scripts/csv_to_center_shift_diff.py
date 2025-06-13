@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.38  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.39  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.39: B_ma5/B_ma10 平滑化を Phase5 用に追加
 - 2025-06-13  v2.38: ratio_flag を単日±1%に戻し平均は参考値
 - 2025-06-13  v2.37: 10日移動平均で外れ値判定を平滑化
 - 2025-06-13  v2.36: 外れ値閾値1%とし一般行を Outlier=9
@@ -215,14 +216,17 @@ def calc_center_shift(
         "Close": df["Close"]
     })
     out["B_{t-1}"] = (out["High"].shift(1) + out["Low"].shift(1)) / 2
-    out["C_pred"]  = out["B_{t-1}"] * (1 + out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
+    out["B_ma5"]  = out["B_{t-1}"].rolling(5,  min_periods=1).mean()
+    out["B_ma10"] = out["B_{t-1}"].rolling(10, min_periods=1).mean()
+    base = out["B_ma5"] if phase >= 5 else out["B_{t-1}"]
+    out["C_pred"]  = base * (1 + out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     out["C_real"]  = (out["High"] + out["Low"]) / 2
     out["C_diff"]  = out["C_pred"] - out["C_real"]
     out["C_ratio"] = np.where(out["C_real"] != 0, out["C_diff"] / out["C_real"], np.nan)
     out["C_ratio_ma10"] = out["C_ratio"].rolling(10, min_periods=1).mean()
 
     out["C_diff_sign"] = np.sign(out["C_diff"])
-    out["Norm_err"]    = np.abs(out["C_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
+    out["Norm_err"]    = np.abs(out["C_diff"]) / (base * out[r"$\sigma_t^{\mathrm{shift}}$"])
     z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
     ratio_flag = np.abs(out["C_ratio"]) >= 0.01
     out_flag = ((np.abs(z) > 3) | ratio_flag).astype(int)
@@ -257,6 +261,8 @@ def calc_center_shift(
         "Low",
         "Close",
         "B_{t-1}",
+        "B_ma5",
+        "B_ma10",
         "C_pred",
         "C_real",
         "C_diff",
@@ -312,6 +318,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     header = {
         r"$\kappa(\sigma)$": r"$\kappa$",
         "B_{t-1}":            r"$B$",
+        "B_ma5":             r"$\overline{B}_5$",
+        "B_ma10":            r"$\overline{B}_{10}$",
         "C_pred":             r"$C_p$",
         "C_real":             r"$C_r$",
         "C_diff":             r"$C_\Delta$",
@@ -359,7 +367,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     footnote_lines = [
         r"\begin{tablenotes}\footnotesize",
-        r"\item $\kappa=\kappa(\sigma)$, $B=B_{t-1}$, "
+        r"\item $\kappa=\kappa(\sigma)$, $B=B_{t-1}$, $\overline{B}=\text{5d MA of }B$, "
         r"$C_p=C_{\text{pred}}$, $C_r=C_{\text{real}}$, "
         r"$C_\Delta=C_{\text{diff}}$, "
         r"$C_\Delta/C_r=\dfrac{C_{\text{diff}}}{C_{\text{real}}}\times100$, "

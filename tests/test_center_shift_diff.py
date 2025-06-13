@@ -64,3 +64,10 @@ def test_make_table_newline():
     assert lines[0].endswith('\\')
     assert lines[1] == '\\begingroup'
     assert tex.endswith('\\endgroup\n')
+
+
+def test_calc_center_shift_phase5_ma():
+    csv = Path('tex-src/data/prices/1321.csv')
+    df = diff.calc_center_shift(diff.read_prices(csv), phase=5)
+    assert {'B_ma5', 'B_ma10'}.issubset(df.columns)
+    assert df['B_ma5'].notna().any()
