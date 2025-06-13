@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.35  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.36  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.36: 月末月初/SQ日周辺の外れ値 (5,6) を追加
 - 2025-06-13  v2.35: 決算発表イベント (Outlier=4) を追加
 - 2025-06-13  v2.34: イベント日かつ外れ値の場合は Outlier=3
 - 2025-06-12  v2.33: read_macro_events のトランプ判定を追加
@@ -74,6 +75,38 @@ OUT_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/anal
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
 EVENTS_CSV = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/fundamentals_macro_topic.csv"
 STATEMENTS_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/earn"
+
+# ──────────────────────────────────────────────────────────────
+def get_month_edge_dates(dates: pd.Series) -> set[pd.Timestamp]:
+    """Return first and last trading days in each month."""
+    norm = dates.dt.normalize()
+    grp = norm.groupby(norm.dt.to_period("M"))
+    first = grp.transform("min") == norm
+    last = grp.transform("max") == norm
+    return set(norm[first | last])
+
+
+def get_sq_dates(dates: pd.Series) -> set[pd.Timestamp]:
+    """Return SQ day (second Friday) ±1 day if present."""
+    norm = dates.dt.normalize()
+    periods = norm.dt.to_period("M").unique()
+    trading = set(norm)
+    sq_set: set[pd.Timestamp] = set()
+    for p in periods:
+        y, m = p.year, p.month
+        d = pd.Timestamp(y, m, 1)
+        cnt = 0
+        while d.month == m:
+            if d.weekday() == 4:
+                cnt += 1
+                if cnt == 2:
+                    for off in (-1, 0, 1):
+                        t = d + pd.Timedelta(days=off)
+                        if t in trading:
+                            sq_set.add(t)
+                    break
+            d += pd.Timedelta(days=1)
+    return sq_set
 
 # ──────────────────────────────────────────────────────────────
 def resolve_csv(raw: Path) -> Path:
@@ -172,6 +205,8 @@ def calc_center_shift(
     event_dates: set[pd.Timestamp] | None = None
     if events_csv is not None:
         event_dates = read_macro_events(events_csv)
+    month_edges = get_month_edge_dates(df["Date"])
+    sq_days = get_sq_dates(df["Date"])
     cl = df["Close"].values
     dcl = np.zeros(n); dcl[1:] = np.log(cl[1:] / cl[:-1])
 
@@ -237,6 +272,10 @@ def calc_center_shift(
     if statement_dates is not None:
         mask_stmt = dates_norm.isin(statement_dates)
         outlier = np.where(mask_stmt & (outlier == 1), 4, outlier)
+    mask_sq = dates_norm.isin(sq_days)
+    outlier = np.where(mask_sq & (outlier == 1), 6, outlier)
+    mask_edge = dates_norm.isin(month_edges)
+    outlier = np.where(mask_edge & (outlier == 1), 5, outlier)
     out["Outlier"] = outlier
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %

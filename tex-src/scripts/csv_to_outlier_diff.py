@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """scripts/csv_to_outlier_diff.py
-  v1.0  (2025-06-13)
+  v1.1  (2025-06-13)
 ────────────────────────────────────────────────────────
 CHANGELOG:
+- 2025-06-13  v1.1 : 月末月初/SQ判定 (5,6) 対応
 - 2025-06-13  v1.0 : fundamentals/markets/statements の外れ値を集約
 """
 
