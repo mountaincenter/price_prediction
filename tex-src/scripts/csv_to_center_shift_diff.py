@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.32  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.33  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.33: read_statement_events を追加
 - 2025-06-12  v2.32: Outlier=2 を外れ値かつイベント日のみに修正
 - 2025-06-13  v2.31: process_one で events_csv を受け取り可能に
 - 2025-06-12  v2.30: マクロイベント日を読み込み Outlier=2 としてマーキング
@@ -111,6 +112,30 @@ def read_macro_events(csv: Path) -> set[pd.Timestamp]:
     dates = pd.to_datetime(df[col].astype(str).str.replace("(予定)", "", regex=False), errors="coerce")
     return set(dates.dropna().dt.normalize())
 
+def read_statement_events(code: str, root: Path) -> set[pd.Timestamp]:
+    """決算発表日 CSV から日付一覧を取得"""
+    csv = root / f"{code}.csv"
+    if not csv.exists():
+        return set()
+    df = pd.read_csv(csv, encoding="utf-8-sig")
+    if "DisclosedDate" not in df.columns:
+        return set()
+    dates = pd.to_datetime(df["DisclosedDate"], errors="coerce")
+    return set(dates.dropna().dt.normalize())
+
+def is_month_edge(d: pd.Timestamp) -> bool:
+    return (d == (d + pd.offsets.MonthEnd(0))) or (d == (d + pd.offsets.MonthBegin(0)))
+
+def is_sq_date(d: pd.Timestamp) -> bool:
+    if d.month not in {3, 6, 9, 12}:
+        return False
+    first = pd.Timestamp(d.year, d.month, 1)
+    first_friday = first + pd.offsets.Week(weekday=4)
+    if first_friday.month != d.month:
+        first_friday += pd.offsets.Week(1)
+    second_friday = first_friday + pd.offsets.Week(1)
+    return d == second_friday.normalize()
+
 # ──────────────────────────────────────────────────────────────
 def kappa_sigma(s: float) -> float:
     for lo, hi, v in KAPPA_BUCKETS:
@@ -127,11 +152,14 @@ def calc_center_shift(
     l_min: float = L_MIN,
     l_max: float = L_MAX,
     events_csv: Path | None = None,
+    statement_dates: set[pd.Timestamp] | None = None,
 ) -> pd.DataFrame:
     n = len(df)
     event_dates: set[pd.Timestamp] | None = None
     if events_csv is not None:
         event_dates = read_macro_events(events_csv)
+    if statement_dates is None:
+        statement_dates = set()
     cl = df["Close"].values
     dcl = np.zeros(n); dcl[1:] = np.log(cl[1:] / cl[:-1])
 
@@ -188,12 +216,24 @@ def calc_center_shift(
     out["Norm_err"]    = np.abs(out["C_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
     ratio_flag = np.abs(out["C_ratio"]) >= 0.02
-    outlier = ((np.abs(z) > 3) | ratio_flag).astype(int)
-    if event_dates is not None:
-        dates_norm = df["Date"].dt.normalize()
-        mask_evt = dates_norm.isin(event_dates)
-        outlier = np.where(mask_evt & (outlier == 1), 2, outlier)
-    out["Outlier"] = outlier
+    out_flag = ((np.abs(z) > 3) | ratio_flag).astype(int)
+    dates_norm = df["Date"].dt.normalize()
+    categories = np.zeros(n, dtype=int)
+    for i in range(n):
+        if out_flag[i] != 1:
+            continue
+        d = dates_norm.iloc[i]
+        cat = 1
+        if event_dates and d in event_dates:
+            cat = 2
+        elif d in statement_dates:
+            cat = 3
+        elif is_month_edge(d):
+            cat = 5
+        elif is_sq_date(d):
+            cat = 6
+        categories[i] = cat
+    out["Outlier"] = categories
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %
     hit = (np.sign(out[r"$\alpha_t$"]) ==
