@@ -139,6 +139,16 @@ Open/High/Low/Close を統合した最終予測テーブルを生成します。
 python tex-src/scripts/csv_to_integrate.py 8801.csv
 ```
 
+### `csv_to_outlier_diff.py`
+
+各銘柄の外れ値を 0～8 の区分で集計し、LaTeX テーブルと CSV を生成します。
+イベント日や決算発表日を考慮し、区分は 2＞3＞4＞5＞6＞7＞8 の優先順位で
+付与されます。
+
+```bash
+python tex-src/scripts/csv_to_outlier_diff.py
+```
+
 ### `backtest_integrate.tex`
 
 `csv_to_integrate.py` で生成した diff テーブルをまとめた LaTeX です。
