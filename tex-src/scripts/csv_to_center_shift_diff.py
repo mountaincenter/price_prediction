@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.34  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.35  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.35: 外れ値行を NaN で無効化し再計算
 - 2025-06-13  v2.34: Outlier 区分0-8の優先処理を追加
 - 2025-06-13  v2.33: read_statement_events を追加
 - 2025-06-12  v2.32: Outlier=2 を外れ値かつイベント日のみに修正
@@ -245,11 +246,28 @@ def calc_center_shift(
             cat = 1
         categories[i] = cat
     out["Outlier"] = categories
-    out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
-    out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %
-    hit = (np.sign(out[r"$\alpha_t$"]) ==
-           np.sign(out["C_real"] - out["B_{t-1}"])).astype(int)
-    out["HitRate_20d"] = hit.rolling(20, min_periods=1).mean() * 100  # %
+
+    mask = out["Outlier"] != 0
+    cols = [
+        "High",
+        "Low",
+        "Close",
+        "B_{t-1}",
+        "C_pred",
+        "C_real",
+        "C_diff",
+        "C_ratio",
+        "C_diff_sign",
+        "Norm_err",
+    ]
+    out.loc[mask, cols] = np.nan
+
+    out["MAE_5d"] = out["C_diff"].abs().rolling(5, min_periods=1).mean()
+    out["RelMAE"] = out["MAE_5d"] / out["Close"] * 100
+    hit = (
+        np.sign(out[r"$\alpha_t$"]) == np.sign(out["C_real"] - out["B_{t-1}"])
+    ).astype(int)
+    out["HitRate_20d"] = hit.rolling(20, min_periods=1).mean() * 100
     return out
 
 # ──────────────────────────────────────────────────────────────
