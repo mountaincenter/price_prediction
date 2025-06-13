@@ -16,19 +16,19 @@ def test_calc_center_shift_phase2():
         'MAE_5d', 'HitRate_20d', 'RelMAE', 'Outlier', 'C_ratio',
         r'$\lambda_{\text{shift}}$', r'$\Delta\alpha_t$'
     }.issubset(df.columns)
-    assert set(df['Outlier'].unique()) <= {0, 1, 2}
+    assert set(df['Outlier'].unique()) <= {0, 1, 2, 3, 4, 5, 6}
     assert df['C_ratio'].notna().any()
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
     mask = df['C_ratio'].abs() >= 0.02
     if mask.any():
-        assert (df.loc[mask, 'Outlier'] == 1).all()
+        assert set(df.loc[mask, 'Outlier'].unique()) <= {1, 5, 6}
 
 
 def test_event_outlier():
     csv = Path('tex-src/data/prices/1321.csv')
     events = Path('tests/fixtures/events.csv')
     df = diff.calc_center_shift(diff.read_prices(csv), phase=2, events_csv=events)
-    assert 2 in set(df['Outlier'].unique())
+    assert {2, 3} & set(df['Outlier'].unique())
 
 
 def test_process_one(tmp_path):

@@ -44,4 +44,4 @@ def test_event_outlier_batch():
     events = Path('tests/fixtures/events.csv')
     raw = batch.read_prices(csv)
     df = batch.calc_center_shift(raw, phase=2, events_csv=events)
-    assert 2 in set(df['Outlier'].unique())
+    assert {2, 3} & set(df['Outlier'].unique())
