@@ -31,9 +31,9 @@ SUMMARY_TEX = OUT_DIR / "summary.tex"
 # ── モデル定数 ────────────────────────────────────────────────────────────
 def compute_metrics(df: pd.DataFrame) -> tuple[float, float, float]:
     """MAE_5d, RelMAE, HitRate_20d (各最終行, %) を返す"""
-    mae = df["MAE_5d"].iloc[-1]
-    rmae = df["RelMAE"].iloc[-1]
-    hit = df["HitRate_20d"].iloc[-1]
+    mae = df["MAE_5d"].dropna().iloc[-1]
+    rmae = df["RelMAE"].dropna().iloc[-1]
+    hit = df["HitRate_20d"].dropna().iloc[-1]
     return mae, rmae, hit
 
 # ── LaTeX summary 生成 ─────────────────────────────────────────────────────

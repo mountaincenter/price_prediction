@@ -28,9 +28,9 @@ SUMMARY_TEX = OUT_DIR / "summary.tex"
 
 
 def compute_metrics(df: pd.DataFrame) -> tuple[float, float, float]:
-    mae = df["MAE_5d"].iloc[-1]
-    rmae = df["RelMAE"].iloc[-1]
-    hit = df["HitRate_20d"].iloc[-1]
+    mae = df["MAE_5d"].dropna().iloc[-1]
+    rmae = df["RelMAE"].dropna().iloc[-1]
+    hit = df["HitRate_20d"].dropna().iloc[-1]
     return mae, rmae, hit
 
 

@@ -14,8 +14,8 @@ def test_compute_metrics():
     raw = batch.read_prices(csv)
     df = batch.calc_event_beta(raw)
     mae, rmae, hit = batch.compute_metrics(df)
-    assert mae == df['MAE_5d'].iloc[-1]
-    assert rmae == df['RelMAE'].iloc[-1]
+    assert mae == df['MAE_5d'].dropna().iloc[-1]
+    assert rmae == df['RelMAE'].dropna().iloc[-1]
     assert 0 <= hit <= 100
 
 
@@ -33,6 +33,6 @@ def test_compute_metrics_custom():
         eta=0.02, l_init=0.95, l_min=0.91, l_max=0.99
     )
     mae, rmae, hit = batch.compute_metrics(df)
-    assert mae == df['MAE_5d'].iloc[-1]
-    assert rmae == df['RelMAE'].iloc[-1]
+    assert mae == df['MAE_5d'].dropna().iloc[-1]
+    assert rmae == df['RelMAE'].dropna().iloc[-1]
     assert 0 <= hit <= 100
