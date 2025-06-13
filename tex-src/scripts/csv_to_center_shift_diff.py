@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.40  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.41  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.41: ratio_flag を 10 日平均で判定
 - 2025-06-13  v2.40: Phase6 で B_ma10 を基準値に使用
 - 2025-06-13  v2.39: B_ma5/B_ma10 平滑化を Phase5 用に追加
 - 2025-06-13  v2.38: ratio_flag を単日±1%に戻し平均は参考値
@@ -230,11 +231,12 @@ def calc_center_shift(
     out["C_diff"]  = out["C_pred"] - out["C_real"]
     out["C_ratio"] = np.where(out["C_real"] != 0, out["C_diff"] / out["C_real"], np.nan)
     out["C_ratio_ma10"] = out["C_ratio"].rolling(10, min_periods=1).mean()
+    out["RatioFlag"] = (out["C_ratio_ma10"].abs() >= 0.01).astype(int)
 
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / (base * out[r"$\sigma_t^{\mathrm{shift}}$"])
     z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
-    ratio_flag = np.abs(out["C_ratio"]) >= 0.01
+    ratio_flag = out["RatioFlag"] == 1
     out_flag = ((np.abs(z) > 3) | ratio_flag).astype(int)
     dates_norm = df["Date"].dt.normalize()
     categories = np.zeros(n, dtype=int)

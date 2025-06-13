@@ -23,13 +23,14 @@
   \item \textbf{基準値平滑化}：前日中値を 10 日平均し \(\overline{B}_{10,t-1}\) を得る
   \item \textbf{予想中央値}：\(C_{p,t}=\overline{B}_{10,t-1}\bigl(1+\alpha_t\sigma_t^{\mathrm{shift}}\bigr)\)
   \item \textbf{誤差正規化}：\(\mathrm{Norm\_err}_t=|C_{p,t}-C_{r,t}|\big/\bigl(\overline{B}_{10,t-1}\sigma_t^{\mathrm{shift}}\bigr)\)
+  \item \textbf{比率平滑化}：\(\overline{C_\Delta/C_p}=\text{10d MA of }C_\Delta/C_p\)
 \end{enumerate}
 \end{flushleft}
 
 \subsubsection*{変数のポイント}
 \begin{flushleft}
 \begin{itemize}
-  \item $C_\Delta/C_p$ が \(\pm1\%\) を超える場合のみ外れ値と判定（区分 0--8 は変更なし）
+  \item \(\overline{C_\Delta/C_p}\) が \(\pm1\%\) を超える場合のみ外れ値と判定（区分 0--8 は変更なし）
   \item $C_p$ 算出にはボラ水準に応じた \(\kappa_t\) と方向スコア $S_t$ を組み合わせる
 \end{itemize}
 \end{flushleft}
