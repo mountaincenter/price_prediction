@@ -1,30 +1,37 @@
 %-------------------------------------------------------------------------------
-% center_shift/phase6.tex   v1.1  (2025-06-13)
+% center_shift/phase6.tex   v1.0  (2025-06-13)
 %-------------------------------------------------------------------------------
 % CHANGELOG  -- new entry on top (latest -> oldest)
-% - 2025-06-13  v1.1 : 判定は単日±1%基準とし平均は参考値
-% - 2025-06-13  v1.0 : 10日移動平均を用いた外れ値平滑化
+% - 2025-06-13  v1.0 : C_p 改善手順を総括
 %-------------------------------------------------------------------------------
 
 %=== center_shift =============================================================
 \section*{center\_shift}\nopagebreak[4]
 
-%=== Phase 6 : 10 日移動平均による平滑化 =====================================
-\subsection*{Phase 6：10 日移動平均による平滑化}\nopagebreak[4]
+%=== Phase 6 : C_p 改善の総括 ================================================
+\subsection*{Phase 6：$C_p$ 改善の総括}\nopagebreak[4]
 %────────────────────────────────────
 \paragraph{ステップ／目的}
 \begin{flushleft}
 \begin{enumerate}
-  \item \textbf{10DMA}\; \( \overline{C_{\Delta}/C_r} = \frac{1}{10}\sum_{k=0}^{9} \frac{C_{\Delta,t-k}}{C_{r,t-k}} \)
-  \item \textbf{判定基準}\; 単日の \(\left|C_{\Delta}/C_r\right|\) が 1\% 以上なら外れ値
-  \end{enumerate}
+  \item \textbf{共通ボラ}：{\scriptsize\verb|sigma/phase1.tex|} や {\scriptsize\verb|sigma/phase2.tex|} に基づき
+        EWMA14 ボラ \(\sigma_t^{\mathrm{shift}}\) を算出
+  \item \textbf{スケール係数}：{\scriptsize\verb|kappa/phase1.tex|} の段階定数モデルから
+        \(\kappa_t=\kappa(\sigma_t^{\mathrm{shift}})\) を取得
+  \item \textbf{方向スコア}：3 日平均リターンの符号を取り、閾値未満は 0 とする
+  \item \textbf{中心シフト量}：\(\alpha_t=\kappa_t S_t\) としてボラ単位のシフトを計算
+  \item \textbf{予想中央値}：\(C_{p,t}=B_{t-1}\bigl(1+\alpha_t\sigma_t^{\mathrm{shift}}\bigr)\)
+  \item \textbf{誤差正規化}：\(\mathrm{Norm\_err}_t=|C_{p,t}-C_{r,t}|\big/\bigl(B_{t-1}\sigma_t^{\mathrm{shift}}\bigr)\)
+\end{enumerate}
 \end{flushleft}
 
 \subsubsection*{変数のポイント}
 \begin{flushleft}
 \begin{itemize}
-  \item 短期ノイズを評価する参考として直近 10 日平均 \(\overline{C_{\Delta}/C_r}\) を併記
-  \item 判定は単日の比率 \(\left|C_{\Delta}/C_r\right|\) が 1\% を超えたかどうかで決定
+  \item $C_\Delta/C_p$ が \(\pm1\%\) を超える場合のみ外れ値と判定（区分 0--8 は変更なし）
+  \item $C_p$ 算出にはボラ水準に応じた \(\kappa_t\) と方向スコア $S_t$ を組み合わせる
 \end{itemize}
 \end{flushleft}
 
+\bigskip
+%==============================================================================
