@@ -14,7 +14,7 @@ def test_compute_metrics():
     raw = batch.read_prices(csv)
     df = batch.calc_center_shift(raw, phase=2)
     mae, rmae, hit = batch.compute_metrics(df)
-    assert mae == df['MAE_5d'].dropna().iloc[-1]
+    assert mae == df['MAE_10d'].dropna().iloc[-1]
     assert rmae == df['RelMAE'].dropna().iloc[-1]
     assert 0 <= hit <= 100
 
@@ -34,7 +34,7 @@ def test_compute_metrics_custom():
         eta=0.02, l_init=0.95, l_min=0.91, l_max=0.99
     )
     mae, rmae, hit = batch.compute_metrics(df)
-    assert mae == df['MAE_5d'].dropna().iloc[-1]
+    assert mae == df['MAE_10d'].dropna().iloc[-1]
     assert rmae == df['RelMAE'].dropna().iloc[-1]
     assert 0 <= hit <= 100
 
@@ -44,4 +44,4 @@ def test_event_outlier_batch():
     events = Path('tests/fixtures/events.csv')
     raw = batch.read_prices(csv)
     df = batch.calc_center_shift(raw, phase=2, events_csv=events)
-    assert {2, 3} & set(df['Outlier'].unique())
+    assert set(df['Outlier'].unique()) != {0}

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.36  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.37  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.37: 10日移動平均で外れ値判定を平滑化
 - 2025-06-13  v2.36: 外れ値閾値1%とし一般行を Outlier=9
 - 2025-06-13  v2.35: 外れ値行を NaN で無効化し再計算
 - 2025-06-13  v2.34: Outlier 区分0-8の優先処理を追加
@@ -217,11 +218,12 @@ def calc_center_shift(
     out["C_real"]  = (out["High"] + out["Low"]) / 2
     out["C_diff"]  = out["C_pred"] - out["C_real"]
     out["C_ratio"] = np.where(out["C_real"] != 0, out["C_diff"] / out["C_real"], np.nan)
+    out["C_ratio_ma10"] = out["C_ratio"].rolling(10, min_periods=1).mean()
 
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
-    ratio_flag = np.abs(out["C_ratio"]) >= 0.01
+    ratio_flag = np.abs(out["C_ratio_ma10"]) >= 0.01
     out_flag = ((np.abs(z) > 3) | ratio_flag).astype(int)
     dates_norm = df["Date"].dt.normalize()
     categories = np.zeros(n, dtype=int)
@@ -264,6 +266,7 @@ def calc_center_shift(
     out.loc[mask, cols] = np.nan
 
     out["MAE_5d"] = out["C_diff"].abs().rolling(5, min_periods=1).mean()
+    out["MAE_10d"] = out["C_diff"].abs().rolling(10, min_periods=1).mean()
     out["RelMAE"] = out["MAE_5d"] / out["Close"] * 100
     hit = (
         np.sign(out[r"$\alpha_t$"]) == np.sign(out["C_real"] - out["B_{t-1}"])
@@ -278,8 +281,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
     for c in [r"$\kappa(\sigma)$","B_{t-1}","C_pred","C_real","C_diff",
-              "C_ratio","C_diff_sign","Norm_err","Outlier",
-              "MAE_5d","RelMAE","HitRate_20d"]:
+              "C_ratio","C_ratio_ma10","C_diff_sign","Norm_err","Outlier",
+              "MAE_5d","MAE_10d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
         med[c] = np.median(vals)
@@ -293,6 +296,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "C_real",
         "C_diff",
         "C_ratio",
+        "C_ratio_ma10",
         "C_diff_sign",
         "Norm_err",
         "Outlier",
@@ -300,6 +304,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"$\lambda_{\text{shift}}$",
         r"$\Delta\alpha_t$",
         "MAE_5d",
+        "MAE_10d",
         "RelMAE",
         "HitRate_20d",
     ]
@@ -310,6 +315,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "C_real":             r"$C_r$",
         "C_diff":             r"$C_\Delta$",
         "C_ratio":            r"$C_\Delta/C_r$",
+        "C_ratio_ma10":       r"$\overline{C_\Delta/C_r}$",
         "C_diff_sign":        r"$\mathrm{sgn}\,C_\Delta$",
         "Norm_err":           r"$|C_\Delta|/\sigma$",
         "Outlier":            r"$\mathrm{Out}$",
@@ -317,6 +323,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"$\lambda_{\text{shift}}$": r"$\lambda$",
         r"$\Delta\alpha_t$": r"$\Delta\alpha$",
         "MAE_5d":             r"$\mathrm{MAE}_5$",
+        "MAE_10d":            r"$\mathrm{MAE}_{10}$",
         "RelMAE":             r"$\mathrm{RMAE}$",
         "HitRate_20d":        r"$\mathrm{HR}_{20}[\%]$",
     }
@@ -333,7 +340,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return f"{v:.2f}"
         if col == r"$\mathrm{Out}$":
             return f"{int(v)}"
-        if col == r"$C_\Delta/C_r$":
+        if col == r"$C_\Delta/C_r$" or col == r"$\overline{C_\Delta/C_r}$":
             return f"{100*v:.1f}"
         return f"{v:.1f}"
 
@@ -355,10 +362,12 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"$C_p=C_{\text{pred}}$, $C_r=C_{\text{real}}$, "
         r"$C_\Delta=C_{\text{diff}}$, "
         r"$C_\Delta/C_r=\dfrac{C_{\text{diff}}}{C_{\text{real}}}\times100$, "
+        r"$\overline{C_\Delta/C_r}=\text{10d SMA of }C_\Delta/C_r$, "
         r"$\mathrm{Out}=\text{Outlier}$, "
         r"$\mathrm{sgn}\,C_\Delta=\operatorname{sign}(C_{\text{diff}})$, "
         r"$|C_\Delta|/\sigma=\dfrac{|C_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "
+        r"$\mathrm{MAE}_{10}=\mathrm{MAE}_{10\text{d}}$, "
         r"$\mathrm{RMAE}= \mathrm{MAE}_5 / \text{Close}$, "
         r"$\mathrm{HR}_{20}=\mathrm{HitRate}_{20\text{d}}$, ",
         r"$\lambda_{\text{shift}}=\lambda_t$, ",

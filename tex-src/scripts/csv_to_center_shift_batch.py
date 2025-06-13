@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_batch.py   v6.12  (2025-06-05)
+scripts/csv_to_center_shift_batch.py   v6.13  (2025-06-05)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_batch.py  （newest → oldest）
+- 2025-06-13  v6.13: MAE_10d 指標を計算
 - 2025-06-13  v6.12: マクロイベント日をイベント値2として処理
 - 2025-06-06  v6.11: diff テーブルを λ 固定で3ページ出力
 - 2025-06-06  v6.10: η / λ を diff.py と同様に指定可能に
@@ -50,8 +51,8 @@ SUMMARY_TEX = OUT_DIR / "summary.tex"
 
 # ── モデル定数（batch 側でメトリクス計算に必要） ──────────────────────────
 def compute_metrics(df: pd.DataFrame) -> tuple[float, float, float]:
-    """MAE_5d, RelMAE, HitRate_20d (各最終行, %) を返す"""
-    mae = df["MAE_5d"].dropna().iloc[-1]
+    """MAE_10d, RelMAE, HitRate_20d (各最終行, %) を返す"""
+    mae = df["MAE_10d"].dropna().iloc[-1]
     rmae = df["RelMAE"].dropna().iloc[-1]
     hit = df["HitRate_20d"].dropna().iloc[-1]
     return mae, rmae, hit
@@ -70,7 +71,7 @@ def make_summary(rows: list[tuple[str, float, float, float, float, float, float,
         r"\footnotesize",
         r"\begin{tabular}{lrrrrrrrrr}",
         r"\hline",
-        r"Code & Close & MAE\_5d & RelMAE$^{ph0}$[\%] & RelMAE$^{ph1}$[\%] & RelMAE$^{ph2}$[\%] & HitRate$^{ph0}$[\%] & HitRate$^{ph1}$[\%] & HitRate$^{ph2}$[\%] \\",
+        r"Code & Close & MAE\_10d & RelMAE$^{ph0}$[\%] & RelMAE$^{ph1}$[\%] & RelMAE$^{ph2}$[\%] & HitRate$^{ph0}$[\%] & HitRate$^{ph1}$[\%] & HitRate$^{ph2}$[\%] \\",
         r"\hline",
     ]
     for code, close, mae, r0, r1, r2, h0, h1, h2 in rows:
