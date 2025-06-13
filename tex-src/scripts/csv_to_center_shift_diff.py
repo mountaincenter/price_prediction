@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.33  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.34  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.34: Outlier 区分0-8の優先処理を追加
 - 2025-06-13  v2.33: read_statement_events を追加
 - 2025-06-12  v2.32: Outlier=2 を外れ値かつイベント日のみに修正
 - 2025-06-13  v2.31: process_one で events_csv を受け取り可能に
@@ -153,6 +154,7 @@ def calc_center_shift(
     l_max: float = L_MAX,
     events_csv: Path | None = None,
     statement_dates: set[pd.Timestamp] | None = None,
+    special_dates: dict[int, set[pd.Timestamp]] | None = None,
 ) -> pd.DataFrame:
     n = len(df)
     event_dates: set[pd.Timestamp] | None = None
@@ -160,6 +162,8 @@ def calc_center_shift(
         event_dates = read_macro_events(events_csv)
     if statement_dates is None:
         statement_dates = set()
+    if special_dates is None:
+        special_dates = {}
     cl = df["Close"].values
     dcl = np.zeros(n); dcl[1:] = np.log(cl[1:] / cl[:-1])
 
@@ -223,15 +227,22 @@ def calc_center_shift(
         if out_flag[i] != 1:
             continue
         d = dates_norm.iloc[i]
-        cat = 1
         if event_dates and d in event_dates:
             cat = 2
         elif d in statement_dates:
             cat = 3
+        elif 4 in special_dates and d in special_dates[4]:
+            cat = 4
         elif is_month_edge(d):
             cat = 5
         elif is_sq_date(d):
             cat = 6
+        elif 7 in special_dates and d in special_dates[7]:
+            cat = 7
+        elif 8 in special_dates and d in special_dates[8]:
+            cat = 8
+        else:
+            cat = 1
         categories[i] = cat
     out["Outlier"] = categories
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
