@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.45  (2025-06-14)
+scripts/csv_to_center_shift_diff.py   v2.46  (2025-06-14)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-14  v2.46: S_t,p 閾値判定を廃止し差分符号のみ使用
 - 2025-06-14  v2.45: S_t,p を閾値判定付き符号推定に変更
 - 2025-06-14  v2.44: S_t,p を予測シフト符号へ変更し検証精度向上
 - 2025-06-14  v2.43: 評価列整理と S_t,p/S_r/S_verification 追加
@@ -238,10 +239,7 @@ def calc_center_shift(
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / (base * out[r"$\sigma_t^{\mathrm{shift}}$"])
     pred_diff = out["C_pred"] - out["B_{t-1}"]
-    th = base * out[r"$\sigma_t^{\mathrm{shift}}$"] * 0.5
-    s_tp = np.sign(pred_diff)
-    s_tp = s_tp.where(pred_diff.abs() > th, 0)
-    out["S_t,p"] = s_tp.fillna(0).astype(int)
+    out["S_t,p"] = np.sign(pred_diff).fillna(0).astype(int)
     out["S_r"] = np.sign(out["C_real"] - out["B_{t-1}"]).fillna(0).astype(int)
     out["S_verification"] = (out["S_t,p"] == out["S_r"]).astype(int)
 
