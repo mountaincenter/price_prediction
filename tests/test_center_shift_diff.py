@@ -17,6 +17,8 @@ def test_calc_center_shift_phase2():
         r'$\lambda_{\text{shift}}$', r'$\Delta\alpha_t$'
     }.issubset(df.columns)
     assert 0 <= df['HitRate_20d'].iloc[-1] <= 100
+    assert {'S', 'S_verification'}.issubset(df.columns)
+    assert set(df['S_verification'].unique()) <= {0, 1}
 
 
 def test_process_one(tmp_path):
@@ -27,3 +29,10 @@ def test_process_one(tmp_path):
     assert text.strip() != ''
     assert 'Median' in text
     assert 'code:' in text
+
+
+def test_compute_S_function():
+    assert hasattr(diff, 'compute_S')
+    csv = Path('tex-src/data/prices/1321.csv')
+    df = diff.calc_center_shift(diff.read_prices(csv), phase=2)
+    assert df['S'].dtype != object

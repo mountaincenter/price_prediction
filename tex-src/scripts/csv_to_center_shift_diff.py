@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.13  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.14  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+ - 2025-06-06  v2.14: S 列追加と compute_S 関数化
  - 2025-06-06  v2.13: "code:" 表示を表上部のキャプションへ移動
  - 2025-06-06  v2.12: α_t/λ_shift/Δα_t 列を追加し code 表示を挿入
 - 2025-06-06  v2.11: Average 行の下に Median 行を追加
@@ -87,6 +88,21 @@ def kappa_sigma(s: float) -> float:
             return v
     return 0.20
 
+
+def compute_S(
+    dcl: np.ndarray, ma3: np.ndarray, sig: np.ndarray, phase: int, t: int
+) -> float:
+    """t 時点の方向スコアを返す"""
+    if phase == 2:
+        val = float(np.sign(ma3[t]))
+        if abs(ma3[t]) < 0.5 * sig[t]:
+            val = 0.0
+    else:
+        val = float(np.sign(dcl[t - 1])) if t else 0.0
+    if t < 5:
+        val = 0.0
+    return val
+
 def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
     n = len(df)
     cl = df["Close"].values
@@ -105,14 +121,7 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
         kap[t] = 0.20 if phase == 0 else kappa_sigma(sig[t])
         if t:
             ma3[t] = dcl[max(0, t-3):t].mean()
-        if phase == 2:
-            S[t] = np.sign(ma3[t])
-            if abs(ma3[t]) < 0.5 * sig[t]:
-                S[t] = 0
-        else:
-            S[t] = np.sign(dcl[t-1]) if t else 0
-        if t < 5:
-            S[t] = 0
+        S[t] = compute_S(dcl, ma3, sig, phase, t)
         alp[t] = kap[t] * S[t]
         if t:
             dalp[t] = alp[t] - alp[t-1]
@@ -133,12 +142,17 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
         r"$\lambda_{\text{shift}}$": lam,
         r"$\Delta\alpha_t$": dalp,
         r"$\sigma_t^{\mathrm{shift}}$": sig,
+        "S": S,
         "Close": df["Close"]
     })
     out["B_{t-1}"] = (out["High"].shift(1) + out["Low"].shift(1)) / 2
     out["C_pred"]  = out["B_{t-1}"] * (1 + out[r"$\alpha_t$"])
     out["C_real"]  = (out["High"] + out["Low"]) / 2
     out["C_diff"]  = out["C_pred"] - out["C_real"]
+
+    out["S_verification"] = (
+        np.sign(out["S"]) == np.sign(out["C_real"] - out["B_{t-1}"])
+    ).astype(int)
 
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / out[r"$\sigma_t^{\mathrm{shift}}$"]
