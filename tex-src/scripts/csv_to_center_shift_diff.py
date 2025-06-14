@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.36  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.38  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-14  v2.38: show values when Outlier=9
 - 2025-06-14  v2.36: revert to mask Outlier=9 values
 - 2025-06-13  v2.36: 外れ値閾値1%とし一般行を Outlier=9
 - 2025-06-13  v2.35: 外れ値行を NaN で無効化し再計算
@@ -249,7 +250,7 @@ def calc_center_shift(
         categories[i] = cat
     out["Outlier"] = categories
 
-    mask = out["Outlier"] != 0
+    mask = out["Outlier"].between(1, 8)
     cols = [
         "High",
         "Low",
