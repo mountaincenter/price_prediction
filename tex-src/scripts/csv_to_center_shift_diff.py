@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.41  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.42  (2025-06-14)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-14  v2.42: Outlier を C_ratio で分類
+                    (|<1%|→0, 1–2%→9, ≥2%→1–8) し
+                    マスクは 1–8 のみ適用
 - 2025-06-14  v2.41: show values when Outlier=9
 - 2025-06-14  Revert to v2.40 baseline
 - 2025-06-13  v2.40: Phase6 で B_ma10 を基準値に使用
@@ -76,7 +79,7 @@ L_INIT, L_MIN, L_MAX = 0.94, 0.90, 0.98
 ETA = 0.01
 VAR_EPS = 1e-8
 
-NUM_ROWS = 30                      # 最新 30 行 + Average
+NUM_ROWS = 30
 VARIANT_LAMBDAS = [(0.90, "minimum"), (0.94, "default"), (0.98, "maximum")]
 OUT_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/analysis/center_shift"
 PRICES_DIR = Path(__file__).resolve().parent.parent.parent / "tex-src" / "data/prices"
@@ -115,14 +118,12 @@ def read_prices(csv: Path) -> pd.DataFrame:
     return df.reset_index(drop=True)
 
 def read_macro_events(csv: Path) -> set[pd.Timestamp]:
-    """マクロイベント CSV から日付一覧を取得"""
     df = pd.read_csv(csv, encoding="utf-8-sig")
     col = "Date" if "Date" in df.columns else "日付"
     dates = pd.to_datetime(df[col].astype(str).str.replace("(予定)", "", regex=False), errors="coerce")
     return set(dates.dropna().dt.normalize())
 
 def read_statement_events(code: str, root: Path) -> set[pd.Timestamp]:
-    """決算発表日 CSV から日付一覧を取得"""
     csv = root / f"{code}.csv"
     if not csv.exists():
         return set()
@@ -172,13 +173,13 @@ def calc_center_shift(
         statement_dates = set()
     if special_dates is None:
         special_dates = {}
+
     cl = df["Close"].values
     dcl = np.zeros(n); dcl[1:] = np.log(cl[1:] / cl[:-1])
 
     sig = np.zeros(n); lam = np.full(n, l_init)
     kap = np.zeros(n); alp = np.zeros(n)
-    dalp = np.zeros(n)
-    S = np.zeros(n); ma3 = np.zeros(n)
+    dalp = np.zeros(n); S = np.zeros(n); ma3 = np.zeros(n)
     var = max(VAR_EPS, (np.pi / 2) * abs(dcl[0])) ** 2
 
     for t in range(n):
@@ -221,12 +222,12 @@ def calc_center_shift(
     out["B_{t-1}"] = (out["High"].shift(1) + out["Low"].shift(1)) / 2
     out["B_ma5"]  = out["B_{t-1}"].rolling(5,  min_periods=1).mean()
     out["B_ma10"] = out["B_{t-1}"].rolling(10, min_periods=1).mean()
-    if phase >= 6:
-        base = out["B_ma10"]
-    elif phase >= 5:
-        base = out["B_ma5"]
-    else:
-        base = out["B_{t-1}"]
+
+    base = (
+        out["B_ma10"] if phase >= 6 else
+        out["B_ma5"]  if phase >= 5 else
+        out["B_{t-1}"]
+    )
     out["C_pred"]  = base * (1 + out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     out["C_real"]  = (out["High"] + out["Low"]) / 2
     out["C_diff"]  = out["C_pred"] - out["C_real"]
@@ -235,14 +236,23 @@ def calc_center_shift(
 
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / (base * out[r"$\sigma_t^{\mathrm{shift}}$"])
-    z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
-    ratio_flag = np.abs(out["C_ratio"]) >= 0.01
-    out_flag = ((np.abs(z) > 3) | ratio_flag).astype(int)
+
+    # ─── Outlier 判定 ────────────────────────────────
     dates_norm = df["Date"].dt.normalize()
     categories = np.zeros(n, dtype=int)
+
+    ratio_abs = np.abs(out["C_ratio"])
+
     for i in range(n):
-        if out_flag[i] != 1:
+        r = ratio_abs[i]
+
+        if r < 0.01:
+            continue                      # 0 (mask off)
+
+        if r < 0.02:
+            categories[i] = 9            # mask off
             continue
+
         d = dates_norm.iloc[i]
         if event_dates and d in event_dates:
             cat = 2
@@ -259,33 +269,26 @@ def calc_center_shift(
         elif 8 in special_dates and d in special_dates[8]:
             cat = 8
         else:
-            cat = 9
+            cat = 1
         categories[i] = cat
+
     out["Outlier"] = categories
 
+    # ─── マスク ─────────────────────────────────────
     mask = out["Outlier"].between(1, 8)
     cols = [
-        "High",
-        "Low",
-        "Close",
-        "B_{t-1}",
-        "B_ma5",
-        "B_ma10",
-        "C_pred",
-        "C_real",
-        "C_diff",
-        "C_ratio",
-        "C_diff_sign",
-        "Norm_err",
+        "High", "Low", "Close",
+        "B_{t-1}", "B_ma5", "B_ma10",
+        "C_pred", "C_real", "C_diff",
+        "C_ratio", "C_diff_sign", "Norm_err",
     ]
     out.loc[mask, cols] = np.nan
 
+    # ─── 評価指標 ────────────────────────────────
     out["MAE_5d"] = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["MAE_10d"] = out["C_diff"].abs().rolling(10, min_periods=1).mean()
     out["RelMAE"] = out["MAE_5d"] / out["Close"] * 100
-    hit = (
-        np.sign(out[r"$\alpha_t$"]) == np.sign(out["C_real"] - out["B_{t-1}"])
-    ).astype(int)
+    hit = (np.sign(out[r"$\alpha_t$"]) == np.sign(out["C_real"] - out["B_{t-1}"])).astype(int)
     out["HitRate_20d"] = hit.rolling(20, min_periods=1).mean() * 100
     return out
 
@@ -357,7 +360,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return f"{v:.2f}"
         if col == r"$\mathrm{Out}$":
             return f"{int(v)}"
-        if col == r"$C_\Delta/C_r$" or col == r"$\overline{C_\Delta/C_r}$":
+        if col in {r"$C_\Delta/C_r$", r"$\overline{C_\Delta/C_r}$"}:
             return f"{100*v:.1f}"
         return f"{v:.1f}"
 
@@ -369,9 +372,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", FutureWarning)
         fmt_str = "l" + "r" * (len(cols) - 1)
-        latex_body = disp.to_latex(
-            index=False, escape=False, column_format=fmt_str
-        )
+        latex_body = disp.to_latex(index=False, escape=False, column_format=fmt_str)
 
     footnote_lines = [
         r"\begin{tablenotes}\footnotesize",
@@ -386,8 +387,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "
         r"$\mathrm{MAE}_{10}=\mathrm{MAE}_{10\text{d}}$, "
         r"$\mathrm{RMAE}= \mathrm{MAE}_5 / \text{Close}$, "
-        r"$\mathrm{HR}_{20}=\mathrm{HitRate}_{20\text{d}}$, ",
-        r"$\lambda_{\text{shift}}=\lambda_t$, ",
+        r"$\mathrm{HR}_{20}=\mathrm{HitRate}_{20\text{d}}$, "
+        r"$\lambda_{\text{shift}}=\lambda_t$, "
         r"$\Delta\alpha_t=\alpha_t-\alpha_{t-1}$.",
         r"\end{tablenotes}"
     ]
@@ -401,14 +402,12 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"\footnotesize",
         r"\setlength{\tabcolsep}{3.5pt}%",
         r"\begin{threeparttable}",
-    ]
-    parts += [
         r"\resizebox{\textwidth}{!}{%",
         latex_body.rstrip(),
         r"}",
         footnote,
         r"\end{threeparttable}",
-        r"\endgroup"
+        r"\endgroup",
     ]
     return "\n".join(parts) + "\n"
 
@@ -423,9 +422,8 @@ def process_one(
     l_max: float = L_MAX,
     events_csv: Path | None = EVENTS_CSV,
 ) -> Path:
-    """csv を処理して diff.tex を生成し、そのパスを返す"""
     code = csv.stem
-    tables: list[str] = []
+    tables = []
     for lam, label in VARIANT_LAMBDAS:
         df = calc_center_shift(
             read_prices(csv),
@@ -446,13 +444,9 @@ def process_one(
 
 # ──────────────────────────────────────────────────────────────
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="center_shift diff table (30 d ＋ Average)"
-    )
-    parser.add_argument(
-        "csv", nargs="?", type=Path,
-        help="個別 CSV（省略時は data/prices/*.csv 一括処理）",
-    )
+    parser = argparse.ArgumentParser(description="center_shift diff table (30 d ＋ Average)")
+    parser.add_argument("csv", nargs="?", type=Path,
+                        help="個別 CSV（省略時は data/prices/*.csv 一括処理）")
     parser.add_argument("--eta", type=float, default=ETA, help="学習率 η")
     parser.add_argument("--init-lambda", type=float, default=L_INIT, help="初期 λ_shift")
     parser.add_argument("--min-lambda", type=float, default=L_MIN, help="最小 λ_shift")
