@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.38  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.42  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-14  v2.42: restore MA columns and keep Outlier=9 values
 - 2025-06-14  v2.38: show values when Outlier=9
 - 2025-06-14  v2.36: revert to mask Outlier=9 values
 - 2025-06-13  v2.36: 外れ値閾値1%とし一般行を Outlier=9
@@ -215,13 +216,22 @@ def calc_center_shift(
         "Close": df["Close"]
     })
     out["B_{t-1}"] = (out["High"].shift(1) + out["Low"].shift(1)) / 2
-    out["C_pred"]  = out["B_{t-1}"] * (1 + out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
+    out["B_ma5"]  = out["B_{t-1}"].rolling(5,  min_periods=1).mean()
+    out["B_ma10"] = out["B_{t-1}"].rolling(10, min_periods=1).mean()
+    if phase >= 6:
+        base = out["B_ma10"]
+    elif phase >= 5:
+        base = out["B_ma5"]
+    else:
+        base = out["B_{t-1}"]
+    out["C_pred"]  = base * (1 + out[r"$\alpha_t$"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
     out["C_real"]  = (out["High"] + out["Low"]) / 2
     out["C_diff"]  = out["C_pred"] - out["C_real"]
     out["C_ratio"] = np.where(out["C_real"] != 0, out["C_diff"] / out["C_real"], np.nan)
+    out["C_ratio_ma10"] = out["C_ratio"].rolling(10, min_periods=1).mean()
 
     out["C_diff_sign"] = np.sign(out["C_diff"])
-    out["Norm_err"]    = np.abs(out["C_diff"]) / (out["B_{t-1}"] * out[r"$\sigma_t^{\mathrm{shift}}$"])
+    out["Norm_err"]    = np.abs(out["C_diff"]) / (base * out[r"$\sigma_t^{\mathrm{shift}}$"])
     z = (out["Norm_err"] - out["Norm_err"].mean()) / out["Norm_err"].std(ddof=0)
     ratio_flag = np.abs(out["C_ratio"]) >= 0.01
     out_flag = ((np.abs(z) > 3) | ratio_flag).astype(int)
@@ -256,16 +266,20 @@ def calc_center_shift(
         "Low",
         "Close",
         "B_{t-1}",
+        "B_ma5",
+        "B_ma10",
         "C_pred",
         "C_real",
         "C_diff",
         "C_ratio",
+        "C_ratio_ma10",
         "C_diff_sign",
         "Norm_err",
     ]
     out.loc[mask, cols] = np.nan
 
     out["MAE_5d"] = out["C_diff"].abs().rolling(5, min_periods=1).mean()
+    out["MAE_10d"] = out["C_diff"].abs().rolling(10, min_periods=1).mean()
     out["RelMAE"] = out["MAE_5d"] / out["Close"] * 100
     hit = (
         np.sign(out[r"$\alpha_t$"]) == np.sign(out["C_real"] - out["B_{t-1}"])
@@ -279,9 +293,9 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
-    for c in [r"$\kappa(\sigma)$","B_{t-1}","C_pred","C_real","C_diff",
-              "C_ratio","C_diff_sign","Norm_err","Outlier",
-              "MAE_5d","RelMAE","HitRate_20d"]:
+    for c in [r"$\kappa(\sigma)$","B_{t-1}","B_ma5","B_ma10","C_pred",
+              "C_real","C_diff","C_ratio","C_ratio_ma10","C_diff_sign",
+              "Norm_err","Outlier","MAE_5d","MAE_10d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
         med[c] = np.median(vals)
@@ -291,10 +305,13 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "Date",
         r"$\kappa(\sigma)$",
         "B_{t-1}",
+        "B_ma5",
+        "B_ma10",
         "C_pred",
         "C_real",
         "C_diff",
         "C_ratio",
+        "C_ratio_ma10",
         "C_diff_sign",
         "Norm_err",
         "Outlier",
@@ -302,16 +319,20 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"$\lambda_{\text{shift}}$",
         r"$\Delta\alpha_t$",
         "MAE_5d",
+        "MAE_10d",
         "RelMAE",
         "HitRate_20d",
     ]
     header = {
         r"$\kappa(\sigma)$": r"$\kappa$",
         "B_{t-1}":            r"$B$",
+        "B_ma5":             r"$\overline{B}_5$",
+        "B_ma10":            r"$\overline{B}_{10}$",
         "C_pred":             r"$C_p$",
         "C_real":             r"$C_r$",
         "C_diff":             r"$C_\Delta$",
         "C_ratio":            r"$C_\Delta/C_r$",
+        "C_ratio_ma10":       r"$\overline{C_\Delta/C_r}$",
         "C_diff_sign":        r"$\mathrm{sgn}\,C_\Delta$",
         "Norm_err":           r"$|C_\Delta|/\sigma$",
         "Outlier":            r"$\mathrm{Out}$",
@@ -319,6 +340,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"$\lambda_{\text{shift}}$": r"$\lambda$",
         r"$\Delta\alpha_t$": r"$\Delta\alpha$",
         "MAE_5d":             r"$\mathrm{MAE}_5$",
+        "MAE_10d":            r"$\mathrm{MAE}_{10}$",
         "RelMAE":             r"$\mathrm{RMAE}$",
         "HitRate_20d":        r"$\mathrm{HR}_{20}[\%]$",
     }
@@ -335,7 +357,7 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return f"{v:.2f}"
         if col == r"$\mathrm{Out}$":
             return f"{int(v)}"
-        if col == r"$C_\Delta/C_r$":
+        if col == r"$C_\Delta/C_r$" or col == r"$\overline{C_\Delta/C_r}$":
             return f"{100*v:.1f}"
         return f"{v:.1f}"
 
@@ -353,14 +375,15 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     footnote_lines = [
         r"\begin{tablenotes}\footnotesize",
-        r"\item $\kappa=\kappa(\sigma)$, $B=B_{t-1}$, "
+        r"\item $\kappa=\kappa(\sigma)$, $B=B_{t-1}$, $\overline{B}=\text{5d MA of }B$, "
         r"$C_p=C_{\text{pred}}$, $C_r=C_{\text{real}}$, "
         r"$C_\Delta=C_{\text{diff}}$, "
         r"$C_\Delta/C_r=\dfrac{C_{\text{diff}}}{C_{\text{real}}}\times100$, "
+        r"$\overline{C_\Delta/C_r}=\text{10d SMA of }C_\Delta/C_r$, "
         r"$\mathrm{Out}=\text{Outlier}$, "
         r"$\mathrm{sgn}\,C_\Delta=\operatorname{sign}(C_{\text{diff}})$, "
         r"$|C_\Delta|/\sigma=\dfrac{|C_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
-        r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "
+        r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, $\mathrm{MAE}_{10}=\mathrm{MAE}_{10\text{d}}$, "
         r"$\mathrm{RMAE}= \mathrm{MAE}_5 / \text{Close}$, "
         r"$\mathrm{HR}_{20}=\mathrm{HitRate}_{20\text{d}}$, ",
         r"$\lambda_{\text{shift}}=\lambda_t$, ",
