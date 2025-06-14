@@ -14,8 +14,13 @@ def test_compute_metrics():
     raw = batch.read_prices(csv)
     df = batch.calc_center_shift(raw, phase=2)
     mae, rmae, hit = batch.compute_metrics(df)
-    assert mae == df['MAE_10d'].dropna().iloc[-1]
-    assert rmae == df['RelMAE'].dropna().iloc[-1]
+    expect_mae = df['C_diff'].abs().rolling(10, min_periods=1).mean().dropna().iloc[-1]
+    expect_rmae = (
+        df['C_diff'].abs().rolling(5, min_periods=1).mean()
+        .div(df['Close']).mul(100).dropna().iloc[-1]
+    )
+    assert mae == expect_mae
+    assert rmae == expect_rmae
     assert 0 <= hit <= 100
 
 
@@ -34,8 +39,13 @@ def test_compute_metrics_custom():
         eta=0.02, l_init=0.95, l_min=0.91, l_max=0.99
     )
     mae, rmae, hit = batch.compute_metrics(df)
-    assert mae == df['MAE_10d'].dropna().iloc[-1]
-    assert rmae == df['RelMAE'].dropna().iloc[-1]
+    expect_mae = df['C_diff'].abs().rolling(10, min_periods=1).mean().dropna().iloc[-1]
+    expect_rmae = (
+        df['C_diff'].abs().rolling(5, min_periods=1).mean()
+        .div(df['Close']).mul(100).dropna().iloc[-1]
+    )
+    assert mae == expect_mae
+    assert rmae == expect_rmae
     assert 0 <= hit <= 100
 
 

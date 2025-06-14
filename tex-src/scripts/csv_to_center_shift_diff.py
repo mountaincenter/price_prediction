@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.42  (2025-06-14)
+scripts/csv_to_center_shift_diff.py   v2.43  (2025-06-14)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-14  v2.43: 評価列整理と S_t,p/S_r/S_verification 追加
 - 2025-06-14  v2.42: Outlier を C_ratio で分類
                     (|<1%|→0, 1–2%→9, ≥2%→1–8) し
                     マスクは 1–8 のみ適用
@@ -232,10 +233,11 @@ def calc_center_shift(
     out["C_real"]  = (out["High"] + out["Low"]) / 2
     out["C_diff"]  = out["C_pred"] - out["C_real"]
     out["C_ratio"] = np.where(out["C_real"] != 0, out["C_diff"] / out["C_real"], np.nan)
-    out["C_ratio_ma10"] = out["C_ratio"].rolling(10, min_periods=1).mean()
-
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / (base * out[r"$\sigma_t^{\mathrm{shift}}$"])
+    out["S_t,p"] = np.sign(out[r"$\alpha_t$"]).fillna(0).astype(int)
+    out["S_r"] = np.sign(out["C_real"] - out["B_{t-1}"]).fillna(0).astype(int)
+    out["S_verification"] = (out["S_t,p"] == out["S_r"]).astype(int)
 
     # ─── Outlier 判定 ────────────────────────────────
     dates_norm = df["Date"].dt.normalize()
@@ -283,13 +285,6 @@ def calc_center_shift(
         "C_ratio", "C_diff_sign", "Norm_err",
     ]
     out.loc[mask, cols] = np.nan
-
-    # ─── 評価指標 ────────────────────────────────
-    out["MAE_5d"] = out["C_diff"].abs().rolling(5, min_periods=1).mean()
-    out["MAE_10d"] = out["C_diff"].abs().rolling(10, min_periods=1).mean()
-    out["RelMAE"] = out["MAE_5d"] / out["Close"] * 100
-    hit = (np.sign(out[r"$\alpha_t$"]) == np.sign(out["C_real"] - out["B_{t-1}"])).astype(int)
-    out["HitRate_20d"] = hit.rolling(20, min_periods=1).mean() * 100
     return out
 
 # ──────────────────────────────────────────────────────────────
@@ -299,8 +294,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
     for c in [r"$\kappa(\sigma)$","B_{t-1}","C_pred","C_real","C_diff",
-              "C_ratio","C_ratio_ma10","C_diff_sign","Norm_err","Outlier",
-              "MAE_5d","MAE_10d","RelMAE","HitRate_20d"]:
+              "C_ratio","C_diff_sign","Norm_err","Outlier",
+              "S_t,p","S_r","S_verification"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
         med[c] = np.median(vals)
@@ -314,17 +309,15 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "C_real",
         "C_diff",
         "C_ratio",
-        "C_ratio_ma10",
         "C_diff_sign",
         "Norm_err",
         "Outlier",
+        "S_t,p",
+        "S_r",
+        "S_verification",
         r"$\alpha_t$",
         r"$\lambda_{\text{shift}}$",
         r"$\Delta\alpha_t$",
-        "MAE_5d",
-        "MAE_10d",
-        "RelMAE",
-        "HitRate_20d",
     ]
     header = {
         r"$\kappa(\sigma)$": r"$\kappa$",
@@ -335,17 +328,15 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "C_real":             r"$C_r$",
         "C_diff":             r"$C_\Delta$",
         "C_ratio":            r"$C_\Delta/C_r$",
-        "C_ratio_ma10":       r"$\overline{C_\Delta/C_r}$",
         "C_diff_sign":        r"$\mathrm{sgn}\,C_\Delta$",
         "Norm_err":           r"$|C_\Delta|/\sigma$",
         "Outlier":            r"$\mathrm{Out}$",
+        "S_t,p":              r"$S_{t,p}$",
+        "S_r":                r"$S_r$",
+        "S_verification":    r"$S_{ver}$",
         r"$\alpha_t$":        r"$\alpha_t$",
         r"$\lambda_{\text{shift}}$": r"$\lambda$",
         r"$\Delta\alpha_t$": r"$\Delta\alpha$",
-        "MAE_5d":             r"$\mathrm{MAE}_5$",
-        "MAE_10d":            r"$\mathrm{MAE}_{10}$",
-        "RelMAE":             r"$\mathrm{RMAE}$",
-        "HitRate_20d":        r"$\mathrm{HR}_{20}[\%]$",
     }
     cols = [header.get(c, c) for c in cols_src]
 
@@ -356,11 +347,11 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
             return "--"
         if col in {r"$\kappa$", r"$\alpha_t$", r"$\lambda$", r"$\Delta\alpha$"}:
             return f"{v:.2f}"
-        if col in {r"$\mathrm{RMAE}$", r"$\mathrm{HR}_{20}[\%]$"}:
-            return f"{v:.2f}"
+        if col in {r"$S_{t,p}$", r"$S_r$", r"$S_{ver}$"}:
+            return f"{int(v)}"
         if col == r"$\mathrm{Out}$":
             return f"{int(v)}"
-        if col in {r"$C_\Delta/C_r$", r"$\overline{C_\Delta/C_r}$"}:
+        if col in {r"$C_\Delta/C_r$"}:
             return f"{100*v:.1f}"
         return f"{v:.1f}"
 
@@ -380,16 +371,14 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"$C_p=C_{\text{pred}}$, $C_r=C_{\text{real}}$, "
         r"$C_\Delta=C_{\text{diff}}$, "
         r"$C_\Delta/C_r=\dfrac{C_{\text{diff}}}{C_{\text{real}}}\times100$, "
-        r"$\overline{C_\Delta/C_r}=\text{10d SMA of }C_\Delta/C_r$, "
         r"$\mathrm{Out}=\text{Outlier}$, "
         r"$\mathrm{sgn}\,C_\Delta=\operatorname{sign}(C_{\text{diff}})$, "
         r"$|C_\Delta|/\sigma=\dfrac{|C_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
-        r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "
-        r"$\mathrm{MAE}_{10}=\mathrm{MAE}_{10\text{d}}$, "
-        r"$\mathrm{RMAE}= \mathrm{MAE}_5 / \text{Close}$, "
-        r"$\mathrm{HR}_{20}=\mathrm{HitRate}_{20\text{d}}$, "
+        r"$S_{t,p}=\operatorname{sign}(\alpha_t)$, "
+        r"$S_r=\operatorname{sign}(C_r - B)$, "
+        r"$S_{ver}=\mathbb{1}(S_{t,p}=S_r)$, "
         r"$\lambda_{\text{shift}}=\lambda_t$, "
-        r"$\Delta\alpha_t=\alpha_t-\alpha_{t-1}$.",
+        r"$\Delta\alpha_t=\alpha_t-\alpha_{t-1}$."
         r"\end{tablenotes}"
     ]
     footnote = "\n".join(footnote_lines)

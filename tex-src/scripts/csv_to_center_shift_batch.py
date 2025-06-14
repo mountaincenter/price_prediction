@@ -52,10 +52,24 @@ SUMMARY_TEX = OUT_DIR / "summary.tex"
 # ── モデル定数（batch 側でメトリクス計算に必要） ──────────────────────────
 def compute_metrics(df: pd.DataFrame) -> tuple[float, float, float]:
     """MAE_10d, RelMAE, HitRate_20d (各最終行, %) を返す"""
-    mae = df["MAE_10d"].dropna().iloc[-1]
-    rmae = df["RelMAE"].dropna().iloc[-1]
-    hit = df["HitRate_20d"].dropna().iloc[-1]
-    return mae, rmae, hit
+    mae = df["C_diff"].abs().rolling(10, min_periods=1).mean().dropna().iloc[-1]
+    rmae = (
+        df["C_diff"].abs().rolling(5, min_periods=1).mean()
+        .div(df["Close"])
+        .mul(100)
+        .dropna()
+        .iloc[-1]
+    )
+    hit = (
+        (np.sign(df[r"$\alpha_t$"]) == np.sign(df["C_real"] - df["B_{t-1}"]))
+        .astype(int)
+        .rolling(20, min_periods=1)
+        .mean()
+        .dropna()
+        .iloc[-1]
+        * 100
+    )
+    return float(mae), float(rmae), float(hit)
 
 # ── LaTeX summary 生成 ──────────────────────────────────────────────────
 def make_summary(rows: list[tuple[str, float, float, float, float, float, float, float, float]]) -> str:
