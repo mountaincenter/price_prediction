@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.42  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.40  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
-- 2025-06-14  v2.42: restore MA columns and keep Outlier=9 values
-- 2025-06-14  v2.38: show values when Outlier=9
-- 2025-06-14  v2.36: revert to mask Outlier=9 values
+- 2025-06-14  Revert to v2.40 baseline
+- 2025-06-13  v2.40: Phase6 で B_ma10 を基準値に使用
+- 2025-06-13  v2.39: B_ma5/B_ma10 平滑化を Phase5 用に追加
+- 2025-06-13  v2.38: ratio_flag を単日±1%に戻し平均は参考値
+- 2025-06-13  v2.37: 10日移動平均で外れ値判定を平滑化
 - 2025-06-13  v2.36: 外れ値閾値1%とし一般行を Outlier=9
 - 2025-06-13  v2.35: 外れ値行を NaN で無効化し再計算
 - 2025-06-13  v2.34: Outlier 区分0-8の優先処理を追加
@@ -260,7 +262,7 @@ def calc_center_shift(
         categories[i] = cat
     out["Outlier"] = categories
 
-    mask = out["Outlier"].between(1, 8)
+    mask = out["Outlier"] != 0
     cols = [
         "High",
         "Low",
@@ -272,7 +274,6 @@ def calc_center_shift(
         "C_real",
         "C_diff",
         "C_ratio",
-        "C_ratio_ma10",
         "C_diff_sign",
         "Norm_err",
     ]
@@ -293,9 +294,9 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
 
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
-    for c in [r"$\kappa(\sigma)$","B_{t-1}","B_ma5","B_ma10","C_pred",
-              "C_real","C_diff","C_ratio","C_ratio_ma10","C_diff_sign",
-              "Norm_err","Outlier","MAE_5d","MAE_10d","RelMAE","HitRate_20d"]:
+    for c in [r"$\kappa(\sigma)$","B_{t-1}","C_pred","C_real","C_diff",
+              "C_ratio","C_ratio_ma10","C_diff_sign","Norm_err","Outlier",
+              "MAE_5d","MAE_10d","RelMAE","HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
         med[c] = np.median(vals)
@@ -305,8 +306,6 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         "Date",
         r"$\kappa(\sigma)$",
         "B_{t-1}",
-        "B_ma5",
-        "B_ma10",
         "C_pred",
         "C_real",
         "C_diff",
@@ -383,7 +382,8 @@ def make_table(df: pd.DataFrame, title: str = "") -> str:
         r"$\mathrm{Out}=\text{Outlier}$, "
         r"$\mathrm{sgn}\,C_\Delta=\operatorname{sign}(C_{\text{diff}})$, "
         r"$|C_\Delta|/\sigma=\dfrac{|C_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
-        r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, $\mathrm{MAE}_{10}=\mathrm{MAE}_{10\text{d}}$, "
+        r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "
+        r"$\mathrm{MAE}_{10}=\mathrm{MAE}_{10\text{d}}$, "
         r"$\mathrm{RMAE}= \mathrm{MAE}_5 / \text{Close}$, "
         r"$\mathrm{HR}_{20}=\mathrm{HitRate}_{20\text{d}}$, ",
         r"$\lambda_{\text{shift}}=\lambda_t$, ",
