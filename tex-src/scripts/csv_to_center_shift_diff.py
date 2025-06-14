@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.40  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.41  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-13  v2.41: Outlier=9 行でも値を表示
 - 2025-06-13  v2.40: Phase6 で B_ma10 を基準値に使用
 - 2025-06-13  v2.39: B_ma5/B_ma10 平滑化を Phase5 用に追加
 - 2025-06-13  v2.38: ratio_flag を単日±1%に戻し平均は参考値
@@ -261,7 +262,7 @@ def calc_center_shift(
         categories[i] = cat
     out["Outlier"] = categories
 
-    mask = out["Outlier"] != 0
+    mask = (out["Outlier"] != 0) & (out["Outlier"] != 9)
     cols = [
         "High",
         "Low",
