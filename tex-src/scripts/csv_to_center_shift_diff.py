@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
 
-scripts/csv_to_center_shift_diff.py   v2.13  (2025-06-06)
+scripts/csv_to_center_shift_diff.py   v2.14  (2025-06-06)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
- - 2025-06-06  v2.13: "code:" 表示を表上部のキャプションへ移動
+- 2025-06-14  v2.14: C_Δ/C_r 判定列を追加し大差時に値を非表示
+- 2025-06-06  v2.13: "code:" 表示を表上部のキャプションへ移動
  - 2025-06-06  v2.12: α_t/λ_shift/Δα_t 列を追加し code 表示を挿入
 - 2025-06-06  v2.11: Average 行の下に Median 行を追加
 - 2025-06-05  v2.10: HitRate 改善アルゴリズム導入
@@ -142,6 +143,18 @@ def calc_center_shift(df: pd.DataFrame, phase: int = 2) -> pd.DataFrame:
 
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / out[r"$\sigma_t^{\mathrm{shift}}$"]
+    out["C_ratio"]     = np.abs(out["C_diff"] / out["C_real"])
+    out["R_code"]      = ""
+    mask_1 = out["C_ratio"] < 0.01
+    mask_9 = (~mask_1) & (out["C_ratio"] < 0.02)
+    mask_hi = out["C_ratio"] >= 0.02
+    out.loc[mask_1, "R_code"] = "0"
+    out.loc[mask_9, "R_code"] = "9"
+    out.loc[mask_hi, "R_code"] = (
+        np.minimum(((out.loc[mask_hi, "C_ratio"] - 0.02) // 0.01).astype(int) + 1, 8)
+        .astype(str)
+    )
+    out.loc[mask_hi, ["C_pred", "C_real", "C_diff", "C_diff_sign", "Norm_err"]] = np.nan
     out["MAE_5d"]      = out["C_diff"].abs().rolling(5, min_periods=1).mean()
     out["RelMAE"]      = out["MAE_5d"] / out["Close"] * 100       # %
     hit = (np.sign(out[r"$\alpha_t$"]) ==
@@ -156,7 +169,8 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
     avg = {"Date": "Average"}
     med = {"Date": "Median"}
     for c in [r"$\kappa(\sigma)$","B_{t-1}","C_pred","C_real","C_diff",
-              "C_diff_sign","Norm_err","MAE_5d","RelMAE","HitRate_20d"]:
+              "C_diff_sign","Norm_err","C_ratio","MAE_5d","RelMAE",
+              "HitRate_20d"]:
         vals = dfn[c].astype(float)
         avg[c] = vals.mean()
         med[c] = np.median(vals)
@@ -171,6 +185,8 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
         "C_diff",
         "C_diff_sign",
         "Norm_err",
+        "C_ratio",
+        "R_code",
         r"$\alpha_t$",
         r"$\lambda_{\text{shift}}$",
         r"$\Delta\alpha_t$",
@@ -186,6 +202,8 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
         "C_diff":             r"$C_\Delta$",
         "C_diff_sign":        r"$\mathrm{sgn}\,C_\Delta$",
         "Norm_err":           r"$|C_\Delta|/\sigma$",
+        "C_ratio":            r"$|C_\Delta|/C_r$",
+        "R_code":             r"$R$",
         r"$\alpha_t$":        r"$\alpha_t$",
         r"$\lambda_{\text{shift}}$": r"$\lambda$",
         r"$\Delta\alpha_t$": r"$\Delta\alpha$",
@@ -202,6 +220,10 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
             return "--"
         if col in {r"$\kappa$", r"$\alpha_t$", r"$\lambda$", r"$\Delta\alpha$"}:
             return f"{v:.2f}"
+        if col == r"$|C_\Delta|/C_r$":
+            return f"{v:.3f}"
+        if col == r"$R$":
+            return str(v)
         if col in {r"$\mathrm{RMAE}$", r"$\mathrm{HR}_{20}[\%]$"}:
             return f"{v:.2f}"
         return f"{v:.1f}"
@@ -226,10 +248,12 @@ def make_table(df: pd.DataFrame, code: str = "") -> str:
         r"$\mathrm{sgn}\,C_\Delta=\operatorname{sign}(C_{\text{diff}})$, "
         r"$|C_\Delta|/\sigma=\dfrac{|C_{\text{diff}}|}{\sigma_t^{\text{shift}}}$, "
         r"$\mathrm{MAE}_5=\mathrm{MAE}_{5\text{d}}$, "
+        r"$|C_\Delta|/C_r=\dfrac{|C_{\text{diff}}|}{C_{\text{real}}}$, "
         r"$\mathrm{RMAE}= \mathrm{MAE}_5 / \text{Close}$, "
         r"$\mathrm{HR}_{20}=\mathrm{HitRate}_{20\text{d}}$, ",
         r"$\lambda_{\text{shift}}=\lambda_t$, ",
-        r"$\Delta\alpha_t=\alpha_t-\alpha_{t-1}$.",
+        r"$\Delta\alpha_t=\alpha_t-\alpha_{t-1}$, "
+        r"$R$=|C_\Delta|/C_r \text{ に基づく指標}",
         r"\end{tablenotes}"
     ]
     footnote = "\n".join(footnote_lines)
