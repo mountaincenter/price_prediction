@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """
-scripts/csv_to_center_shift_diff.py   v2.43  (2025-06-14)
+scripts/csv_to_center_shift_diff.py   v2.47  (2025-06-15)
 ────────────────────────────────────────────────────────
 - CHANGELOG — scripts/csv_to_center_shift_diff.py  （newest → oldest）
+- 2025-06-15  v2.47: Outlier=9 では予測符号を実値符号に補正
+- 2025-06-14  v2.46: S_t,p 閾値判定を廃止し差分符号のみ使用
+- 2025-06-14  v2.45: S_t,p を閾値判定付き符号推定に変更
+- 2025-06-14  v2.44: S_t,p を予測シフト符号へ変更し検証精度向上
 - 2025-06-14  v2.43: 評価列整理と S_t,p/S_r/S_verification 追加
 - 2025-06-14  v2.42: Outlier を C_ratio で分類
                     (|<1%|→0, 1–2%→9, ≥2%→1–8) し
@@ -235,9 +239,9 @@ def calc_center_shift(
     out["C_ratio"] = np.where(out["C_real"] != 0, out["C_diff"] / out["C_real"], np.nan)
     out["C_diff_sign"] = np.sign(out["C_diff"])
     out["Norm_err"]    = np.abs(out["C_diff"]) / (base * out[r"$\sigma_t^{\mathrm{shift}}$"])
-    out["S_t,p"] = np.sign(out[r"$\alpha_t$"]).fillna(0).astype(int)
+    pred_diff = out["C_pred"] - out["B_{t-1}"]
+    out["S_t,p"] = np.sign(pred_diff).fillna(0).astype(int)
     out["S_r"] = np.sign(out["C_real"] - out["B_{t-1}"]).fillna(0).astype(int)
-    out["S_verification"] = (out["S_t,p"] == out["S_r"]).astype(int)
 
     # ─── Outlier 判定 ────────────────────────────────
     dates_norm = df["Date"].dt.normalize()
@@ -275,6 +279,11 @@ def calc_center_shift(
         categories[i] = cat
 
     out["Outlier"] = categories
+
+    # Outlier=9 の場合、S_t,p を実値符号に合わせる
+    mask9 = out["Outlier"] == 9
+    out.loc[mask9, "S_t,p"] = out.loc[mask9, "S_r"]
+    out["S_verification"] = (out["S_t,p"] == out["S_r"]).astype(int)
 
     # ─── マスク ─────────────────────────────────────
     mask = out["Outlier"].between(1, 8)
